@@ -396,6 +396,8 @@ filtered_data <- formatted_data %>%
   filter(lab.passaged == 0) %>%
   select(-c(strain, organism, lab.passaged, createdate, updatedate))
 
+write.csv(filtered_data, './data/genbank_usuv_20231206.csv')
+
  
 
 
