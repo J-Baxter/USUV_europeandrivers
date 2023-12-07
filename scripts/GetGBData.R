@@ -1,7 +1,8 @@
 # Initial Data Collection
 library(rentrez)
-library(genbankr)
 library(tidyverse)
+library(parsedate)
+library(XML)
 source('./scripts/apikey.R')
 
 # Function to extract citation, pubmed id, sequencing tech and accession from ID
@@ -143,7 +144,7 @@ MyFunc2 <- function(dataframe){
 # accession, seqname, genbank upload dates, molecule type, source, accession, sequencing tech,
 # pubmed id and citation
 GetEntrez <- function(searchterm, key = API_KEY, max = 10){
-  set_entrez_key(key)
+  #set_entrez_key(key)
   
   # RENTREZ search
   test_search <- entrez_search(db = 'nuccore',
@@ -205,38 +206,6 @@ GetEntrez <- function(searchterm, key = API_KEY, max = 10){
 }
 
 
-# Get GB data using GenbankR package
-# contains: organism, mol_type, isolate, host, country, collection_date, accession
-# Not always available due to differences in annotations
-
-GetGenBankR <- function(accn, key = API_KEY){
-  
-  #set_entrez_key(key)
-  
-  require(genbankr)
-  
-  formatted_accn <- GBAccession(accn)
-  #set_entrez_key(key)
-  
-  try_accn <-  try(readGenBank(formatted_accn, 
-                               partial = TRUE),
-                   silent = T)
-  
-  if(!class(try_accn) == "try-error"){
-    entry <- readGenBank(formatted_accn, 
-                         partial = TRUE)
-    
-    data <- entry@sources@elementMetadata@listData %>%  keep(is.character) %>% 
-      as_tibble() %>%
-      mutate(accession = accn)
-    
-  }else{
-    data <- NULL
-  }
-  
-  return(data)
-  
-}
 
 ###################################################################################################
 # Function to extract Genbank collection dates from NCBI nucleotide database
@@ -386,7 +355,9 @@ formatted_data <- entrez_data %>%
     sequencing.technology,
     title,
     pubmed.id_1,
-    citation_1) 
+    citation_1) %>%
+  
+  
 
 filtered_data <- formatted_data %>%
   # only USUV 
