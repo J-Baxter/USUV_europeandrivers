@@ -328,7 +328,8 @@ formatted_data <- entrez_data %>%
   
   # Location
   # Region detail (regions need grouping/harmonising)
-  separate_wider_delim(country, delim = ': ', names =  c('country', 'region'), too_few = 'align_start') %>%
+  separate_wider_delim(country, delim = ':', names =  c('country', 'region'), too_few = 'align_start') %>%
+  mutate(across(c(country, region), .fns = ~ str_trim(.x))) %>%
   
   # section of genome analysed
   mutate(full.length = case_when(seqlength > 1000 ~ 'nflg',
