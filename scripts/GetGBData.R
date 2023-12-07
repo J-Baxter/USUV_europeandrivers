@@ -206,34 +206,21 @@ GetEntrez <- function(searchterm, key = API_KEY, max = 10){
 }
 
 
-MyFun3 <- function(country_code, region){
-  
-  if(!exists('iso2')){
-    iso2 <- read_csv('./data/iso3166-2.csv') %>%
-      select(-country_code) %>%
-      separate_wider_delim(code, delim = '-', names = c('country_code', 'subdividsion_code'))
-  }
-  
-  code <- iso2 %>%
-    filter(country_code == country_code) %>%
-    filter(subdivision_name == region) %>%
-    pull(subdividsion_code) %>%
-    unique()
-  
-  if(identical(code, character(0))){
-    code <- NA
-  }else
-    
-    return(list(code))
-  
-  
-}
+
 ###################################################################################################
 # Function to extract Genbank collection dates from NCBI nucleotide database
 # Requires function NCBI API key, otherwise downloads will exceed maximum number of calls
 
 entrez_data <- GetEntrez("usutu[All Fields] AND viruses[filter]", 
                          max = 2000) 
+
+# import ISO data
+iso2 <- read_csv('./data/iso3166-2.csv') %>%
+  select(-country_code) %>%
+  separate_wider_delim(code, delim = '-', names = c('iso.country.code', 'iso.subdivision.code')) %>%
+  rename(iso.subdivision.name = subdivision_name)
+
+
 
 formatted_data <- entrez_data %>%
   # Remove uninformative cols
@@ -269,7 +256,9 @@ formatted_data <- entrez_data %>%
   
   # format year (NB requires manual editing due to additional dates present in isolate names)
   mutate(collection.date.formatted = case_when(
-    nchar(collection_date) == 4 ~ ymd(collection_date, truncated = 2L) %>% parsedate::parse_date() %m+% months(6),
+    nchar(collection_date) == 4 ~ ymd(collection_date, truncated = 2L) %>%
+      parsedate::parse_date() %m+% 
+      months(6),
     .default = parsedate::parse_date(collection_date))) %>%
   mutate(collection.date.decimal = decimal_date(collection.date.formatted)) %>%
   select(-collection_date) %>%
@@ -277,70 +266,119 @@ formatted_data <- entrez_data %>%
   # host (species, genus)
   mutate(host.genusspecies = case_when(
     grepl('\\bAnopheles\\b', host) ~ 'Anopheles_NA',
+    
     grepl('merula|blackbird', host) ~ 'Turdus_merula',
+    
     grepl('carrion crow', host) ~  'Corvus_corone',
+    
     grepl('\\bcrow\\b', host) ~  'Corvus_NA',
+    
     grepl('\\bColumba sp.\\b', host) ~ 'Columba_NA',
+    
     grepl('Crocidura|shrew', host) ~ 'Crocidura_NA' ,
+    
     grepl('\\bCulex\\b|Culex sp.|\\bCulex cf.\\b|Culex pipiens/torrentium pool', host) ~ 'Culex_NA',
+    
     grepl('modestus', host) ~ 'Culex_modestus' ,
+    
     grepl('pipiens', host) ~  'Culex_pipiens',
+    
     grepl('Blue tit', host) ~ 'Cyanistes_caeruleus',
+    
     grepl('eurasian jay|glandarius', host) ~  'Garrulus_glandarius',
+    
     grepl('goshawk', host) ~  'Accipiter_gentilis',
+    
     grepl('great tit', host) ~  'Parus_major',
+    
     grepl('hooded crow', host) ~  'Corvus_cornix',
+    
     grepl('Mastomys natalensis', host) ~ 'Mastomys_natalensis',
+    
     grepl('Melanitta nigra', host) ~ 'Melanitta_nigra',
+    
     grepl('Turdus philomelos', host) ~ 'Turdus_philomelos',
+    
     grepl('Turdus pilaris', host) ~ 'Turdus_pilaris',
+    
     grepl('tawny owl', host) ~ 'Strix_aluco',
+    
     grepl('Sitta europaea', host) ~ 'Sitta_europaea',
+    
     grepl('Panurus biarmicus', host) ~ 'Panurus_biarmicus',
+    
     grepl('Parus caeruleus', host) ~ 'Parus_caeruleus',
+    
     grepl('Passer domesticus', host) ~ 'Passer_domesticus',
+    
     grepl('Passer montanus', host) ~ 'Passer_montanus ',
+    
     grepl('Rattus rattus', host) ~ 'Rattus_rattus',
+    
     grepl('spectacled warbler', host) ~ 'Sylvia_conspicillata',
+    
     grepl('sparrowhawk', host) ~ 'Accipiter_nisus',
+    
     grepl('Strix nebulosa', host) ~ 'Strix_nebulosa',
+    
     grepl('vulgaris', host) ~ 'Sturnus_vulgaris',
+    
     grepl('Sylviayatricapilla', host) ~ 'Sylvia_atricapilla',
-    grepl('Sylviayatricapilla', host) ~ 'Sylvia_atricapilla',
-    grepl('Sylviayatricapilla', host) ~ 'Sylvia_atricapilla',
+    
     grepl('Tachyeres', host) ~ 'Tachyeres_NA',
+    
     grepl('Serinus canaria', host) ~ 'Serinus_canaria',
+    
     grepl('free-ranging wild birds|goose|Avian|gull|Ixodida|magpie|mosquito|Laridae|Turdidae|\\bowl\\b|swift|swallow', host) ~  'NA_NA',
+    
     .default = gsub(' ', '_', host))) %>%
   separate_wider_delim(host.genusspecies, delim = '_', names = c('host.genus', 'host.species')) %>%
   
   # host order
   mutate(host.order = case_when(
     grepl('Anopheles|Culex|Aedes', host.genus) ~ 'Diptera',
+    
     grepl('Homo', host.genus) ~ 'Primates',
+    
     grepl('Gallus|Alectoris|Phasianus', host.genus) ~ 'Galliformes',
-    grepl('Corvus|Passer|Turdus|Sturnus|Sylvia|Alauda|Cyanistes|Erithacus|Erythrura|Fringilla|Garrulus|Gracula|
-          Leucopsar|Muscicapa|Panurus|Parus|Pica|Pyrrhula|Serinus|Sitta', host.genus) ~ 'Passeriformes',
+    
+    grepl('Corvus|Passer|Turdus|Sturnus|Sylvia|Alauda|Cyanistes|Erithacus|Erythrura|Fringilla|Garrulus|Gracula|Leucopsar|Muscicapa|Panurus|Parus|Pica|Pyrrhula|Serinus|Sitta',
+          host.genus) ~ 'Passeriformes',
+    
     grepl('Accipiter', host.genus) ~ 'Accipitriformes',
+    
     grepl('Strix|Asio|Surnia', host.genus) ~ 'Strigiformes',
+    
     grepl('Alopochen|Anas|Branta|Tachyeres', host.genus) ~ 'Anseriformes',
+    
     grepl('Caprimulgus', host.genus) ~ 'Caprimulgiformes',
+    
     grepl('Ciconia', host.genus) ~ 'Ciconiiformes',
+    
     grepl('Columba|Streptopelia', host.genus) ~ 'Columbiformes',
+    
     grepl('Larus', host.genus) ~ 'Charadriiformes',
+    
     grepl('Mastomys|Rattus', host.genus) ~ 'Rodentia',
+    
     grepl('Pipistrellus', host.genus) ~ 'Chiroptera',
+    
     grepl('Ixodes', host) ~ 'Parasitiformes',
+    
     grepl('swift|swallow', host) ~ 'Passeriformes',
+    
     grepl('goose', host) ~ 'Anseriformes', 
+    
     grepl('gull', host) ~ 'Charadriiformes' )) %>%
 
   # host class 
   mutate(host.class = case_when(
-    grepl('Gallifomes|Passeriformes|Accipitriformes|Strigiformes|Anseriformes|Columbiformes|
-          Charadriiformes', host.order) ~ 'Aves',
+    grepl('Gallifomes|Passeriformes|Accipitriformes|Strigiformes|Anseriformes|Columbiformes|Charadriiformes', host.order) ~ 'Aves',
+    
     grepl('Rodentia|Primates|Chiroptera', host.order) ~ 'Mammalia',
+    
     grepl('Diptera', host.order) ~ 'Insecta',
+    
     grepl('Parasitiformes', host.order) ~ 'Arachnida')) %>%
   
   mutate(across(contains('host'), .fns = ~ case_when(grepl('\\bNA\\b', .x) ~ NA,
@@ -349,316 +387,455 @@ formatted_data <- entrez_data %>%
   
   # Location
   # Region detail (regions need grouping/harmonising)
-  separate_wider_delim(country, delim = ':', names =  c('country', 'region'), too_few = 'align_start') %>%
-  mutate(across(c(country, region), .fns = ~ str_trim(.x))) %>%
-  mutate(country = countrycode::countrycode(country, 'country.name',
+  separate_wider_delim(country, delim = ':', names =  c('iso.country', 'region'), too_few = 'align_start') %>%
+  mutate(across(c(iso.country, region), .fns = ~ str_trim(.x))) %>%
+  mutate(iso.country.code = countrycode::countrycode(iso.country, 'country.name',
                                             destination = 'iso2c')) %>%
-  mutate(region = case_when(
+  mutate(iso.subdivision.name = case_when(
     
-    #AT
-    grepl('Burgenland|Stegersbach|Mattersburg|Bad Sauerbrunn', region) & country == 'AT' ~ 'Burgenland',
+    #AUSTRIA -A T
+    grepl('Burgenland|Stegersbach|Mattersburg|Bad Sauerbrunn', region) & iso.country.code == 'AT' ~ 'Burgenland',
     
-    grepl('Karnten', region) & country == 'AT' ~ 'Karnten',
+    grepl('Karnten', region) & iso.country.code == 'AT' ~ 'Karnten',
     
-    grepl('Niederosterreich|Voesendorf|Strasshof|Stockerau|Sollenau|Breitensee|Biberbach|Sankt Poelten|
-          Pottschach|Neunkirchen|Markgrafneusiedl|Koenigstetten|Klosterneuburg|Hof am Leithaberge|
-          Haringsee|Fishamend|Bruderndorf', region) & country == 'AT' ~ 'Niederosterreich',
+    grepl('Niederosterreich|Voesendorf|Strasshof|Stockerau|Sollenau|Breitensee|Biberbach|Sankt Poelten|Pottschach|Neunkirchen|Markgrafneusiedl|Koenigstetten|Klosterneuburg|Hof am Leithaberge|Haringsee|Fishamend|Bruderndorf',
+          region) & iso.country.code == 'AT' ~ 'Niederosterreich',
     
-    grepl('Oberosterreich|Sankt Georgen|Linz', region) & country == 'AT' ~ 'Oberosterreich',
+    grepl('Oberosterreich|Sankt Georgen|Linz', region) & iso.country.code == 'AT' ~ 'Oberosterreich',
     
-    grepl('Salzburg', region) & country == 'AT' ~ 'Salzburg',
+    grepl('Salzburg', region) & iso.country.code == 'AT' ~ 'Salzburg',
     
-    grepl('Steiermark|Ragnitz|Graz|Eggersdorf', region) & country == 'AT' ~ 'Steiermark',
+    grepl('Steiermark|Ragnitz|Graz|Eggersdorf', region) & iso.country.code == 'AT' ~ 'Steiermark',
     
-    grepl('Tirol', region) & country == 'AT' ~ 'Tirol',
+    grepl('Tirol', region) & iso.country.code == 'AT' ~ 'Tirol',
     
-    grepl('Vorarlberg', region) & country == 'AT' ~ 'Vorarlberg',
+    grepl('Vorarlberg', region) & iso.country.code == 'AT' ~ 'Vorarlberg',
     
-    grepl('Wien|Vienna', region) & country == 'AT' ~ 'Wien',
-    
-    
-    #CZ
-    grepl('Jihocesky kraj|Lomnice nad Luznici', region) & country == 'CZ' ~ 'Jihocesky kraj',
-    
-    grepl('Jihomoravsky kraj|Breclav|Brno', region) & country == 'CZ' ~ 'Jihomoravsky kraj',
-    
-    grepl('Karlovarsky kraj', region) & country == 'CZ' ~ 'Karlovarsky kraj',
-    
-    grepl('Kraj Vysocina', region) & country == 'CZ' ~ 'Kraj Vysocina',
-    
-    grepl('Kralovehradecky kraj', region) & country == 'CZ' ~ 'Kralovehradecky kraj',
-    
-    grepl('Liberecky kraj', region) & country == 'CZ' ~ 'Liberecky kraj',
-    
-    grepl('Moravskoslezsky kraj', region) & country == 'CZ' ~ 'Moravskoslezsky kraj',
-    
-    grepl('Olomoucky kraj', region) & country == 'CZ' ~ 'Olomoucky kraj',
-    
-    grepl('Pardubicky kraj', region) & country == 'CZ' ~ 'Pardubicky kraj',
-    
-    grepl('Plzensky kraj', region) & country == 'CZ' ~ 'Plzensky kraj',
-    
-    grepl('Praha, Hlavni mesto', region) & country == 'CZ' ~ 'Praha, Hlavni mesto',
-    
-    grepl('Stredocesky kraj|Prague', region) & country == 'CZ' ~ 'Stredocesky kraj',
-    
-    grepl('Ustecky kraj', region) & country == 'CZ' ~ 'Ustecky kraj',
-    
-    grepl('Zlinsky kraj', region) & country == 'CZ' ~ 'Zlinsky kraj',
+    grepl('Wien|Vienna', region) & iso.country.code == 'AT' ~ 'Wien',
     
     
+    #CZECHIA - CZ
+    grepl('Jihocesky kraj|Lomnice nad Luznici', region) & iso.country.code == 'CZ' ~ 'Jihocesky kraj',
     
-    # IT
-    grepl('Abruzzo', region) & country == 'IT' ~ 'Abruzzo',
+    grepl('Jihomoravsky kraj|Breclav|Brno|Hlohovec', region) & iso.country.code == 'CZ' ~ 'Jihomoravsky kraj',
     
-    grepl('Basilicata', region) & country == 'IT'  ~ 'Basilicata',
+    grepl('Karlovarsky kraj', region) & iso.country.code == 'CZ' ~ 'Karlovarsky kraj',
     
-    grepl('Basilicata', region) & country == 'IT'  ~ 'Calabria',
+    grepl('Kraj Vysocina', region) & iso.country.code == 'CZ' ~ 'Kraj Vysocina',
     
-    grepl('Basilicata', region) & country == 'IT'  ~ 'Campania',
+    grepl('Kralovehradecky kraj', region) & iso.country.code == 'CZ' ~ 'Kralovehradecky kraj',
     
-    grepl('Emilia|Bologna|Ferrara|Modena', region) & country == 'IT'  ~ 'Emilia-Romagna',
+    grepl('Liberecky kraj', region) & iso.country.code == 'CZ' ~ 'Liberecky kraj',
+    
+    grepl('Moravskoslezsky kraj', region) & iso.country.code == 'CZ' ~ 'Moravskoslezsky kraj',
+    
+    grepl('Olomoucky kraj', region) & iso.country.code == 'CZ' ~ 'Olomoucky kraj',
+    
+    grepl('Pardubicky kraj', region) & iso.country.code == 'CZ' ~ 'Pardubicky kraj',
+    
+    grepl('Plzensky kraj', region) & iso.country.code == 'CZ' ~ 'Plzensky kraj',
+    
+    grepl('Praha, Hlavni mesto', region) & iso.country.code == 'CZ' ~ 'Praha, Hlavni mesto',
+    
+    grepl('Stredocesky kraj|Prague', region) & iso.country.code == 'CZ' ~ 'Stredocesky kraj',
+    
+    grepl('Ustecky kraj', region) & iso.country.code == 'CZ' ~ 'Ustecky kraj',
+    
+    grepl('Zlinsky kraj', region) & iso.country.code == 'CZ' ~ 'Zlinsky kraj',
+    
+    
+    
+    # ITALY - IT
+    grepl('Abruzzo', region) & iso.country.code == 'IT' ~ 'Abruzzo',
+    
+    grepl('Basilicata', region) & iso.country.code == 'IT'  ~ 'Basilicata',
+    
+    grepl('Basilicata', region) & iso.country.code == 'IT'  ~ 'Calabria',
+    
+    grepl('Basilicata', region) & iso.country.code == 'IT'  ~ 'Campania',
+    
+    grepl('Emilia|Bologna|Ferrara|Modena|EmiliaRomagna', region) & iso.country.code == 'IT'  ~ 'Emilia-Romagna',
     
     grepl('Friuli Venezia Giulia|GO|PN|UD', region) ~ 'Friuli-Venezia Giulia',
     
-    grepl('Lazio|Latium', region) & country == 'IT'  ~ 'Lazio',
+    grepl('Lazio|Latium', region) & iso.country.code == 'IT'  ~ 'Lazio',
     
-    grepl('Liguria', region) & country == 'IT'  ~ 'Liguria',
+    grepl('Liguria', region) & iso.country.code == 'IT'  ~ 'Liguria',
     
-    grepl('Lombard', region) & country == 'IT'  ~ 'Lombardia',
+    grepl('Lombard', region) & iso.country.code == 'IT'  ~ 'Lombardia',
     
     grepl('Marche|Ancona|Macerata|Monteprandone-Ascoli Piceno|Osimo|Pesaro|Senigallia', region) & 
-      country == 'IT'  ~ 'Marche',
+      iso.country.code == 'IT'  ~ 'Marche',
     
-    grepl('Molise', region) & country == 'IT'  ~ 'Molise',
+    grepl('Molise', region) & iso.country.code == 'IT'  ~ 'Molise',
     
     grepl('Piemonte|Casale Monferrato|Piedmont|Giarole|Mombello Monferrato|Verbania', region) & 
-      country == 'IT'  ~ 'Piemonte',
+      iso.country.code == 'IT'  ~ 'Piemonte',
     
-    grepl('Puglia', region) & country == 'IT'  ~ 'Puglia',
+    grepl('Puglia', region) & iso.country.code == 'IT'  ~ 'Puglia',
     
-    grepl('Sardegna', region) & country == 'IT'  ~ 'Sardegna',
+    grepl('Sardegna', region) & iso.country.code == 'IT'  ~ 'Sardegna',
     
-    grepl('Sicilia', region) & country == 'IT'  ~ 'Sicilia',
+    grepl('Sicilia', region) & iso.country.code == 'IT'  ~ 'Sicilia',
     
-    grepl('Toscana', region) & country == 'IT'  ~ 'Toscana',
+    grepl('Toscana', region) & iso.country.code == 'IT'  ~ 'Toscana',
     
-    grepl('Trentino-Alto Adige|TN', region) & country == 'IT'  ~ 'Trentino-Alto Adige',
+    grepl('Trentino-Alto Adige|TN', region) & iso.country.code == 'IT'  ~ 'Trentino-Alto Adige',
     
-    grepl('Umbria', region) & country == 'IT'  ~ 'Umbria',
+    grepl('Umbria', region) & iso.country.code == 'IT'  ~ 'Umbria',
     
-    grepl("Valle d'Aosta", region) & country == 'IT'  ~ "Valle d'Aosta",
+    grepl("Valle d'Aosta", region) & iso.country.code == 'IT'  ~ "Valle d'Aosta",
     
-    grepl('Veneto|VI|PD|\\bRO\\b|TV|VE|VR', region) & country == 'IT' ~ 'Veneto',
-    
-    
-    # SN
-    grepl('Barkedji', region) & country == 'SN' ~ 'Louga',
+    grepl('Veneto|VI|PD|\\bRO\\b|TV|VE|VR', region) & iso.country.code == 'IT' ~ 'Veneto',
     
     
-    #NL
+    # SENEGAL - SN
+    grepl('Barkedji', region) & iso.country.code == 'SN' ~ 'Louga',
+    
+    
+    # NETHERLANDS - NL
     grepl('Drenthe|Westerveld|Borger-Odoorn|Tynaarlo|Eext|Koekange|MiddenDrexhe|Noordenveld', region) & 
-      country == 'NL' ~ 'Drenthe',
+      iso.country.code == 'NL' ~ 'Drenthe',
     
     grepl('Flevoland|Almere|Lelystad|Noordoostpolder|Noordosterpolder', region) & 
-      country == 'NL'~ 'Flevoland',
+      iso.country.code == 'NL'~ 'Flevoland',
     
-    grepl('Fryslan|Tytsjerksteradiel|Eastermar|Heerenveen', region) & country == 'NL'~ 'Fryslan',
+    grepl('Fryslan|Tytsjerksteradiel|Eastermar|Heerenveen', region) & iso.country.code == 'NL'~ 'Fryslan',
     
-    grepl('Gelderland|Zutphen|Zevenaar|Westvoort|Westervoort|Andelst|Arnhem|Bennekom|DeLiemers|
-          Spijk|Doetichem|Doetinchem|Epe|Ermelo|Gelmonde|Ingen|Klarenbeek|Lochem|Oldenbroek', region) &
-      country == 'NL' ~ 'Gelderland',
+    grepl('Gelderland|Zutphen|Zevenaar|Westvoort|Westervoort|Andelst|Arnhem|Bennekom|DeLiemers|Spijk|Doetichem|Doetinchem|Epe|Ermelo|Gelmonde|Ingen|Klarenbeek|Lochem|Oldenbroek',
+          region) &
+      iso.country.code == 'NL' ~ 'Gelderland',
     
-    grepl('Groningen|Zuidhorn|Oldambt|Spijk', region) & country == 'NL' ~ 'Groningen',
+    grepl('Groningen|Zuidhorn|Oldambt|Spijk', region) & iso.country.code == 'NL' ~ 'Groningen',
     
-    grepl('Limburg|Venlo|Gennep|Kerkrade|Landgraaf|Ottersum', region) & country == 'NL' ~ 'Limburg',
+    grepl('Limburg|Venlo|Gennep|Kerkrade|Landgraaf|Ottersum', region) & iso.country.code == 'NL' ~ 'Limburg',
     
-    grepl('Noord-Brabant|Wernhout|Vlijmen|BeekEnDonk|Best|Boekel|Uden|Agatha|Schaik|Rosmalen|
-          Reek|Lierop|Oss', region) ~ 'Noord-Brabant',
+    grepl('Noord-Brabant|Wernhout|Vlijmen|BeekEnDonk|Best|Boekel|Uden|Agatha|Schaik|Rosmalen|Reek|Lierop|Oss',
+          region) ~ 'Noord-Brabant',
     
     grepl('Noord-Holland|Bloemendaal|Heerhugowaard|Hilversum|Huizen|Naarden|Reek', region) &
-      country == 'NL' ~ 'Noord-Holland',
+      iso.country.code == 'NL' ~ 'Noord-Holland',
     
     grepl('Overijssel|Wierden|Enschede|Hardenberg|Heino|Losser|Overdinkel|Raalte', region) & 
-      country == 'NL' ~ 'Overijssel',
+      iso.country.code == 'NL' ~ 'Overijssel',
     
-    grepl('Utrecht|Bilthoven|Bosch en Duin|Bunnik|DeBilt|DeRondeVenen|Soest|Haarzuilens|Houten|
-          Ijsselstein|Langbroek|Nieuwegein|Ijsselstein', region) & country == 'NL' ~ 'Utrecht',
+    grepl('Utrecht|Bilthoven|Bosch en Duin|Bunnik|DeBilt|DeRondeVenen|Soest|Haarzuilens|Houten|Ijsselstein|Langbroek|Nieuwegein|Ijsselstein', 
+          region) & iso.country.code == 'NL' ~ 'Utrecht',
     
-    grepl('Zeeland|Terneuzen|Reimerswaal|Grenspad|Middelburg', region) & country == 'NL' ~ 'Zeeland',
+    grepl('Zeeland|Terneuzen|Reimerswaal|Grenspad|Middelburg', region) & iso.country.code == 'NL' ~ 'Zeeland',
     
     grepl('Zuid-Holland|Zoeterwoude|Westland|Den Haag|Rotterdam|Rijswijk|Leiden|Nederlek|HardinxveldGiessendam', region) & 
-      country == 'NL' ~ 'Zuid-Holland',
+      iso.country.code == 'NL' ~ 'Zuid-Holland',
+ 
     
-    
-    #RS
-    grepl('Sabac', region) & country == 'RS' ~ 'Macvanski okrug',
-    
-    
-    #DE
+    # GERMANY -DE
     grepl('Baden-Wuerttemberg|Freiburg im Breisgau|Rosengarten|Stutensee', region) & 
-      country == 'DE' ~ 'Baden-Wuerttemberg',
+      iso.country.code == 'DE' ~ 'Baden-Wuerttemberg',
     
-    grepl('Bavaria|Munich|Nuremberg|Wuerzburg', region) & country == 'DE' ~ 'Bayern',
+    grepl('Bavaria|Munich|Nuremberg|Wuerzburg', region) & iso.country.code == 'DE' ~ 'Bayern',
     
-    grepl('Berlin', region) & country == 'DE' ~ 'Berlin',
+    grepl('Berlin', region) & iso.country.code == 'DE' ~ 'Berlin',
     
-    grepl('Brandenburg', region) & country == 'DE' ~ 'Brandenburg',
+    grepl('Brandenburg', region) & iso.country.code == 'DE' ~ 'Brandenburg',
     
-    grepl('Bremen', region)  & country == 'DE'~ 'Bremen',
+    grepl('Bremen', region)  & iso.country.code == 'DE'~ 'Bremen',
     
-    grepl('Hamburg', region) & country == 'DE' ~ 'Hamburg',
+    grepl('Hamburg', region) & iso.country.code == 'DE' ~ 'Hamburg',
     
-    grepl('Hessen|Freigericht|Giessen|Karben|Ranstadt', region) & country == 'DE' ~ 'Hessen',
+    grepl('Hessen|Freigericht|Giessen|Karben|Ranstadt', region) & iso.country.code == 'DE' ~ 'Hessen',
     
     grepl('Mecklenburg-Vorpommern|Grevesmuehlen|Parchim|Ruegen|Warin', region) &
-      country == 'DE' ~ 'Mecklenburg-Vorpommern',
+      iso.country.code == 'DE' ~ 'Mecklenburg-Vorpommern',
     
-    grepl('Lower Saxony|Brietlingen|Dinklage|Hannover|Lueneburg|Nordhorn|Osnabruck|Osterholz-Scharnbeck
-          |Theene|Wingst', region) & country == 'DE' ~ 'Niedersachsen',
+    grepl('Lower Saxony|Brietlingen|Dinklage|Hannover|Lueneburg|Nordhorn|Osnabruck|Osterholz-Scharnbeck|Theene|Wingst',
+          region) & iso.country.code == 'DE' ~ 'Niedersachsen',
     
-    grepl('Aachen|Brueggen', region) & country == 'DE' ~ 'Nordrhein-Westfalen',
+    grepl('Aachen|Brueggen', region) & iso.country.code == 'DE' ~ 'Nordrhein-Westfalen',
     
-    grepl('Rheinland-Pfalz', region) & country == 'DE' ~ 'Rheinland-Pfalz',
+    grepl('Rheinland-Pfalz', region) & iso.country.code == 'DE' ~ 'Rheinland-Pfalz',
     
-    grepl('Saarland|Puettlingen', region) & country == 'DE' ~ 'Saarland',
+    grepl('Saarland|Puettlingen', region) & iso.country.code == 'DE' ~ 'Saarland',
     
-    grepl('Sachsen|Doberschuetz|Dresden|Gross Dueben|Leipzig', region) & country == 'DE' ~ 'Sachsen',
+    grepl('Sachsen|Doberschuetz|Dresden|Gross Dueben|Leipzig', region) & iso.country.code == 'DE' ~ 'Sachsen',
     
-    grepl('Sachsen-Anhalt|Halle|Zeitz', region) & country == 'DE' ~ 'Sachsen-Anhalt',
+    grepl('Sachsen-Anhalt|Halle|Zeitz', region) & iso.country.code == 'DE' ~ 'Sachsen-Anhalt',
     
-    grepl('Aumuehle|Brickeln|Luebeck|Pinneberg|Prohn', region) & country == 'DE' ~ 'Schleswig-Holstein',
+    grepl('Aumuehle|Brickeln|Luebeck|Pinneberg|Prohn', region) & iso.country.code == 'DE' ~ 'Schleswig-Holstein',
     
-    grepl('Thuringen|Gera', region) & country == 'DE' ~ 'Thuringen',
-    
-    
-    #HU
-    grepl('Bacs-Kiskun|Kecskemet|Kiskunfelegyhaza|Kunadacs', region) & country == 'HU' ~ 'Bacs-Kiskun',
-    grepl('Baranya', region) & country == 'HU' ~ 'Baranya',
-    grepl('Bekes', region) & country == 'HU' ~ 'Bekes',
-    grepl('Borsod-Abauj-Zemplen', region) & country == 'HU' ~ 'Borsod-Abauj-Zemplen',
-    grepl('Budapest', region) & country == 'HU' ~ 'Budapest',
-    grepl('Csongrad-Csanad', region) & country == 'HU' ~ 'Csongrad-Csanad',
-    grepl('Fejer', region) & country == 'HU' ~ 'Fejer',
-    grepl('Gyor-Moson-Sopron', region) & country == 'HU' ~ 'Gyor-Moson-Sopron',
-    grepl('Hajdu-Bihar', region) & country == 'HU' ~ 'Hajdu-Bihar',
-    grepl('Heves', region) & country == 'HU' ~ 'Heves',
-    grepl('Jasz-Nagykun-Szolnok', region) & country == 'HU' ~ 'Jasz-Nagykun-Szolnok',
-    grepl('Komarom-Esztergom', region) & country == 'HU' ~ 'Komarom-Esztergom',
-    grepl('Nograd', region) & country == 'HU' ~ 'Nograd',
-    grepl('\\bPest\\b|\\bVac\\b', region) & country == 'HU' ~ 'Pest',
-    grepl('Somogy|Kaposvar', region) & country == 'HU' ~ 'Somogy',
-    grepl('Szabolcs-Szatmar-Bereg|Fabianhaza', region) & country == 'HU' ~ 'Szabolcs-Szatmar-Bereg',
-    grepl('\\bTolna\\b', region) & country == 'HU' ~ 'Tolna',
-    grepl('\\bVas\\b', region) & country == 'HU' ~ 'Vas',
-    grepl('Veszprem', region) & country == 'HU' ~ 'Veszprem',
-    grepl('Zala|Lovaszi|Nagylengyel|Zalaegerszeg', region) & country == 'HU' ~ 'Zala',
+    grepl('Thuringen|Gera', region) & iso.country.code == 'DE' ~ 'Thuringen',
     
     
-    # Serbia
-    grepl('Beograd', region) & country == 'SR' ~ 'Beograd',
+    # HUNGARY-HU
+    grepl('Bacs-Kiskun|Kecskemet|Kiskunfelegyhaza|Kunadacs', region) & iso.country.code == 'HU' ~ 'Bacs-Kiskun',
     
-    grepl('Borski okrug', region) & country == 'SR' ~ 'Borski okrug',
+    grepl('Baranya', region) & iso.country.code == 'HU' ~ 'Baranya',
     
-    grepl('Branicevski okrug', region) & country == 'SR' ~ 'Branicevski okrug',
+    grepl('Bekes', region) & iso.country.code == 'HU' ~ 'Bekes',
     
-    grepl('Jablanicki okrug', region) & country == 'SR' ~ 'Jablanicki okrug',
+    grepl('Borsod-Abauj-Zemplen', region) & iso.country.code == 'HU' ~ 'Borsod-Abauj-Zemplen',
     
-    grepl('Juznobacki okrug', region) & country == 'SR' ~ 'Juznobacki okrug',
+    grepl('Budapest', region) & iso.country.code == 'HU' ~ 'Budapest',
     
-    grepl('Juznobanatski okrug', region) & country == 'SR' ~ 'Juznobanatski okrug',
+    grepl('Csongrad-Csanad', region) & iso.country.code == 'HU' ~ 'Csongrad-Csanad',
     
-    grepl('Kolubarski okrug', region) & country == 'SR' ~ 'Kolubarski okrug',
+    grepl('Fejer', region) & iso.country.code == 'HU' ~ 'Fejer',
     
-    grepl('Kosovsko-Mitrovacki okrug', region) & country == 'SR' ~ 'Kosovsko-Mitrovacki okrug',
+    grepl('Gyor-Moson-Sopron|\\bGyor\\b', region) & iso.country.code == 'HU' ~ 'Gyor-Moson-Sopron',
     
-    grepl('Macvanski okrug', region) & country == 'SR' ~ 'Macvanski okrug',
+    grepl('Hajdu-Bihar', region) & iso.country.code == 'HU' ~ 'Hajdu-Bihar',
     
-    grepl('Moravicki okrug', region) & country == 'SR' ~ 'Moravicki okrug',
+    grepl('Heves', region) & iso.country.code == 'HU' ~ 'Heves',
     
-    grepl('Nisavski okrug', region) & country == 'SR' ~ 'Nisavski okrug',
+    grepl('Jasz-Nagykun-Szolnok', region) & iso.country.code == 'HU' ~ 'Jasz-Nagykun-Szolnok',
     
-    grepl('Pcinjski okrug', region) & country == 'SR' ~ 'Pcinjski okrug',
+    grepl('Komarom-Esztergom', region) & iso.country.code == 'HU' ~ 'Komarom-Esztergom',
     
-    grepl('Pecki okrug', region) & country == 'SR' ~ 'Pecki okrug',
+    grepl('Nograd', region) & iso.country.code == 'HU' ~ 'Nograd',
     
-    grepl('Pirotski okrug', region) & country == 'SR' ~ 'Pirotski okrug',
+    grepl('\\bPest\\b|\\bVac\\b', region) & iso.country.code == 'HU' ~ 'Pest',
     
-    grepl('Podunavski okrug', region) & country == 'SR' ~ 'Podunavski okrug',
+    grepl('Somogy|Kaposvar', region) & iso.country.code == 'HU' ~ 'Somogy',
     
-    grepl('Pomoravski okrug', region) & country == 'SR' ~ 'Pomoravski okrug',
+    grepl('Szabolcs-Szatmar-Bereg|Fabianhaza', region) & iso.country.code == 'HU' ~ 'Szabolcs-Szatmar-Bereg',
     
-    grepl('Prizrenski okrug', region) & country == 'SR' ~ 'Prizrenski okrug',
+    grepl('\\bTolna\\b', region) & iso.country.code == 'HU' ~ 'Tolna',
     
-    grepl('Rasinski okrug', region) & country == 'SR' ~ 'Rasinski okrug',
+    grepl('\\bVas\\b', region) & iso.country.code == 'HU' ~ 'Vas',
     
-    grepl('Raski okrug', region) & country == 'SR' ~ 'Raski okrug',
+    grepl('Veszprem', region) & iso.country.code == 'HU' ~ 'Veszprem',
     
-    grepl('Severnobacki okrug', region) & country == 'SR' ~ 'Severnobacki okrug',
+    grepl('Zala|Lovaszi|Nagylengyel|Zalaegerszeg', region) & iso.country.code == 'HU' ~ 'Zala',
     
-    grepl('Severnobanatski okrug', region) & country == 'SR' ~ 'Severnobanatski okrug',
     
-    grepl('Srednjebanatski okrug', region) & country == 'SR' ~ 'Srednjebanatski okrug',
+    # SERBIA-RS
+    grepl('Beograd', region) & iso.country.code == 'RS' ~ 'Beograd',
     
-    grepl('Sremski okrug', region) & country == 'SR' ~ 'Sremski okrug',
+    grepl('Borski okrug', region) & iso.country.code == 'RS' ~ 'Borski okrug',
     
-    grepl('Sumadijski okrug', region) & country == 'SR' ~ 'Sumadijski okrug',
+    grepl('Branicevski okrug', region) & iso.country.code == 'RS' ~ 'Branicevski okrug',
     
-    grepl('Toplicki okrug', region) & country == 'SR' ~ 'Toplicki okrug',
+    grepl('Jablanicki okrug', region) & iso.country.code == 'RS' ~ 'Jablanicki okrug',
     
-    grepl('Zajecarski okrug', region) & country == 'SR' ~ 'Zajecarski okrug',
+    grepl('Juznobacki okrug', region) & iso.country.code == 'RS' ~ 'Juznobacki okrug',
     
-    grepl('Zapadnobacki okrug', region) & country == 'SR' ~ 'Zapadnobacki okrug',
+    grepl('Juznobanatski okrug', region) & iso.country.code == 'RS' ~ 'Juznobanatski okrug',
     
-    grepl('Zlatiborski okrug', region) & country == 'SR' ~ 'Zlatiborski okrug',
+    grepl('Kolubarski okrug', region) & iso.country.code == 'RS' ~ 'Kolubarski okrug',
+    
+    grepl('Kosovsko-Mitrovacki okrug', region) & iso.country.code == 'RS' ~ 'Kosovsko-Mitrovacki okrug',
+    
+    grepl('Macvanski okrug|Sabac', region) & iso.country.code == 'RS' ~ 'Macvanski okrug',
+    
+    grepl('Moravicki okrug', region) & iso.country.code == 'RS' ~ 'Moravicki okrug',
+    
+    grepl('Nisavski okrug', region) & iso.country.code == 'RS' ~ 'Nisavski okrug',
+    
+    grepl('Pcinjski okrug', region) & iso.country.code == 'RS' ~ 'Pcinjski okrug',
+    
+    grepl('Pecki okrug', region) & iso.country.code == 'RS' ~ 'Pecki okrug',
+    
+    grepl('Pirotski okrug', region) & iso.country.code == 'RS' ~ 'Pirotski okrug',
+    
+    grepl('Podunavski okrug', region) & iso.country.code == 'RS' ~ 'Podunavski okrug',
+    
+    grepl('Pomoravski okrug', region) & iso.country.code == 'RS' ~ 'Pomoravski okrug',
+    
+    grepl('Prizrenski okrug', region) & iso.country.code == 'RS' ~ 'Prizrenski okrug',
+    
+    grepl('Rasinski okrug', region) & iso.country.code == 'RS' ~ 'Rasinski okrug',
+    
+    grepl('Raski okrug', region) & iso.country.code == 'RS' ~ 'Raski okrug',
+    
+    grepl('Severnobacki okrug', region) & iso.country.code == 'RS' ~ 'Severnobacki okrug',
+    
+    grepl('Severnobanatski okrug', region) & iso.country.code == 'RS' ~ 'Severnobanatski okrug',
+    
+    grepl('Srednjebanatski okrug', region) & iso.country.code == 'RS' ~ 'Srednjebanatski okrug',
+    
+    grepl('Sremski okrug', region) & iso.country.code == 'RS' ~ 'Sremski okrug',
+    
+    grepl('Sumadijski okrug', region) & iso.country.code == 'RS' ~ 'Sumadijski okrug',
+    
+    grepl('Toplicki okrug', region) & iso.country.code == 'RS' ~ 'Toplicki okrug',
+    
+    grepl('Zajecarski okrug', region) & iso.country.code == 'RS' ~ 'Zajecarski okrug',
+    
+    grepl('Zapadnobacki okrug', region) & iso.country.code == 'RS' ~ 'Zapadnobacki okrug',
+    
+    grepl('Zlatiborski okrug', region) & iso.country.code == 'RS' ~ 'Zlatiborski okrug',
     
     
     #Croatia - HR
-    [1] "Bjelovarsko-bilogorska zupanija" "Brodsko-posavska zupanija"       "Dubrovacko-neretvanska zupanija"
-    [4] "Grad Zagreb"                     "Istarska zupanija"               "Karlovacka zupanija"            
-    [7] "Koprivnicko-krizevacka zupanija" "Krapinsko-zagorska zupanija"     "Licko-senjska zupanija"         
-    [10] "Medimurska zupanija"             "Osjecko-baranjska zupanija"      "Pozesko-slavonska zupanija"     
-    [13] "Primorsko-goranska zupanija"     "Sibensko-kninska zupanija"       "Sisacko-moslavacka zupanija"    
-    [16] "Splitsko-dalmatinska zupanija"   "Varazdinska zupanija"            "Viroviticko-podravska zupanija" 
-    [19] "Vukovarsko-srijemska zupanija"   "Zadarska zupanija"               "Zagrebacka zupanija" 
+    grepl('Bjelovarsko-bilogorska zupanija', region) & iso.country.code == 'HR' ~ 'Bjelovarsko-bilogorska zupanija',
     
-    "Zagreb"       "Jastrebarsko" "Nasic" 
-    "Catalonia, Viladecans" #Spain
-    "Ticin" #CH
+    grepl('Brodsko-posavska zupanija', region) & iso.country.code == 'HR' ~ 'Brodsko-posavska zupanija',
     
-    # Spain
-    [1] "Andalucia"                   "Aragon"                      "Asturias, Principado de"    
-    [4] "Canarias"                    "Cantabria"                   "Castilla y Leon"            
-    [7] "Castilla-La Mancha"          "Catalunya"                   "Ceuta"                      
-    [10] "Extremadura"                 "Galicia"                     "Illes Balears"              
-    [13] "La Rioja"                    "Madrid, Comunidad de"        "Melilla"                    
-    [16] "Murcia, Region de"           "Navarra, Comunidad Foral de" "Pais Vasco"                 
-    [19] "Valenciana, Comunidad"      
+    grepl('Grad Zagreb|\\bZagreb\\b', region) & iso.country.code == 'HR' ~ 'Grad Zagreb',
     
-    #CH
-    [1] "Aargau"                 "Appenzell Ausserrhoden" "Appenzell Innerrhoden"  "Basel-Landschaft"      
-    [5] "Basel-Stadt"            "Bern"                   "Fribourg"               "Geneve"                
-    [9] "Glarus"                 "Graubunden"             "Jura"                   "Luzern"                
-    [13] "Neuchatel"              "Nidwalden"              "Obwalden"               "Sankt Gallen"          
-    [17] "Schaffhausen"           "Schwyz"                 "Solothurn"              "Thurgau"               
-    [21] "Ticino"                 "Uri"                    "Valais"                 "Vaud"                  
-    [25] "Zug"                    "Zurich"
+    grepl('Istarska zupanija', region) & iso.country.code == 'HR' ~ 'Istarska zupanija',
     
-    # FR
-    [1] "Auvergne-Rhone-Alpes"       "Bourgogne-Franche-Comte"    "Bretagne"                  
-    [4] "Centre-Val de Loire"        "Corse"                      "Grand-Est"                 
-    [7] "Hauts-de-France"            "Ile-de-France"              "Normandie"                 
-    [10] "Nouvelle-Aquitaine"         "Occitanie"                  "Pays-de-la-Loire"          
-    [13] "Provence-Alpes-Cote-d'Azur"
+    grepl('Karlovacka zupanija', region) & iso.country.code == 'HR' ~ 'Karlovacka zupanija',
     
+    grepl('Koprivnicko-krizevacka zupanija', region) & iso.country.code == 'HR' ~ 'Koprivnicko-krizevacka zupanija',
+    
+    grepl('Krapinsko-zagorska zupanija', region) & iso.country.code == 'HR' ~ 'Krapinsko-zagorska zupanija',
+    
+    grepl('Licko-senjska zupanija zupanija', region) & iso.country.code == 'HR' ~ 'Licko-senjska zupanijazupanija',
+    
+    grepl('Medimurska zupanija', region) & iso.country.code == 'HR' ~ 'Medimurska zupanija',
+    
+    grepl('Osjecko-baranjska zupanija', region) & iso.country.code == 'HR' ~ 'Osjecko-baranjska zupanija',
+    
+    grepl('Pozesko-slavonska zupanija', region) & iso.country.code == 'HR' ~ 'Pozesko-slavonska zupanija',
+    
+    grepl('Primorsko-goranska zupanija', region) & iso.country.code == 'HR' ~ 'Primorsko-goranska zupanija',
+    
+    grepl('Sibensko-kninska zupanija', region) & iso.country.code == 'HR' ~ 'Sibensko-kninska zupanija',
+    
+    grepl('Sisacko-moslavacka zupanija', region) & iso.country.code == 'HR' ~ 'Sisacko-moslavacka zupanija',
+    
+    grepl('Splitsko-dalmatinska zupanija', region) & iso.country.code == 'HR' ~ 'Splitsko-dalmatinska zupanija',
+    
+    grepl('Varazdinska zupanija', region) & iso.country.code == 'HR' ~ 'Varazdinska zupanija',
+    
+    grepl('Viroviticko-podravska zupanija|Nasic', region) & iso.country.code == 'HR' ~ 'Viroviticko-podravska zupanija',
+    
+    grepl('Vukovarsko-srijemska zupanija', region) & iso.country.code == 'HR' ~ 'Vukovarsko-srijemska zupanija',
+    
+    grepl('Zadarska zupanija', region) & iso.country.code == 'HR' ~ 'Zadarska zupanija',
+    
+    grepl('Zagrebacka zupanija|Jastrebarsko', region) & iso.country.code == 'HR' ~ 'Zagrebacka zupanija',
+    
+    
+    # SPAIN - ES
+    grepl('Andalucia', region) & iso.country.code == 'ES' ~ 'Andalucia',
+    
+    grepl('Aragon', region) & iso.country.code == 'ES' ~ 'Aragon',
+    
+    grepl('Asturias, Principado de', region) & iso.country.code == 'ES' ~ 'Asturias, Principado de',
+    
+    grepl('Canarias', region) & iso.country.code == 'ES' ~ 'Canarias',
+    
+    grepl('Cantabria', region) & iso.country.code == 'ES' ~ 'Cantabria',
+    
+    grepl('Castilla y Leon', region) & iso.country.code == 'ES' ~ 'Castilla y Leon',
+    
+    grepl('Castilla-La Mancha', region) & iso.country.code == 'ES' ~ 'Castilla-La Mancha',
+    
+    grepl('Catalunya|Catalonia', region) & iso.country.code == 'ES' ~ 'Catalunya',
+    
+    grepl('Ceuta', region) & iso.country.code == 'ES' ~ 'Ceuta',
+    
+    grepl('Extremadura', region) & iso.country.code == 'ES' ~ 'Extremadura',
+    
+    grepl('Galicia', region) & iso.country.code == 'ES' ~ 'Galicia',
+    
+    grepl('Illes Balears', region) & iso.country.code == 'ES' ~ 'Illes Balears',
+    
+    grepl('La Rioja', region) & iso.country.code == 'ES' ~ 'La Rioja',
+    
+    grepl('Madrid, Comunidad de', region) & iso.country.code == 'ES' ~ 'Madrid, Comunidad de',
+    
+    grepl('Melilla', region) & iso.country.code == 'ES' ~ 'Melilla',
+    
+    grepl('Murcia, Region de', region) & iso.country.code == 'ES' ~ 'Murcia, Region de',
+    
+    grepl('Navarra, Comunidad Foral de', region) & iso.country.code == 'ES' ~ 'Navarra, Comunidad Foral de',
+    
+    grepl('Pais Vasco', region) & iso.country.code == 'ES' ~ 'Pais Vasco',
+    
+    grepl('Valenciana, Comunidad', region) & iso.country.code == 'ES' ~ 'Valenciana, Comunidad',
+
+    
+    # Switzerland - CH
+    grepl('Aargau', region) & iso.country.code == 'CH' ~ 'Aargau',
+    
+    grepl('Appenzell Ausserrhoden', region) & iso.country.code == 'CH' ~ 'Appenzell Ausserrhoden',
+    
+    grepl('Appenzell Innerrhoden', region) & iso.country.code == 'CH' ~ 'Appenzell Innerrhoden',
+    
+    grepl('Basel-Landschaft', region) & iso.country.code == 'CH' ~ 'Basel-Landschaft',
+    
+    grepl('Basel-Stadt', region) & iso.country.code == 'CH' ~ 'Basel-Stadt',
+    
+    grepl('Bern', region) & iso.country.code == 'CH' ~ 'Bern',
+    
+    grepl('Fribourg', region) & iso.country.code == 'CH' ~ 'Fribourg',
+    
+    grepl('Geneve', region) & iso.country.code == 'CH' ~ 'Geneve',
+    
+    grepl('Glarus', region) & iso.country.code == 'CH' ~ 'Glarus',
+    
+    grepl('Graubunden', region) & iso.country.code == 'CH' ~ 'Graubunden',
+    
+    grepl('Jura', region) & iso.country.code == 'CH' ~ 'Jura',
+    
+    grepl('Luzern', region) & iso.country.code == 'CH' ~ 'Luzern',
+    
+    grepl('Neuchatel', region) & iso.country.code == 'CH' ~ 'Neuchatel',
+    
+    grepl('Nidwalden', region) & iso.country.code == 'CH' ~ 'Nidwalden',
+    
+    grepl('Obwalden', region) & iso.country.code == 'CH' ~ 'Obwalden',
+    
+    grepl('Sankt Gallen', region) & iso.country.code == 'CH' ~ 'Sankt Gallen',
+    
+    grepl('Schaffhausen', region) & iso.country.code == 'CH' ~ 'Schaffhausen',
+    
+    grepl('Schwyz', region) & iso.country.code == 'CH' ~ 'Schwyz',
+    
+    grepl('Solothurn', region) & iso.country.code == 'CH' ~ 'Solothurn',
+    
+    grepl('Thurgau', region) & iso.country.code == 'CH' ~ 'Thurgau',
+    
+    grepl('Ticino', region) & iso.country.code == 'CH' ~ 'Ticino',
+    
+    grepl('Uri', region) & iso.country.code == 'CH' ~ 'Uri',
+    
+    grepl('Valais', region) & iso.country.code == 'CH' ~ 'Valais',
+    
+    grepl('Vaud', region) & iso.country.code == 'CH' ~ 'Vaud',
+    
+    grepl('Zug', region) & iso.country.code == 'CH' ~ 'Zug',
+    
+    grepl('Zurich', region) & iso.country.code == 'CH' ~ 'Zurich',
+    
+    
+    # France - FR
+    grepl('Auvergne-Rhone-Alpes', region) & iso.country.code == 'FR' ~ 'Auvergne-Rhone-Alpes',
+    
+    grepl('Bourgogne-Franche-Comt', region) & iso.country.code == 'FR' ~ 'Bourgogne-Franche-Comt',
+    
+    grepl('Bretagne', region) & iso.country.code == 'FR' ~ 'Bretagne',
+    
+    grepl('Centre-Val de Loire', region) & iso.country.code == 'FR' ~ 'Centre-Val de Loire',
+    
+    grepl('Corse', region) & iso.country.code == 'FR' ~ 'Corse',
+    
+    grepl('Grand-Est', region) & iso.country.code == 'FR' ~ 'Grand-Est',
+    
+    grepl('Hauts-de-France', region) & iso.country.code == 'FR' ~ 'Hauts-de-France',
+    
+    grepl('Ile-de-France', region) & iso.country.code == 'FR' ~ 'Ile-de-France',
+    
+    grepl('Normandie', region) & iso.country.code == 'FR' ~ 'Normandie',
+    
+    grepl('Nouvelle-Aquitaine', region) & iso.country.code == 'FR' ~ 'Nouvelle-Aquitaine',
+    
+    grepl('Occitanie', region) & iso.country.code == 'FR' ~ 'Occitanie',
+    
+    grepl('Pays-de-la-Loire', region) & iso.country.code == 'FR' ~ 'Pays-de-la-Loire',
+    
+    grepl("Provence-Alpes-Cote-d'Azur|Sainte Croix", region) & iso.country.code == 'FR' ~ "Provence-Alpes-Cote-d'Azur",
+
     # Mopping up
+    grepl('Jinja', region) ~ 'Jinja',
     is.na(region) ~ NA,
     grepl('Devexer', region) ~ NA, 
-    .default = region
+    .default = NA
     
-  )) %>%
-  rowwise() %>%
-  mutate(subdivision = MyFun3(country, region)) %>%
+  )) %>% 
+    left_join(iso2, by = join_by(iso.country.code, iso.subdivision.name)) %>%
   
   
   # section of genome analysed
@@ -666,6 +843,7 @@ formatted_data <- entrez_data %>%
                                  .default = 'partial')) %>%
   rename(isolation.source = isolation_source) %>%
   rename(seq.length = seqlength) %>%
+  rename(seq.technology = sequencing.technology) %>%
   relocate(
     accession,
     organism,
@@ -673,8 +851,10 @@ formatted_data <- entrez_data %>%
     collection.date.formatted,
     collection.date.decimal,
     lab.passaged,
-    country,
-    region,
+    iso.country.code, 
+    iso.country,
+    iso.subdivision.code,
+    iso.subdivision.name,
     genotype,
     host.class,
     host.order,
@@ -683,7 +863,7 @@ formatted_data <- entrez_data %>%
     isolation.source, 
     seq.length,
     full.length,
-    sequencing.technology,
+    seq.technology,
     title,
     pubmed.id_1,
     citation_1) 
