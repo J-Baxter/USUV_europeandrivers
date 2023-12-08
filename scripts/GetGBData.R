@@ -838,7 +838,7 @@ formatted_data <- entrez_data %>%
   
   
   # section of genome analysed
-  mutate(full.length = case_when(seqlength > 1000 ~ 'nflg',
+  mutate(full.length = case_when(seqlength > 9000 ~ 'nflg',
                                  .default = 'partial')) %>%
   rename(isolation.source = isolation_source) %>%
   rename(seq.length = seqlength) %>%
@@ -867,7 +867,13 @@ formatted_data <- entrez_data %>%
     pubmed.id_1,
     citation_1) %>%
   mutate(genbank.createdate = parse_date(createdate)) %>%
-  select(-c(createdate, updatedate))
+  select(-c(createdate, updatedate)) %>% 
+  mutate(is.europe = case_when(iso.country %in% c('Senegal', 'Uganda', 'South Africa', 'Central African Republic', 'Israel') ~ 'Non-European',
+                               .default = 'European')) %>%
+  mutate(segment = case_when(grepl('NS5|non-structural protein 5 gene', title) ~ 'NS5', 
+                             grepl('envelope|E protein', title) ~ 'envelope', 
+                             grepl('nflg', full.length)~'nflg')) 
+
   
 
 filtered_data <- formatted_data %>%
