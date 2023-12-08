@@ -257,8 +257,7 @@ formatted_data <- entrez_data %>%
   # format year (NB requires manual editing due to additional dates present in isolate names)
   mutate(collection.date.formatted = case_when(
     nchar(collection_date) == 4 ~ ymd(collection_date, truncated = 2L) %>%
-      parsedate::parse_date() %m+% 
-      months(6),
+      parsedate::parse_date() , #%m+% months(6)
     .default = parsedate::parse_date(collection_date))) %>%
   mutate(collection.date.decimal = decimal_date(collection.date.formatted)) %>%
   select(-collection_date) %>%
@@ -277,7 +276,7 @@ formatted_data <- entrez_data %>%
     
     grepl('Crocidura|shrew', host) ~ 'Crocidura_NA' ,
     
-    grepl('\\bCulex\\b|Culex sp.|\\bCulex cf.\\b|Culex pipiens/torrentium pool', host) ~ 'Culex_NA',
+    grepl('Culex sp|\\bCulex cf\\b|Culex pipiens/torrentium pool', host, perl = T) ~ 'Culex_NA',
     
     grepl('modestus', host) ~ 'Culex_modestus' ,
     
@@ -332,7 +331,7 @@ formatted_data <- entrez_data %>%
     grepl('free-ranging wild birds|goose|Avian|gull|Ixodida|magpie|mosquito|Laridae|Turdidae|\\bowl\\b|swift|swallow', host) ~  'NA_NA',
     
     .default = gsub(' ', '_', host))) %>%
-  separate_wider_delim(host.genusspecies, delim = '_', names = c('host.genus', 'host.species')) %>%
+  separate_wider_delim(host.genusspecies, delim = '_', names = c('host.genus', 'host.species'), too_few = 'align_start') %>%
   
   # host order
   mutate(host.order = case_when(
@@ -866,8 +865,9 @@ formatted_data <- entrez_data %>%
     seq.technology,
     title,
     pubmed.id_1,
-    citation_1) 
-  
+    citation_1) %>%
+  mutate(genbank.createdate = parse_date(createdate)) %>%
+  select(-c(createdate, updatedate))
   
 
 filtered_data <- formatted_data %>%
@@ -876,14 +876,32 @@ filtered_data <- formatted_data %>%
   
   # Non passaged
   filter(lab.passaged == 0) %>%
-  select(-c(strain, organism, lab.passaged, createdate, updatedate))
+  select(-c(strain, organism, lab.passaged)) 
 
-write.csv(filtered_data, './data/genbank_usuv_20231206.csv')
+
+# Parse NCBI Virus data
+
+
+flagged_data <- filtered_data %>%
+  mutate(flags_date = case_when(
+    is.na(collection.date.formatted) ~ 'collection.date_missing',
+    collection.date.decimal %%1==0 ~ 'collection.date_resolution',
+    .default = NA)) %>%
+  mutate(flags_country = case_when(
+    is.na(iso.country.code) ~ 'country_missing',
+    .default = NA)) %>%
+  mutate(flags_subdivision = case_when(
+    is.na(iso.subdivision.code) ~ 'subdivision_missing',
+    .default = NA)) %>%
+  mutate(flags_host = case_when(
+    is.na(host.order)  ~ 'host_missing',
+    .default = NA)) %>%
+  unite(flags, contains('flags'), sep = ',', na.rm = T)
+  
+
+write.csv(flagged_data, './data/genbank_usuv_20231206.csv')
 
  
-
-
-
 
 
 ###################################################################################################
