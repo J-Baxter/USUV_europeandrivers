@@ -836,6 +836,9 @@ formatted_data <- entrez_data %>%
   )) %>% 
     left_join(iso2, by = join_by(iso.country.code, iso.subdivision.name)) %>%
   
+  mutate(is.europe = case_when(iso.country %in% c('Senegal', 'Uganda', 'South Africa', 'Central African Republic', 'Israel') ~ 'Non-European',
+                               .default = 'European')) %>%
+  
   
   # section of genome analysed
   mutate(full.length = case_when(seqlength > 9000 ~ 'nflg',
@@ -843,6 +846,14 @@ formatted_data <- entrez_data %>%
   rename(isolation.source = isolation_source) %>%
   rename(seq.length = seqlength) %>%
   rename(seq.technology = sequencing.technology) %>%
+
+  mutate(genbank.createdate = parse_date(createdate)) %>%
+  select(-c(createdate, updatedate)) %>% 
+  
+  mutate(segment = case_when(grepl('NS5|non-structural protein 5 gene', title) ~ 'NS5', 
+                             grepl('envelope|E protein', title) ~ 'envelope', 
+                             grepl('nflg', full.length)~'nflg')) %>%
+  
   relocate(
     accession,
     organism,
@@ -866,13 +877,6 @@ formatted_data <- entrez_data %>%
     title,
     pubmed.id_1,
     citation_1) %>%
-  mutate(genbank.createdate = parse_date(createdate)) %>%
-  select(-c(createdate, updatedate)) %>% 
-  mutate(is.europe = case_when(iso.country %in% c('Senegal', 'Uganda', 'South Africa', 'Central African Republic', 'Israel') ~ 'Non-European',
-                               .default = 'European')) %>%
-  mutate(segment = case_when(grepl('NS5|non-structural protein 5 gene', title) ~ 'NS5', 
-                             grepl('envelope|E protein', title) ~ 'envelope', 
-                             grepl('nflg', full.length)~'nflg')) 
 
   
 
@@ -890,14 +894,12 @@ filtered_data <- formatted_data %>%
 
 flagged_data <- filtered_data %>%
   mutate(flags_date = case_when(
-    is.na(collection.date.formatted) ~ 'collection.date_missing',
-    collection.date.decimal %%1==0 ~ 'collection.date_resolution',
+    is.na(collection.date.formatted) ~ 'collection.date_datemissing',
+    collection.date.decimal %%1==0 ~ 'collection.date_yearonly',
     .default = NA)) %>%
-  mutate(flags_country = case_when(
-    is.na(iso.country.code) ~ 'country_missing',
-    .default = NA)) %>%
-  mutate(flags_subdivision = case_when(
-    is.na(iso.subdivision.code) ~ 'subdivision_missing',
+  mutate(flags_geo = case_when(
+    is.na(iso.country.code) ~ 'geo_country',
+    is.na(iso.subdivision.code) ~ 'geo_subdivision',
     .default = NA)) %>%
   mutate(flags_host = case_when(
     is.na(host.order)  ~ 'host_missing',
