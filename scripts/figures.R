@@ -121,3 +121,129 @@ plt4 <- data %>%
 
 
 ggsave(plot = cowplot::plot_grid(plt3, plt4, align = 'hv', labels = c('Bird Order', 'Vector Species'), label_size = 10, label_fontfamily = "LM Sans 10", nrow = 2, hjust = -0.9), filename = 'plt4.jpeg', device = jpeg,  width = 190, height = 220,  units = 'mm', dpi = 350)
+
+
+
+flags <- data %>%
+  select(accession, flags) %>%
+  separate_wider_delim(flags, 
+                       delim = ',', 
+                       names_sep = '_', 
+                       too_few = 'align_start') %>% 
+  pivot_longer(cols = contains('flags'),
+               names_to = 'name',
+               values_to = 'missing') %>% 
+  separate_wider_delim(missing,
+                       delim = '_',
+                       names = c('variable', 'flag'), 
+                       too_few = 'align_start') %>% 
+  #
+  group_by(accession) %>%
+  mutate(n_missing = sum(is.na(flag))) %>% 
+  ungroup() %>% 
+  drop_na() 
+
+ggplot(flags) + 
+  geom_bar(aes(x = factor(n_missing))) + 
+  facet_grid(cols = vars(variable))
+
+  
+data %>%
+  select(accession, flags) %>%
+  separate_wider_delim(flags, 
+                       delim = ',', 
+                       names_sep = '_', 
+                       too_few = 'align_start') %>% 
+  pivot_longer(cols = contains('flags'),
+               names_to = 'name',
+               values_to = 'missing') %>% 
+  separate_wider_delim(missing,
+                       delim = '_',
+                       names = c('variable', 'flag'), 
+                       too_few = 'align_start') %>%
+  drop_na() %>%
+  pivot_wider(id_cols = accession, values_from = flag, names_from = variable) %>%select(-accession) %>%
+  mutate(n_missing = rowSums( !is.na( . ))) %>% 
+  summarise(n = n() , .by = n_missing)
+
+
+#library(ggsankey)
+sankey_data <- data %>%
+  select(accession, flags) %>%
+  separate_wider_delim(flags, 
+                       delim = ',', 
+                       names_sep = '_', 
+                       too_few = 'align_start') %>% 
+  pivot_longer(cols = contains('flags'),
+               names_to = 'name',
+               values_to = 'missing') %>% 
+  separate_wider_delim(missing,
+                       delim = '_',
+                       names = c('variable', 'flag'), 
+                       too_few = 'align_start') %>%
+  drop_na() %>%
+  pivot_wider(id_cols = accession, values_from = flag, names_from = variable) %>% 
+  #replace_na(list(country = 'available', host = 'available', collection.date = 'available', subdivision = 'available')) %>%
+  make_long(collection.date, geo,  host) %>% 
+  mutate(n = rep(1:(nrow(.)/3),each=3)) %>%
+  group_by(n) %>%
+  mutate(n_missing = 3- sum(is.na(node))) %>% 
+  ungroup() %>%
+  select(-n) %>%
+  mutate(node = factor(node, levels = c('datemissing', 'yearonly', 'country', 'subdivision', 'missing'))) %>% 
+  mutate(next_node = factor(next_node, levels = c('datemissing', 'yearonly', 'country', 'subdivision', 'missing'))) %>%
+  mutate(across(node))
+    
+
+
+dagg <- sankey_data %>%
+  dplyr::group_by(x,node, n_missing)%>%
+  tally()
+
+plt5 <- sankey_data %>%
+  left_join(dagg) %>%
+  ggplot(aes(x = x, 
+             next_x = next_x, 
+             node = node, 
+             next_node = next_node,
+             fill = factor(node),
+             label =   as.character(n)))+
+  geom_sankey(#na.rm = T,
+              flow.alpha = 0.5) +
+  geom_sankey_label(size = 3,
+                    #color = "white",
+                    #fill= "gray40",
+                    na.rm = TRUE,
+                    show.legend = FALSE) +
+      
+      scale_x_discrete('Variable', labels= c('collection.date' = 'Collection Date', 
+                                             'geo' = 'Geo-location',
+                                             'host' = 'Host Order'), expand = c(0,0)) + 
+      scale_fill_manual('Variable',
+        values = c('datemissing' = '#a6cee3', 'yearonly' = '#1f78b4', 'country' = '#b2df8a', 'subdivision' = '#33a02c', 'missing' = '#fb9a99'),
+        na.value = 'lightgrey',
+        labels = c('datemissing' = 'No Date Information', 'yearonly' = 'Month Missing', 'country' = 'No Geo Infeomation', 'subdivision' = 'Subdivision Missing', 'missing'= 'No Host Information')) +
+      
+      #scale_fill_brewer(palette = 'Paired',
+                      #  'Missing Data') +
+      
+      facet_grid(rows = vars(factor(n_missing)),
+                 scales = 'free_y', 
+                # space = 'free_y',
+                 switch="both",
+                 labeller =   as_labeller(c('1' = '1 Variable Missing', 
+                                            '2' = '2 Variables Missing',
+                                            '3' = '3 Variables Missing')) )+
+
+      my_theme + 
+      theme(legend.position = 'right',
+            strip.placement = 'outside', 
+            axis.text.y = element_blank(), 
+            axis.line.y = element_blank(), 
+            axis.ticks.y = element_blank(),
+            axis.line.x = element_blank(), 
+            axis.ticks.x = element_blank())
+
+ggsave(plot = plt5, filename = 'plt5.jpeg', device = jpeg,  width = 210, height = 220,  units = 'mm', dpi = 350)
+
+
