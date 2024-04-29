@@ -994,11 +994,129 @@ FormatGermany <- function(x){
   }
   
   return(x)
-}  
-  # Make tipnames
+} 
+
+
+FormatAustria <- function(x){
   
+  austria <- c(
+    "austria_burgenland_eisenstadt-umgebung" = "eisenstadt-umgebung",
+    "austria_burgenland_eisenstadt stadt" = "eisenstadt stadt",
+    "austria_burgenland_güssing" = "güssing|stegersbach",
+    "austria_burgenland_jennersdorf" = "jennersdorf",
+    "austria_burgenland_mattersburg" = "mattersburg|bad sauerbrunn",
+    "austria_burgenland_neusiedl am see" = "neusiedl am see",
+    "austria_burgenland_oberpullendorf" = "oberpullendorf",
+    "austria_burgenland_oberwart" = "oberwart",
+    "austria_burgenland_rust stadt" = "rust stadt",
+    "austria_kärnten_feldkirchen" = "feldkirchen",
+    "austria_kärnten_hermagor" = "hermagor",
+    "austria_kärnten_klagenfurt land" = "klagenfurt land",
+    "austria_kärnten_klagenfurt stadt" = "klagenfurt stadt",
+    "austria_kärnten_sankt veit an der glan" = "sankt veit an der glan",
+    "austria_kärnten_spittal an der drau" = "spittal an der drau",
+    "austria_kärnten_villach land" = "villach land",
+    "austria_kärnten_villach stadt" = "villach stadt",
+    "austria_kärnten_völkermarkt" = "völkermarkt",
+    "austria_kärnten_wolfsberg" = "wolfsberg",
+    "austria_niederösterreich_amstetten" = "amstetten|biberbach",
+    "austria_niederösterreich_baden" = "baden",
+    "austria_niederösterreich_bruck an der leitha" = "bruck an der leitha|fishamend|hof am leithaberge|markgrafneusiedl",
+    "austria_niederösterreich_gänserndorf" = "gänserndorf|strasshof|grossenzersdorf|haringsee|breitensee",
+    "austria_niederösterreich_gmünd" = "gmünd",
+    "austria_niederösterreich_hollabrunn" = "hollabrunn",
+    "austria_niederösterreich_horn" = "horn",
+    "austria_niederösterreich_korneuburg" = "korneuburg|stockerau",
+    "austria_niederösterreich_krems an der donau stadt" = "krems an der donau stadt",
+    "austria_niederösterreich_krems land" = "krems land",
+    "austria_niederösterreich_lilienfeld" = "lilienfeld",
+    "austria_niederösterreich_melk" = "melk",
+    "austria_niederösterreich_mistelbach" = "mistelbach",
+    "austria_niederösterreich_mödling" = "mödling|voesendorf",
+    "austria_niederösterreich_neunkirchen" = "neunkirchen|pottschach",
+    "austria_niederösterreich_sankt pölten land" = "sankt pölten land|sankt poelten",
+    "austria_niederösterreich_sankt pölten stadt" = "sankt pölten stadt",
+    "austria_niederösterreich_scheibbs" = "scheibbs",
+    "austria_niederösterreich_tulln" = "tulln|klosterneuburg|st. andre wordern|koenigstetten|bruderndorf",
+    "austria_niederösterreich_waidhofen an der thaya" = "waidhofen an der thaya",
+    "austria_niederösterreich_waidhofen an der ybbs stadt" = "waidhofen an der ybbs stadt",
+    "austria_niederösterreich_wiener neustadt land" = "wiener neustadt land",
+    "austria_niederösterreich_wiener neustadt stadt" = "wiener neustadt stadt|sollenau",
+    "austria_niederösterreich_zwettl" = "zwettl",
+    "austria_oberösterreich_braunau am inn" = "braunau am inn",
+    "austria_oberösterreich_eferding" = "eferding",
+    "austria_oberösterreich_freistadt" = "freistadt",
+    "austria_oberösterreich_gmunden" = "gmunden",
+    "austria_oberösterreich_grieskirchen" = "grieskirchen",
+    "austria_oberösterreich_kirchdorf an der krems" = "kirchdorf an der krems",
+    "austria_oberösterreich_linz land" = "linz land|linz",
+    "austria_oberösterreich_linz stadt" = "linz stadt",
+    "austria_oberösterreich_perg" = "perg",
+    "austria_oberösterreich_ried im innkreis" = "ried im innkreis",
+    "austria_oberösterreich_rohrbach" = "rohrbach",
+    "austria_oberösterreich_schärding" = "schärding",
+    "austria_oberösterreich_steyr land" = "steyr land",
+    "austria_oberösterreich_steyr stadt" = "steyr stadt",
+    "austria_oberösterreich_urfahr-umgebung" = "urfahr-umgebung",
+    "austria_oberösterreich_vöcklabruck" = "vöcklabruck|sankt georgen",
+    "austria_oberösterreich_wels land" = "wels land",
+    "austria_oberösterreich_wels stadt" = "wels stadt",
+    "austria_salzburg_hallein" = "hallein",
+    "austria_salzburg_salzburg-umgebung" = "salzburg-umgebung",
+    "austria_salzburg_salzburg stadt" = "salzburg stadt",
+    "austria_salzburg_sankt johann im pongau" = "sankt johann im pongau",
+    "austria_salzburg_tamsweg" = "tamsweg",
+    "austria_salzburg_zell am see" = "zell am see",
+    "austria_steiermark_bruck-mürzzuschlag" = "bruck-mürzzuschlag",
+    "austria_steiermark_deutschlandsberg" = "deutschlandsberg",
+    "austria_steiermark_graz-umgebung" = "graz-umgebung|eggersdorf",
+    "austria_steiermark_graz stadt" = "graz stadt|graz(, styria){0,1}$",
+    "austria_steiermark_hartberg-fürstenfeld" = "hartberg-fürstenfeld",
+    "austria_steiermark_leibnitz" = "leibnitz|ragnitz",
+    "austria_steiermark_leoben" = "leoben",
+    "austria_steiermark_liezen" = "liezen",
+    "austria_steiermark_murau" = "murau",
+    "austria_steiermark_murtal" = "murtal",
+    "austria_steiermark_südoststeiermark" = "südoststeiermark",
+    "austria_steiermark_voitsberg" = "voitsberg",
+    "austria_steiermark_weiz" = "weiz",
+    "austria_tirol_imst" = "imst",
+    "austria_tirol_innsbruck land" = "innsbruck land",
+    "austria_tirol_innsbruck stadt" = "innsbruck stadt",
+    "austria_tirol_kitzbühel" = "kitzbühel",
+    "austria_tirol_kufstein" = "kufstein",
+    "austria_tirol_landeck" = "landeck",
+    "austria_tirol_lienz" = "lienz",
+    "austria_tirol_reutte" = "reutte",
+    "austria_tirol_schwaz" = "schwaz",
+    "austria_vorarlberg_bludenz" = "bludenz",
+    "austria_vorarlberg_bregenz" = "bregenz",
+    "austria_vorarlberg_dornbirn" = "dornbirn",
+    "austria_vorarlberg_feldkirch" = "feldkirch",
+    "austria_wien_wien stadt" = "wien stadt",
+    "austria_burgenland" = "^(austria.*){0,1}burgenland$",
+    "austria_kärnten" = "^(austria.*){0,1}kärnten",
+    "austria_niederösterreich" = "^(austria.*){0,1}niederösterreich$",
+    "austria_oberösterreich" = "^(austria.*){0,1}oberösterreich$",
+    "austria_salzburg" = "^(austria.*){0,1}salzburg$",
+    "austria_steiermark" = "^(austria.*){0,1}steiermark$",
+    "austria_tirol" = "^(austria.*){0,1}tirol$",
+    "austria_vorarlberg" = "^vorarlberg$",
+    "austria_wien" = "wien|vienna",
+    "austria" = "^austria$")
+  
+  for (i in 1:length(austria)){
+    if(any(grepl(austria[[i]], x))){
+      x <- names(austria)[[i]]
+    }
+  }
+  
+  return(x)
+}
+  # Make tipnames
+
 write_lines(paste0('"', Netherlands$match, '" = "', str_split(Netherlands$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
 
 
-germany = geodata %>% filter(country == 'germany')
+germany = geodata %>% filter(country == 'austria')
 write_lines(paste0('"', germany$match, '" = "', str_split(germany$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
