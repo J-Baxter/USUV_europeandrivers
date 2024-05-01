@@ -6234,8 +6234,8 @@ FormatSlovakia <- function(x){
 }
 
 
-write_lines(paste0('"', Netherlands$match, '" = "', str_split(Netherlands$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
+#write_lines(paste0('"', Netherlands$match, '" = "', str_split(Netherlands$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
 
 
-germany = geodata %>% filter(country == 'croatia')
-write_lines(paste0('"', germany$match, '" = "', str_split(germany$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
+#germany = geodata %>% filter(country == 'croatia')
+#write_lines(paste0('"', germany$match, '" = "', str_split(germany$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
