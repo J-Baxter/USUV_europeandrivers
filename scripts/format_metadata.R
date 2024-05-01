@@ -1,3 +1,40 @@
+############# Dependencies ############# 
+library(tidyverse)
+library(ape)
+
+
+#############  Required user functions ############# 
+ReNameAlignment <- function(alignment, data){
+  isolates <- str_extract(rownames(alignment), "([^|]*)\\|")%>%
+    str_replace_all("\\|", "") %>%
+    str_trim() %>%
+    gsub('\\..*', '', .)
+  
+  new_seqnames <- c()
+  for (i in 1:length(isolates)){
+    newname <- data$tipnames[data$sequence_accession %in% isolates[[i]]]
+    if (length(newname)>0){
+      new_seqnames[i] <-  newname
+    }else{
+      print(i)
+      new_seqnames[i] <- isolates[[i]]
+    }
+    
+  }
+  
+  rownames(alignment) <-  new_seqnames
+  
+  return(alignment)
+}
+
+#############  Required source files ############# 
+source('./scripts/FormatBirds.R')
+source('./scripts/FormatMammals.R')
+source('./scripts/FormatMosquitos.R')
+source('./scripts/FormatGeo.R')
+
+
+#############  Required data ############# 
 data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')
 geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
@@ -9,6 +46,8 @@ mosquitos <- read_csv('mosquito_taxonomy.csv') %>%
 
 all_taxa <- bind_rows(birds, mammals, mosquitos)
 
+
+#############  Pipeline start ############# 
 data_formatted <- data %>%
   
   # format colnames
@@ -45,7 +84,7 @@ data_formatted <- data %>%
     collection_country == 'austria' && !is.na(collection_location) ~ FormatAustria(collection_location),
     collection_country == 'belgium' && !is.na(collection_location) ~ FormatBelgium(collection_location), 
     collection_country == 'croatia' && !is.na(collection_location) ~ FormatCroatia(collection_location),
-    collection_country == 'Czech Republic' && !is.na(collection_location) ~ FormatCzechia(collection_location), 
+    collection_country == 'czech republic' && !is.na(collection_location) ~ FormatCzechia(collection_location), 
     collection_country == 'france' && !is.na(collection_location) ~ FormatFrance(collection_location),
     collection_country == 'germany' && !is.na(collection_location) ~ FormatGermany(collection_location),
     collection_country == 'hungary' && !is.na(collection_location) ~ FormatHungary(collection_location), 
@@ -132,7 +171,16 @@ data_formatted <- data %>%
   mutate(across(everything(), .fns = ~ gsub('^NA$', NA, .x))) %>%
   
   # Select columns
-  select(-c(collection_location, collection_country, host, `migration pattern`, notes, match, iso_1, `wild/captive`)) %>%
+  select(-c(collection_location, 
+            collection_country,
+            host, 
+            `migration pattern`,
+            notes, 
+            match,
+            iso_1, 
+            `wild/captive`, 
+            sequence_length,
+            complete_location)) %>%
   
   # location codes
   mutate(collection_tipcode = coalesce(collection_subdiv2code, collection_subdiv1code, collection_countrycode)) %>%
@@ -151,4 +199,37 @@ data_formatted <- data %>%
   mutate(tipnames = gsub('\\.', '', tipnames))
   
 
-write_csv(data_formatted, './data/metadata_2024Apr30.csv')
+
+
+#############  Import alignment ############# 
+alignment <- ape::read.dna('./2024Apr21/alignments/master_alignment.fasta',
+                           format = 'fasta',
+                           as.matrix = T,
+                           as.character = T) %>%
+  ReNameAlignment(. , data_formatted) 
+
+
+start <- apply(alignment, 1, function(x) match(letters, x)[1])
+end <- ncol(alignment) - apply(alignment[,ncol(alignment):1], 1, function(x) match(letters, x)[1])
+
+coords <- cbind.data.frame('sequence_start' = start,
+                           'sequence_end' = end) %>%
+  as_tibble(rownames = 'tipnames') %>%
+  mutate(sequence_length = sequence_end - sequence_start) %>%
+  mutate(sequence_generegion = case_when(
+    sequence_start < 400 & sequence_end >9500 ~ 'nflg',
+    sequence_start < 1100 & sequence_end <3000 ~ 'E',
+    sequence_start >7000  ~ 'NS5',
+    
+  ))
+
+
+#############  Join sequence data to metadata ############# 
+metadata <- data_formatted %>%
+  left_join(., coords)
+
+
+#############  Write to file ############# 
+write_csv(metadata, './data/metadata_2024Apr30.csv')
+
+
