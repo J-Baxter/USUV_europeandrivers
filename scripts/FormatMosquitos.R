@@ -2369,10 +2369,8 @@ FormatMosquito <- function(x){
     "aedes sapphirina" = "aedes sapphirina",
     "aedes sp." = "aedes sp.",
     "culex sp." = "culex sp.|culex$",
-    "anopheles sp." = "anopheles sp.",
-  
-    
-  )
+    "anopheles sp." = "anopheles sp."
+    )
   
   for (i in 1:length(mosquitos)){
     if(any(grepl(mosquitos[[i]], x))){
