@@ -229,7 +229,11 @@ metadata <- data_formatted %>%
   left_join(., coords)
 
 
-#############  Write to file ############# 
+#############  Write metadata to file ############# 
 write_csv(metadata, './data/metadata_2024Apr30.csv')
+
+
+#############  Write alignment to file ############# 
+write.dna(alignment, './2024Apr21/alignments/master_alignment_renamed.fasta', format = 'fasta')
 
 
