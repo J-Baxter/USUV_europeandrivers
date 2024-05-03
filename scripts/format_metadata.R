@@ -219,14 +219,15 @@ coords <- cbind.data.frame('sequence_start' = start,
   mutate(sequence_generegion = case_when(
     sequence_start < 400 & sequence_end >9500 ~ 'nflg',
     sequence_start < 1100 & sequence_end <3000 ~ 'E',
-    sequence_start >7000  ~ 'NS5',
+    sequence_start >7000 & sequence_start <8999~ 'NS5a',
+    sequence_start >9000  ~ 'NS5b'
     
-  ))
+  )) 
 
 
 #############  Join sequence data to metadata ############# 
 metadata <- data_formatted %>%
-  left_join(., coords)
+  left_join(., coords) 
 
 
 #############  Write metadata to file ############# 
