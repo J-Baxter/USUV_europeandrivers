@@ -61,15 +61,39 @@ data_formatted <- data %>%
          collection_location = geo_location) %>%
   
   # format date (create date_dec, date_ym date_ymd) %>%
-  
-  mutate(date_ymd = case_when(complete_date == TRUE ~ suppressWarnings(parsedate::parse_date(collection_date)) %>% 
-                                as.Date() )) %>%
-  mutate(date_dec = case_when(complete_date == TRUE ~ suppressWarnings(format(round(decimal_date(date_ymd), 2), 
-                               nsmall = 2)))) %>%
-  mutate(date_ym = case_when(complete_date == TRUE | date_format == 'yyyy-mm'~ 
-                               suppressWarnings(parsedate::parse_date(collection_date)) %>% 
-                               format(., "%Y-%m"))) %>%
-  mutate(date_y = suppressWarnings(format(parsedate::parse_date(collection_date), "%Y"))) %>%
+  mutate(collection_date = str_trim(collection_date))%>%
+  split(~date_format) %>% 
+  map_at("yyyy-mm-dd",  
+         ~ mutate(.x,
+                  date_parsed = ymd(collection_date),
+                  date_ymd = format(date_parsed, '%Y-%m-%d'), 
+                  date_ym = format(date_parsed, '%Y-%m'),
+                  date_y = format(date_parsed, '%Y') )) %>% 
+  map_at("yyyy-mm",
+         ~ mutate(.x,
+                  date_parsed = ym(collection_date),
+                  date_ymd = NA_character_, 
+                  date_ym = format(date_parsed,'%Y-%m') ,
+                  date_y = format(date_parsed, '%Y') )) %>%
+  map_at("yyyy",
+         ~ mutate(.x,
+                  date_parsed = as.POSIXlt.character(collection_date, format = '%Y'),
+                  date_ymd = NA_character_, 
+                  date_ym = NA_character_,
+                  date_y = format(date_parsed, '%Y'))) %>%
+  list_rbind() %>%
+  select(-date_parsed) %>%
+
+
+  #mutate(date_ymd = dplyr::case_when(complete_date == TRUE & grepl("yyyy-mm-dd", date_format)  ~ ymd(collection_date), 
+  #                            .default = NA_Date_)) %>%
+ # select(contains('date'))
+  #mutate(date_dec = case_when(complete_date == TRUE ~ suppressWarnings(format(round(decimal_date(date_ymd), 2), 
+                              # nsmall = 2)))) %>%
+  #mutate(date_ym = case_when(complete_date == TRUE | date_format == 'yyyy-mm'~ 
+                               #suppressWarnings(parsedate::parse_date(collection_date)) %>% 
+                             #  format(., "%Y-%m"))) %>%
+ # mutate(date_y = suppressWarnings(format(parsedate::parse_date(collection_date), "%Y"))) %>%
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
     is.na(date_ymd) & !is.na(date_ym) ~ date_ym,
