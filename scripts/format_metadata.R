@@ -49,7 +49,7 @@ all_taxa <- bind_rows(birds, mammals, mosquitos)
 
 #############  Pipeline start ############# 
 data_formatted <- data %>%
-  
+
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
   select(-c(submitters, isolation_source, organization, release_date)) %>%
@@ -59,7 +59,7 @@ data_formatted <- data %>%
          sequence_completeness = nuc_completeness,
          collection_country = country,
          collection_location = geo_location) %>%
-  
+
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
   split(~date_format) %>% 
@@ -67,12 +67,14 @@ data_formatted <- data %>%
          ~ mutate(.x,
                   date_parsed = ymd(collection_date),
                   date_ymd = format(date_parsed, '%Y-%m-%d'), 
+                  date_dec = decimal_date(date_parsed),
                   date_ym = format(date_parsed, '%Y-%m'),
                   date_y = format(date_parsed, '%Y') )) %>% 
   map_at("yyyy-mm",
          ~ mutate(.x,
                   date_parsed = ym(collection_date),
                   date_ymd = NA_character_, 
+                  date_dec = NaN,
                   date_ym = format(date_parsed,'%Y-%m') ,
                   date_y = format(date_parsed, '%Y') )) %>%
   map_at("yyyy",
@@ -80,7 +82,9 @@ data_formatted <- data %>%
                   date_parsed = as.POSIXlt.character(collection_date, format = '%Y'),
                   date_ymd = NA_character_, 
                   date_ym = NA_character_,
+                  date_dec = NaN,
                   date_y = format(date_parsed, '%Y'))) %>%
+
   list_rbind() %>%
   select(-date_parsed) %>%
 
