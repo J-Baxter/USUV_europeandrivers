@@ -86,7 +86,7 @@ data_formatted <- data %>%
                   date_y = format(date_parsed, '%Y'))) %>%
 
   list_rbind() %>%
-  select(-date_parsed) %>%
+  #select(-date_parsed) %>%
 
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
@@ -133,7 +133,19 @@ data_formatted <- data %>%
   as_tibble() %>%
   left_join(all_taxa, 
             by = join_by(primary_com_name)) %>%
-
+  
+  # Additional Host info: local/migratory/captive
+  # Bergmann et al R = resident species, P = partial migrants, S = short-distance migrants, L = long-distance migrants, Captive, NA
+ # mutate(host_migration = case_when(
+   # primary_com_name %in% c('european blackbird', 'blue tit') ~ 'resident',
+  #  primary_com_name %in% c() ~ 'partial',
+   # primary_com_name %in% c() ~ 'short-distance',
+   # primary_com_name %in% c() ~ 'long-distance',
+   # primary_com_name %in% c() ~ 'captive',
+   # .default = NA_character_
+  #)) %>%
+  
+  
   # Arrange and rename columns
   dplyr::rename(
     collection_regionname = region,
