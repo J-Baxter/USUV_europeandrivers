@@ -5,14 +5,25 @@ library(ape)
 
 #############  Required user functions ############# 
 ReNameAlignment <- function(alignment, data){
-  isolates <- str_extract(rownames(alignment), "([^|]*)\\|")%>%
-    str_replace_all("\\|", "") %>%
+  isolates <- str_extract(rownames(alignment), "([^|]*)\\||([^,]*),")%>%
+    str_replace_all("\\||,", "") %>%
     str_trim() %>%
-    gsub('\\..*', '', .)
+    gsub('\\..*', '', .) %>% 
+    gsub('Usutu virus isolate ','', .)
   
   new_seqnames <- c()
+  
+  
   for (i in 1:length(isolates)){
-    newname <- data$tipnames[data$sequence_accession %in% isolates[[i]]]
+    newname <- vector()
+    
+    if(any(data$sequence_accession %in% isolates[[i]])){
+      newname <- data$tipnames[data$sequence_accession %in% isolates[[i]]]
+      
+    }else if(any(data$sequence_isolate %in% isolates[[i]])){
+      newname <- data$tipnames[data$sequence_isolate %in% isolates[[i]]]
+    }
+    
     if (length(newname)>0){
       new_seqnames[i] <-  newname
     }else{
@@ -36,6 +47,15 @@ source('./scripts/FormatGeo.R')
 
 #############  Required data ############# 
 data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')
+anses <- read_csv('./data/anses_data.csv') %>%
+  mutate(Collection_Date = case_when(
+    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
+    .default = Collection_Date) %>%
+      gsub('/', '-', .)) %>%
+  mutate(date_format = case_when(
+    str_count(Collection_Date, "-") == 2 ~ "dd-mm-yyyy",
+    str_count(Collection_Date, "-") == 1 ~ "mm-yyyy"))
+
 geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
 mammals <- read_csv('mammal_taxonomy.csv')
@@ -48,7 +68,8 @@ all_taxa <- bind_rows(birds, mammals, mosquitos)
 
 
 #############  Pipeline start ############# 
-data_formatted <- data %>%
+data_formatted <- data%>%
+  bind_rows(.,anses) %>%
 
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
@@ -59,6 +80,8 @@ data_formatted <- data %>%
          sequence_completeness = nuc_completeness,
          collection_country = country,
          collection_location = geo_location) %>%
+  
+  mutate(collection_location = coalesce(collection_location, collection_country)) %>%
 
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
@@ -70,9 +93,23 @@ data_formatted <- data %>%
                   date_dec = decimal_date(date_parsed),
                   date_ym = format(date_parsed, '%Y-%m'),
                   date_y = format(date_parsed, '%Y') )) %>% 
+  map_at("dd-mm-yyyy",  
+         ~ mutate(.x,
+                  date_parsed = dmy(collection_date),
+                  date_ymd = format(date_parsed, '%Y-%m-%d'), 
+                  date_dec = decimal_date(date_parsed),
+                  date_ym = format(date_parsed, '%Y-%m'),
+                  date_y = format(date_parsed, '%Y') )) %>% 
   map_at("yyyy-mm",
          ~ mutate(.x,
                   date_parsed = ym(collection_date),
+                  date_ymd = NA_character_, 
+                  date_dec = NA,
+                  date_ym = format(date_parsed,'%Y-%m') ,
+                  date_y = format(date_parsed, '%Y') )) %>%
+  map_at("mm-yyyy",
+         ~ mutate(.x,
+                  date_parsed = my(collection_date),
                   date_ymd = NA_character_, 
                   date_dec = NA,
                   date_ym = format(date_parsed,'%Y-%m') ,
@@ -214,17 +251,19 @@ data_formatted <- data %>%
   
   # location codes
   mutate(collection_tipcode = coalesce(collection_subdiv2code, collection_subdiv1code, collection_countrycode)) %>%
+  mutate(unique_id = coalesce(sequence_accession, sequence_isolate)) %>%
   mutate(collection_tipcode = gsub('\\.', '_', collection_tipcode)) %>%
   
   # Generate sequence names
   unite(.,
         tipnames, 
-        sequence_accession, 
+        unique_id, 
         host_sciname,
         collection_tipcode,
         date_tipdate,
         sep = '|',                        
         remove = FALSE) %>%
+  select(-unique_id) %>%
   mutate(tipnames = gsub(' ', '_', tipnames)) %>%
   mutate(tipnames = gsub('\\.', '', tipnames))
   
@@ -265,6 +304,6 @@ write_csv(metadata, './data/metadata_2024Apr30.csv')
 
 
 #############  Write alignment to file ############# 
-write.dna(alignment, './2024Apr21/alignments/master_alignment_renamed.fasta', format = 'fasta')
+write.dna(alignment, './2024Apr21/alignments/master_alignment_renamed_may29.fasta', format = 'fasta')
 
 

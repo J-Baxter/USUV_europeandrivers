@@ -313,7 +313,9 @@ FormatPasseriformes <- function(x){
     "eurasian tree sparrow"	= "passer montanus|eurasian tree sparrow",
     "common hill myna" = "common hill myna|religiosa",
     'thrush sp.' = '(turdidae|thrush)( sp\\.){0,1}',
-    "pycnonotidae sp." = 'bul {0,1}bul'
+    "pycnonotidae sp." = 'bul {0,1}bul',
+    "black-capped chickadee" = 'poecile atricapillus|black-capped chickadee',
+    "western capercaillie" = "tetrao urogallus|western capercaillie"
   )
   
   for (i in 1:length(passeriformes)){
