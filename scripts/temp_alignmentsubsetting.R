@@ -57,3 +57,20 @@ e_subsampled_alignment <- e[rownames(e) %in% e_data_subset$tipnames,]
 write.FASTA(e_subsampled_alignment,
             './2024Apr21/alignments/USUV_e_2024May7_subsampled.fasta'
 )
+
+
+
+ns5 <- read.dna('./2024Apr21/alignments/USUV_NS5_2024May29.fasta',
+              format = 'fasta',
+              as.matrix= T)
+
+identical_ns5 <- FindIdenticalSeqs(ns5)
+
+ns5_data_subset <-  metadata %>% left_join(., identical_ns5) %>% slice_sample(n=1, by = c(group, collection_tipcode))
+
+ns5_subsampled_alignment <- ns5[rownames(ns5) %in% ns5_data_subset$tipnames,]
+
+
+write.FASTA(ns5_subsampled_alignment,
+            './2024Apr21/alignments/USUV_NS5_2024May29_subsampled.fasta'
+)
