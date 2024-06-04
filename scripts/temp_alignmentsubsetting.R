@@ -36,7 +36,12 @@ nflg_data_subset <-  data_formatted %>% left_join(., identical_nflg) %>% slice_s
 
 nflg_subsampled_alignment <- nflg [rownames(nflg ) %in% nflg_data_subset$tipnames,]
 
-
+nflg_data_subset %>%
+  select(c(contains('tipnames'), collection_regionname, collection_countryname)) %>%
+  write_delim(.,
+              './2024Apr21/alignments/USUV_nflg_2024May7_subsampled.txt',
+              quote = 'needed',
+              delim = '\t')
 write.FASTA(nflg_subsampled_alignment,
             './2024Apr21/alignments/USUV_nflg_2024May7_subsampled.fasta'
             )
