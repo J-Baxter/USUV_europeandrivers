@@ -46,15 +46,24 @@ source('./scripts/FormatGeo.R')
 
 
 #############  Required data ############# 
-data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')
+data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')  %>%
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd", 
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm", 
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy" )) 
+
 anses <- read_csv('./data/anses_data.csv') %>%
   mutate(Collection_Date = case_when(
     grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
     .default = Collection_Date) %>%
       gsub('/', '-', .)) %>%
   mutate(date_format = case_when(
-    str_count(Collection_Date, "-") == 2 ~ "dd-mm-yyyy",
-    str_count(Collection_Date, "-") == 1 ~ "mm-yyyy"))
+    grepl('\\d{4}-\\d{2}-\\d{2}', date)  ~ "yyyy-mm-dd", 
+    grepl('\\d{2}-\\d{2}-\\d{4}', date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
+    grepl('\\d{4}-\\d{2}', date) ~ "yyyy-mm", 
+    grepl('\\d{2}-\\d{4}', date) ~ "mm-yyyy"))
 
 geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
@@ -69,7 +78,7 @@ all_taxa <- bind_rows(birds, mammals, mosquitos)
 
 #############  Pipeline start ############# 
 data_formatted <- data%>%
-  bind_rows(.,anses) %>%
+  #bind_rows(.,anses) %>%
 
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
@@ -85,6 +94,13 @@ data_formatted <- data%>%
 
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', collection_date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', collection_date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', collection_date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', collection_date) ~ "mm-yyyy",
+    grepl('\\d{4}', collection_date) ~ "yyyy",
+    .default = 'missing')) %>%
   split(~date_format) %>% 
   map_at("yyyy-mm-dd",  
          ~ mutate(.x,
@@ -123,7 +139,7 @@ data_formatted <- data%>%
                   date_y = format(date_parsed, '%Y'))) %>%
 
   list_rbind() %>%
-  #select(-date_parsed) %>%
+  select(-date_parsed) %>%
 
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
@@ -300,7 +316,7 @@ metadata <- data_formatted %>%
 
 
 #############  Write metadata to file ############# 
-write_csv(metadata, './data/metadata_2024Apr30.csv')
+write_csv(metadata, './data/metadata_genbankpublic.csv')
 
 
 #############  Write alignment to file ############# 

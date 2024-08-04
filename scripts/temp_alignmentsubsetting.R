@@ -32,7 +32,10 @@ nflg <- read.dna('./2024Apr21/alignments/USUV_nflg_2024May7.fasta',
 
 identical_nflg <- FindIdenticalSeqs(nflg)
 
-nflg_data_subset <-  data_formatted %>% left_join(., identical_nflg) %>% slice_sample(n=1, by = c(group, collection_countrycode))
+nflg_data_subset <-  metadata %>% 
+  filter(tipnames %in% rownames(nflg)) %>%
+  left_join(., identical_nflg) %>% 
+  slice_sample(n=1, by = c(group, collection_countrycode))
 
 nflg_subsampled_alignment <- nflg [rownames(nflg ) %in% nflg_data_subset$tipnames,]
 
