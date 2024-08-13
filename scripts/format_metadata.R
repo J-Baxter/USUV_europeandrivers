@@ -46,7 +46,28 @@ source('./scripts/FormatGeo.R')
 
 
 #############  Required data ############# 
-data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')  %>%
+
+# Import previous search (that contains manual edits) and update with data from FLI
+old_data <- read_csv('./data/ncbi_sequencemetadata_Apr12.csv') %>%
+  select(c(Accession, Collection_Date, Geo_Location)) 
+
+fli_updated <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
+  mutate(across(ends_with('Date'), .fns = ~dmy(.x))) %>%
+  mutate(Admission_Date = format(Admission_Date, '%Y-%m')) %>%
+  mutate(Collection_Date = coalesce(as.character(Collection_Date), Admission_Date)) %>%
+  select(-Admission_Date) %>%
+  filter(Accession %in% old_data$Accession)
+
+updated_old_data <- old_data %>%
+  rows_update(fli_updated, by = 'Accession')
+
+
+# NCBI Genbank Data
+data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv') %>%
+  left_join(updated_old_data, join_by(Accession)) %>%
+  mutate(Collection_Date = coalesce(Collection_Date.y, Collection_Date.x),
+         Geo_Location = coalesce(Geo_Location.y, Geo_Location.x)) %>%
+  select(-c(ends_with('.y'), ends_with('.x')))  %>%
   mutate(date_format = case_when(
     grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd", 
     grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
@@ -54,16 +75,71 @@ data <-  read_csv('./data/ncbi_sequencemetadata_Apr12.csv')  %>%
     grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
     grepl('\\d{4}', Collection_Date) ~ "yyyy" )) 
 
+
+# ANSES FRANCE Data
 anses <- read_csv('./data/anses_data.csv') %>%
+  
+  # Clean date col
   mutate(Collection_Date = case_when(
     grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
     .default = Collection_Date) %>%
       gsub('/', '-', .)) %>%
+  
+  # Allocate date format
   mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', date)  ~ "yyyy-mm-dd", 
-    grepl('\\d{2}-\\d{2}-\\d{4}', date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
-    grepl('\\d{4}-\\d{2}', date) ~ "yyyy-mm", 
-    grepl('\\d{2}-\\d{4}', date) ~ "mm-yyyy"))
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing'))%>%
+  
+  # Unpublished data only
+  filter(is.na(Accession))
+
+
+# APHA Data
+apha <- read_csv('./data/apha_data.csv') %>%
+  
+  # Clean date col
+  mutate(Collection_Date = case_when(
+    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
+    .default = Collection_Date) %>%
+      gsub('/', '-', .)) %>%
+  
+  # Allocate date format
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing')) %>%
+  
+  # Unpublished data only
+  filter(is.na(Accession))
+
+# Izsve Data
+izsve <- read_csv('./data/izsve_data.csv') %>%
+  
+  # Clean date col
+  mutate(Collection_Date = case_when(
+    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
+    .default = Collection_Date) %>%
+      gsub('/', '-', .)) %>%
+  
+  # Allocate date format
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing')) %>%
+  
+  # Unpublished data only
+  filter(is.na(Accession))
+
 
 geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
@@ -77,12 +153,14 @@ all_taxa <- bind_rows(birds, mammals, mosquitos)
 
 
 #############  Pipeline start ############# 
-data_formatted <- data%>%
-  #bind_rows(.,anses) %>%
+data_formatted <- data %>%
+  bind_rows(.,anses) %>%
+  bind_rows(.,apha) %>%
+  bind_rows(.,izsve) %>%
 
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
-  select(-c(submitters, isolation_source, organization, release_date)) %>%
+  select(-c(submitters, organization, release_date)) %>%
   rename(sequence_length = length,
          sequence_accession = accession,
          sequence_isolate = isolate,
@@ -145,7 +223,7 @@ data_formatted <- data%>%
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
     is.na(date_ymd) & !is.na(date_ym) ~ date_ym,
     .default = as.character(date_ymd))) %>%
-  select(-c(collection_date, date_format, complete_date)) %>%
+  #select(-c(collection_date, date_format, complete_date)) %>%
  
    # Format geolocation
   mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
@@ -169,6 +247,8 @@ data_formatted <- data%>%
     collection_country == 'switzerland' && !is.na(collection_location) ~ FormatSwitzerland(collection_location),
     collection_country == 'uganda' && !is.na(collection_location) ~ FormatUganda(collection_location), 
     collection_country == 'uk' && !is.na(collection_location) ~ FormatUK(collection_location), 
+    collection_country == 'poland' && !is.na(collection_location) ~ FormatUK(collection_location), 
+    collection_country == 'greece' && !is.na(collection_location) ~ FormatUK(collection_location), 
     .default = collection_country)) %>%
   as_tibble() %>%
   left_join(geodata, 
