@@ -42,6 +42,7 @@ ReNameAlignment <- function(alignment, data){
 source('./scripts/FormatBirds.R')
 source('./scripts/FormatMammals.R')
 source('./scripts/FormatMosquitos.R')
+source('./scripts/FormatTicks.R')
 source('./scripts/FormatGeo.R')
 
 
@@ -49,13 +50,13 @@ source('./scripts/FormatGeo.R')
 
 # Import previous search (that contains manual edits) and update with data from FLI
 old_data <- read_csv('./data/ncbi_sequencemetadata_Apr12.csv') %>%
-  select(c(Accession, Collection_Date, Geo_Location)) 
+  dplyr::select(c(Accession, Collection_Date, Geo_Location, Host)) 
 
 fli_updated <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
   mutate(across(ends_with('Date'), .fns = ~dmy(.x))) %>%
   mutate(Admission_Date = format(Admission_Date, '%Y-%m')) %>%
   mutate(Collection_Date = coalesce(as.character(Collection_Date), Admission_Date)) %>%
-  select(-Admission_Date) %>%
+  dplyr::select(-Admission_Date) %>%
   filter(Accession %in% old_data$Accession)
 
 updated_old_data <- old_data %>%
@@ -66,8 +67,9 @@ updated_old_data <- old_data %>%
 data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv') %>%
   left_join(updated_old_data, join_by(Accession)) %>%
   mutate(Collection_Date = coalesce(Collection_Date.y, Collection_Date.x),
-         Geo_Location = coalesce(Geo_Location.y, Geo_Location.x)) %>%
-  select(-c(ends_with('.y'), ends_with('.x')))  %>%
+         Geo_Location = coalesce(Geo_Location.y, Geo_Location.x),
+         Host = coalesce(Host.x, Host.y)) %>%
+  dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
   mutate(date_format = case_when(
     grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd", 
     grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
@@ -144,12 +146,16 @@ izsve <- read_csv('./data/izsve_data.csv') %>%
 geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
 mammals <- read_csv('mammal_taxonomy.csv')
+ticks <- read_csv('tick_taxonomy.csv') %>%
+  mutate(sci_name = scientificName) %>%
+  rename(primary_com_name = scientificName) %>%
+  dplyr::select(-genus)
 mosquitos <- read_csv('mosquito_taxonomy.csv') %>%
   mutate(sci_name = scientificName) %>%
   rename(primary_com_name = scientificName) %>%
-  select(-genus)
+  dplyr::select(-genus)
 
-all_taxa <- bind_rows(birds, mammals, mosquitos)
+all_taxa <- bind_rows(birds, mammals, mosquitos, ticks)
 
 
 #############  Pipeline start ############# 
@@ -160,7 +166,7 @@ data_formatted <- data %>%
 
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
-  select(-c(submitters, organization, release_date)) %>%
+  dplyr::select(-c(submitters, release_date)) %>%
   rename(sequence_length = length,
          sequence_accession = accession,
          sequence_isolate = isolate,
@@ -217,7 +223,7 @@ data_formatted <- data %>%
                   date_y = format(date_parsed, '%Y'))) %>%
 
   list_rbind() %>%
-  select(-date_parsed) %>%
+  dplyr::select(-date_parsed) %>%
 
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
@@ -247,8 +253,8 @@ data_formatted <- data %>%
     collection_country == 'switzerland' && !is.na(collection_location) ~ FormatSwitzerland(collection_location),
     collection_country == 'uganda' && !is.na(collection_location) ~ FormatUganda(collection_location), 
     collection_country == 'uk' && !is.na(collection_location) ~ FormatUK(collection_location), 
-    collection_country == 'poland' && !is.na(collection_location) ~ FormatUK(collection_location), 
-    collection_country == 'greece' && !is.na(collection_location) ~ FormatUK(collection_location), 
+    collection_country == 'poland' && !is.na(collection_location) ~ FormatPoland(collection_location), 
+    collection_country == 'greece' && !is.na(collection_location) ~ FormatGreece(collection_location), 
     .default = collection_country)) %>%
   as_tibble() %>%
   left_join(geodata, 
@@ -263,6 +269,7 @@ data_formatted <- data %>%
   mutate(primary_com_name = FormatBird(host)) %>%
   mutate(primary_com_name = FormatMammal(primary_com_name)) %>%
   mutate(primary_com_name = FormatMosquito(primary_com_name)) %>%
+  mutate(primary_com_name = FormatTicks(primary_com_name)) %>%
   as_tibble() %>%
   left_join(all_taxa, 
             by = join_by(primary_com_name)) %>%
@@ -334,16 +341,16 @@ data_formatted <- data %>%
   mutate(across(everything(), .fns = ~ gsub('^NA$', NA, .x))) %>%
   
   # Select columns
-  select(-c(collection_location, 
-            collection_country,
-            host, 
-            `migration pattern`,
-            notes, 
-            match,
-            iso_1, 
-            `wild/captive`, 
-            sequence_length,
-            complete_location)) %>%
+ # select(-c(collection_location, 
+           # collection_country,
+           # host, 
+           # `migration pattern`,
+            ##notes, 
+           # match,
+            #iso_1, 
+           # `wild/captive`, 
+           # sequence_length,
+           # complete_location)) %>%
   
   # location codes
   mutate(collection_tipcode = coalesce(collection_subdiv2code, collection_subdiv1code, collection_countrycode)) %>%
@@ -353,13 +360,14 @@ data_formatted <- data %>%
   # Generate sequence names
   unite(.,
         tipnames, 
-        unique_id, 
+        sequence_accession, 
+        sequence_isolate,
         host_sciname,
         collection_tipcode,
         date_tipdate,
         sep = '|',                        
         remove = FALSE) %>%
-  select(-unique_id) %>%
+  dplyr::select(-unique_id) %>%
   mutate(tipnames = gsub(' ', '_', tipnames)) %>%
   mutate(tipnames = gsub('\\.', '', tipnames))
   
@@ -367,17 +375,19 @@ data_formatted <- data %>%
 
 
 #############  Import alignment ############# 
-alignment <- ape::read.dna('./2024Apr21/alignments/master_alignment.fasta',
+alignment <- ape::read.dna('./2024Aug13/alignments/2024Aug13_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
-                           as.character = T) %>%
-  ReNameAlignment(. , data_formatted) 
+                           as.character = T) 
+
+
+rownames(alignment) <- ReNameAlignment(alignment , data_formatted) 
 
 
 start <- apply(alignment, 1, function(x) match(letters, x)[1])
 end <- ncol(alignment) - apply(alignment[,ncol(alignment):1], 1, function(x) match(letters, x)[1])
 
-coords <- cbind.data.frame('sequence_start' = start,
+coords <- cbind('sequence_start' = start,
                            'sequence_end' = end) %>%
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
@@ -386,20 +396,57 @@ coords <- cbind.data.frame('sequence_start' = start,
     sequence_start < 1100 & sequence_end <3000 ~ 'E',
     sequence_start >7000 & sequence_start <8999~ 'NS5a',
     sequence_start >9000  ~ 'NS5b'
-    
   )) 
 
 
 #############  Join sequence data to metadata ############# 
 metadata <- data_formatted %>%
-  left_join(., coords) 
+  select(-c(
+    organism_name,
+    assembly,
+    species,
+    collection_country,
+    collection_location,
+    host,
+    collection_date,
+    collection_location,
+    date_format,
+    isolation_source,
+    complete_date,
+    complete_location,
+    `wild/captive`,
+    `migration pattern`,
+    notes,
+    match,
+    iso_1,
+    collection_tipcode,
+    sequence_length,
+    sequence_completeness,
+    usa,
+    tissue_specimen_source
+  )) %>%
+  left_join(., coords) %>%
+  
+  # Include only data in alignment
+  filter(tipnames %in% rownames(alignment)) %>%
+  left_join(data %>% select(Accession, Isolate, Organization, Release_Date), 
+            by = join_by(sequence_accession == Accession,
+                         sequence_isolate == Isolate)) %>%
+  # Key to exclude FLI
+  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', Organization) & Release_Date > as_date("2020-01-01") ~ TRUE,
+                              .default = FALSE)) %>%
+  select(-c(Release_Date)) %>%
+  rename(collection_organsiation = Organization)
 
 
+ 
 #############  Write metadata to file ############# 
-write_csv(metadata, './data/metadata_genbankpublic.csv')
+write_csv(metadata, './data/metadata_all_2024Aug13.csv')
 
 
 #############  Write alignment to file ############# 
-write.dna(alignment, './2024Apr21/alignments/master_alignment_renamed_may29.fasta', format = 'fasta')
+write.dna(alignment, './2024Aug13/alignments/2024Aug13_alldata_aligned_formatted.fasta', format = 'fasta')
 
+# ordered_alignment <- alignment[order(start),]
+#  write.dna(ordered_alignment, './2024Aug13/alignments/2024Aug13_alldata_aligned_formattedordered.fasta', format = 'fasta')
 
