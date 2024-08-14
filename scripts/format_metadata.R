@@ -5,37 +5,37 @@ library(ape)
 
 #############  Required user functions ############# 
 ReNameAlignment <- function(alignment, data){
-  isolates <- str_extract(rownames(alignment), "([^|]*)\\||([^,]*),")%>%
+  names <- rownames(alignment)
+  isolates <- rep(NA, length(names))
+  
+  published_isolates <- which(str_count(names, '\\|') >=2)
+  izsve_isolates <- which(grepl('\\d{2}(VIR|pool)\\d{3,4}', names))
+  anses_isolates <- which(grepl('\\/France\\/', names))
+  apha_isolates <- which(grepl('^Blackbird', names))
+  
+  isolates[published_isolates] <- str_extract(names[published_isolates], "([^|]*)\\||([^,]*),")%>%
     str_replace_all("\\||,", "") %>%
     str_trim() %>%
-    gsub('\\..*', '', .) %>% 
-    gsub('Usutu virus isolate ','', .)
+    gsub('\\..*', '', .) 
+  
+  
+  isolates[izsve_isolates] <- gsub("_[A-Za-z].+", "", names[izsve_isolates])%>%
+    str_trim()
+  
+  isolates[anses_isolates] <- str_extract(names[anses_isolates], "USUV-[A-Za-z]{0,8}\\d+\\/France\\/\\d{4}") %>%
+    str_trim()
+  
+  isolates[apha_isolates] <- names[apha_isolates] %>%
+    str_trim()
+  
   
   new_seqnames <- c()
-  
-  
   for (i in 1:length(isolates)){
-    newname <- vector()
-    
-    if(any(data$sequence_accession %in% isolates[[i]])){
-      newname <- data$tipnames[data$sequence_accession %in% isolates[[i]]]
-      
-    }else if(any(data$sequence_isolate %in% isolates[[i]])){
-      newname <- data$tipnames[data$sequence_isolate %in% isolates[[i]]]
-    }
-    
-    if (length(newname)>0){
-      new_seqnames[i] <-  newname
-    }else{
-      print(i)
-      new_seqnames[i] <- isolates[[i]]
-    }
+    new_seqnames[i] <- data$tipnames[which(data$sequence_accession == isolates[i] | data$sequence_isolate == isolates[i])]
     
   }
   
-  rownames(alignment) <-  new_seqnames
-  
-  return(alignment)
+  return(new_seqnames)
 }
 
 #############  Required source files ############# 
@@ -445,8 +445,13 @@ write_csv(metadata, './data/metadata_all_2024Aug13.csv')
 
 
 #############  Write alignment to file ############# 
+alignment <- alignment[order(start),]
 write.dna(alignment, './2024Aug13/alignments/2024Aug13_alldata_aligned_formatted.fasta', format = 'fasta')
 
-# ordered_alignment <- alignment[order(start),]
-#  write.dna(ordered_alignment, './2024Aug13/alignments/2024Aug13_alldata_aligned_formattedordered.fasta', format = 'fasta')
 
+#############  Alignment without FLI ############# 
+metadata_noFLI <- metadata %>%
+  filter(!drop_fli)
+
+write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Aug13/alignments/2024Aug13_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
+write_csv(metadata_noFLI , './data/metadata_noFLI_2024Aug13.csv')
