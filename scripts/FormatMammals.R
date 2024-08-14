@@ -25,10 +25,11 @@ FormatMammal <- function(x){
     'skunk sp.'= '^skunk$|skunk sp\\.',
     'feline sp.'= '^cat$|domestic cat|feline',
     'canid sp.'= 'canine',
-    "shrew sp." = '(soricidae|shrew)( sp\\.){0,1}',
+    "shrew sp." = '(soricidae|shrew|crocidura)( sp\\.){0,1}',
     "coucha rat" = "mastomys natalensis|coucha rat",
     "black rat"="rattus rattus|black rat",
-    'common pipistrelle' = 'pipistrellus pipistrellus|common pipistrelle'
+    'common pipistrelle' = 'pipistrellus pipistrellus|common pipistrelle',
+    'chimpanzee' = 'troglodytes|chimpanzee'
     )
   
   for (i in 1:length(mammals)){
