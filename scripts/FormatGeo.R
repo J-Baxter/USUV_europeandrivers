@@ -107,9 +107,9 @@ FormatItaly <- function(x){
     "italy_veneto_padua" = 'padua|padova|pd$',
     "italy_veneto_rovigo" = '^rovigo|ro$',
     "italy_veneto_treviso" = 'treviso|t[vn]$',
-    "italy_veneto_venezia" = '^venezia|ve$',
-    "italy_veneto_verona" = '^verona|vr$',
-    "italy_veneto_vicenza" = '^vicenza|vi$',
+    "italy_veneto_venezia" = '^venezia|ve$|venice',
+    "italy_veneto_verona" = '^verona|vr$|verona$',
+    "italy_veneto_vicenza" = '^vicenza|vi$|vicenza$',
     "italy_abruzzo" = 'abruzzo( region){0,1}$',
     "italy_apulia" = 'apulia( region){0,1}$',
     "italy_basilicata" = 'basilicata( region){0,1}$',
@@ -1801,13 +1801,13 @@ FormatUK <- function(x){
           "united kingdom_wales_blaenau gwent" = "blaenau gwent",
           "united kingdom_wales_bridgend" = "bridgend",
           "united kingdom_wales_denbighshire" = "denbighshire",
-          "united kingdom_na_cheshire west and chester" = "cheshire west and chester",
-          "united kingdom_na_gloucestershire" = "gloucestershire",
-          "united kingdom_northern ireland" = "northern ireland",
-          "united kingdom_scotland" = "scotland",
-          "united kingdom_wales" = "wales",
-          "united kingdom_england" = "england",
-          "united kingdom" = "united kingdom")
+          "united kingdom_england_cheshire west and chester" = "cheshire west and chester",
+          "united kingdom_england_gloucestershire" = "gloucestershire",
+          "united kingdom_northern ireland" = "northern ireland$",
+          "united kingdom_scotland" = "scotland$",
+          "united kingdom_wales" = "wales$",
+          "united kingdom_england" = "england$",
+          "united kingdom" = "united kingdom$")
   
   for (i in 1:length(uk)){
     if(any(grepl(uk[[i]], x))){
@@ -6319,7 +6319,7 @@ FormatPoland <- function(x){
               "poland_lubelskie_chełm" = "chełm",
               "poland_lubelskie_chełm (city)" = "chełm (city)",
               "poland_lubelskie_hrubieszów" = "hrubieszów",
-              "poland_lubelskie_janów lubelski" = "janów lubelski",
+              "poland_lubelskie_janów lubelski" = "jan[óo]w lubelski",
               "poland_lubelskie_kraśnik" = "kraśnik",
               "poland_lubelskie_krasnystaw" = "krasnystaw",
               "poland_lubelskie_łęczna" = "łęczna",
@@ -6329,7 +6329,7 @@ FormatPoland <- function(x){
               "poland_lubelskie_łuków" = "łuków",
               "poland_lubelskie_opole lubelskie" = "opole lubelskie",
               "poland_lubelskie_parczew" = "parczew",
-              "poland_lubelskie_puławy" = "puławy",
+              "poland_lubelskie_puławy" = "pu[łl]awy",
               "poland_lubelskie_radzyń podlaski" = "radzyń podlaski",
               "poland_lubelskie_ryki" = "ryki",
               "poland_lubelskie_świdnik" = "świdnik",
@@ -6338,7 +6338,7 @@ FormatPoland <- function(x){
               "poland_lubelskie_zamość" = "zamość",
               "poland_lubelskie_zamość (city)" = "zamość (city)",
               "poland_lubuskie_gorzów" = "gorzów",
-              "poland_lubuskie_gorzów wielkopolski" = "gorzów wielkopolski",
+              "poland_lubuskie_gorzów wielkopolski" = "gorz[óo]w wielkopolski",
               "poland_lubuskie_krosno odrzańskie" = "krosno odrzańskie",
               "poland_lubuskie_międzyrzecz" = "międzyrzecz",
               "poland_lubuskie_nowa sól" = "nowa sól",
@@ -6391,7 +6391,7 @@ FormatPoland <- function(x){
               "poland_mazowieckie_ostrołęka (city)" = "ostrołęka (city)",
               "poland_mazowieckie_ostrów mazowiecka" = "ostrów mazowiecka",
               "poland_mazowieckie_otwock" = "otwock",
-              "poland_mazowieckie_piaseczno" = "piaseczno",
+              "poland_mazowieckie_piaseczno" = "piaseczno|gora kalwaria",
               "poland_mazowieckie_płock" = "płock",
               "poland_mazowieckie_płock (city)" = "płock (city)",
               "poland_mazowieckie_płońsk" = "płońsk",
@@ -6408,7 +6408,7 @@ FormatPoland <- function(x){
               "poland_mazowieckie_sokołów" = "sokołów",
               "poland_mazowieckie_szydłowiec" = "szydłowiec",
               "poland_mazowieckie_warszaw zachodni" = "warszaw zachodni",
-              "poland_mazowieckie_warszawa" = "warszawa",
+              "poland_mazowieckie_warszawa" = "warsz{0,1}awa{0,1}",
               "poland_mazowieckie_węgrów" = "węgrów",
               "poland_mazowieckie_wołomin" = "wołomin",
               "poland_mazowieckie_wyszków" = "wyszków",
@@ -6452,7 +6452,7 @@ FormatPoland <- function(x){
               "poland_podkarpackie_strzyżów" = "strzyżów",
               "poland_podkarpackie_tarnobrzeg" = "tarnobrzeg",
               "poland_podkarpackie_tarnobrzeg (city)" = "tarnobrzeg (city)",
-              "poland_podlaskie_augustów" = "augustów",
+              "poland_podlaskie_augustów" = "august[óo]w",
               "poland_podlaskie_białystok" = "białystok",
               "poland_podlaskie_białystok (city)" = "białystok (city)",
               "poland_podlaskie_bielsk" = "bielsk",
@@ -6480,7 +6480,7 @@ FormatPoland <- function(x){
               "poland_pomorskie_kwidzyn" = "kwidzyn",
               "poland_pomorskie_lębork" = "lębork",
               "poland_pomorskie_malbork" = "malbork",
-              "poland_pomorskie_nowy dwór gdański" = "nowy dwór gdański",
+              "poland_pomorskie_nowy dwór gdański" = "nowy dwór gdański|krynica morska",
               "poland_pomorskie_puck" = "puck",
               "poland_pomorskie_słupsk" = "słupsk",
               "poland_pomorskie_słupsk (city)" = "słupsk (city)",
@@ -6602,7 +6602,7 @@ FormatPoland <- function(x){
               "poland_zachodniopomorskie_gryfice" = "gryfice",
               "poland_zachodniopomorskie_gryfino" = "gryfino",
               "poland_zachodniopomorskie_kamień" = "kamień",
-              "poland_zachodniopomorskie_kołobrzeg" = "kołobrzeg",
+              "poland_zachodniopomorskie_kołobrzeg" = "kołobrzeg|bukowo",
               "poland_zachodniopomorskie_koszalin" = "koszalin",
               "poland_zachodniopomorskie_koszalin (city)" = "koszalin (city)",
               "poland_zachodniopomorskie_łobez" = "łobez",
@@ -6680,8 +6680,8 @@ FormatGreece <- function(x){
   return(x)
 }
 
-greece <- geodata %>% filter(country == 'poland') 
-write_lines(paste0('"', greece$match, '" = "', str_split(greece$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
+#greece <- geodata %>% filter(country == 'poland') 
+#write_lines(paste0('"', greece$match, '" = "', str_split(greece$match, pattern = '_') %>% lapply(., tail, 1) %>% unlist(), '",'), 'test.txt')
 
 
 #germany = geodata %>% filter(country == 'croatia')
