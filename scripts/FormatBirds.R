@@ -143,6 +143,7 @@ FormatCharadriiformes <- function(x){
     'large alcid sp.' = '^guillemot$',
     'black-bellied plover' = 	"pluvialis squatarola|(black[- ]belli(ed){0,1}|gr[ea]y) plover",
     'scolopacidae sp.' = 'sandpiper',
+    'common sandpiper' = 	'actitis hypoleucos|common sandpiper',
     'shorebird sp.' = 	'^shorebird$|charadriiformes sp\\.|^seabird$'
     
  
@@ -281,6 +282,7 @@ FormatPasseriformes <- function(x){
   passeriformes <-  c(
     "eurasian jackdaw" = "corvus monedula|eurasian jackdaw|western jackdaw",
     "eurasian jay" = "garrulus glandarius|eurasian jay",
+    "eurasian skylark" = 'alauda arvensis|eurasian skylark',
     "eurasian magpie" = "pica pica|eurasian magpie", # magpies divided by region
     "house sparrow" = "passer domesticus|house sparrow",
     "crow/raven sp." = "corvidae \\(crow/raven sp\\.\\)|crow/raven sp\\.|jungle crow|^crow$|^raven$|american raven",
@@ -315,7 +317,11 @@ FormatPasseriformes <- function(x){
     'thrush sp.' = '(turdidae|thrush)( sp\\.){0,1}',
     "pycnonotidae sp." = 'bul {0,1}bul',
     "black-capped chickadee" = 'poecile atricapillus|black-capped chickadee',
-    "western capercaillie" = "tetrao urogallus|western capercaillie"
+    "western capercaillie" = "tetrao urogallus|western capercaillie",
+    'hooded crow' = 'corvus cornix|hooded crow',
+    'goldcrest' =	'regulus regulus|goldcrest',
+    'eurasian blackcap'	= 'sylvia atricapilla|eurasian blackcap',
+    'common redpoll' = 'acanthis flammea|common redpoll'
   )
   
   for (i in 1:length(passeriformes)){
@@ -401,7 +407,8 @@ FormatFalconiformes <- function(x){
   falconiformes <- c("peregrine falcon" = "falco peregrinus|peregrine falcon",
                      "falcon sp." = "falco sp\\.|falcon sp\\.|^falcon$",
                      'eurasian kestrel' = '(common|european|eurasian|old[- ]world) kestr{0,1}el|falco tinnunculus',
-                     'american kestrel' = 'american kestrel|falco sparverius'
+                     'american kestrel' = 'american kestrel|falco sparverius',
+                     'eurasian hobby' = 'falco subbuteo|eurasian hobby'
                      )
   
   
@@ -451,7 +458,7 @@ FormatColumbiformes <- function(x){
     "common wood-pigeon" = "columba palumbus|common wood[-] pigeon",
     "rock pigeon" = 'rock pigeon|columba livia',
     "eurasian collared-dove" = "eurasian collared[- ]dove|streptopelia decaocto",
-    "pigeon/dove sp." = "columbidae sp\\.|pigeon/dove sp\\.|^pigeon$|^dove$|columbidae|columba sp\\."
+    "pigeon/dove sp." = "columbidae sp\\.|pigeon/dove sp\\.|^pigeon$|^dove$|columbidae|columba sp\\.|columba vulgaris"
   )
   
   for (i in 1:length(columbiformes)){
