@@ -37,6 +37,21 @@ stopifnot(all(unlist(lapply(aln, nrow)) == unlist(lapply(data_per_alignment, nro
 # in composition and near-identical in traits.
 # This is applied across the entire 'global' dataset.
 
+ExtractTerminalBranchLengths <- function(tree){
+  branch_lengths <- tree$edge.length
+  terminal_indices <- which(tree$edge[,2] <= length(tree$tip.label))
+  terminal_branch_lengths <- branch_lengths[terminal_indices]
+  
+  labelled_terminal_branch_lengths <- tibble(tipnames = tree$tip.label,
+                                             branch_lenths = terminal_branch_lengths)
+  
+  return(labelled_terminal_branch_lengths)
+}
+
+# need to identify the first non zero branch from each tip to infer 'groupings'
+
+test <- ExtractTerminalBranchLengths(trees[[1]]) %>% 
+  filter() #
 
 #################### Subsampling 2 #################### 
 # Details subsampling with respect to region. Here, the ML tree is traversed such that each time 
