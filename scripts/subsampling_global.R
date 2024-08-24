@@ -7,6 +7,8 @@ library(tidyverse)
 aln_files <- c('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned_formatted_noFLI_nflg.fasta',
                './2024Aug13/alignments/USUV_2024Aug13_alldata_aligned_formatted_noFLI_ns5_9100-9600.fasta')
 
+aln_names <- gsub('.*noFLI_|\\.fasta', '' , aln_files)
+
 aln <- lapply(aln_files,
               read.dna,
               format = 'fasta', 
@@ -26,7 +28,9 @@ data <- read_csv('./data/metadata_noFLI_2024Aug13.csv')
 #################### split data by alignment #################### 
 data_per_alignment <- lapply(aln, 
                              function(x) data %>% 
-                               filter(tipnames %in% rownames(x)))
+                               filter(tipnames %in% rownames(x))) %>%
+  setNames(aln_names) %>%
+  bind_rows(, .id = 'alignment')
 
 # sanity check
 stopifnot(all(unlist(lapply(aln, nrow)) == unlist(lapply(data_per_alignment, nrow))))
@@ -37,21 +41,37 @@ stopifnot(all(unlist(lapply(aln, nrow)) == unlist(lapply(data_per_alignment, nro
 # in composition and near-identical in traits.
 # This is applied across the entire 'global' dataset.
 
-ExtractTerminalBranchLengths <- function(tree){
-  branch_lengths <- tree$edge.length
-  terminal_indices <- which(tree$edge[,2] <= length(tree$tip.label))
-  terminal_branch_lengths <- branch_lengths[terminal_indices]
+ExtractTerminalBranchLengths <- function(tree, aln_length, snp_threshold = 0){
   
-  labelled_terminal_branch_lengths <- tibble(tipnames = tree$tip.label,
-                                             branch_lenths = terminal_branch_lengths)
+  #create tidy tree object
+  tidytree <- as_tibble(tree)
   
-  return(labelled_terminal_branch_lengths)
+  sequence_groups <- tidytree %>%
+    mutate(snps = floor(branch.length * aln_length)) %>% 
+    filter(snps <= snp_threshold & grepl('\\|', label)) %>% 
+    group_by(parent) %>%
+    mutate(n = n()) %>% 
+    filter(n > 1) %>%
+    mutate(group = cur_group_id()) %>%
+    ungroup() %>%
+    select(c(label, group)) %>%
+    rename(tipnames = label)
+    
+    
+  return(sequence_groups)
 }
 
-# need to identify the first non zero branch from each tip to infer 'groupings'
+groups <- mapply(ExtractTerminalBranchLengths,
+                 trees,
+                 lapply(aln, ncol),
+                 snp_threshold = 0,
+                 SIMPLIFY = F) %>%
+  setNames(aln_names) %>%
+  bind_rows(., .id = 'alignment')
 
-test <- ExtractTerminalBranchLengths(trees[[1]]) %>% 
-  filter() #
+data_per_alignment_wgroups <- data_per_alignment %>%
+  left_join(groups)
+
 
 #################### Subsampling 2 #################### 
 # Details subsampling with respect to region. Here, the ML tree is traversed such that each time 
