@@ -136,3 +136,4 @@ subsample_1 <- data_per_alignment_wgroups %>%
   ungroup() %>%
   group_split(alignment) %>%
   setNames(aln_names)
+
