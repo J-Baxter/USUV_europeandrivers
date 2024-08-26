@@ -1,7 +1,7 @@
 ####################  dependencies #################### 
 library(ape)
 library(tidyverse)
-
+library(tidytree)
 #################### import alignments, data and trees #################### 
 # alignments
 aln_files <- c('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned_formatted_noFLI_nflg.fasta',
@@ -70,7 +70,16 @@ groups <- mapply(ExtractTerminalBranchLengths,
   bind_rows(., .id = 'alignment')
 
 data_per_alignment_wgroups <- data_per_alignment %>%
-  left_join(groups)
+  left_join(groups) %>% 
+  group_split(alignment) %>%
+  lapply(., arrange, sequence_group) %>%
+  lapply(., function(x) x %>% mutate(sequence_group = 
+                                       ifelse(is.na(sequence_group), 
+                                              max(sequence_group, na.rm = T) + row_number() + 1, 
+                                              sequence_group))) %>%
+  bind_rows()
+
+  
 
 subsample_1 <- data_per_alignment_wgroups %>%
   group_by(alignment) %>%
@@ -85,6 +94,7 @@ subsample_1 <- data_per_alignment_wgroups %>%
   group_by(alignment,
            sequence_group,
            best_location_code,
+           date_y,
            host_class) %>%
   
   slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
@@ -93,8 +103,8 @@ subsample_1 <- data_per_alignment_wgroups %>%
   group_split(alignment) %>%
   setNames(aln_names)
 
-#nflg -> 126 sequences
-#ns5_9100-9600 -> 302 sequences
+#nflg -> 266 sequences
+#ns5_9100-9600 -> 372 sequences
 # NB some identical sequences preserved (min and max within same location code)
 
 
@@ -103,36 +113,38 @@ subsample_1 <- data_per_alignment_wgroups %>%
 # region changes, the two most distant (temporally) tips are selected until the region next changes.
 # This is applied across the entire 'global' dataset.
 
-test <- as_tibble(t) %>%
-  rename(tipnames = label) %>%
-  left_join(data_per_alignment_wgroups %>% 
-              filter(alignment == 'nflg') %>% 
-              select(c(tipnames, collection_regionname))) %>%
-  filter(grepl('\\|', tipnames)) %>%
-  mutate(collection_regionchange = cumsum(collection_regionname != lag(collection_regionname, def = first(collection_regionname)))) %>% 
-  group_by(Tag, LocationChange, location)
+tip_data_order <- bind_rows(as_tibble(trees[[1]]) %>%
+                              rename(tipnames = label) %>%
+                              left_join(data_per_alignment_wgroups %>% 
+                                          filter(alignment == 'nflg') %>% 
+                                          select(c(tipnames, collection_regionname, alignment))) %>%
+                              filter(grepl('\\|', tipnames)) %>%
+                              mutate(collection_regionchange = cumsum(collection_regionname != lag(collection_regionname, def = first(collection_regionname)))),
+                            
+                            as_tibble(trees[[2]]) %>%
+                              rename(tipnames = label) %>%
+                              left_join(data_per_alignment_wgroups %>% 
+                                          filter(alignment == 'ns5_9100-9600') %>% 
+                                          select(c(tipnames, collection_regionname, alignment))) %>%
+                              filter(grepl('\\|', tipnames)) %>%
+                              mutate(collection_regionchange = cumsum(collection_regionname != lag(collection_regionname, def = first(collection_regionname)))))
+
+
   
 
 
-subsample_1 <- data_per_alignment_wgroups %>%
+subsample_2 <- data_per_alignment_wgroups %>%
+  
+  left_join(tip_data_order) %>%
   #(left join tidytree with tr)
-  
-  group_by(alignment) %>%
-  
-  # infer best location code and create grouping factor
-  mutate(best_location_code = coalesce(collection_subdiv1code,
-                                       collection_countrycode)) %>%
-  mutate(sequence_group = as.factor(sequence_group)) %>%
   
   # group by sequence_identity > best_location > host_class
   
-  group_by(alignment,
-           sequence_group,
-           best_location_code,
-           host_class) %>%
-  
-  slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
-  distinct() %>%
+  group_by(alignment, 
+           collection_regionchange) %>%
+  slice_sample(., n = 2) %>%
+  #slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
+  #distinct() %>%
   ungroup() %>%
   group_split(alignment) %>%
   setNames(aln_names)
