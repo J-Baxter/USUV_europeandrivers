@@ -97,8 +97,17 @@ subsample_1 <- data_per_alignment_wgroups %>%
            date_y,
            host_class) %>%
   
-  slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
-  distinct() %>%
+  filter(date_ym == max(date_ym) | date_ym == min(date_ym)) %>%
+  group_by(alignment,
+           sequence_group,
+           best_location_code,
+           date_y,
+           host_class,
+           date_ym) %>%
+  slice_sample(n = 1) %>%
+  
+  #slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
+  #distinct() %>%
   ungroup() %>%
   group_split(alignment) %>%
   setNames(aln_names)
@@ -142,10 +151,85 @@ subsample_2 <- data_per_alignment_wgroups %>%
   
   group_by(alignment, 
            collection_regionchange) %>%
-  slice_sample(., n = 2) %>%
+  #slice_sample(., n = 2) %>%
+  filter(date_ym == max(date_ym) | date_ym == min(date_ym)) %>%
+  group_by(alignment, 
+           collection_regionchange,
+           date_ym) %>%
+  slice_sample(n = 1) %>%
   #slice(which(date_ym == max(date_ym) | date_ym == min(date_ym))) %>%
-  #distinct() %>%
+ # distinct() %>%
   ungroup() %>%
   group_split(alignment) %>%
   setNames(aln_names)
+
+
+####################  Write subsampled alignments to file #################### 
+
+alns_subsample_1 <- mapply(function(alignment, metadata) alignment[rownames(alignment) %in% metadata$tipnames,],
+                           aln,
+                           subsample_1,
+                           SIMPLIFY = FALSE)
+
+alns_subsample_2 <- mapply(function(alignment, metadata) alignment[rownames(alignment) %in% metadata$tipnames,],
+                           aln,
+                           subsample_2,
+                           SIMPLIFY = FALSE)
+
+alns_subample_all <- c(alns_subsample_1, alns_subsample_2)
+
+
+aln_subsample_filenames <- gsub('.fasta', '', aln_files) %>%
+  gsub('alignments', 'europe_subsamples', .) %>%
+  expand.grid(c('_stratifiedsubsampled.fasta', '_regionsubsampled.fasta')) %>%
+  apply(.,1,paste, collapse = '')
+
+mapply(write.dna,
+       alns_subample_all,
+       aln_subsample_filenames,
+       format = 'fasta')
+
+
+#################### Write BEAST trait \t files #################### 
+subsample_all <- c(subsample_1,
+                   subsample_2)
+
+metadata_subsampled_beast <- lapply(subsample_all, 
+                                    function(x) x %>% 
+                                      select(c(tipnames,
+                                               collection_regionname, 
+                                               collection_countryname,
+                                               ends_with('long'),
+                                               ends_with('lat'),
+                                               host_sciname)) %>%
+                                      mutate(across(c(ends_with('long'),
+                                                      ends_with('lat')),
+                                                      .fns = ~ as.numeric(.x))) %>%
+                                      mutate(lat = coalesce(collection_subdiv2lat,
+                                                            collection_subdiv1lat, 
+                                                            collection_countrylat)) %>%
+                                      mutate(long = coalesce(collection_subdiv2long,
+                                                             collection_subdiv1long, 
+                                                             collection_countrylong)) %>%
+                                      mutate(across(c(lat, long), .fns = ~ as.numeric(.x))) %>%
+                                      select(where(~n_distinct(.) > 1)) %>%
+                                      select(-c(contains('date'),
+                                                contains('subdiv'),
+                                                collection_countrylat,
+                                                collection_countrylong
+                                                #collection_original, 
+                                                #collection_tipdate
+                                      ))) 
+
+
+# write to file
+
+metadatafiles_subsampled_beast <- gsub('.fasta', '', aln_subsample_filenames) %>%
+  paste0(., '.txt')
+
+mapply(write_delim, 
+       delim = '\t',
+       quote= 'needed',
+       metadata_subsampled_beast, 
+       metadatafiles_subsampled_beast)  
 
