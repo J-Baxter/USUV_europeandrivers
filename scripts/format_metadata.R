@@ -367,15 +367,18 @@ data_formatted <- data %>%
         date_tipdate,
         sep = '|',                        
         remove = FALSE) %>%
-  dplyr::select(-unique_id) %>%
-  mutate(tipnames = gsub(' ', '_', tipnames)) %>%
-  mutate(tipnames = gsub('\\.', '', tipnames))
   
+  # remove non-permitted characters from tipnames
+  mutate(tipnames = gsub(' ', '_', tipnames)) %>%
+  mutate(tipnames = gsub('\\.', '', tipnames)) %>%
+  mutate(tipnames = gsub('[^A-Za-z0-9_.\\|/\\-]', '_', tipnames)) %>%
+  
+  dplyr::select(-unique_id)
 
 
 
 #############  Import alignment ############# 
-alignment <- ape::read.dna('./2024Aug13/alignments/2024Aug13_alldata_aligned.fasta',
+alignment <- ape::read.dna('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
                            as.character = T) 
@@ -394,8 +397,7 @@ coords <- cbind('sequence_start' = start,
   mutate(sequence_generegion = case_when(
     sequence_start < 400 & sequence_end >9500 ~ 'nflg',
     sequence_start < 1100 & sequence_end <3000 ~ 'E',
-    sequence_start >7000 & sequence_start <8999~ 'NS5a',
-    sequence_start >9000  ~ 'NS5b'
+    sequence_start >7000 ~ 'NS5'
   )) 
 
 
@@ -440,18 +442,18 @@ metadata <- data_formatted %>%
 
 
  
-#############  Write metadata to file ############# 
-write_csv(metadata, './data/metadata_all_2024Aug13.csv')
+#############  Write metadata to file ############# #
+write_csv(metadata, './data/USUV_metadata_all_2024Aug28.csv')
 
 
 #############  Write alignment to file ############# 
 alignment <- alignment[order(start),]
-write.dna(alignment, './2024Aug13/alignments/2024Aug13_alldata_aligned_formatted.fasta', format = 'fasta')
+write.dna(alignment, './2024Aug13/alignments/USUV_2024Aug28_alldata_aligned_formatted.fasta', format = 'fasta')
 
 
 #############  Alignment without FLI ############# 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Aug13/alignments/2024Aug13_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
-write_csv(metadata_noFLI , './data/metadata_noFLI_2024Aug13.csv')
+write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Aug13/alignments/USUV_2024Aug28_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
+write_csv(metadata_noFLI , './data/USUV_metadata_noFLI_2024Aug28.csv')
