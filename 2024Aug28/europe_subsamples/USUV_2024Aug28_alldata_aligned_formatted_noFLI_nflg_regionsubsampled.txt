@@ -1,0 +1,26 @@
+tipnames	collection_regionname	collection_countryname	host_sciname	lat	long
+MG888044|NA|culex_pipiens|srb|2014-08	southern europe	serbia	culex pipiens	44.2155831781841	20.7992241330769
+MN122166|AS201600133|turdus_merula|nl_ov_lo|2016-09-23	western europe	netherlands	turdus merula	52.304302029648	7.00850436547834
+MN122213|AS201700248|turdus_merula|nl_zh_hg|2017-09-20	western europe	netherlands	turdus merula	51.8332126103346	4.85571721501593
+MK796168|AS201600070|strix_nebulosa|nld|2016-09-13	western europe	netherlands	strix nebulosa	52.2573048104135	5.56251311224367
+MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|swe|2019-08-01	northern europe	sweden	turdus merula	62.374013544985	16.2835241791686
+MW001216|NA|turdus_merula|gbr|2020-07	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|gbr|2023-08	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+MF374485|NA|homo_sapiens|zaf|1959-02-06	southern africa	south africa	homo sapiens	-28.9709136281448	25.1981253246192
+MH727238|ROD_259466|mastomys_natalensis|sn_kg|2013-10-23	western africa	senegal	mastomys natalensis	12.8435677750204	-12.1950104413952
+MH727239|ROD_259496|mastomys_natalensis|sn_kg|2013-10-23	western africa	senegal	mastomys natalensis	12.8435677750204	-12.1950104413952
+MH727240|CROC_259520|soricidae_sp|sn_kg|2013-10-23	western africa	senegal	soricidae sp.	12.8435677750204	-12.1950104413952
+MH727241|ROD_259524|mastomys_natalensis|sn_kg|2013-10-24	western africa	senegal	mastomys natalensis	12.8435677750204	-12.1950104413952
+MH727242|ROD_259552|rattus_rattus|sn_kg|2013-10-24	western africa	senegal	rattus rattus	12.8435677750204	-12.1950104413952
+KF573410|NA|culex_pipiens|es_ct_br|2006-08-22	southern europe	spain	culex pipiens	41.7304255540477	1.98327228284758
+MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MG461307|USUV_569m_Israel15_USUTU_|culex_pipiens|isr|2015-09-08	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461308|USUV_593m_Israel15_USUTU_|aedes_albopictus|isr|2015-09-21	western asia	israel	aedes albopictus	31.4459854424407	35.0090837317994
+MG461313|USUV_550m_Israel15_USUTU_|culex_perexiguus|isr|2015-09-08	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MG461309|USUV_100m_Israel04_USUTU_|culex_pipiens|isr|2004-07-14	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461311|USUV_341m_Israel04_USUTU_|culex_pipiens|isr|2004-09-23	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461312|USUV_355m_Israel04_USUTU_|culex_perexiguus|isr|2004-09-27	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MF991886|BD1/17-AT|homo_sapiens|at_wi|2017-07-24	western europe	austria	homo sapiens	48.2089421257604	16.3790253882177
+MF063042|AT-N211/16|turdus_merula|at_no_bl|2016-09-29	western europe	austria	turdus merula	48.0644255761153	16.6830460528134
+NA|22VIR8404-2|turdus_merula|it_ud|2022-09-01	southern europe	italy	turdus merula	46.2262197388729	13.1581016601095
+MF063043|HU-47540/16|turdus_merula|hun|2016-09-26	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114

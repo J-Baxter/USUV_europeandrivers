@@ -1,0 +1,74 @@
+tipnames	collection_regionname	collection_countryname	host_sciname	lat	long
+NA|23VIR9300|turdus_merula|it_vr|2023-10-01	southern europe	italy	turdus merula	45.4173535048033	11.0380386816998
+HM569263|NA|homo_sapiens|ita|2009-09-24	southern europe	italy	homo sapiens	42.7080607219025	12.208345049127
+MF063043|HU-47540/16|turdus_merula|hun|2016-09-26	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114
+MN509808|USUV/HU/FVGITA/2018/01|homo_sapiens|ita|2018-08-06	southern europe	italy	homo sapiens	46.1535400957968	13.0594621283728
+JQ219843|NA|cyanistes_caeruleus|aut|2002-08-29	western europe	austria	cyanistes caeruleus	47.5942901543001	14.1261824377155
+MF063049|HU-56596/15|turdus_merula|hun|2015-10-26	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114
+MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|swe|2019-08-01	northern europe	sweden	turdus merula	62.374013544985	16.2835241791686
+MN419907|NA|turdus_merula|cz_sk|2018-09-18	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+MN419909|NA|turdus_merula|cz_sk|2018-09-11	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+MN419910|NA|turdus_merula|cz_sk|2018-09-04	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+MN419911|NA|turdus_merula|cz_sk|2018-09-05	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+MN419912|NA|turdus_merula|cz_sk|2018-09-17	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+OP555956|NA|strix_nebulosa|bel|2017-07-10	western europe	belgium	strix nebulosa	50.64017310615	4.66939027974939
+MN419908|NA|turdus_merula|cz_sk|2018-09-18	eastern europe	czechia	turdus merula	50.0636978575423	14.4763649175255
+MW533154|E203C/2019/Kosice/SVK|culex_pipiens|svk|2019-07-26	eastern europe	slovakia	culex pipiens	48.7152910172137	19.4731651408513
+MF063052|HU-21356/10|turdus_merula|hun|2010-09-03	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114
+MK092888|BD5/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+MK092892|BD15/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+MW164643|12pool2046|culex_pipiens|it_ve|2012-07-24	southern europe	italy	culex pipiens	45.526082648527	12.476782716513
+OP734248|NA|culex_pipiens|ita|2022-07-29	southern europe	italy	culex pipiens	45.6209228193015	9.77073774623
+MF991886|BD1/17-AT|homo_sapiens|at_wi|2017-07-24	western europe	austria	homo sapiens	48.2089421257604	16.3790253882177
+MF063042|AT-N211/16|turdus_merula|at_no_bl|2016-09-29	western europe	austria	turdus merula	48.0644255761153	16.6830460528134
+MF063046|HU-44506/16|turdus_merula|hun|2016-09-16	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114
+MK121944|AT-G18/8|culex_pipiens|at_st|2018-08-22	western europe	austria	culex pipiens	47.0755172340172	15.4403364835446
+NA|22VIR7146-3|columba_livia|it_ud|2022-07-22	southern europe	italy	columba livia	46.2262197388729	13.1581016601095
+MN912555|NA|culex_modestus|sk_bl_ma|2019-08	eastern europe	slovakia	culex modestus	48.4302880319382	17.0798494136865
+MF063050|HU-50898/15|turdus_pilaris|hun|2015-09-28	eastern europe	hungary	turdus pilaris	47.1703761996839	19.3977670199114
+NA|22VIR8275-3|turdus_merula|it_ve|2022-08-11	southern europe	italy	turdus merula	45.526082648527	12.476782716513
+MK121949|AT-L18/3|culex_pipiens|at_oo_ll|2018-08-10	western europe	austria	culex pipiens	48.1912906759138	14.2822286924426
+OM142204|human/Vienna21|homo_sapiens|at_wi|2021-09-10	western europe	austria	homo sapiens	48.2089421257604	16.3790253882177
+NA|22VIR8403-2|turdus_merula|it_ud|2022-09-01	southern europe	italy	turdus merula	46.2262197388729	13.1581016601095
+MT891320|USUV/HR/bird/155/2018|turdus_merula|hr_gz|2018-09-17	southern europe	croatia	turdus merula	45.7419936953958	16.0081245216713
+MK121947|AT-G18/20|culex_pipiens|at_st|2018-09-05	western europe	austria	culex pipiens	47.0755172340172	15.4403364835446
+MT891318|USUV/HR/mosquito/102/2018|culex_pipiens|hr_gz|2018-07-19	southern europe	croatia	culex pipiens	45.7419936953958	16.0081245216713
+MK121948|AT-L18/2|culex_pipiens|at_oo_ll|2018-08-10	western europe	austria	culex pipiens	48.1912906759138	14.2822286924426
+MN395369|NA|culex_pipiens|cz_ck|2018-08-14	eastern europe	czechia	culex pipiens	49.0928166218663	14.4391547985202
+PP746542|USUV1229/2022/GR|culex_pipiens|gr_mh|2022-09-28	southern europe	greece	culex pipiens	40.7417875554536	22.954207228507
+PP746543|USUV39/2020/GR|culex_pipiens|gr_mh|2020-08-24	southern europe	greece	culex pipiens	40.7417875554536	22.954207228507
+MK121946|AT-G18/19|culex_pipiens|at_st|2018-09-05	western europe	austria	culex pipiens	47.0755172340172	15.4403364835446
+MT891319|USUV/HR/human/10812/2018|homo_sapiens|hr_ob|2018-09-17	southern europe	croatia	homo sapiens	45.5612844664452	18.4421430711185
+MK092895|BD6/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+MK092889|BD7/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+MK092893|BD23/18-AT|homo_sapiens|aut|2018-09	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|gbr|2023-08	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+MN122232|AS201800101|turdus_merula|nl_dr_ty|2018-08-07	western europe	netherlands	turdus merula	53.096817866514	6.61306711231866
+NA|Blackbird_London_2022_a|turdus_merula|gbr|2022-09	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+OM202464|Greater_London_2021|turdus_merula|gbr|2021-09	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+MW001216|NA|turdus_merula|gbr|2020-07	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+NA|Blackbird_London_2022_b|turdus_merula|gbr|2022-09	northern europe	united kingdom	turdus merula	54.0438440515314	-2.78687513666638
+MN384964|NA|turdus_merula|cz_bk_bv|2018-07-24	eastern europe	czechia	turdus merula	48.8609983567607	16.7645108745726
+PQ039622|CS|actitis_hypoleucos|pol|2023-08-15	eastern europe	poland	actitis hypoleucos	52.0112763820217	21.0192547197975
+PQ039614|137|acanthis_flammea|pol|2023-11-08	eastern europe	poland	acanthis flammea	54.2758286101385	19.1914763144913
+NA|USUV-8784/France/2016|turdus_merula|fr_vn|2016-09-23	western europe	france	turdus merula	46.5639620285522	0.460368340214446
+MK092886|BD3/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+MK092887|BD16/18-AT|homo_sapiens|aut|2018-08	western europe	austria	homo sapiens	47.5942901543001	14.1261824377155
+NA|USUV-8760/France/2016|turdus_merula|fr_rh|2016-09-21	western europe	france	turdus merula	45.8703314914795	4.64141155225127
+MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MG461313|USUV_550m_Israel15_USUTU_|culex_perexiguus|isr|2015-09-08	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MG461307|USUV_569m_Israel15_USUTU_|culex_pipiens|isr|2015-09-08	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461308|USUV_593m_Israel15_USUTU_|aedes_albopictus|isr|2015-09-21	western asia	israel	aedes albopictus	31.4459854424407	35.0090837317994
+MG461309|USUV_100m_Israel04_USUTU_|culex_pipiens|isr|2004-07-14	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461311|USUV_341m_Israel04_USUTU_|culex_pipiens|isr|2004-09-23	western asia	israel	culex pipiens	31.4459854424407	35.0090837317994
+MG461312|USUV_355m_Israel04_USUTU_|culex_perexiguus|isr|2004-09-27	western asia	israel	culex perexiguus	31.4459854424407	35.0090837317994
+MF374485|NA|homo_sapiens|zaf|1959-02-06	southern africa	south africa	homo sapiens	-28.9709136281448	25.1981253246192
+PQ039645|1383|acanthis_flammea|pol|2023-11-09	eastern europe	poland	acanthis flammea	54.2758286101385	19.1914763144913
+PQ039630|1552|regulus_regulus|pol|2023-11-05	eastern europe	poland	regulus regulus	54.2758286101385	19.1914763144913
+PQ039631|EJ|garrulus_glandarius|pol|2023-11-21	eastern europe	poland	garrulus glandarius	53.1916162126798	18.0149085367452
+PQ039636|MB286-23_s5|anas_platyrhynchos|pol|2023-07-25	eastern europe	poland	anas platyrhynchos	50.7265065455949	22.4311801246286
+PQ039637|MB286-23_s3|anas_platyrhynchos|pol|2023-07-25	eastern europe	poland	anas platyrhynchos	50.7265065455949	22.4311801246286
+PQ039638|MB285-23|cygnus_olor|pol|2023-07-25	eastern europe	poland	cygnus olor	53.8141381784845	23.1087277769266
+PQ039639|MB282-23_s4|anas_platyrhynchos|pol|2023-07-21	eastern europe	poland	anas platyrhynchos	50.1230854117291	19.0026353139129
+PQ039640|MB282-23_s1|anas_platyrhynchos|pol|2023-07-21	eastern europe	poland	anas platyrhynchos	50.1230854117291	19.0026353139129
+KF573410|NA|culex_pipiens|es_ct_br|2006-08-22	southern europe	spain	culex pipiens	41.7304255540477	1.98327228284758
