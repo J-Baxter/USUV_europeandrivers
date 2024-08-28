@@ -1,0 +1,1493 @@
+==============================================
+** Hello IQTREE user !**
+This job is running on node2i25.ecdf.ed.ac.uk
+Start IQTREE with AIV data
+IQ-TREE multicore version 2.0.5 for Linux 64-bit built May 15 2020
+Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor,
+Heiko Schmidt, Dominik Schrempf, Michael Woodhams.
+
+Host:    node2i25.ecdf.ed.ac.uk (AVX2, FMA3, 251 GB RAM)
+Command: iqtree2 -s USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta -bb 1000 -nt 4 -czb
+Seed:    900121 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Wed Aug 28 12:22:25 2024
+Kernel:  AVX+FMA - 4 threads (4 CPU cores detected)
+
+Reading alignment file USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta ... Fasta format detected
+Alignment most likely contains DNA/RNA sequences
+Alignment has 633 sequences with 273 columns, 102 distinct patterns
+55 parsimony-informative, 28 singleton sites, 190 constant sites
+                                                                                          Gap/Ambiguity  Composition  p-value
+   1  NA|20VIR5077|turdus_merula|it_ve|2020-08-21                                                 0.00%    passed     98.83%
+   2  NA|23VIR9300|turdus_merula|it_vr|2023-10-01                                                 0.00%    passed     98.83%
+   3  NA|23pool2067_23RS1943-143|culex_pipiens|it_vr|2023-08-24                                   0.00%    passed     98.83%
+   4  OR921100|2023TE1837011|culex_pipiens|ita|2023-09-08                                         0.00%    passed     97.78%
+   5  NA|23pool1901_23RS1909-300|culex_pipiens|it_ve|2023-08-16                                   0.00%    passed     98.83%
+   6  NA|23VIR8708|columbidae_sp|it_pd|2023-09-01                                                 0.00%    passed     98.83%
+   7  MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13                                          0.00%    passed     99.84%
+   8  MW164683|14pool895|culex_pipiens|it_vr|2014-07-22                                           0.00%    passed     99.84%
+   9  MW164681|14pool1703|culex_pipiens|it_ve|2014-09-23                                          0.00%    passed     99.84%
+  10  MW164690|15pool1564|culex_pipiens|it_ve|2015-08-17                                          0.00%    passed     99.84%
+  11  MW164692|15pool1759|culex_pipiens|it_tv|2015-09-02                                          0.00%    passed     99.84%
+  12  MW164697|16pool1634|culex_pipiens|it_pd|2016-07-20                                          0.00%    passed     99.84%
+  13  MW164701|16pool2021|culex_pipiens|it_tv|2016-08-08                                          0.00%    passed     99.84%
+  14  MW164693|15pool1939|culex_pipiens|it_ud|2015-09-21                                          0.00%    passed     99.60%
+  15  MW164700|16pool1870|culex_pipiens|it_ve|2016-08-01                                          0.00%    passed     98.83%
+  16  MW164706|16pool2355|culex_pipiens|it_ud|2016-08-29                                          0.00%    passed     98.83%
+  17  MW164704|16pool2311|culex_pipiens|it_vi|2016-08-24                                          0.00%    passed     99.84%
+  18  MW164731|18pool1018|culex_pipiens|it_ve|2018-07-10                                          0.00%    passed     98.83%
+  19  MW164749|18pool1506|culex_pipiens|it_pd|2018-07-31                                          0.00%    passed     98.83%
+  20  MW164710|17pool1250|culex_pipiens|it_vi|2017-07-19                                          0.00%    passed     99.84%
+  21  MW164725|17pool1729|culex_pipiens|it_tv|2017-08-21                                          0.00%    passed     99.84%
+  22  MW164729|17VIR8655-3|larus_michahellis|it_ro|2017-09-18                                     0.00%    passed     99.84%
+  23  MW164748|18pool1442|culex_pipiens|it_tv|2018-07-31                                          0.00%    passed     99.84%
+  24  MW164727|17VIR7761-4|sturnus_vulgaris|it_ro|2017-09-01                                      0.00%    passed     99.84%
+  25  MW164728|17VIR7838-4|turdus_merula|it_ro|2017-08-30                                         0.00%    passed     99.84%
+  26  MW164722|17pool1671|culex_pipiens|it_pd|2017-08-16                                          0.00%    passed     99.84%
+  27  MW164709|17pool1191|culex_pipiens|it_ve|2017-07-17                                          0.00%    passed     99.84%
+  28  MW164761|18pool1662|culex_pipiens|it_tv|2018-08-14                                          0.00%    passed     99.84%
+  29  MW164686|15pool1335|culex_pipiens|it_ro|2015-08-03                                          0.00%    passed     99.84%
+  30  MW164703|16pool2117|culex_pipiens|it_ve|2016-08-16                                          0.00%    passed     99.84%
+  31  MW164734|18pool1141|culex_pipiens|it_pn|2018-07-17                                          0.00%    passed     99.84%
+  32  MW164712|17pool1309|culex_pipiens|it_tv|2017-07-24                                          0.00%    passed     99.84%
+  33  MW164723|17pool1688|culex_pipiens|it_ve|2017-08-16                                          0.00%    passed     99.84%
+  34  MW164716|17pool1544|culex_pipiens|it_pn|2017-08-07                                          0.00%    passed     99.84%
+  35  MW164730|18pool1009|culex_pipiens|it_ve|2018-07-10                                          0.00%    passed     99.84%
+  36  MW164754|18pool1556|culex_pipiens|it_tv|2018-08-07                                          0.00%    passed     99.84%
+  37  MW164759|18pool1649|culex_pipiens|it_ud|2018-08-14                                          0.00%    passed     99.84%
+  38  MW164746|18pool1405|culex_pipiens|it_vr|2018-07-26                                          0.00%    passed     99.84%
+  39  MW164766|18pool1965|culex_pipiens|it_vr|2018-09-06                                          0.00%    passed     99.84%
+  40  MW164715|17pool1525|culex_pipiens|it_tv|2017-08-07                                          0.00%    passed     99.84%
+  41  MW164747|18pool1430|culex_pipiens|it_pn|2018-07-31                                          0.00%    passed     99.84%
+  42  MW164760|18pool1660|culex_pipiens|it_ud|2018-08-14                                          0.00%    passed     99.84%
+  43  MW164687|15pool1419|culex_pipiens|it_vi|2015-08-05                                          0.00%    passed     99.84%
+  44  MW164691|15pool1751|culex_pipiens|it_vr|2015-09-02                                          0.00%    passed     99.84%
+  45  MW164694|15VIR4781-31|turdus_iliacus|it_tv|2015-09-15                                       0.00%    passed     99.84%
+  46  MW164743|18pool1267|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     98.83%
+  47  MW164699|16pool1839|culex_pipiens|it_ro|2016-08-01                                          0.00%    passed     99.95%
+  48  MW164737|18pool1229|culex_pipiens|it_pd|2018-07-19                                          0.37%    passed     99.62%
+  49  MW164742|18pool1264|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     99.68%
+  50  NA|20VIR4951|serinus_canaria|it_pd|2020-08-19                                               0.00%    passed     99.84%
+  51  MW164769|18pool948|culex_pipiens|it_pd|2018-07-06                                           0.00%    passed     99.84%
+  52  MW164732|18pool108G|culex_pipiens|it_vr|2018-09-06                                          0.00%    passed     99.84%
+  53  MW164757|18pool1614|culex_pipiens|it_vi|2018-08-09                                          0.00%    passed     99.84%
+  54  MW164770|18VIR7808-6|ciconia_ciconia|it_vi|2018-09-07                                       0.00%    passed     99.84%
+  55  ON032478|ITA2018_18638|turdus_merula|it_tv|2018-09-03                                       0.00%    passed     99.84%
+  56  MW164713|17pool1488|culex_pipiens|it_pd|2017-08-02                                          0.00%    passed     99.84%
+  57  MW164735|18pool1163|culex_pipiens|it_tv|2018-07-17                                          0.00%    passed     99.84%
+  58  MW164726|17pool1923|culex_pipiens|it_ve|2017-09-11                                          0.00%    passed     99.84%
+  59  MT784898|NA|turdus_iliacus|ita|2017                                                         0.00%    passed     99.68%
+  60  MW164739|18pool1261|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     99.95%
+  61  MW164750|18pool1509|culex_pipiens|it_ve|2018-07-31                                          0.00%    passed     99.84%
+  62  MW164717|17pool1609|culex_pipiens|it_ud|2017-08-16                                          0.00%    passed     99.84%
+  63  MW164765|18pool1832|culex_pipiens|it_tv|2018-08-28                                          0.00%    passed     99.84%
+  64  NA|20VIR4811|serinus_canaria|it_pd|2020-08-10                                               0.00%    passed     99.84%
+  65  MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17                                          0.00%    passed     99.95%
+  66  MW164753|18pool1523|culex_pipiens|it_vi|2018-08-02                                          0.00%    passed     99.84%
+  67  KX816649|231247/2011|turdus_merula|ita|2011-09                                              0.00%    passed     99.95%
+  68  MW164636|11pool1941|culex_pipiens|it_ro|2011-08-16                                          0.00%    passed     99.95%
+  69  MW164639|11pool2135|culex_pipiens|it_vr|2011-08-30                                          0.00%    passed     99.95%
+  70  MW164634|11pool1743|culex_pipiens|it_pd|2011-08-09                                          0.00%    passed     99.95%
+  71  MW164635|11pool1805|culex_pipiens|it_pd|2011-08-09                                          0.00%    passed     99.95%
+  72  KX268471|ITA-055|culex_modestus|ita|2011                                                    0.00%    passed     99.95%
+  73  MW164641|12pool1898|culex_pipiens|it_ro|2012-07-24                                          0.00%    passed     99.95%
+  74  MW164642|12pool1948|culex_pipiens|it_vr|2012-07-24                                          0.00%    passed     99.95%
+  75  MW164669|13pool6471|culex_pipiens|it_vi|2013-09-05                                          0.00%    passed     99.95%
+  76  MW164670|13pool6472|culex_pipiens|it_vi|2013-09-05                                          0.00%    passed     99.95%
+  77  MW164658|13pool5009|culex_pipiens|it_vr|2013-07-31                                          0.00%    passed     99.95%
+  78  MW164678|14pool1494|culex_pipiens|it_vr|2014-09-02                                          0.00%    passed     99.47%
+  79  MW164679|14pool1511|culex_pipiens|it_vi|2014-09-03                                          0.00%    passed     99.47%
+  80  MW164640|11pool2444|culex_pipiens|it_vr|2011-09-21                                          0.00%    passed     99.95%
+  81  MW164663|13pool5778|culex_pipiens|it_vr|2013-08-13                                          0.00%    passed     99.95%
+  82  MW164668|13pool6465|culex_pipiens|it_vi|2013-09-05                                          0.00%    passed     99.95%
+  83  MW164648|12pool2316|culex_pipiens|it_vi|2012-08-22                                          0.00%    passed     99.95%
+  84  MW164654|12VIR6777-9|turdus_pilaris|it_pd|2012-09-05                                        0.00%    passed     99.95%
+  85  MW164652|12pool2628|culex_pipiens|it_vi|2012-09-05                                          0.00%    passed     99.95%
+  86  MW164676|14pool1478|culex_pipiens|it_ro|2014-09-02                                          0.00%    passed     99.95%
+  87  MW164672|14pool1388|culex_pipiens|it_vi|2014-08-22                                          0.00%    passed     99.95%
+  88  MW164671|14pool1366|culex_pipiens|it_vr|2014-08-20                                          0.00%    passed     99.95%
+  89  MW164682|14pool857|culex_pipiens|it_ro|2014-07-22                                           0.00%    passed     99.95%
+  90  MW164673|14pool1394|culex_pipiens|it_ve|2014-08-26                                          0.00%    passed     99.95%
+  91  MW164684|14VIR5467-8|NA|it_tv|2014-09-02                                                    0.00%    passed     99.95%
+  92  MW164685|15pool1187|culex_pipiens|it_vr|2015-07-22                                          0.00%    passed     99.95%
+  93  MW164711|17pool1252|culex_pipiens|it_vi|2017-07-19                                          0.00%    passed     99.95%
+  94  MW164740|18pool1262|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     99.95%
+  95  MW164751|18pool1519|culex_pipiens|it_pd|2018-08-02                                          0.00%    passed     99.95%
+  96  MW164752|18pool1522|culex_pipiens|it_vi|2018-08-02                                          0.00%    passed     99.95%
+  97  MW164755|18pool1575|culex_pipiens|it_ro|2018-08-07                                          0.00%    passed     99.84%
+  98  MW164744|18pool1347|culex_pipiens|it_ro|2018-07-24                                          0.00%    passed     99.84%
+  99  MW164768|18pool78G|culex_pipiens|it_vr|2018-08-09                                           0.00%    passed     99.95%
+ 100  MW164756|18pool1610|culex_pipiens|it_pd|2018-08-09                                          0.00%    passed     99.95%
+ 101  MW164767|18pool2042|culex_pipiens|it_vi|2018-09-13                                          0.00%    passed     99.95%
+ 102  MW164736|18pool1219|culex_pipiens|it_ro|2018-07-17                                          0.00%    passed     99.76%
+ 103  MW164707|16pool2571|culex_pipiens|it_vr|2016-09-14                                          0.00%    passed     99.95%
+ 104  MW164719|17pool1647|culex_pipiens|it_vr|2017-08-16                                          0.00%    passed     99.95%
+ 105  MW164764|18pool1795|culex_pipiens|it_vr|2018-08-23                                          0.00%    passed     99.95%
+ 106  MW164758|18pool1617|culex_pipiens|it_vr|2018-08-09                                          0.00%    passed     99.95%
+ 107  MW164745|18pool1398|culex_pipiens|it_vr|2018-07-26                                          0.00%    passed     99.95%
+ 108  MW164708|17pool103G|culex_pipiens|it_vi|2017-08-30                                          0.00%    passed     99.95%
+ 109  MW164771|18VIR7859-4|turdus_merula|it_tv|2018-09-07                                         0.00%    passed     99.95%
+ 110  MW164733|18pool1124|culex_pipiens|it_vi|2018-07-12                                          0.00%    passed     99.95%
+ 111  MW164714|17pool1493|culex_pipiens|it_vr|2017-08-02                                          0.00%    passed     99.95%
+ 112  MW164720|17pool1653|culex_pipiens|it_vr|2017-08-16                                          0.00%    passed     99.95%
+ 113  MW164688|15pool1426|culex_pipiens|it_pd|2015-08-06                                          0.00%    passed     99.84%
+ 114  MW164741|18pool1263|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     99.95%
+ 115  MW164724|17pool1709|culex_pipiens|it_ro|2017-08-17                                          0.00%    passed     99.95%
+ 116  KU573070|216606/2013|culex_pipiens|it_ra|2013                                               0.00%    passed     99.95%
+ 117  KX816647|208576-8/2011|culex_pipiens|ita|2011-08                                            0.00%    passed     99.95%
+ 118  ON032479|ITA2010_12543|turdus_merula|it_ps|2010                                             0.00%    passed     99.95%
+ 119  KX555624|NA|turdus_merula|ita|2010                                                          0.00%    passed     99.95%
+ 120  MW164660|13pool5678|culex_pipiens|it_ro|2013-08-08                                          0.00%    passed     99.95%
+ 121  MW164661|13pool5687|culex_pipiens|it_ro|2013-08-08                                          0.00%    passed     99.95%
+ 122  KX816651|211204-8/2012|culex_pipiens|ita|2012-08                                            0.00%    passed     99.95%
+ 123  KX816650|211984-4/2012|culex_pipiens|ita|2012-08                                            0.00%    passed     99.95%
+ 124  HM569263|NA|homo_sapiens|ita|2009-09-24                                                     0.00%    passed     99.95%
+ 125  KX555625|NA|turdus_merula|ita|2010                                                          0.00%    passed     99.95%
+ 126  KX555626|NA|turdus_merula|ita|2010                                                          0.00%    passed     99.95%
+ 127  MW164664|13pool5827|culex_pipiens|it_ro|2013-08-13                                          0.00%    passed     98.96%
+ 128  KX816652|211204-7/2012|culex_pipiens|ita|2012-08                                            0.00%    passed     99.95%
+ 129  KX555627|NA|turdus_merula|ita|2010                                                          0.00%    passed     99.95%
+ 130  KX555628|NA|turdus_merula|ita|2010                                                          0.00%    passed     99.95%
+ 131  KU573075|201602-24/2014|culex_pipiens|it_re|2014                                            0.00%    passed     99.95%
+ 132  MF991886|BD1/17-AT|homo_sapiens|at_wi|2017-07-24                                            0.00%    passed     99.84%
+ 133  MF063042|AT-N211/16|turdus_merula|at_no_bl|2016-09-29                                       0.00%    passed     99.95%
+ 134  MF063043|HU-47540/16|turdus_merula|hun|2016-09-26                                           0.00%    passed     99.95%
+ 135  KU573072|221034-3/2013|culex_pipiens|it_ra|2013                                             0.00%    passed     99.95%
+ 136  ON032477|ITA2018_17495|turdus_merula|it_bo|2018-08-17                                       0.00%    passed     99.32%
+ 137  NA|23pool1280_23RS1633-583|culex_pipiens|it_pd|2023-07-05                                   0.00%    passed     99.84%
+ 138  NA|23VIR8795|turdus_merula|it_ve|2023-08-23                                                 0.00%    passed     99.84%
+ 139  NA|23pool2138_23RS2497-1|culex_pipiens|it_vi|2023-11-13                                     0.00%    passed     99.84%
+ 140  OP734256|NA|culex_pipiens|ita|2022-07-29                                                    0.00%    passed     99.56%
+ 141  OP734246|NA|culex_pipiens|ita|2022-07-29                                                    0.00%    passed     99.56%
+ 142  MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|it_ac|2018-08-20                   0.00%    passed     99.83%
+ 143  OP734252|NA|culex_pipiens|ita|2022-08-01                                                    0.00%    passed     99.97%
+ 144  OP734251|NA|culex_pipiens|ita|2022-08-01                                                    0.00%    passed     99.95%
+ 145  OR757497|1740425|culex_pipiens|ita|2023-07-16                                               0.00%    passed     99.68%
+ 146  OR757493|17404216|culex_pipiens|ita|2023-07-15                                              0.00%    passed     96.01%
+ 147  PP104383|TE2518012|culex_pipiens|ita|2023-08-02                                             0.00%    passed     99.95%
+ 148  OP734260|NA|culex_pipiens|ita|2022-07-08                                                    0.00%    passed     99.95%
+ 149  ON032482|ITA2021_304421|larus_michahellis|it_rn|2021-09-08                                  0.00%    passed     99.95%
+ 150  OR757492|17404213|culex_pipiens|ita|2023-07-24                                              0.00%    passed     99.95%
+ 151  OR757494|17404220|turdus_merula|ita|2023-07-24                                              0.00%    passed     99.95%
+ 152  MT784899|NA|turdus_merula|ita|2017                                                          0.00%    passed     99.95%
+ 153  PP104387|TE2518512|sturnus_vulgaris|ita|2023-09-13                                          0.00%    passed     99.95%
+ 154  PP104388|TE2518612|turdus_merula|ita|2023-09-22                                             0.00%    passed     99.95%
+ 155  MW164721|17pool1664|culex_pipiens|it_vr|2017-08-16                                          0.00%    passed     99.95%
+ 156  MW164637|11pool1989|culex_pipiens|it_ve|2011-08-23                                          0.00%    passed     99.61%
+ 157  MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24                                          0.00%    passed     99.97%
+ 158  JF266698|NA|turdus_merula|ita|2009                                                          0.00%    passed     99.56%
+ 159  MW164647|12pool2262|culex_pipiens|it_vi|2012-08-07                                          0.73%    passed     99.26%
+ 160  MW164653|12pool2653|culex_pipiens|it_ro|2012-09-05                                          0.00%    passed     99.97%
+ 161  MW164677|14pool1489|culex_pipiens|it_vr|2014-09-02                                          0.00%    passed     99.97%
+ 162  MW164651|12pool2626|culex_pipiens|it_vi|2012-09-05                                          0.00%    passed     99.97%
+ 163  MW164666|13pool5999|culex_pipiens|it_tv|2013-08-21                                          0.00%    passed     99.97%
+ 164  MW164643|12pool2046|culex_pipiens|it_ve|2012-07-24                                          0.00%    passed     99.97%
+ 165  MW164644|12pool2194|culex_pipiens|it_tv|2012-08-09                                          0.00%    passed     99.97%
+ 166  MW164645|12pool2214|culex_pipiens|it_ve|2012-08-07                                          0.00%    passed     99.97%
+ 167  MW164665|13pool5873|culex_pipiens|it_ve|2013-08-13                                          0.00%    passed     99.97%
+ 168  MW164650|12pool2586|culex_pipiens|it_tv|2012-08-23                                          0.00%    passed     99.97%
+ 169  MW164667|13pool6009|culex_pipiens|it_ro|2013-08-21                                          0.00%    passed     99.97%
+ 170  MW164656|12VIR6787-11|alauda_arvensis|it_tv|2012-09-03                                      0.00%    passed     99.97%
+ 171  MW164655|12VIR6787-10|alauda_arvensis|it_tv|2012-09-03                                      0.00%    passed     99.97%
+ 172  MW164657|12VIR6787-9|alauda_arvensis|it_tv|2012-09-03                                       0.00%    passed     99.97%
+ 173  MW164646|12pool2249|culex_pipiens|it_vi|2012-08-07                                          0.00%    passed     99.97%
+ 174  MW164659|13pool5600|culex_pipiens|it_tv|2013-08-07                                          0.00%    passed     99.97%
+ 175  MW164649|12pool2412|culex_pipiens|it_ro|2012-08-22                                          0.00%    passed     99.97%
+ 176  MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26                                          0.00%    passed     99.61%
+ 177  MW164680|14pool1698|culex_pipiens|it_ve|2014-09-23                                          0.00%    passed     99.61%
+ 178  MW164698|16pool1777|culex_pipiens|it_go|2016-07-25                                          0.00%    passed     99.61%
+ 179  MW164695|15VIR4781-42|turdus_merula|it_tv|2015-09-15                                        0.00%    passed     99.61%
+ 180  MW164696|15VIR4781-43|turdus_merula|it_tv|2015-09-15                                        0.00%    passed     99.61%
+ 181  MW164705|16pool2336|culex_pipiens|it_ve|2016-08-29                                          0.00%    passed     99.61%
+ 182  MW164689|15pool1503|culex_pipiens|it_ve|2015-08-10                                          0.00%    passed     99.97%
+ 183  MW164702|16pool2106|culex_pipiens|it_ro|2016-08-16                                          0.00%    passed     99.97%
+ 184  NA|23VIR9292|turdus_merula|it_vr|2023-10-01                                                 0.00%    passed     99.60%
+ 185  OP734254|NA|NA|ita|2022-08-08                                                               0.00%    passed     96.72%
+ 186  MW164738|18pool1258|culex_pipiens|it_vr|2018-07-19                                          0.00%    passed     99.76%
+ 187  ON032476|ITA2020_155885|turdus_merula|it_fe|2020                                            0.00%    passed     98.43%
+ 188  ON813234|ITA2021_299815|turdus_merula|ita|2021                                              0.00%    passed     98.43%
+ 189  ON032487|ITA2021_299813|turdus_merula|it_bo|2021                                            0.00%    passed     98.43%
+ 190  ON032481|ITA2021_302715|turdus_merula|it_bo|2021-09-02                                      0.00%    passed     98.43%
+ 191  ON032483|ITA2021_301597|turdus_merula|it_bo|2021-08-19                                      0.00%    passed     97.23%
+ 192  ON032474|ITA2020_115108|culex_pipiens|it_re|2020                                            0.00%    passed     98.43%
+ 193  ON032475|ITA2020_123828|muscicapa_striata|it_fe|2020                                        0.00%    passed     98.43%
+ 194  ON032485|ITA2021_302331|turdus_merula|it_bo|2021                                            0.00%    passed     98.43%
+ 195  OP734250|NA|culex_pipiens|ita|2022-07-29                                                    0.00%    passed     98.43%
+ 196  OP734253|NA|culex_pipiens|ita|2022-08-05                                                    0.00%    passed     98.43%
+ 197  ON032480|ITA2021_305818|turdus_merula|it_bo|2021-09-30                                      0.00%    passed     98.43%
+ 198  ON032484|ITA2021_305812|columba_palumbus|it_fe|2021-09-10                                   0.00%    passed     98.43%
+ 199  OR921102|2023TE1908911|culex_pipiens|ita|2023-09-15                                         0.00%    passed     98.43%
+ 200  PP104391|TE2518912|turdus_merula|ita|2023-09-07                                             0.00%    passed     98.11%
+ 201  OR921103|2023TE1683411|culex_pipiens|ita|2023-08-11                                         0.00%    passed     97.78%
+ 202  ON032486|ITA2021_310782|turdus_merula|it_bo|2021                                            0.00%    passed     98.43%
+ 203  AY453411|NA|turdus_merula|aut|2001                                                          0.00%    passed     99.40%
+ 204  EF206350|Budapest|turdus_merula|hun|2005                                                    0.00%    passed     99.86%
+ 205  JQ219843|NA|cyanistes_caeruleus|aut|2002-08-29                                              0.00%    passed     99.40%
+ 206  MG888044|NA|culex_pipiens|srb|2014-08                                                       0.00%    passed     99.86%
+ 207  OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15                                     0.00%    passed     99.11%
+ 208  OR573993|AS201700147|branta_ruficollis|nl_li|2017-08-15                                     0.00%    passed     99.11%
+ 209  MN122166|AS201600133|turdus_merula|nl_ov_lo|2016-09-23                                      0.00%    passed     99.40%
+ 210  MN122190|AS201700080|turdus_merula|nl_ut_ut|2017-07-05                                      0.00%    passed     99.11%
+ 211  KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|bel|2016-10-03           0.00%    passed     99.11%
+ 212  MK796168|AS201600070|strix_nebulosa|nld|2016-09-13                                          0.00%    passed     99.73%
+ 213  MN122213|AS201700248|turdus_merula|nl_zh_hg|2017-09-20                                      0.00%    passed     99.11%
+ 214  MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|swe|2019-08-01    0.00%    passed     99.11%
+ 215  KY199558|NA|turdus_merula|de_sn_de|2016                                                     0.00%    passed     99.86%
+ 216  KY426770|NA|turdus_merula|deu|2016-09-20                                                    0.00%    passed     99.86%
+ 217  KY426769|NA|turdus_merula|deu|2016-09-20                                                    0.00%    passed     99.86%
+ 218  KY426763|NA|turdus_merula|deu|2016-09-24                                                    0.00%    passed     99.86%
+ 219  KY426762|NA|turdus_merula|deu|2016-09-26                                                    0.00%    passed     99.86%
+ 220  KJ438775|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.11%
+ 221  KJ438769|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 222  KJ438772|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 223  KJ438773|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 224  KJ438770|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 225  KJ438771|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.86%
+ 226  KJ438779|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 227  KJ438774|NA|turdus_merula|deu|2012                                                          0.00%    passed     98.82%
+ 228  KY426751|NA|turdus_pilaris|deu|2015-09-01                                                   0.00%    passed     99.86%
+ 229  KJ438776|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 230  KJ438777|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 231  KJ438768|NA|culex_sp|deu|2013                                                               0.00%    passed     99.11%
+ 232  KJ438778|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 233  KJ438767|NA|culex_sp|deu|2011                                                               0.00%    passed     99.86%
+ 234  OP555956|NA|strix_nebulosa|bel|2017-07-10                                                   0.00%    passed     99.88%
+ 235  KY426760|NA|turdus_merula|deu|2016-09-29                                                    0.00%    passed     99.86%
+ 236  KJ438780|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 237  KJ438781|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 238  MN122215|AS201800038|turdus_merula|nl_fr_ty|2017-09-11                                      0.00%    passed     99.97%
+ 239  OP555957|NA|turdus_merula|bel|2017-07-24                                                    0.00%    passed     99.86%
+ 240  MN122198|AS201700109|turdus_merula|nl_ge_ed|2017-07-25                                      0.00%    passed     99.86%
+ 241  KJ438754|NA|turdus_merula|deu|2012                                                          0.00%    passed     98.82%
+ 242  MT580899|NA|strix_nebulosa|de_ni_ha|2018                                                    0.00%    passed     99.40%
+ 243  KY263624|NA|turdus_merula|be_lg|2016-10                                                     0.00%    passed     99.86%
+ 244  KJ438764|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 245  KX601691|USUV-HautRhin7316/France/2015|turdus_merula|fr_hr|2015-08-05                       0.00%    passed     99.86%
+ 246  MN122196|AS201700103|turdus_merula|nl_nb_bt|2017-07-19                                      0.00%    passed     99.86%
+ 247  MN122152|AS201600060|turdus_merula|nl_ge|2016-09-12                                         0.00%    passed     99.86%
+ 248  MN122203|AS201700127|turdus_merula|nld|2017-07-30                                           0.00%    passed     99.86%
+ 249  MN122192|AS201700086|turdus_merula|nl_nb_bs|2017-07-11                                      0.00%    passed     99.86%
+ 250  KY263626|NA|turdus_merula|be_lg|2016-09                                                     0.00%    passed     99.86%
+ 251  MN122189|AS201700077|turdus_merula|nl_nb_bs|2017-07-03                                      0.00%    passed     98.82%
+ 252  MN122188|AS201700024|turdus_merula|nl_ge_wv|2017-04-11                                      0.00%    passed     99.86%
+ 253  MN122174|AS201600241|turdus_merula|nl_dr|2016-09-27                                         0.00%    passed     99.86%
+ 254  KY426755|NA|turdus_merula|deu|2016-09-19                                                    0.00%    passed     99.86%
+ 255  KY426756|NA|turdus_merula|deu|2016-09-23                                                    0.00%    passed     99.86%
+ 256  OP555958|NA|turdus_merula|bel|2017-08-07                                                    0.00%    passed     99.86%
+ 257  MN122158|AS201600104|turdus_merula|nl_ov_ra|2016-09-22                                      0.00%    passed     99.86%
+ 258  MK230890|NA|turdus_merula|be_bw|2017-08                                                     0.00%    passed     99.86%
+ 259  MN122177|AS201600253|turdus_merula|nl_li_la|2016-09-27                                      0.00%    passed     99.86%
+ 260  MN122235|AS201800112|turdus_merula|nl_nb_bo|2018-08-14                                      0.00%    passed     99.86%
+ 261  KJ438748|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 262  KY426752|NA|turdus_merula|deu|2015-08-18                                                    0.00%    passed     99.86%
+ 263  KJ438706|NA|culex_sp|deu|2011                                                               0.00%    passed     99.86%
+ 264  KJ438714|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 265  KJ438711|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 266  KJ438707|NA|culex_sp|deu|2011                                                               0.00%    passed     99.86%
+ 267  KJ438708|NA|culex_pipiens|deu|2011                                                          0.00%    passed     99.86%
+ 268  KJ438715|NA|passer_domesticus|deu|2011                                                      0.00%    passed     99.86%
+ 269  KJ438732|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 270  KY426750|NA|turdus_merula|deu|2015-10-07                                                    0.00%    passed     99.86%
+ 271  KJ438710|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 272  KJ438709|NA|culex_sp|deu|2012                                                               0.00%    passed     99.86%
+ 273  KJ438713|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 274  KJ438720|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 275  KJ438733|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.40%
+ 276  KY426753|NA|turdus_merula|deu|2015-08-18                                                    0.00%    passed     99.86%
+ 277  KJ438712|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 278  KJ438716|NA|culex_sp|deu|2012                                                               0.00%    passed     99.86%
+ 279  KJ438717|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 280  KJ438719|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 281  HE599647|BH65/11-02-03|turdus_merula|de_bw_mn|2011-09-10                                    0.00%    passed     99.86%
+ 282  KJ438734|NA|sturnus_vulgaris|deu|2011                                                       0.00%    passed     99.86%
+ 283  KJ438731|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.40%
+ 284  KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|deu|2013                                   0.00%    passed     99.40%
+ 285  KY426766|NA|turdus_merula|deu|2016-10-11                                                    0.00%    passed     99.86%
+ 286  KJ438755|NA|turdidae_sp|deu|2011                                                            0.00%    passed     99.86%
+ 287  KJ438743|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 288  KJ438721|NA|culex_sp|deu|2011                                                               0.00%    passed     99.86%
+ 289  KJ438735|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 290  KJ438722|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.40%
+ 291  KJ438728|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 292  KJ438729|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.88%
+ 293  KJ438718|NA|culex_sp|deu|2011                                                               0.00%    passed     99.86%
+ 294  KJ438741|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.86%
+ 295  KJ438738|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 296  KJ438736|NA|culex_sp|deu|2012                                                               0.00%    passed     99.88%
+ 297  KJ438705|NA|culex_pipiens|deu|2010                                                          0.00%    passed     99.86%
+ 298  KJ438730|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 299  KJ438723|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 300  KJ438724|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 301  KJ438727|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.97%
+ 302  KJ438725|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 303  KJ438726|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 304  KJ438742|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.97%
+ 305  KJ438744|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 306  KJ438753|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 307  KJ438737|NA|culex_torrentium|deu|2011                                                       0.00%    passed     99.86%
+ 308  KY426759|NA|turdus_merula|deu|2016-09-12                                                    0.00%    passed     99.86%
+ 309  KJ438760|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 310  KJ438739|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.86%
+ 311  KJ438750|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 312  KJ438747|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 313  KJ438740|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 314  KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|deu|2013                                   0.00%    passed     99.86%
+ 315  KJ438749|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 316  KJ438746|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.97%
+ 317  KJ438752|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 318  KX601690|USUV-HautRhin7315/France/2015|turdus_merula|fr_hr|2015-08-10                       0.00%    passed     99.86%
+ 319  KJ438758|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.86%
+ 320  KJ438745|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 321  KJ438757|NA|turdus_merula|deu|2013                                                          0.00%    passed     99.86%
+ 322  KJ438765|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 323  KJ438751|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 324  KJ438756|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 325  KJ438759|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.56%
+ 326  KJ438761|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 327  KJ438766|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.86%
+ 328  KJ438763|NA|turdus_merula|deu|2012                                                          0.00%    passed     99.40%
+ 329  MN122176|AS201600247|turdus_merula|nl_ze_te|2016-09-30                                      0.00%    passed     99.86%
+ 330  MN122170|AS201600197|turdus_merula|nl_ze_re|2016-10-11                                      0.00%    passed     99.86%
+ 331  MN122154|AS201600089|turdus_merula|nl_nb_hs|2016-09-20                                      0.00%    passed     99.88%
+ 332  KY426767|NA|turdus_merula|deu|2016-10-14                                                    0.00%    passed     99.86%
+ 333  KY426768|NA|turdus_merula|deu|2016-10-12                                                    0.00%    passed     99.86%
+ 334  KJ438762|NA|turdus_merula|deu|2011                                                          0.00%    passed     99.86%
+ 335  MN122172|AS201600221|turdus_merula|nl_ut_ut|2016-09-22                                      0.00%    passed     99.86%
+ 336  MN122181|AS201600277|turdus_merula|nl_ut_ut|2016-09-27                                      0.00%    passed     99.86%
+ 337  MK796169|AS201600083|strix_nebulosa|nld|2016-09-20                                          0.00%    passed     99.86%
+ 338  MN122179|AS201600268|turdus_merula|nl_ge_ed|2016-09-30                                      0.00%    passed     99.86%
+ 339  MK230892|NA|turdus_merula|be_lg|2017-08                                                     0.00%    passed     99.86%
+ 340  KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|fr_ap|2016-09-22                            0.00%    passed     99.86%
+ 341  NA|22VIR7086-3|turdus_merula|it_ve|2022-07-18                                               0.00%    passed     98.83%
+ 342  NA|22VIR8404-2|turdus_merula|it_ud|2022-09-01                                               0.00%    passed     99.47%
+ 343  KU573073|229615-1/2013|culex_pipiens|it_bs|2013                                             0.00%    passed     99.86%
+ 344  KX816653|206795-3/2012|culex_pipiens|ita|2012-09                                            0.00%    passed     99.86%
+ 345  KX555629|NA|turdus_merula|ita|2015                                                          0.00%    passed     98.82%
+ 346  MK230893|NA|turdus_merula|be_lg|2017-08                                                     0.00%    passed     99.73%
+ 347  KC754955|HB81P08|homo_sapiens|caf|1981                                                      0.00%    passed     98.79%
+ 348  KC754956|ArD101291|culex_univittatus|sn_lg|1993                                             0.00%    passed     99.76%
+ 349  MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30                          0.00%    passed     91.60%
+ 350  MG461307|USUV_569m_Israel15_USUTU_|culex_pipiens|isr|2015-09-08                             0.00%    passed     91.60%
+ 351  MG461313|USUV_550m_Israel15_USUTU_|culex_perexiguus|isr|2015-09-08                          0.00%    passed     91.60%
+ 352  MG461308|USUV_593m_Israel15_USUTU_|aedes_albopictus|isr|2015-09-21                          0.00%    passed     91.60%
+ 353  KC754957|ArD192495|culex_neavei|sn_lg|2007                                                  0.00%    passed     96.95%
+ 354  MG461309|USUV_100m_Israel04_USUTU_|culex_pipiens|isr|2004-07-14                             0.00%    passed     96.95%
+ 355  MG461310|USUV_269m_Israel04_USUTU_|culex_perexiguus|isr|2004-08-24                          0.00%    passed     96.95%
+ 356  MG461311|USUV_341m_Israel04_USUTU_|culex_pipiens|isr|2004-09-23                             0.00%    passed     96.95%
+ 357  MG461312|USUV_355m_Israel04_USUTU_|culex_perexiguus|isr|2004-09-27                          0.00%    passed     96.95%
+ 358  MT241508|UG09615|culex_univittatus|ug_ji|2012-02                                            0.00%    passed     93.77%
+ 359  MN813491|UG09615|culex_univittatus|uga|2012                                                 0.00%    passed     96.95%
+ 360  ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.02%
+ 361  ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 362  ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.76%
+ 363  MN122245|AS201800125|turdus_merula|nl_dr_we|2018-08-22                                      0.00%    passed     99.76%
+ 364  MN122220|AS201800087|turdus_merula|nl_ov_wi|2018-08-01                                      0.00%    passed     99.61%
+ 365  MN122246|AS201800126|turdus_merula|nl_ov_hd|2018-08-22                                      0.00%    passed     99.76%
+ 366  MN122244|AS201800123|turdus_merula|nl_fr_ty|2018-08-21                                      0.00%    passed     99.02%
+ 367  KY426761|NA|turdus_merula|deu|2016-09-04                                                    0.00%    passed     99.76%
+ 368  KM659877|NA|turdus_merula|de_nw_bn|2014                                                     0.00%    passed     99.76%
+ 369  KY426765|NA|turdus_merula|deu|2016-09-30                                                    0.00%    passed     99.76%
+ 370  MN122207|AS201700167|turdus_merula|nl_fl_al|2017-09-01                                      0.00%    passed     99.15%
+ 371  MN122156|AS201600098|turdus_merula|nl_nb_ud|2016-09-21                                      0.00%    passed     99.76%
+ 372  MT795154|NA|turdus_merula|deu|2016                                                          0.00%    passed     99.76%
+ 373  MN122185|AS201600284|turdus_merula|nl_nb_os|2016-10-03                                      0.00%    passed     99.76%
+ 374  MN122236|AS201800113|turdus_merula|nld|2018-08-14                                           0.00%    passed     99.76%
+ 375  MN122164|AS201600124|turdus_merula|nl_ge_wv|2016-09-23                                      0.00%    passed     99.61%
+ 376  MN122211|AS201700186|turdus_merula|nl_zh_zd|2017-09-13                                      0.00%    passed     99.76%
+ 377  MN122162|AS201600118|turdus_merula|nl_ut_ut|2016-09-22                                      0.00%    passed     99.76%
+ 378  MN122187|AS201600287|turdus_merula|nl_nb_ln|2016-09-27                                      0.00%    passed     99.76%
+ 379  MN122145|AS201600034|turdus_merula|nl_li_ge|2016-09-01                                      0.00%    passed     99.76%
+ 380  PQ041659|USUV_TM_Netherlands_2016|NA|nld|2020                                               0.00%    passed     99.76%
+ 381  MT188658|NA|turdus_merula|nld|2016                                                          0.00%    passed     99.76%
+ 382  MH891847|AS201600045|turdus_merula|nld|2016-09-07                                           0.00%    passed     99.76%
+ 383  MN813490|TMNetherlands|turdus_merula|nld|2016                                               0.00%    passed     99.76%
+ 384  MN122148|AS201600045|turdus_merula|nl_nb_sr|2016-09-07                                      0.00%    passed     99.76%
+ 385  MN122249|AS201800129|turdus_merula|nl_ge_lo|2018-08-23                                      0.00%    passed     99.76%
+ 386  MN122175|AS201600244|turdus_merula|nl_ge_zu|2016-09-27                                      0.00%    passed     99.76%
+ 387  MN122230|AS201800099|turdus_merula|nl_fl_no|2018-08-07                                      0.00%    passed     99.76%
+ 388  MN122254|AS201800155|turdus_merula|nl_nh_hh|2018-08-31                                      0.00%    passed     99.92%
+ 389  MN122227|AS201800094|turdus_merula|nl_ut_ut|2018-08-03                                      0.00%    passed     99.76%
+ 390  MN122224|AS201800091|turdus_merula|nl_ge_er|2018-08-02                                      0.00%    passed     99.76%
+ 391  MN122240|AS201800118|turdus_merula|nld|2018-08-16                                           0.00%    passed     99.92%
+ 392  MN122186|AS201600286|turdus_merula|nl_nb_os|2016-09-28                                      0.00%    passed     99.76%
+ 393  MN122201|AS201700121|turdus_merula|nl_dr_dw|2017-08-01                                      0.00%    passed     99.76%
+ 394  MN122182|AS201600280|turdus_merula|nl_ge_bu|2016-09-26                                      0.00%    passed     99.76%
+ 395  ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.76%
+ 396  MN122232|AS201800101|turdus_merula|nl_dr_ty|2018-08-07                                      0.00%    passed     99.76%
+ 397  MN122231|AS201800100|turdus_merula|nl_li_vl|2018-08-07                                      0.00%    passed     99.76%
+ 398  MN122163|AS201600121|turdus_merula|nl_ut_ut|2016-09-22                                      0.00%    passed     99.76%
+ 399  MN122169|AS201600173|turdus_merula|nl_ge_dt|2016-10-07                                      0.00%    passed     99.76%
+ 400  MN122206|AS201700155|turdus_merula|nl_fl_al|2017-08-10                                      0.00%    passed     99.76%
+ 401  OM202464|Greater_London_2021|turdus_merula|gbr|2021-09                                      0.00%    passed     99.76%
+ 402  MW001216|NA|turdus_merula|gbr|2020-07                                                       0.00%    passed     99.76%
+ 403  ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 404  ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.76%
+ 405  MN122233|AS201800102|turdus_merula|nl_dr_no|2018-08-09                                      0.00%    passed     99.76%
+ 406  MN122214|AS201700254|turdus_merula|nl_nh_hi|2017-09-22                                      0.00%    passed     99.76%
+ 407  MN122151|AS201600057|turdus_merula|nl_nb_cu|2016-09-08                                      0.00%    passed     99.76%
+ 408  NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|gbr|2023-08                                0.00%    passed     99.15%
+ 409  NA|Blackbird_London_2022_a|turdus_merula|gbr|2022-09                                        0.00%    passed     99.76%
+ 410  NA|Blackbird_London_2022_b|turdus_merula|gbr|2022-09                                        0.00%    passed     99.76%
+ 411  OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|nl_ut_ut|2016-10-16                        0.00%    passed     99.76%
+ 412  MN122173|AS201600227|turdus_merula|nl_nh_hi|2016-09-30                                      0.00%    passed     99.76%
+ 413  MN122205|AS201700152|turdus_merula|nl_li_st|2017-07-19                                      0.00%    passed     99.76%
+ 414  MN122226|AS201800093|turdus_merula|nl_zh_ld|2018-08-03                                      0.00%    passed     99.76%
+ 415  MN122197|AS201700106|turdus_merula|nl_ut_ut|2017-07-25                                      0.00%    passed     99.76%
+ 416  MN122222|AS201800089|turdus_merula|nl_zh_rj|2018-08-02                                      0.00%    passed     99.76%
+ 417  MN122217|AS201800082|turdus_merula|nl_nh|2018-07-27                                         0.00%    passed     99.76%
+ 418  MN122199|AS201700112|turdus_merula|nl_ge_ed|2017-07-27                                      0.00%    passed     99.76%
+ 419  MN122209|AS201700174|turdus_merula|nl_ut_ut|2017-08-29                                      0.00%    passed     99.76%
+ 420  MN122242|AS201800121|turdus_merula|nl_fr_he|2018-08-17                                      0.00%    passed     99.02%
+ 421  MN122147|AS201600042|turdus_merula|nl_li_vl|2016-09-07                                      0.00%    passed     99.76%
+ 422  MN122193|AS201700087|turdus_merula|nl_ge_zu|2017-07-11                                      0.00%    passed     99.76%
+ 423  MN122153|AS201600062|turdus_merula|nl_ge_ov|2016-09-13                                      0.00%    passed     99.76%
+ 424  MN122184|AS201600283|turdus_merula|nl_nb_os|2016-09-27                                      0.00%    passed     99.76%
+ 425  KY128482|Snebulosa-6004/NL/2016|strix_nebulosa|nl_li_kr|2016-09                             0.00%    passed     99.76%
+ 426  MN122247|AS201800127|turdus_merula|nl_ge_bu|2018-08-22                                      0.00%    passed     99.76%
+ 427  MN122149|AS201600048|turdus_merula|nl_nb_sr|2016-09-07                                      0.00%    passed     99.76%
+ 428  MN122195|AS201700096|turdus_merula|nl_nb_sh|2017-07-14                                      0.00%    passed     99.92%
+ 429  MN122161|AS201600115|turdus_merula|nl_ut_ut|2016-09-22                                      0.00%    passed     99.76%
+ 430  MN122239|AS201800116|turdus_merula|nl_ge_bu|2018-08-16                                      0.00%    passed     99.76%
+ 431  ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.76%
+ 432  ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 433  MN122165|AS201600127|turdus_merula|nl_ov_dv|2016-09-23                                      0.00%    passed     99.76%
+ 434  MN122150|AS201600051|turdus_merula|nl_li_ge|2016-09-07                                      0.00%    passed     99.15%
+ 435  MN122208|AS201700170|turdus_merula|nl_fl_al|2017-08-25                                      0.00%    passed     99.76%
+ 436  MN122241|AS201800120|turdus_merula|nl_ut_ut|2018-08-17                                      0.00%    passed     99.61%
+ 437  ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 438  MN122202|AS201700124|turdus_merula|nl_ge_ed|2017-08-01                                      0.00%    passed     99.76%
+ 439  MN122160|AS201600110|turdus_merula|nl_nb_ln|2016-09-22                                      0.00%    passed     99.76%
+ 440  MN122219|AS201800086|turdus_merula|nl_ge_el|2018-08-01                                      0.00%    passed     99.46%
+ 441  MN122228|AS201800095|turdus_merula|nl_ge_el|2018-08-06                                      0.00%    passed     99.46%
+ 442  MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10                                      0.00%    passed     99.61%
+ 443  MN122180|AS201600274|turdus_merula|nld|2016-09-27                                           0.00%    passed     99.61%
+ 444  MN122155|AS201600095|turdus_merula|nl_li_bk|2016-09-21                                      0.00%    passed     99.61%
+ 445  MN122194|AS201700090|turdus_merula|nl_ge_dt|2017-07-13                                      0.00%    passed     99.61%
+ 446  MN122243|AS201800122|turdus_merula|nl_fr_ty|2018-08-21                                      0.00%    passed     99.61%
+ 447  MN122237|AS201800114|turdus_merula|nl_fl_no|2018-08-15                                      0.00%    passed     99.61%
+ 448  MN122218|AS201800084|turdus_merula|nl_gr|2018-07-31                                         0.00%    passed     99.61%
+ 449  MN122204|AS201700130|turdus_merula|nl_fl_le|2017-08-16                                      0.00%    passed     99.22%
+ 450  MN122183|AS201600281|turdus_merula|nl_ut_wd|2016-09-25                                      0.00%    passed     99.76%
+ 451  MN122200|AS201700118|turdus_merula|nl_nh_hu|2017-08-03                                      0.00%    passed     99.76%
+ 452  OP921078|18TV0973_Turdusphilomelos|turdidae_sp|nl_ut_ut|2018-08-18                          0.00%    passed     99.40%
+ 453  MN122159|AS201600107|turdus_merula|nl_nb_zu|2016-09-22                                      0.00%    passed     99.15%
+ 454  MN122255|AS201800156|turdus_merula|nl_ut_ze|2018-08-31                                      0.00%    passed     99.15%
+ 455  MN122191|AS201700084|turdus_merula|nl_ut_ut|2017-07-05                                      0.00%    passed     99.15%
+ 456  MN122168|AS201600148|turdus_merula|nl_ut_ut|2016-09-23                                      0.00%    passed     99.15%
+ 457  MK230891|NA|turdus_merula|be_lg|2017-08                                                     0.00%    passed     99.92%
+ 458  ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 459  ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 460  ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|nld|2016                           0.00%    passed     99.76%
+ 461  MN122221|AS201800088|turdus_merula|nl_nb_os|2018-08-01                                      0.00%    passed     99.76%
+ 462  MN122252|AS201800152|turdus_merula|nl_nh_bl|2018-08-30                                      0.00%    passed     99.76%
+ 463  MN122253|AS201800154|turdus_merula|nl_ge_ol|2018-08-31                                      0.00%    passed     99.76%
+ 464  MN122256|AS201800157|turdus_merula|nl_dr_bo|2018-09-04                                      0.00%    passed     99.76%
+ 465  KY426754|NA|turdus_merula|deu|2015-09-09                                                    0.00%    passed     99.02%
+ 466  MN122178|AS201600265|turdus_merula|nl_ge_ed|2016-09-30                                      0.00%    passed     99.76%
+ 467  KY263625|NA|turdus_merula|be_ht|2016-10                                                     0.00%    passed     99.76%
+ 468  MN122157|AS201600101|turdus_merula|nl_li_bk|2016-09-22                                      0.00%    passed     99.76%
+ 469  MN122212|AS201700189|turdus_merula|nl_dr_ah|2017-09-14                                      0.00%    passed     99.76%
+ 470  MN122210|AS201700177|turdus_merula|nl_ge_ep|2017-09-15                                      0.00%    passed     99.76%
+ 471  MN122167|AS201600136|turdus_merula|nl_ge_ar|2016-09-23                                      0.00%    passed     99.76%
+ 472  KY426764|NA|turdus_merula|deu|2016-10-04                                                    0.00%    passed     99.76%
+ 473  MN122146|AS201600036|turdus_merula|nl_ge_ov|2016-09-06                                      0.00%    passed     99.70%
+ 474  MN122248|AS201800128|turdus_merula|nl_gr|2018-08-22                                         0.00%    passed     99.76%
+ 475  MN122250|AS201800150|turdus_merula|nl_nh_bl|2018-08-30                                      0.00%    passed     99.76%
+ 476  KY426757|NA|turdus_merula|deu|2016-09-23                                                    0.00%    passed     99.76%
+ 477  MN122251|AS201800151|turdus_merula|nl_nh_bl|2018-08-30                                      0.00%    passed     99.76%
+ 478  MN122216|AS201800081|turdus_merula|nl_nh|2018-07-27                                         0.00%    passed     99.76%
+ 479  MN122225|AS201800092|turdus_merula|nl_zh_rt|2018-08-02                                      0.00%    passed     99.76%
+ 480  MN122223|AS201800090|turdus_merula|nl_ge_er|2018-08-02                                      0.00%    passed     99.76%
+ 481  OP007489|WBVR_bird-X-2016|strix_nebulosa|nl_ge_wg|2016-09-09                                0.00%    passed     99.76%
+ 482  KY294723|S-1238|turdus_merula|deu|2016                                                      0.00%    passed     99.76%
+ 483  KY294722|S-1232|turdus_merula|deu|2016                                                      0.00%    passed     99.61%
+ 484  KY199557|NA|turdus_merula|de_sn_ll|2016                                                     0.00%    passed     99.61%
+ 485  MN122238|AS201800115|turdus_merula|nl_ge_bu|2018-08-15                                      0.00%    passed     99.76%
+ 486  MK419834|USU-BE-Scoter/2018|melanitta_nigra|bel|2018-08                                     0.00%    passed     99.76%
+ 487  OU674388|NA|turdus_merula|lux|2020                                                          0.00%    passed     99.76%
+ 488  MT863562|HauteVienne4997/France/2018|turdus_merula|fr_vn|2018-07-24                         0.00%    passed     99.76%
+ 489  ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|nld|2016                            0.00%    passed     99.76%
+ 490  ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|nld|2016                             0.00%    passed     99.76%
+ 491  MN813488|DakPM173701|culex_neavei|sen|2003                                                  0.00%    passed     97.26%
+ 492  KC754954|ArD19848|culex_perfuscus|sn_kg|1974                                                0.00%    passed     99.02%
+ 493  ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005                                          0.00%    passed     98.78%
+ 494  ON813228|SN2005_ArD_173775|culex_neavei|sn_lg|2005                                          0.00%    passed     98.78%
+ 495  MN813492|SARR1776|culex_neavei|zaf|1959                                                     0.00%    passed     98.78%
+ 496  KU760915|NA|NA|esp|2010                                                                     0.00%    passed     98.78%
+ 497  MF374485|NA|homo_sapiens|zaf|1959-02-06                                                     0.00%    passed     98.08%
+ 498  MH727238|ROD_259466|mastomys_natalensis|sn_kg|2013-10-23                                    0.00%    passed     98.78%
+ 499  MH727240|CROC_259520|soricidae_sp|sn_kg|2013-10-23                                          0.00%    passed     98.78%
+ 500  MH727241|ROD_259524|mastomys_natalensis|sn_kg|2013-10-24                                    0.00%    passed     98.78%
+ 501  MH727239|ROD_259496|mastomys_natalensis|sn_kg|2013-10-23                                    0.00%    passed     96.66%
+ 502  MH727242|ROD_259552|rattus_rattus|sn_kg|2013-10-24                                          0.00%    passed     96.66%
+ 503  AY453412|NA|culex_neavei|zaf|1959                                                           0.00%    passed     96.66%
+ 504  KX268472|HU10279/09|culex_perexiguus|esp|2009                                               0.00%    passed     98.79%
+ 505  MN813489|HU10279-09|culex_perexiguus|esp|2009                                               0.00%    passed     98.79%
+ 506  KU664608|Usutu_Berlin|strix_nebulosa|de_be|2015-08-21                                       0.00%    passed     99.76%
+ 507  KY426758|NA|turdus_merula|deu|2016-09-25                                                    0.00%    passed     99.76%
+ 508  KY199556|NA|strix_nebulosa|de_st_ha|2016                                                    0.00%    passed     99.76%
+ 509  KX601692|USUV-Rhone2705/France/2015|turdus_merula|fr_rh|2015-09-23                          0.00%    passed     99.76%
+ 510  KF573410|NA|culex_pipiens|es_ct_br|2006-08-22                                               0.00%    passed     99.76%
+ 511  ON813235|ITA2021_300240|turdus_merula|ita|2021                                              0.00%    passed     98.43%
+ 512  KU573074|245735-8/2013|culex_pipiens|it_mo|2013                                             0.00%    passed     99.95%
+ 513  KU573076|201602-25/2014|culex_pipiens|it_re|2014                                            0.00%    passed     99.95%
+ 514  OR757496|1740423|NA|ita|2023-07-15                                                          0.00%    passed     99.76%
+ 515  ON813229|SN2005_ArD_173133|culex_neavei|sn_lg|2005                                          0.37%    passed     98.67%
+ 516  OR921101|2023TE1838411|culex_pipiens|ita|2023-09-08                                         0.00%    passed     96.01%
+ 517  OR921106|2023TE1699411|culex_pipiens|ita|2023-08-24                                         0.00%    passed     97.78%
+ 518  OR921099|2023TE1908111|turdus_merula|ita|2023-09-15                                         0.00%    passed     96.93%
+ 519  OP734258|NA|culex_pipiens|ita|2022-07-27                                                    0.00%    passed     99.47%
+ 520  OP734249|NA|culex_pipiens|ita|2022-08-01                                                    0.00%    passed     99.47%
+ 521  OR921098|2023TE1683511|columba_palumbus|ita|2023-08-23                                      0.00%    passed     99.60%
+ 522  OR921105|2023TE1839111|phoenicurus_phoenicurus|ita|2023-09-08                               0.00%    passed     98.11%
+ 523  ON813226|SN2005_173459|culex_neavei|sn_lg|2005                                              0.00%    passed     98.78%
+ 524  OR757495|1740422|culex_pipiens|ita|2023-07-18                                               0.00%    passed     98.70%
+ 525  PP104384|TE2518112|culex_pipiens|ita|2023-09-22                                             0.00%    passed     98.43%
+ 526  OR921093|2023TE1639111|culex_pipiens|ita|2023-08-11                                        12.45%    passed     97.59%
+ 527  OP734257|NA|culex_pipiens|ita|2022-07-22                                                    0.00%    passed     98.43%
+ 528  OP734259|NA|culex_pipiens|ita|2022-07-25                                                    0.00%    passed     98.43%
+ 529  OP734247|NA|culex_pipiens|ita|2022-07-29                                                    0.37%    passed     95.96%
+ 530  ON813225|SN2013_260237|culex_neavei|sn_lg|2013                                              0.37%    passed     96.66%
+ 531  OP734255|NA|culex_pipiens|ita|2022-07-27                                                    0.00%    passed     99.40%
+ 532  OP734248|NA|culex_pipiens|ita|2022-07-29                                                    0.37%    passed     99.32%
+ 533  ON813224|SN2016_286099|culex_poicilipes|sn_lg|2016                                          0.37%    passed     98.23%
+ 534  OR757490|17404210|culex_pipiens|ita|2023-07-11                                              0.00%    passed     99.68%
+ 535  OP734245|NA|culex_pipiens|ita|2022-07-01                                                    0.37%    passed     97.41%
+ 536  OR921097|2023TE1640411|culex_pipiens|ita|2023-08-11                                         0.00%    passed     99.60%
+ 537  PP104386|TE2518312|culex_pipiens|ita|2023-09-08                                             0.00%    passed     92.78%
+ 538  OR757488|1572124|culex_pipiens|ita|2023-07-06                                               0.00%    passed     97.78%
+ 539  PP104389|TE2518712|culex_pipiens|ita|2023-09-22                                             0.00%    passed     97.78%
+ 540  OR757489|1572126|culex_pipiens|ita|2023-07-07                                               0.00%    passed     99.56%
+ 541  OR757491|17404212|laridae_sp|ita|2023-07-20                                                 0.00%    passed     99.95%
+ 542  OR921095|2023TE1639211|culex_pipiens|ita|2023-08-11                                         0.00%    passed     98.43%
+ 543  OP734261|NA|culex_pipiens|ita|2022-07-08                                                    1.83%    passed     97.83%
+ 544  PP104385|TE2518212|culex_pipiens|ita|2023-09-22                                             0.00%    passed     98.83%
+ 545  ON813222|SN2016_288158|culex_neavei|sn_lg|2016                                              0.37%    passed     98.23%
+ 546  OP921079|18TV0973_Ixodida|NA|nl_ut_ut|2018-08-18                                            0.00%    passed     97.10%
+ 547  ON813221|SN2016_288129|culex_neavei|sn_lg|2016                                              0.00%    passed     93.33%
+ 548  OR921104|2023TE1838911|culex_pipiens|ita|2023-09-08                                         0.00%    passed     98.70%
+ 549  OR921096|2023TE1822511|turdus_merula|ita|2023-09-07                                         0.00%    passed     97.78%
+ 550  ON813236|305920/2021|culex_pipiens|ita|2021                                                 5.13%    passed     94.56%
+ 551  OR921094|2023TE1640011|culex_pipiens|ita|2023-08-11                                         0.00%    passed     99.60%
+ 552  PP104390|TE2518812|columbidae_sp|ita|2023-08-25                                             0.00%    passed     99.84%
+ 553  OQ414983|TV193/2019|culex_pipiens|ro_bi|2019-07                                             0.00%    passed     99.84%
+ 554  MW164718|17pool1646|culex_pipiens|it_vr|2017-08-16                                          0.00%    passed     99.95%
+ 555  MW164763|18pool1755|culex_pipiens|it_tv|2018-08-22                                          0.00%    passed     98.83%
+ 556  NA|23pool1744_23RS1822-82|culex_pipiens|it_tv|2023-08-03                                    0.00%    passed     99.84%
+ 557  NA|22VIR8403-2|turdus_merula|it_ud|2022-09-01                                               0.00%    passed     99.47%
+ 558  NA|22VIR7146-3|columba_livia|it_ud|2022-07-22                                               0.00%    passed     99.47%
+ 559  MW164675|14pool1423|culex_pipiens|it_ve|2014-08-26                                          0.00%    passed     99.61%
+ 560  NA|22VIR7059-3|turdus_merula|it_ud|2022-07-20                                               0.00%    passed     98.83%
+ 561  NA|22VIR8275-3|turdus_merula|it_ve|2022-08-11                                               0.00%    passed     98.83%
+ 562  MN384964|NA|turdus_merula|cz_bk_bv|2018-07-24                                               1.10%    passed     98.87%
+ 563  MN395369|NA|culex_pipiens|cz_ck|2018-08-14                                                  1.10%    passed     99.64%
+ 564  MN419895|NA|culex_modestus|cz_bk_bv|2016-09-01                                              1.10%    passed     99.64%
+ 565  MN419913|NA|turdus_merula|cz_bk_bm|2017-08-05                                               1.10%    passed     99.64%
+ 566  MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04                                               1.10%    passed     99.55%
+ 567  MN419904|NA|turdus_merula|cz_bk_bm|2018-07                                                  1.10%    passed     99.55%
+ 568  MN419905|NA|turdus_merula|cz_bk_bm|2018-07-05                                               1.10%    passed     99.55%
+ 569  MN419906|NA|turdus_merula|cz_bk_bm|2018-07-09                                               1.10%    passed     99.55%
+ 570  MN419897|NA|turdus_merula|cz_bk_bm|2017-08-08                                               1.10%    passed     99.55%
+ 571  MN419902|NA|turdus_merula|cz_bk_bm|2017-08-26                                               1.10%    passed     99.55%
+ 572  MN419898|NA|turdus_merula|cz_bk_bm|2017-08-08                                               1.10%    passed     99.55%
+ 573  MN419901|NA|turdus_merula|cz_bk_bm|2017-08-22                                               1.10%    passed     99.55%
+ 574  MN419903|NA|turdus_merula|cz_bk_bm|2018-07-16                                               1.10%    passed     97.59%
+ 575  MN419899|NA|turdus_merula|cz_bk_bm|2017-08-12                                               1.10%    passed     99.55%
+ 576  MN419900|NA|turdus_merula|cz_bk_bm|2017-08-17                                               1.10%    passed     99.55%
+ 577  MN419907|NA|turdus_merula|cz_sk|2018-09-18                                                  1.10%    passed     99.55%
+ 578  MN419909|NA|turdus_merula|cz_sk|2018-09-11                                                  1.10%    passed     99.55%
+ 579  MN419910|NA|turdus_merula|cz_sk|2018-09-04                                                  1.10%    passed     99.55%
+ 580  MN419911|NA|turdus_merula|cz_sk|2018-09-05                                                  1.10%    passed     99.55%
+ 581  MN419912|NA|turdus_merula|cz_sk|2018-09-17                                                  1.10%    passed     99.55%
+ 582  MN419908|NA|turdus_merula|cz_sk|2018-09-18                                                  1.10%    passed     99.99%
+ 583  MW160850|NA|culex_pipiens|at_wi|2018-07-18                                                  0.00%    passed     99.95%
+ 584  MW160851|NA|culex_pipiens|at_wi|2018-08-08                                                  0.00%    passed     99.95%
+ 585  MW160860|NA|culex_pipiens|at_wi|2018-08-22                                                  0.00%    passed     99.95%
+ 586  MW160852|NA|culex_pipiens|at_wi|2018-08-08                                                  0.00%    passed     99.95%
+ 587  MW160861|NA|culex_pipiens|at_wi|2018-08-22                                                  0.00%    passed     99.95%
+ 588  MW160857|NA|culex_pipiens|at_wi|2018-08-16                                                  0.00%    passed     99.95%
+ 589  MW160854|NA|culex_pipiens|at_wi|2018-09-12                                                  0.00%    passed     99.84%
+ 590  MW160859|NA|culex_pipiens|at_wi|2018-08-16                                                  0.00%    passed     99.84%
+ 591  MW160858|NA|culex_sp|at_wi|2018-08-16                                                       0.00%    passed     99.84%
+ 592  MW160853|NA|culex_pipiens|at_wi|2018-09-05                                                  0.00%    passed     99.83%
+ 593  MW160856|NA|culex_pipiens|at_wi|2018-08-16                                                  0.00%    passed     99.84%
+ 594  MW160855|NA|culex_pipiens|at_wi|2018-08-29                                                  0.00%    passed     99.47%
+ 595  MF991890|BD6/17-AT|homo_sapiens|at_no_gf|2017-08-19                                         0.00%    passed     99.95%
+ 596  MK598442|NA|turdus_merula|at_no_ko|2017-08-04                                               0.00%    passed     99.76%
+ 597  MK598443|NA|turdus_merula|at_no_tu|2017-08-18                                               0.00%    passed     99.95%
+ 598  MK598446|NA|turdus_merula|at_no_tu|2017-09-14                                               0.00%    passed     99.95%
+ 599  MK598454|NA|turdus_merula|hun|2017-09                                                       0.00%    passed     99.95%
+ 600  MK598456|NA|turdus_merula|at_wi|2018-08-01                                                  0.00%    passed     99.95%
+ 601  MK598458|NA|turdus_merula|at_no_gf|2018-08-01                                               0.00%    passed     99.95%
+ 602  MK598459|NA|turdus_merula|at_oo_ll|2018-08-02                                               0.00%    passed     99.95%
+ 603  MK598472|NA|passer_domesticus|at_st_lb|2018-08-28                                           0.00%    passed     99.95%
+ 604  MK598448|NA|turdus_merula|at_no_pl|2017-09-14                                               0.00%    passed     99.95%
+ 605  MK598457|NA|turdus_merula|at_no_gf|2018-08-01                                               0.00%    passed     99.95%
+ 606  MK598469|NA|panurus_biarmicus|at_wi|2018-08-20                                              0.00%    passed     99.95%
+ 607  MK598467|NA|turdus_merula|at_bu_ma|2018-08-16                                               0.00%    passed     99.95%
+ 608  MK598447|NA|turdus_merula|at_wi|2017-09-14                                                  0.00%    passed     99.95%
+ 609  MK598445|NA|turdus_merula|at_oo_vb|2017-09-14                                               0.00%    passed     99.95%
+ 610  MK598455|NA|turdus_merula|at_no_pl|2018-07-11                                               0.00%    passed     99.95%
+ 611  MK598470|NA|cyanistes_caeruleus|at_st|2018-08-25                                            0.00%    passed     99.95%
+ 612  MK598471|NA|turdus_merula|at_bu_ma|2018-08-29                                               0.00%    passed     99.95%
+ 613  MK598450|NA|turdus_merula|at_st|2017-09-14                                                  0.00%    passed     99.95%
+ 614  MK598462|NA|turdus_merula|at_st|2018-08-08                                                  0.00%    passed     99.95%
+ 615  MK598452|NA|turdus_merula|hun|2017-08                                                       0.00%    passed     99.84%
+ 616  MK598465|NA|turdus_merula|at_wi|2018-08-09                                                  0.00%    passed     99.84%
+ 617  MK598461|NA|turdus_merula|at_oo_ll|2018-08-07                                               0.00%    passed     99.76%
+ 618  MK598466|NA|passer_domesticus|at_wi|2018-08-14                                              0.00%    passed     99.83%
+ 619  MK598474|NA|turdus_merula|hun|2018-08                                                       0.00%    passed     99.84%
+ 620  MK598460|NA|turdus_merula|at_no_bl|2018-08-03                                               0.00%    passed     99.76%
+ 621  MK598473|NA|turdidae_sp|at_no_nk|2018-09-04                                                 0.00%    passed     99.76%
+ 622  MK598444|NA|turdus_merula|at_no_md|2017-09-14                                               0.00%    passed     99.84%
+ 623  MK598453|NA|turdus_merula|hun|2017-09                                                       0.00%    passed     99.83%
+ 624  MK598449|NA|turdus_merula|at_st|2017-09-14                                                  0.00%    passed     99.60%
+ 625  MK598468|NA|turdidae_sp|at_st_lb|2018-08-16                                                 0.00%    passed     98.43%
+ 626  MK598463|NA|turdus_merula|at_st|2018-08-08                                                  0.00%    passed     98.43%
+ 627  MK598451|NA|passer_montanus|hun|2017-08                                                     0.00%    passed     99.61%
+ 628  MK598464|NA|turdus_merula|at_no_bl|2018-08-09                                               0.00%    passed     99.54%
+ 629  JX236667|NA|turdus_merula|cz_bk_bm|2011-05-25                                               0.00%    passed     99.86%
+ 630  JX473240|Zurich_2006|turdus_merula|ch_ur|2006-08-14                                         0.00%    passed     99.97%
+ 631  MF991887|BD1/16-AT|homo_sapiens|at_wi|2016-09-18                                            0.00%    passed     99.95%
+ 632  MF991888|BD2/17-AT|homo_sapiens|at_bu|2017-08-05                                            0.00%    passed     99.95%
+ 633  MF991889|BD4/17-AT|homo_sapiens|at_no_tu|2017-08-12                                         0.00%    passed     99.76%
+****  TOTAL                                                                                       0.07%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: NA|23VIR9300|turdus_merula|it_vr|2023-10-01 is identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21 but kept for subsequent analysis
+NOTE: OR921106|2023TE1699411|culex_pipiens|ita|2023-08-24 is identical to OR921100|2023TE1837011|culex_pipiens|ita|2023-09-08 but kept for subsequent analysis
+NOTE: MW164683|14pool895|culex_pipiens|it_vr|2014-07-22 is identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13 but kept for subsequent analysis
+NOTE: MW164706|16pool2355|culex_pipiens|it_ud|2016-08-29 is identical to MW164700|16pool1870|culex_pipiens|it_ve|2016-08-01 but kept for subsequent analysis
+NOTE: KX816649|231247/2011|turdus_merula|ita|2011-09 is identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17 but kept for subsequent analysis
+NOTE: MW164688|15pool1426|culex_pipiens|it_pd|2015-08-06 is identical to MW164753|18pool1523|culex_pipiens|it_vi|2018-08-02 but kept for subsequent analysis
+NOTE: MW164679|14pool1511|culex_pipiens|it_vi|2014-09-03 is identical to MW164678|14pool1494|culex_pipiens|it_vr|2014-09-02 but kept for subsequent analysis
+NOTE: MW164744|18pool1347|culex_pipiens|it_ro|2018-07-24 is identical to MW164755|18pool1575|culex_pipiens|it_ro|2018-08-07 but kept for subsequent analysis
+NOTE: MK598474|NA|turdus_merula|hun|2018-08 is identical to MF991886|BD1/17-AT|homo_sapiens|at_wi|2017-07-24 but kept for subsequent analysis
+NOTE: NA|23VIR8795|turdus_merula|it_ve|2023-08-23 is identical to NA|23pool1280_23RS1633-583|culex_pipiens|it_pd|2023-07-05 but kept for subsequent analysis
+NOTE: OR757489|1572126|culex_pipiens|ita|2023-07-07 is identical to OP734256|NA|culex_pipiens|ita|2022-07-29 but kept for subsequent analysis
+NOTE: OR757490|17404210|culex_pipiens|ita|2023-07-11 is identical to OR757497|1740425|culex_pipiens|ita|2023-07-16 but kept for subsequent analysis
+NOTE: MW164653|12pool2653|culex_pipiens|it_ro|2012-09-05 is identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24 but kept for subsequent analysis
+NOTE: MW164680|14pool1698|culex_pipiens|it_ve|2014-09-23 is identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26 but kept for subsequent analysis
+NOTE: OR757496|1740423|NA|ita|2023-07-15 is identical to MW164738|18pool1258|culex_pipiens|it_vr|2018-07-19 but kept for subsequent analysis
+NOTE: ON813234|ITA2021_299815|turdus_merula|ita|2021 is identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020 but kept for subsequent analysis
+NOTE: OR921105|2023TE1839111|phoenicurus_phoenicurus|ita|2023-09-08 is identical to PP104391|TE2518912|turdus_merula|ita|2023-09-07 but kept for subsequent analysis
+NOTE: JQ219843|NA|cyanistes_caeruleus|aut|2002-08-29 is identical to AY453411|NA|turdus_merula|aut|2001 but kept for subsequent analysis
+NOTE: MG888044|NA|culex_pipiens|srb|2014-08 is identical to EF206350|Budapest|turdus_merula|hun|2005 but kept for subsequent analysis
+NOTE: OR573993|AS201700147|branta_ruficollis|nl_li|2017-08-15 is identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15 but kept for subsequent analysis
+NOTE: MK230893|NA|turdus_merula|be_lg|2017-08 is identical to MK796168|AS201600070|strix_nebulosa|nld|2016-09-13 but kept for subsequent analysis
+NOTE: KJ438763|NA|turdus_merula|deu|2012 is identical to MT580899|NA|strix_nebulosa|de_ni_ha|2018 but kept for subsequent analysis
+NOTE: KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|deu|2013 is identical to KJ438731|NA|turdus_merula|deu|2011 but kept for subsequent analysis
+NOTE: KJ438746|NA|turdus_merula|deu|2011 is identical to KJ438727|NA|turdus_merula|deu|2011 but kept for subsequent analysis
+NOTE: NA|22VIR8403-2|turdus_merula|it_ud|2022-09-01 is identical to NA|22VIR8404-2|turdus_merula|it_ud|2022-09-01 but kept for subsequent analysis
+NOTE: MG461307|USUV_569m_Israel15_USUTU_|culex_pipiens|isr|2015-09-08 is identical to MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30 but kept for subsequent analysis
+NOTE: MG461309|USUV_100m_Israel04_USUTU_|culex_pipiens|isr|2004-07-14 is identical to KC754957|ArD192495|culex_neavei|sn_lg|2007 but kept for subsequent analysis
+NOTE: ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|nld|2016 is identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016 but kept for subsequent analysis
+NOTE: MN122150|AS201600051|turdus_merula|nl_li_ge|2016-09-07 is identical to MN122207|AS201700167|turdus_merula|nl_fl_al|2017-09-01 but kept for subsequent analysis
+NOTE: MN122240|AS201800118|turdus_merula|nld|2018-08-16 is identical to MN122254|AS201800155|turdus_merula|nl_nh_hh|2018-08-31 but kept for subsequent analysis
+NOTE: MN122228|AS201800095|turdus_merula|nl_ge_el|2018-08-06 is identical to MN122219|AS201800086|turdus_merula|nl_ge_el|2018-08-01 but kept for subsequent analysis
+NOTE: MN122180|AS201600274|turdus_merula|nld|2016-09-27 is identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10 but kept for subsequent analysis
+NOTE: MN122255|AS201800156|turdus_merula|nl_ut_ze|2018-08-31 is identical to MN122159|AS201600107|turdus_merula|nl_nb_zu|2016-09-22 but kept for subsequent analysis
+NOTE: KY199557|NA|turdus_merula|de_sn_ll|2016 is identical to KY294722|S-1232|turdus_merula|deu|2016 but kept for subsequent analysis
+NOTE: ON813228|SN2005_ArD_173775|culex_neavei|sn_lg|2005 is identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005 but kept for subsequent analysis
+NOTE: MH727242|ROD_259552|rattus_rattus|sn_kg|2013-10-24 is identical to MH727239|ROD_259496|mastomys_natalensis|sn_kg|2013-10-23 but kept for subsequent analysis
+NOTE: MN813489|HU10279-09|culex_perexiguus|esp|2009 is identical to KX268472|HU10279/09|culex_perexiguus|esp|2009 but kept for subsequent analysis
+NOTE: KY426758|NA|turdus_merula|deu|2016-09-25 is identical to KU664608|Usutu_Berlin|strix_nebulosa|de_be|2015-08-21 but kept for subsequent analysis
+NOTE: OR921097|2023TE1640411|culex_pipiens|ita|2023-08-11 is identical to OR921098|2023TE1683511|columba_palumbus|ita|2023-08-23 but kept for subsequent analysis
+NOTE: OR921104|2023TE1838911|culex_pipiens|ita|2023-09-08 is identical to OR757495|1740422|culex_pipiens|ita|2023-07-18 but kept for subsequent analysis
+NOTE: ON813222|SN2016_288158|culex_neavei|sn_lg|2016 is identical to ON813224|SN2016_286099|culex_poicilipes|sn_lg|2016 but kept for subsequent analysis
+NOTE: MN419895|NA|culex_modestus|cz_bk_bv|2016-09-01 is identical to MN395369|NA|culex_pipiens|cz_ck|2018-08-14 but kept for subsequent analysis
+NOTE: MN419904|NA|turdus_merula|cz_bk_bm|2018-07 is identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04 but kept for subsequent analysis
+NOTE: MK598453|NA|turdus_merula|hun|2017-09 is identical to MW160853|NA|culex_pipiens|at_wi|2018-09-05 but kept for subsequent analysis
+NOTE: MK598465|NA|turdus_merula|at_wi|2018-08-09 is identical to MK598452|NA|turdus_merula|hun|2017-08 but kept for subsequent analysis
+NOTE: MK598473|NA|turdidae_sp|at_no_nk|2018-09-04 is identical to MK598460|NA|turdus_merula|at_no_bl|2018-08-03 but kept for subsequent analysis
+NOTE: MK598463|NA|turdus_merula|at_st|2018-08-08 is identical to MK598468|NA|turdidae_sp|at_st_lb|2018-08-16 but kept for subsequent analysis
+NOTE: 450 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: NA|23pool2067_23RS1943-143|culex_pipiens|it_vr|2023-08-24 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: NA|23pool1901_23RS1909-300|culex_pipiens|it_ve|2023-08-16 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: NA|23VIR8708|columbidae_sp|it_pd|2023-09-01 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: NA|22VIR7086-3|turdus_merula|it_ve|2022-07-18 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: PP104385|TE2518212|culex_pipiens|ita|2023-09-22 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: NA|22VIR7059-3|turdus_merula|it_ud|2022-07-20 (identical to NA|20VIR5077|turdus_merula|it_ve|2020-08-21) is ignored but added at the end
+NOTE: OR757488|1572124|culex_pipiens|ita|2023-07-06 (identical to OR921100|2023TE1837011|culex_pipiens|ita|2023-09-08) is ignored but added at the end
+NOTE: PP104389|TE2518712|culex_pipiens|ita|2023-09-22 (identical to OR921100|2023TE1837011|culex_pipiens|ita|2023-09-08) is ignored but added at the end
+NOTE: OR921096|2023TE1822511|turdus_merula|ita|2023-09-07 (identical to OR921100|2023TE1837011|culex_pipiens|ita|2023-09-08) is ignored but added at the end
+NOTE: MW164681|14pool1703|culex_pipiens|it_ve|2014-09-23 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164690|15pool1564|culex_pipiens|it_ve|2015-08-17 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164692|15pool1759|culex_pipiens|it_tv|2015-09-02 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164697|16pool1634|culex_pipiens|it_pd|2016-07-20 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164701|16pool2021|culex_pipiens|it_tv|2016-08-08 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164704|16pool2311|culex_pipiens|it_vi|2016-08-24 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164710|17pool1250|culex_pipiens|it_vi|2017-07-19 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164725|17pool1729|culex_pipiens|it_tv|2017-08-21 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164729|17VIR8655-3|larus_michahellis|it_ro|2017-09-18 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164748|18pool1442|culex_pipiens|it_tv|2018-07-31 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164727|17VIR7761-4|sturnus_vulgaris|it_ro|2017-09-01 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164728|17VIR7838-4|turdus_merula|it_ro|2017-08-30 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164722|17pool1671|culex_pipiens|it_pd|2017-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164709|17pool1191|culex_pipiens|it_ve|2017-07-17 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164761|18pool1662|culex_pipiens|it_tv|2018-08-14 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164686|15pool1335|culex_pipiens|it_ro|2015-08-03 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164703|16pool2117|culex_pipiens|it_ve|2016-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164734|18pool1141|culex_pipiens|it_pn|2018-07-17 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164712|17pool1309|culex_pipiens|it_tv|2017-07-24 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164723|17pool1688|culex_pipiens|it_ve|2017-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164716|17pool1544|culex_pipiens|it_pn|2017-08-07 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164730|18pool1009|culex_pipiens|it_ve|2018-07-10 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164754|18pool1556|culex_pipiens|it_tv|2018-08-07 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164759|18pool1649|culex_pipiens|it_ud|2018-08-14 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164746|18pool1405|culex_pipiens|it_vr|2018-07-26 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164766|18pool1965|culex_pipiens|it_vr|2018-09-06 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164715|17pool1525|culex_pipiens|it_tv|2017-08-07 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164747|18pool1430|culex_pipiens|it_pn|2018-07-31 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164760|18pool1660|culex_pipiens|it_ud|2018-08-14 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164687|15pool1419|culex_pipiens|it_vi|2015-08-05 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164691|15pool1751|culex_pipiens|it_vr|2015-09-02 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164694|15VIR4781-31|turdus_iliacus|it_tv|2015-09-15 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: NA|20VIR4951|serinus_canaria|it_pd|2020-08-19 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164769|18pool948|culex_pipiens|it_pd|2018-07-06 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164732|18pool108G|culex_pipiens|it_vr|2018-09-06 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164757|18pool1614|culex_pipiens|it_vi|2018-08-09 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164770|18VIR7808-6|ciconia_ciconia|it_vi|2018-09-07 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: ON032478|ITA2018_18638|turdus_merula|it_tv|2018-09-03 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164713|17pool1488|culex_pipiens|it_pd|2017-08-02 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164735|18pool1163|culex_pipiens|it_tv|2018-07-17 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164726|17pool1923|culex_pipiens|it_ve|2017-09-11 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164750|18pool1509|culex_pipiens|it_ve|2018-07-31 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164717|17pool1609|culex_pipiens|it_ud|2017-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164765|18pool1832|culex_pipiens|it_tv|2018-08-28 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: NA|23pool1744_23RS1822-82|culex_pipiens|it_tv|2023-08-03 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW160859|NA|culex_pipiens|at_wi|2018-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW160858|NA|culex_sp|at_wi|2018-08-16 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MK598444|NA|turdus_merula|at_no_md|2017-09-14 (identical to MW164662|13pool5744|culex_pipiens|it_ve|2013-08-13) is ignored but added at the end
+NOTE: MW164731|18pool1018|culex_pipiens|it_ve|2018-07-10 (identical to MW164700|16pool1870|culex_pipiens|it_ve|2016-08-01) is ignored but added at the end
+NOTE: MW164749|18pool1506|culex_pipiens|it_pd|2018-07-31 (identical to MW164700|16pool1870|culex_pipiens|it_ve|2016-08-01) is ignored but added at the end
+NOTE: MW164763|18pool1755|culex_pipiens|it_tv|2018-08-22 (identical to MW164700|16pool1870|culex_pipiens|it_ve|2016-08-01) is ignored but added at the end
+NOTE: MW164636|11pool1941|culex_pipiens|it_ro|2011-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164639|11pool2135|culex_pipiens|it_vr|2011-08-30 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164634|11pool1743|culex_pipiens|it_pd|2011-08-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164635|11pool1805|culex_pipiens|it_pd|2011-08-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX268471|ITA-055|culex_modestus|ita|2011 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164641|12pool1898|culex_pipiens|it_ro|2012-07-24 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164642|12pool1948|culex_pipiens|it_vr|2012-07-24 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164669|13pool6471|culex_pipiens|it_vi|2013-09-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164670|13pool6472|culex_pipiens|it_vi|2013-09-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164658|13pool5009|culex_pipiens|it_vr|2013-07-31 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164640|11pool2444|culex_pipiens|it_vr|2011-09-21 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164663|13pool5778|culex_pipiens|it_vr|2013-08-13 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164668|13pool6465|culex_pipiens|it_vi|2013-09-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164648|12pool2316|culex_pipiens|it_vi|2012-08-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164654|12VIR6777-9|turdus_pilaris|it_pd|2012-09-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164652|12pool2628|culex_pipiens|it_vi|2012-09-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164676|14pool1478|culex_pipiens|it_ro|2014-09-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164672|14pool1388|culex_pipiens|it_vi|2014-08-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164671|14pool1366|culex_pipiens|it_vr|2014-08-20 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164682|14pool857|culex_pipiens|it_ro|2014-07-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164673|14pool1394|culex_pipiens|it_ve|2014-08-26 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164684|14VIR5467-8|NA|it_tv|2014-09-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164685|15pool1187|culex_pipiens|it_vr|2015-07-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164711|17pool1252|culex_pipiens|it_vi|2017-07-19 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164740|18pool1262|culex_pipiens|it_vr|2018-07-19 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164751|18pool1519|culex_pipiens|it_pd|2018-08-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164752|18pool1522|culex_pipiens|it_vi|2018-08-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164768|18pool78G|culex_pipiens|it_vr|2018-08-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164756|18pool1610|culex_pipiens|it_pd|2018-08-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164767|18pool2042|culex_pipiens|it_vi|2018-09-13 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164707|16pool2571|culex_pipiens|it_vr|2016-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164719|17pool1647|culex_pipiens|it_vr|2017-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164764|18pool1795|culex_pipiens|it_vr|2018-08-23 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164758|18pool1617|culex_pipiens|it_vr|2018-08-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164745|18pool1398|culex_pipiens|it_vr|2018-07-26 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164708|17pool103G|culex_pipiens|it_vi|2017-08-30 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164771|18VIR7859-4|turdus_merula|it_tv|2018-09-07 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164733|18pool1124|culex_pipiens|it_vi|2018-07-12 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164714|17pool1493|culex_pipiens|it_vr|2017-08-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164720|17pool1653|culex_pipiens|it_vr|2017-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164741|18pool1263|culex_pipiens|it_vr|2018-07-19 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164724|17pool1709|culex_pipiens|it_ro|2017-08-17 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KU573070|216606/2013|culex_pipiens|it_ra|2013 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX816647|208576-8/2011|culex_pipiens|ita|2011-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: ON032479|ITA2010_12543|turdus_merula|it_ps|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX555624|NA|turdus_merula|ita|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164660|13pool5678|culex_pipiens|it_ro|2013-08-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164661|13pool5687|culex_pipiens|it_ro|2013-08-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX816651|211204-8/2012|culex_pipiens|ita|2012-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX816650|211984-4/2012|culex_pipiens|ita|2012-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: HM569263|NA|homo_sapiens|ita|2009-09-24 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX555625|NA|turdus_merula|ita|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX555626|NA|turdus_merula|ita|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX816652|211204-7/2012|culex_pipiens|ita|2012-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX555627|NA|turdus_merula|ita|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KX555628|NA|turdus_merula|ita|2010 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KU573075|201602-24/2014|culex_pipiens|it_re|2014 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MF063042|AT-N211/16|turdus_merula|at_no_bl|2016-09-29 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MF063043|HU-47540/16|turdus_merula|hun|2016-09-26 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KU573072|221034-3/2013|culex_pipiens|it_ra|2013 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: OP734251|NA|culex_pipiens|ita|2022-08-01 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: PP104383|TE2518012|culex_pipiens|ita|2023-08-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: OP734260|NA|culex_pipiens|ita|2022-07-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: ON032482|ITA2021_304421|larus_michahellis|it_rn|2021-09-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: OR757492|17404213|culex_pipiens|ita|2023-07-24 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: OR757494|17404220|turdus_merula|ita|2023-07-24 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MT784899|NA|turdus_merula|ita|2017 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: PP104387|TE2518512|sturnus_vulgaris|ita|2023-09-13 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: PP104388|TE2518612|turdus_merula|ita|2023-09-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164721|17pool1664|culex_pipiens|it_vr|2017-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KU573074|245735-8/2013|culex_pipiens|it_mo|2013 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: KU573076|201602-25/2014|culex_pipiens|it_re|2014 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: OR757491|17404212|laridae_sp|ita|2023-07-20 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW164718|17pool1646|culex_pipiens|it_vr|2017-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160850|NA|culex_pipiens|at_wi|2018-07-18 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160851|NA|culex_pipiens|at_wi|2018-08-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160860|NA|culex_pipiens|at_wi|2018-08-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160852|NA|culex_pipiens|at_wi|2018-08-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160861|NA|culex_pipiens|at_wi|2018-08-22 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MW160857|NA|culex_pipiens|at_wi|2018-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MF991890|BD6/17-AT|homo_sapiens|at_no_gf|2017-08-19 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598443|NA|turdus_merula|at_no_tu|2017-08-18 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598446|NA|turdus_merula|at_no_tu|2017-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598454|NA|turdus_merula|hun|2017-09 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598456|NA|turdus_merula|at_wi|2018-08-01 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598458|NA|turdus_merula|at_no_gf|2018-08-01 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598459|NA|turdus_merula|at_oo_ll|2018-08-02 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598472|NA|passer_domesticus|at_st_lb|2018-08-28 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598448|NA|turdus_merula|at_no_pl|2017-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598457|NA|turdus_merula|at_no_gf|2018-08-01 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598469|NA|panurus_biarmicus|at_wi|2018-08-20 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598467|NA|turdus_merula|at_bu_ma|2018-08-16 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598447|NA|turdus_merula|at_wi|2017-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598445|NA|turdus_merula|at_oo_vb|2017-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598455|NA|turdus_merula|at_no_pl|2018-07-11 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598470|NA|cyanistes_caeruleus|at_st|2018-08-25 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598471|NA|turdus_merula|at_bu_ma|2018-08-29 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598450|NA|turdus_merula|at_st|2017-09-14 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MK598462|NA|turdus_merula|at_st|2018-08-08 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MF991887|BD1/16-AT|homo_sapiens|at_wi|2016-09-18 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: MF991888|BD2/17-AT|homo_sapiens|at_bu|2017-08-05 (identical to MW164762|18pool1712|culex_pipiens|it_vr|2018-08-17) is ignored but added at the end
+NOTE: NA|23pool2138_23RS2497-1|culex_pipiens|it_vi|2023-11-13 (identical to NA|23pool1280_23RS1633-583|culex_pipiens|it_pd|2023-07-05) is ignored but added at the end
+NOTE: PP104390|TE2518812|columbidae_sp|ita|2023-08-25 (identical to NA|23pool1280_23RS1633-583|culex_pipiens|it_pd|2023-07-05) is ignored but added at the end
+NOTE: MW164677|14pool1489|culex_pipiens|it_vr|2014-09-02 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164651|12pool2626|culex_pipiens|it_vi|2012-09-05 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164666|13pool5999|culex_pipiens|it_tv|2013-08-21 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164643|12pool2046|culex_pipiens|it_ve|2012-07-24 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164644|12pool2194|culex_pipiens|it_tv|2012-08-09 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164645|12pool2214|culex_pipiens|it_ve|2012-08-07 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164665|13pool5873|culex_pipiens|it_ve|2013-08-13 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164650|12pool2586|culex_pipiens|it_tv|2012-08-23 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164667|13pool6009|culex_pipiens|it_ro|2013-08-21 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164656|12VIR6787-11|alauda_arvensis|it_tv|2012-09-03 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164655|12VIR6787-10|alauda_arvensis|it_tv|2012-09-03 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164657|12VIR6787-9|alauda_arvensis|it_tv|2012-09-03 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164646|12pool2249|culex_pipiens|it_vi|2012-08-07 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164659|13pool5600|culex_pipiens|it_tv|2013-08-07 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164649|12pool2412|culex_pipiens|it_ro|2012-08-22 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164689|15pool1503|culex_pipiens|it_ve|2015-08-10 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164702|16pool2106|culex_pipiens|it_ro|2016-08-16 (identical to MW164638|11pool2109|culex_pipiens|it_vi|2011-08-24) is ignored but added at the end
+NOTE: MW164698|16pool1777|culex_pipiens|it_go|2016-07-25 (identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26) is ignored but added at the end
+NOTE: MW164695|15VIR4781-42|turdus_merula|it_tv|2015-09-15 (identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26) is ignored but added at the end
+NOTE: MW164696|15VIR4781-43|turdus_merula|it_tv|2015-09-15 (identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26) is ignored but added at the end
+NOTE: MW164705|16pool2336|culex_pipiens|it_ve|2016-08-29 (identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26) is ignored but added at the end
+NOTE: MW164675|14pool1423|culex_pipiens|it_ve|2014-08-26 (identical to MW164674|14pool1419|culex_pipiens|it_tv|2014-08-26) is ignored but added at the end
+NOTE: ON032487|ITA2021_299813|turdus_merula|it_bo|2021 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032481|ITA2021_302715|turdus_merula|it_bo|2021-09-02 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032474|ITA2020_115108|culex_pipiens|it_re|2020 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032475|ITA2020_123828|muscicapa_striata|it_fe|2020 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032485|ITA2021_302331|turdus_merula|it_bo|2021 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OP734250|NA|culex_pipiens|ita|2022-07-29 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OP734253|NA|culex_pipiens|ita|2022-08-05 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032480|ITA2021_305818|turdus_merula|it_bo|2021-09-30 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OR921102|2023TE1908911|culex_pipiens|ita|2023-09-15 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON032486|ITA2021_310782|turdus_merula|it_bo|2021 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: ON813235|ITA2021_300240|turdus_merula|ita|2021 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: PP104384|TE2518112|culex_pipiens|ita|2023-09-22 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OP734257|NA|culex_pipiens|ita|2022-07-22 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OP734259|NA|culex_pipiens|ita|2022-07-25 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: OR921095|2023TE1639211|culex_pipiens|ita|2023-08-11 (identical to ON032476|ITA2020_155885|turdus_merula|it_fe|2020) is ignored but added at the end
+NOTE: KY199558|NA|turdus_merula|de_sn_de|2016 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426770|NA|turdus_merula|deu|2016-09-20 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426769|NA|turdus_merula|deu|2016-09-20 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426763|NA|turdus_merula|deu|2016-09-24 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426762|NA|turdus_merula|deu|2016-09-26 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438769|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438772|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438773|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438770|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438771|NA|turdus_merula|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438779|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426751|NA|turdus_pilaris|deu|2015-09-01 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438776|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438777|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438778|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438767|NA|culex_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426760|NA|turdus_merula|deu|2016-09-29 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438780|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438781|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: OP555957|NA|turdus_merula|bel|2017-07-24 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122198|AS201700109|turdus_merula|nl_ge_ed|2017-07-25 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY263624|NA|turdus_merula|be_lg|2016-10 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438764|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KX601691|USUV-HautRhin7316/France/2015|turdus_merula|fr_hr|2015-08-05 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122196|AS201700103|turdus_merula|nl_nb_bt|2017-07-19 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122152|AS201600060|turdus_merula|nl_ge|2016-09-12 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122203|AS201700127|turdus_merula|nld|2017-07-30 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122192|AS201700086|turdus_merula|nl_nb_bs|2017-07-11 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY263626|NA|turdus_merula|be_lg|2016-09 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122188|AS201700024|turdus_merula|nl_ge_wv|2017-04-11 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122174|AS201600241|turdus_merula|nl_dr|2016-09-27 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426755|NA|turdus_merula|deu|2016-09-19 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426756|NA|turdus_merula|deu|2016-09-23 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: OP555958|NA|turdus_merula|bel|2017-08-07 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122158|AS201600104|turdus_merula|nl_ov_ra|2016-09-22 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MK230890|NA|turdus_merula|be_bw|2017-08 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122177|AS201600253|turdus_merula|nl_li_la|2016-09-27 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122235|AS201800112|turdus_merula|nl_nb_bo|2018-08-14 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438748|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426752|NA|turdus_merula|deu|2015-08-18 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438706|NA|culex_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438714|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438711|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438707|NA|culex_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438708|NA|culex_pipiens|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438715|NA|passer_domesticus|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438732|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426750|NA|turdus_merula|deu|2015-10-07 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438710|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438709|NA|culex_sp|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438713|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438720|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426753|NA|turdus_merula|deu|2015-08-18 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438712|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438716|NA|culex_sp|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438717|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438719|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: HE599647|BH65/11-02-03|turdus_merula|de_bw_mn|2011-09-10 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438734|NA|sturnus_vulgaris|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426766|NA|turdus_merula|deu|2016-10-11 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438755|NA|turdidae_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438743|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438721|NA|culex_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438735|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438728|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438718|NA|culex_sp|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438741|NA|turdus_merula|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438738|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438705|NA|culex_pipiens|deu|2010 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438730|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438723|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438724|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438725|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438726|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438744|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438753|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438737|NA|culex_torrentium|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426759|NA|turdus_merula|deu|2016-09-12 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438760|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438739|NA|turdus_merula|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438750|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438747|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438740|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438749|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438752|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KX601690|USUV-HautRhin7315/France/2015|turdus_merula|fr_hr|2015-08-10 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438758|NA|turdus_merula|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438745|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438757|NA|turdus_merula|deu|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438765|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438751|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438756|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438761|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438766|NA|turdus_merula|deu|2012 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122176|AS201600247|turdus_merula|nl_ze_te|2016-09-30 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122170|AS201600197|turdus_merula|nl_ze_re|2016-10-11 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426767|NA|turdus_merula|deu|2016-10-14 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY426768|NA|turdus_merula|deu|2016-10-12 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KJ438762|NA|turdus_merula|deu|2011 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122172|AS201600221|turdus_merula|nl_ut_ut|2016-09-22 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122181|AS201600277|turdus_merula|nl_ut_ut|2016-09-27 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MK796169|AS201600083|strix_nebulosa|nld|2016-09-20 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122179|AS201600268|turdus_merula|nl_ge_ed|2016-09-30 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MK230892|NA|turdus_merula|be_lg|2017-08 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|fr_ap|2016-09-22 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KU573073|229615-1/2013|culex_pipiens|it_bs|2013 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: KX816653|206795-3/2012|culex_pipiens|ita|2012-09 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: JX236667|NA|turdus_merula|cz_bk_bm|2011-05-25 (identical to EF206350|Budapest|turdus_merula|hun|2005) is ignored but added at the end
+NOTE: MN122190|AS201700080|turdus_merula|nl_ut_ut|2017-07-05 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|bel|2016-10-03 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: MN122213|AS201700248|turdus_merula|nl_zh_hg|2017-09-20 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|swe|2019-08-01 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: KJ438775|NA|turdus_merula|deu|2011 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: KJ438768|NA|culex_sp|deu|2013 (identical to OR573992|AS201700144|branta_ruficollis|nl_li|2017-08-15) is ignored but added at the end
+NOTE: NA|22VIR7146-3|columba_livia|it_ud|2022-07-22 (identical to NA|22VIR8404-2|turdus_merula|it_ud|2022-09-01) is ignored but added at the end
+NOTE: MG461313|USUV_550m_Israel15_USUTU_|culex_perexiguus|isr|2015-09-08 (identical to MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30) is ignored but added at the end
+NOTE: MG461308|USUV_593m_Israel15_USUTU_|aedes_albopictus|isr|2015-09-21 (identical to MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|isr|2015-06-30) is ignored but added at the end
+NOTE: MG461310|USUV_269m_Israel04_USUTU_|culex_perexiguus|isr|2004-08-24 (identical to KC754957|ArD192495|culex_neavei|sn_lg|2007) is ignored but added at the end
+NOTE: MG461311|USUV_341m_Israel04_USUTU_|culex_pipiens|isr|2004-09-23 (identical to KC754957|ArD192495|culex_neavei|sn_lg|2007) is ignored but added at the end
+NOTE: MG461312|USUV_355m_Israel04_USUTU_|culex_perexiguus|isr|2004-09-27 (identical to KC754957|ArD192495|culex_neavei|sn_lg|2007) is ignored but added at the end
+NOTE: MN122245|AS201800125|turdus_merula|nl_dr_we|2018-08-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122246|AS201800126|turdus_merula|nl_ov_hd|2018-08-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY426761|NA|turdus_merula|deu|2016-09-04 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KM659877|NA|turdus_merula|de_nw_bn|2014 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY426765|NA|turdus_merula|deu|2016-09-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122156|AS201600098|turdus_merula|nl_nb_ud|2016-09-21 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MT795154|NA|turdus_merula|deu|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122185|AS201600284|turdus_merula|nl_nb_os|2016-10-03 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122236|AS201800113|turdus_merula|nld|2018-08-14 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122211|AS201700186|turdus_merula|nl_zh_zd|2017-09-13 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122162|AS201600118|turdus_merula|nl_ut_ut|2016-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122187|AS201600287|turdus_merula|nl_nb_ln|2016-09-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122145|AS201600034|turdus_merula|nl_li_ge|2016-09-01 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: PQ041659|USUV_TM_Netherlands_2016|NA|nld|2020 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MT188658|NA|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MH891847|AS201600045|turdus_merula|nld|2016-09-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN813490|TMNetherlands|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122148|AS201600045|turdus_merula|nl_nb_sr|2016-09-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122249|AS201800129|turdus_merula|nl_ge_lo|2018-08-23 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122175|AS201600244|turdus_merula|nl_ge_zu|2016-09-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122230|AS201800099|turdus_merula|nl_fl_no|2018-08-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122227|AS201800094|turdus_merula|nl_ut_ut|2018-08-03 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122224|AS201800091|turdus_merula|nl_ge_er|2018-08-02 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122186|AS201600286|turdus_merula|nl_nb_os|2016-09-28 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122201|AS201700121|turdus_merula|nl_dr_dw|2017-08-01 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122182|AS201600280|turdus_merula|nl_ge_bu|2016-09-26 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122232|AS201800101|turdus_merula|nl_dr_ty|2018-08-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122231|AS201800100|turdus_merula|nl_li_vl|2018-08-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122163|AS201600121|turdus_merula|nl_ut_ut|2016-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122169|AS201600173|turdus_merula|nl_ge_dt|2016-10-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122206|AS201700155|turdus_merula|nl_fl_al|2017-08-10 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: OM202464|Greater_London_2021|turdus_merula|gbr|2021-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MW001216|NA|turdus_merula|gbr|2020-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122233|AS201800102|turdus_merula|nl_dr_no|2018-08-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122214|AS201700254|turdus_merula|nl_nh_hi|2017-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122151|AS201600057|turdus_merula|nl_nb_cu|2016-09-08 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: NA|Blackbird_London_2022_a|turdus_merula|gbr|2022-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: NA|Blackbird_London_2022_b|turdus_merula|gbr|2022-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|nl_ut_ut|2016-10-16 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122173|AS201600227|turdus_merula|nl_nh_hi|2016-09-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122205|AS201700152|turdus_merula|nl_li_st|2017-07-19 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122226|AS201800093|turdus_merula|nl_zh_ld|2018-08-03 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122197|AS201700106|turdus_merula|nl_ut_ut|2017-07-25 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122222|AS201800089|turdus_merula|nl_zh_rj|2018-08-02 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122217|AS201800082|turdus_merula|nl_nh|2018-07-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122199|AS201700112|turdus_merula|nl_ge_ed|2017-07-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122209|AS201700174|turdus_merula|nl_ut_ut|2017-08-29 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122147|AS201600042|turdus_merula|nl_li_vl|2016-09-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122193|AS201700087|turdus_merula|nl_ge_zu|2017-07-11 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122153|AS201600062|turdus_merula|nl_ge_ov|2016-09-13 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122184|AS201600283|turdus_merula|nl_nb_os|2016-09-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY128482|Snebulosa-6004/NL/2016|strix_nebulosa|nl_li_kr|2016-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122247|AS201800127|turdus_merula|nl_ge_bu|2018-08-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122149|AS201600048|turdus_merula|nl_nb_sr|2016-09-07 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122161|AS201600115|turdus_merula|nl_ut_ut|2016-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122239|AS201800116|turdus_merula|nl_ge_bu|2018-08-16 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122165|AS201600127|turdus_merula|nl_ov_dv|2016-09-23 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122208|AS201700170|turdus_merula|nl_fl_al|2017-08-25 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122202|AS201700124|turdus_merula|nl_ge_ed|2017-08-01 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122160|AS201600110|turdus_merula|nl_nb_ln|2016-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122183|AS201600281|turdus_merula|nl_ut_wd|2016-09-25 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122200|AS201700118|turdus_merula|nl_nh_hu|2017-08-03 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122221|AS201800088|turdus_merula|nl_nb_os|2018-08-01 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122252|AS201800152|turdus_merula|nl_nh_bl|2018-08-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122253|AS201800154|turdus_merula|nl_ge_ol|2018-08-31 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122256|AS201800157|turdus_merula|nl_dr_bo|2018-09-04 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122178|AS201600265|turdus_merula|nl_ge_ed|2016-09-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY263625|NA|turdus_merula|be_ht|2016-10 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122157|AS201600101|turdus_merula|nl_li_bk|2016-09-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122212|AS201700189|turdus_merula|nl_dr_ah|2017-09-14 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122210|AS201700177|turdus_merula|nl_ge_ep|2017-09-15 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122167|AS201600136|turdus_merula|nl_ge_ar|2016-09-23 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY426764|NA|turdus_merula|deu|2016-10-04 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122248|AS201800128|turdus_merula|nl_gr|2018-08-22 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122250|AS201800150|turdus_merula|nl_nh_bl|2018-08-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY426757|NA|turdus_merula|deu|2016-09-23 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122251|AS201800151|turdus_merula|nl_nh_bl|2018-08-30 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122216|AS201800081|turdus_merula|nl_nh|2018-07-27 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122225|AS201800092|turdus_merula|nl_zh_rt|2018-08-02 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122223|AS201800090|turdus_merula|nl_ge_er|2018-08-02 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: OP007489|WBVR_bird-X-2016|strix_nebulosa|nl_ge_wg|2016-09-09 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: KY294723|S-1238|turdus_merula|deu|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122238|AS201800115|turdus_merula|nl_ge_bu|2018-08-15 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MK419834|USU-BE-Scoter/2018|melanitta_nigra|bel|2018-08 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: OU674388|NA|turdus_merula|lux|2020 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MT863562|HauteVienne4997/France/2018|turdus_merula|fr_vn|2018-07-24 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|nld|2016 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MK598442|NA|turdus_merula|at_no_ko|2017-08-04 (identical to ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|nld|2016) is ignored but added at the end
+NOTE: MN122155|AS201600095|turdus_merula|nl_li_bk|2016-09-21 (identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10) is ignored but added at the end
+NOTE: MN122194|AS201700090|turdus_merula|nl_ge_dt|2017-07-13 (identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10) is ignored but added at the end
+NOTE: MN122243|AS201800122|turdus_merula|nl_fr_ty|2018-08-21 (identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10) is ignored but added at the end
+NOTE: MN122237|AS201800114|turdus_merula|nl_fl_no|2018-08-15 (identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10) is ignored but added at the end
+NOTE: MN122218|AS201800084|turdus_merula|nl_gr|2018-07-31 (identical to MN122234|AS201800103|turdus_merula|nl_ov_ra|2018-08-10) is ignored but added at the end
+NOTE: MN122191|AS201700084|turdus_merula|nl_ut_ut|2017-07-05 (identical to MN122159|AS201600107|turdus_merula|nl_nb_zu|2016-09-22) is ignored but added at the end
+NOTE: MN122168|AS201600148|turdus_merula|nl_ut_ut|2016-09-23 (identical to MN122159|AS201600107|turdus_merula|nl_nb_zu|2016-09-22) is ignored but added at the end
+NOTE: MN813492|SARR1776|culex_neavei|zaf|1959 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: KU760915|NA|NA|esp|2010 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: MH727238|ROD_259466|mastomys_natalensis|sn_kg|2013-10-23 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: MH727240|CROC_259520|soricidae_sp|sn_kg|2013-10-23 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: MH727241|ROD_259524|mastomys_natalensis|sn_kg|2013-10-24 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: ON813226|SN2005_173459|culex_neavei|sn_lg|2005 (identical to ON813227|SN2005_ArD_171185|culex_neavei|sn_lg|2005) is ignored but added at the end
+NOTE: KY199556|NA|strix_nebulosa|de_st_ha|2016 (identical to KU664608|Usutu_Berlin|strix_nebulosa|de_be|2015-08-21) is ignored but added at the end
+NOTE: KX601692|USUV-Rhone2705/France/2015|turdus_merula|fr_rh|2015-09-23 (identical to KU664608|Usutu_Berlin|strix_nebulosa|de_be|2015-08-21) is ignored but added at the end
+NOTE: KF573410|NA|culex_pipiens|es_ct_br|2006-08-22 (identical to KU664608|Usutu_Berlin|strix_nebulosa|de_be|2015-08-21) is ignored but added at the end
+NOTE: OR921094|2023TE1640011|culex_pipiens|ita|2023-08-11 (identical to OR921098|2023TE1683511|columba_palumbus|ita|2023-08-23) is ignored but added at the end
+NOTE: MN419913|NA|turdus_merula|cz_bk_bm|2017-08-05 (identical to MN395369|NA|culex_pipiens|cz_ck|2018-08-14) is ignored but added at the end
+NOTE: MN419905|NA|turdus_merula|cz_bk_bm|2018-07-05 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419906|NA|turdus_merula|cz_bk_bm|2018-07-09 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419897|NA|turdus_merula|cz_bk_bm|2017-08-08 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419902|NA|turdus_merula|cz_bk_bm|2017-08-26 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419898|NA|turdus_merula|cz_bk_bm|2017-08-08 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419901|NA|turdus_merula|cz_bk_bm|2017-08-22 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419899|NA|turdus_merula|cz_bk_bm|2017-08-12 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419900|NA|turdus_merula|cz_bk_bm|2017-08-17 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419907|NA|turdus_merula|cz_sk|2018-09-18 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419909|NA|turdus_merula|cz_sk|2018-09-11 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419910|NA|turdus_merula|cz_sk|2018-09-04 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419911|NA|turdus_merula|cz_sk|2018-09-05 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+NOTE: MN419912|NA|turdus_merula|cz_sk|2018-09-17 (identical to MN419896|NA|turdus_merula|cz_bk_bm|2017-07-04) is ignored but added at the end
+Alignment was printed to USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.uniqueseq.phy
+
+Creating fast initial parsimony tree by random order stepwise addition...
+0.038 seconds, parsimony score: 154 (based on 83 sites)
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+Perform fast likelihood tree search using GTR+I+G model...
+Estimate model parameters (epsilon = 5.000)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+Perform nearest neighbor interchange...
+Estimate model parameters (epsilon = 1.000)
+1. Initial log-likelihood: -1361.855
+Optimal log-likelihood: -1361.802
+Rate parameters:  A-C: 6.16628  A-G: 26.08932  A-T: 8.20654  C-G: 0.74436  C-T: 100.00000  G-T: 1.00000
+Base frequencies:  A: 0.328  C: 0.190  G: 0.291  T: 0.191
+Proportion of invariable sites: 0.344
+Gamma shape alpha: 0.992
+Parameters optimization took 1 rounds (0.017 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+Time for fast ML tree search: 0.236 seconds
+
+NOTE: ModelFinder requires 6 MB RAM!
+ModelFinder will test up to 286 DNA models (sample size: 273) ...
+ No. Model         -LnL         df  AIC          AICc         BIC
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  1  GTR+F         1395.994     371 3533.987     279557.987   4873.101
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  2  GTR+F+I       1364.321     372 3472.642     280984.642   4815.366
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  3  GTR+F+G4      1360.899     372 3465.799     280977.799   4808.522
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  4  GTR+F+I+G4    1360.760     373 3467.521     282471.521   4813.854
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  5  GTR+F+R2      1360.877     373 3467.755     282471.755   4814.088
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+  6  GTR+F+R3      1360.831     375 3471.663     285471.663   4825.215
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 15  SYM+I         1374.990     369 3487.981     276547.981   4819.876
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 16  SYM+G4        1371.451     369 3480.901     276540.901   4812.796
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 17  SYM+I+G4      1371.215     370 3482.430     278022.430   4817.935
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 18  SYM+R2        1371.196     370 3482.391     278022.391   4817.896
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 28  TVM+F+I       1385.036     371 3512.072     279536.072   4851.186
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 29  TVM+F+G4      1379.472     371 3500.944     279524.944   4840.058
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 30  TVM+F+I+G4    1377.786     372 3499.573     281011.573   4842.296
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 31  TVM+F+R2      1376.180     372 3496.360     281008.360   4839.084
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 41  TVMe+I        1382.838     368 3501.677     275085.677   4829.963
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 42  TVMe+G4       1378.402     368 3492.805     275076.805   4821.090
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 43  TVMe+I+G4     1377.383     369 3492.765     276552.765   4824.660
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 44  TVMe+R2       1376.549     369 3491.098     276551.098   4822.993
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 54  TIM3+F+I      1371.319     370 3482.638     278022.638   4818.142
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 55  TIM3+F+G4     1368.027     370 3476.054     278016.054   4811.558
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 56  TIM3+F+I+G4   1367.905     371 3477.810     279501.810   4816.925
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 57  TIM3+F+R2     1368.064     371 3478.128     279502.128   4817.243
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 67  TIM3e+I       1382.537     367 3499.075     273611.075   4823.751
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 68  TIM3e+G4      1379.235     367 3492.470     273604.470   4817.146
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 69  TIM3e+I+G4    1379.038     368 3494.076     275078.076   4822.361
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 70  TIM3e+R2      1379.120     368 3494.239     275078.239   4822.525
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 80  TIM2+F+I      1364.599     370 3469.198     278009.198   4804.702
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 81  TIM2+F+G4     1361.063     370 3462.126     278002.126   4797.631
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 82  TIM2+F+I+G4   1360.938     371 3463.875     279487.875   4802.989
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 83  TIM2+F+R2     1361.014     371 3464.029     279488.029   4803.143
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 93  TIM2e+I       1375.167     367 3484.335     273596.335   4809.011
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 94  TIM2e+G4      1371.576     367 3477.152     273589.152   4801.828
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 95  TIM2e+I+G4    1371.346     368 3478.692     275062.692   4806.978
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+ 96  TIM2e+R2      1371.298     368 3478.596     275062.596   4806.882
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+106  TIM+F+I       1371.548     370 3483.097     278023.097   4818.601
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+107  TIM+F+G4      1368.164     370 3476.328     278016.328   4811.833
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+108  TIM+F+I+G4    1368.047     371 3478.094     279502.094   4817.208
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+109  TIM+F+R2      1368.169     371 3478.338     279502.338   4817.452
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+119  TIMe+I        1382.697     367 3499.394     273611.394   4824.070
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+120  TIMe+G4       1379.333     367 3492.666     273604.666   4817.342
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+121  TIMe+I+G4     1379.140     368 3494.280     275078.280   4822.566
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+122  TIMe+R2       1379.197     368 3494.394     275078.394   4822.680
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+132  TPM3u+F+I     1391.960     369 3521.920     276581.920   4853.815
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+133  TPM3u+F+G4    1386.526     369 3511.052     276571.052   4842.947
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+134  TPM3u+F+I+G4  1384.824     370 3509.647     278049.647   4845.152
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+135  TPM3u+F+R2    1383.366     370 3506.733     278046.733   4842.237
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+145  TPM3+F+I      1391.960     369 3521.920     276581.920   4853.815
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+146  TPM3+F+G4     1386.526     369 3511.052     276571.052   4842.947
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+147  TPM3+F+I+G4   1384.824     370 3509.647     278049.647   4845.152
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+148  TPM3+F+R2     1383.366     370 3506.733     278046.733   4842.237
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+158  TPM2u+F+I     1385.294     369 3508.588     276568.588   4840.483
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+159  TPM2u+F+G4    1379.724     369 3497.448     276557.448   4829.344
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+160  TPM2u+F+I+G4  1378.053     370 3496.107     278036.107   4831.611
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+161  TPM2u+F+R2    1376.400     370 3492.799     278032.799   4828.304
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+171  TPM2+F+I      1385.294     369 3508.588     276568.588   4840.483
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+172  TPM2+F+G4     1379.724     369 3497.448     276557.448   4829.344
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+173  TPM2+F+I+G4   1378.053     370 3496.107     278036.107   4831.611
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+174  TPM2+F+R2     1376.399     370 3492.799     278032.799   4828.303
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+184  K3Pu+F+I      1392.187     369 3522.374     276582.374   4854.269
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+185  K3Pu+F+G4     1386.749     369 3511.498     276571.498   4843.394
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+186  K3Pu+F+I+G4   1385.061     370 3510.121     278050.121   4845.626
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+187  K3Pu+F+R2     1383.544     370 3507.089     278047.089   4842.593
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+197  K3P+I         1390.548     366 3513.095     272157.095   4834.162
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+198  K3P+G4        1386.395     366 3504.790     272148.790   4825.856
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+199  K3P+I+G4      1385.404     367 3504.807     273616.807   4829.483
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+200  K3P+R2        1384.768     367 3503.536     273615.536   4828.212
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+210  TN+F+I        1371.574     369 3481.148     276541.148   4813.043
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+211  TN+F+G4       1368.187     369 3474.375     276534.375   4806.270
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+212  TN+F+I+G4     1368.074     370 3476.149     278016.149   4811.653
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+213  TN+F+R2       1368.196     370 3476.392     278016.392   4811.897
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+223  TNe+I         1382.715     366 3497.430     272141.430   4818.497
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+224  TNe+G4        1379.353     366 3490.707     272134.707   4811.773
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+225  TNe+I+G4      1379.162     367 3492.325     273604.325   4817.001
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+226  TNe+R2        1379.216     367 3492.433     273604.433   4817.109
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+236  HKY+F+I       1392.210     368 3520.420     275104.420   4848.705
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+237  HKY+F+G4      1386.767     368 3509.533     275093.533   4837.819
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+238  HKY+F+I+G4    1385.078     369 3508.156     276568.156   4840.051
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+239  HKY+F+R2      1383.571     369 3505.141     276565.141   4837.036
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+249  K2P+I         1390.566     365 3511.131     270691.131   4828.588
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+250  K2P+G4        1386.412     365 3502.823     270682.823   4820.280
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+251  K2P+I+G4      1385.423     366 3502.846     272146.846   4823.912
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+252  K2P+R2        1384.787     366 3501.574     272145.574   4822.640
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+262  F81+F+I       1480.522     367 3695.043     273807.043   5019.719
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+263  F81+F+G4      1476.861     367 3687.721     273799.721   5012.397
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+264  F81+F+I+G4    1476.135     368 3688.269     275272.269   5016.555
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+265  F81+F+R2      1474.499     368 3684.997     275268.997   5013.283
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+275  JC+I          1482.937     364 3693.875     269413.875   5007.722
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+276  JC+G4         1478.828     364 3685.655     269405.655   4999.503
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+277  JC+I+G4       1477.860     365 3685.720     270865.720   5003.178
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+278  JC+R2         1475.938     365 3681.876     270861.876   4999.334
+Akaike Information Criterion:           TIM2+F+G4
+Corrected Akaike Information Criterion: JC+G4
+Bayesian Information Criterion:         TIM2+F+G4
+Best-fit model: TIM2+F+G4 chosen according to BIC
+
+All model information printed to USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.model.gz
+CPU time for ModelFinder: 28.348 seconds (0h:0m:28s)
+Wall-clock time for ModelFinder: 7.290 seconds (0h:0m:7s)
+Generating 1000 samples for ultrafast bootstrap (seed: 900121)...
+
+NOTE: 2 MB RAM (0 GB) is required!
+WARNING: Number of threads seems too high for short alignments. Use -nt AUTO to determine best number of threads.
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -1361.063
+Optimal log-likelihood: -1361.062
+Rate parameters:  A-C: 8.22642  A-G: 29.59941  A-T: 8.22642  C-G: 1.00000  C-T: 115.52201  G-T: 1.00000
+Base frequencies:  A: 0.328  C: 0.190  G: 0.291  T: 0.191
+Gamma shape alpha: 0.388
+Parameters optimization took 1 rounds (0.014 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+Computing ML distances based on estimated model parameters... 0.467 sec
+Computing BIONJ tree...
+0.028 seconds
+Log-likelihood of BIONJ tree: -1346.344
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 1.005 second
+Computing log-likelihood of 98 initial trees ... 0.599 seconds
+Current best score: -1345.500
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BETTER TREE FOUND at iteration 1: -1345.492
+Estimate model parameters (epsilon = 0.100)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BETTER TREE FOUND at iteration 2: -1343.201
+Iteration 10 / LogL: -1351.168 / Time: 0h:0m:5s
+Iteration 20 / LogL: -1354.489 / Time: 0h:0m:9s
+Finish initializing candidate tree set (20)
+Current best tree score: -1343.201 / CPU time: 9.138
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Estimate model parameters (epsilon = 0.100)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BETTER TREE FOUND at iteration 25: -1342.041
+Iteration 30 / LogL: -1357.684 / Time: 0h:0m:15s (0h:0m:49s left)
+BETTER TREE FOUND at iteration 35: -1342.039
+Iteration 40 / LogL: -1342.056 / Time: 0h:0m:21s (0h:0m:51s left)
+Iteration 50 / LogL: -1349.422 / Time: 0h:0m:26s (0h:0m:45s left)
+Log-likelihood cutoff on original alignment: -1366.417
+Iteration 60 / LogL: -1342.048 / Time: 0h:0m:32s (0h:0m:41s left)
+Iteration 70 / LogL: -1344.278 / Time: 0h:0m:40s (0h:0m:37s left)
+Iteration 80 / LogL: -1348.105 / Time: 0h:0m:46s (0h:0m:32s left)
+Iteration 90 / LogL: -1342.044 / Time: 0h:0m:53s (0h:0m:26s left)
+Iteration 100 / LogL: -1342.059 / Time: 0h:0m:58s (0h:0m:20s left)
+Log-likelihood cutoff on original alignment: -1366.417
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.992
+Iteration 110 / LogL: -1342.197 / Time: 0h:1m:6s (0h:0m:54s left)
+Iteration 120 / LogL: -1348.038 / Time: 0h:1m:12s (0h:0m:49s left)
+BETTER TREE FOUND at iteration 126: -1342.039
+Iteration 130 / LogL: -1342.197 / Time: 0h:1m:19s (0h:0m:58s left)
+Iteration 140 / LogL: -1347.714 / Time: 0h:1m:25s (0h:0m:53s left)
+Iteration 150 / LogL: -1343.101 / Time: 0h:1m:32s (0h:0m:47s left)
+Log-likelihood cutoff on original alignment: -1366.975
+Iteration 160 / LogL: -1343.077 / Time: 0h:1m:41s (0h:0m:42s left)
+Iteration 170 / LogL: -1342.044 / Time: 0h:1m:49s (0h:0m:36s left)
+Iteration 180 / LogL: -1342.039 / Time: 0h:1m:56s (0h:0m:29s left)
+Iteration 190 / LogL: -1345.441 / Time: 0h:2m:3s (0h:0m:23s left)
+Iteration 200 / LogL: -1345.266 / Time: 0h:2m:10s (0h:0m:17s left)
+Log-likelihood cutoff on original alignment: -1366.417
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.991
+Iteration 210 / LogL: -1347.566 / Time: 0h:2m:18s (0h:0m:59s left)
+Iteration 220 / LogL: -1345.802 / Time: 0h:2m:26s (0h:0m:53s left)
+TREE SEARCH COMPLETED AFTER 227 ITERATIONS / Time: 0h:2m:31s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -1342.039
+Optimal log-likelihood: -1342.038
+Rate parameters:  A-C: 8.22642  A-G: 29.59941  A-T: 8.22642  C-G: 1.00000  C-T: 115.52201  G-T: 1.00000
+Base frequencies:  A: 0.328  C: 0.190  G: 0.291  T: 0.191
+Gamma shape alpha: 0.399
+Parameters optimization took 1 rounds (0.013 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BEST SCORE FOUND : -1342.038
+Creating bootstrap support values...
+Split supports printed to NEXUS file USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.splits.nex
+Collapsing near-zero internal branches... 118 collapsed
+Total tree length: 0.580
+
+Total number of iterations: 227
+CPU time used for tree search: 578.244 sec (0h:9m:38s)
+Wall-clock time used for tree search: 151.604 sec (0h:2m:31s)
+Total CPU time used: 580.485 sec (0h:9m:40s)
+Total wall-clock time used: 152.508 sec (0h:2m:32s)
+
+Computing bootstrap consensus tree...
+Reading input file USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.splits.nex...
+183 taxa and 5851 splits.
+Consensus tree written to USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.contree
+Reading input trees file USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.contree
+Log-likelihood of consensus tree: -1342.065
+
+Analysis results written to: 
+  IQ-TREE report:                USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.iqtree
+  Maximum-likelihood tree:       USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.treefile
+  Likelihood distances:          USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.splits.nex
+  Consensus tree:                USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.contree
+  Screen log file:               USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_10042-10314.fasta.log
+
+Date and Time: Wed Aug 28 12:25:06 2024
+** Done **
+=============================================
