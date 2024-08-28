@@ -4,8 +4,8 @@ library(tidyverse)
 library(tidytree)
 #################### import alignments, data and trees #################### 
 # alignments
-aln_files <- c('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned_formatted_noFLI_nflg.fasta',
-               './2024Aug13/alignments/USUV_2024Aug13_alldata_aligned_formatted_noFLI_ns5_9100-9600.fasta')
+aln_files <- c('./2024Aug28/alignments/USUV_2024Aug28_alldata_aligned_formatted_noFLI_nflg.fasta',
+               './2024Aug28/alignments/USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_9100-9600.fasta')
 
 aln_names <- gsub('.*noFLI_|\\.fasta', '' , aln_files)
 
@@ -15,14 +15,14 @@ aln <- lapply(aln_files,
               as.matrix = T)
 
 #trees
-tree_files <- c('./2024Aug13/iqtree_alldata/USUV_2024Aug13_alldata_aligned_formatted_noFLI_nflg.fasta.treefile',
-                './2024Aug13/iqtree_alldata/USUV_2024Aug13_alldata_aligned_formatted_noFLI_ns5_9100-9600.fasta.treefile')
+tree_files <- c('./2024Aug28/iqtree/USUV_2024Aug28_alldata_aligned_formatted_noFLI_nflg.fasta.treefile',
+                './2024Aug28/iqtree/USUV_2024Aug28_alldata_aligned_formatted_noFLI_ns5_9100-9600.fasta.treefile')
 
 trees <- lapply(tree_files,
                 read.tree)
 
 #data
-data <- read_csv('./data/metadata_noFLI_2024Aug13.csv')
+data <- read_csv('./data/USUV_metadata_noFLI_2024Aug28.csv')
 
 
 #################### split data by alignment #################### 
