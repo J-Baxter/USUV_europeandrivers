@@ -1,6 +1,9 @@
 ############# Dependencies ############# 
 library(tidyverse)
 library(ape)
+library(ggmap)
+library(sf)
+library(giscoR)
 
 
 #############  Required user functions ############# 
