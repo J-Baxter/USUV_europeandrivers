@@ -158,6 +158,28 @@ mosquitos <- read_csv('mosquito_taxonomy.csv') %>%
 all_taxa <- bind_rows(birds, mammals, mosquitos, ticks)
 
 
+nuts0 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "10", #1:10million
+  nuts_level = "0")
+
+
+nuts2 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "10", #1:10million
+  nuts_level = "2")
+
+nuts3 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "10", #1:10million
+  nuts_level = "3")
+
+
+
+
 #############  Pipeline start ############# 
 data_formatted <- data %>%
   bind_rows(.,anses) %>%
@@ -229,37 +251,107 @@ data_formatted <- data %>%
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
     is.na(date_ymd) & !is.na(date_ym) ~ date_ym,
     .default = as.character(date_ymd))) %>%
+  
+  
+  
+  # Format geolocation
+  
+  # Format available data
+  mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
+  mutate(collection_location = str_trim(collection_location),
+         collection_country = str_trim(collection_country)) %>%
+  
+  rowwise() %>%
+  mutate(collection_tag = case_when(!grepl(collection_country, collection_location) ~ paste(collection_location, collection_country),
+                                    .default = collection_location)) %>%
+  as_tibble() %>%
+  
+  # Using ggmaps:geocode, obtain precise lat-lon for each location. NB will give centroids
+  # for large areas e.g cities or countries
+  mutate(coords = geocode(collection_tag)) %>%
+  unnest(coords) %>%
+  
+  # format as sf point
+  st_as_sf(coords = c('lon', 'lat'), crs = 4326) %>%
+  
+  # join country
+  st_join(nuts0 %>%
+            dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+          join = st_within, 
+          largest = TRUE, 
+          left = FALSE) %>%
+  rename(geocode_coords = geometry,
+         nuts0_id = NUTS_ID,
+         nuts0_name = NUTS_NAME) %>%
+  
+  # Identify sequences where only country is known
+  mutate(country_only = case_when(collection_country == collection_tag ~ '1',
+                                  .default = '0')) %>%
+  
+  # Allocate NUTS2 labels
+  split(~country_only) %>% 
+  map_at('0',  
+         ~ st_join(.x, 
+                   nuts2 %>% 
+                     dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+                   join = st_within,
+                   largest = TRUE, 
+                   left = FALSE) %>%
+           rename(nuts2_code= NUTS_ID,
+                  nuts2_name= NUTS_NAME) %>%
+           
+           # Allocate NUTS3 labels: Need to determine what is appropriate - false precision issue
+           # with 'exact' point inferred for regions
+           
+           st_join(nuts3 %>% 
+                     dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+                   join = st_within,
+                   largest = TRUE, 
+                   left = FALSE) %>%
+           rename(nuts3_code= NUTS_ID,
+                  nuts3_name= NUTS_NAME)) %>%
+  map_at('1',  
+         ~ mutate(.x, 
+                  nuts2_code = NA_character_,
+                  nuts2_name = NA_character_,
+                  nuts3_code = NA_character_,
+                  nuts3_name = NA_character_)) %>%
+  list_rbind() 
+
   #select(-c(collection_date, date_format, complete_date)) %>%
  
    # Format geolocation
-  mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
-  mutate(collection_location = str_trim(collection_location)) %>%
-  rowwise() %>%
-  mutate(match = case_when(
-    collection_country == 'austria' && !is.na(collection_location) ~ FormatAustria(collection_location),
-    collection_country == 'belgium' && !is.na(collection_location) ~ FormatBelgium(collection_location), 
-    collection_country == 'croatia' && !is.na(collection_location) ~ FormatCroatia(collection_location),
-    collection_country == 'czech republic' && !is.na(collection_location) ~ FormatCzechia(collection_location), 
-    collection_country == 'france' && !is.na(collection_location) ~ FormatFrance(collection_location),
-    collection_country == 'germany' && !is.na(collection_location) ~ FormatGermany(collection_location),
-    collection_country == 'hungary' && !is.na(collection_location) ~ FormatHungary(collection_location), 
-    collection_country == 'italy' && !is.na(collection_location) ~ FormatItaly(collection_location),
-    collection_country == 'netherlands' && !is.na(collection_location) ~ FormatNetherlands(collection_location),
-    collection_country == 'romania' && !is.na(collection_location) ~ FormatRomania(collection_location),
-    collection_country == 'senegal' && !is.na(collection_location) ~ FormatSenegal(collection_location), 
-    collection_country == 'serbia' && !is.na(collection_location) ~ FormatSerbia(collection_location),
-    collection_country == 'slovakia' && !is.na(collection_location) ~ FormatSlovakia(collection_location),
-    collection_country == 'spain' && !is.na(collection_location) ~ FormatSpain(collection_location),
-    collection_country == 'switzerland' && !is.na(collection_location) ~ FormatSwitzerland(collection_location),
-    collection_country == 'uganda' && !is.na(collection_location) ~ FormatUganda(collection_location), 
-    collection_country == 'uk' && !is.na(collection_location) ~ FormatUK(collection_location), 
-    collection_country == 'poland' && !is.na(collection_location) ~ FormatPoland(collection_location), 
-    collection_country == 'greece' && !is.na(collection_location) ~ FormatGreece(collection_location), 
-    .default = collection_country)) %>%
-  as_tibble() %>%
-  left_join(geodata, 
-            by = join_by(match == match),
-            na_matches =  "never") %>%
+  #mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
+  #mutate(collection_location = str_trim(collection_location)) %>%
+    
+    
+    
+ # rowwise() %>%
+  #mutate(match = case_when(
+   # collection_country == 'austria' && !is.na(collection_location) ~ FormatAustria(collection_location),
+   # collection_country == 'belgium' && !is.na(collection_location) ~ FormatBelgium(collection_location), 
+    #collection_country == 'croatia' && !is.na(collection_location) ~ FormatCroatia(collection_location),
+   # collection_country == 'czech republic' && !is.na(collection_location) ~ FormatCzechia(collection_location), 
+   # collection_country == 'france' && !is.na(collection_location) ~ FormatFrance(collection_location),
+    #collection_country == 'germany' && !is.na(collection_location) ~ FormatGermany(collection_location),
+   # collection_country == 'hungary' && !is.na(collection_location) ~ FormatHungary(collection_location), 
+   # collection_country == 'italy' && !is.na(collection_location) ~ FormatItaly(collection_location),
+   # collection_country == 'netherlands' && !is.na(collection_location) ~ FormatNetherlands(collection_location),
+   # collection_country == 'romania' && !is.na(collection_location) ~ FormatRomania(collection_location),
+   # collection_country == 'senegal' && !is.na(collection_location) ~ FormatSenegal(collection_location), 
+   # collection_country == 'serbia' && !is.na(collection_location) ~ FormatSerbia(collection_location),
+   # collection_country == 'slovakia' && !is.na(collection_location) ~ FormatSlovakia(collection_location),
+   # collection_country == 'spain' && !is.na(collection_location) ~ FormatSpain(collection_location),
+   # collection_country == 'switzerland' && !is.na(collection_location) ~ FormatSwitzerland(collection_location),
+   # collection_country == 'uganda' && !is.na(collection_location) ~ FormatUganda(collection_location), 
+   # collection_country == 'uk' && !is.na(collection_location) ~ FormatUK(collection_location), 
+   # collection_country == 'poland' && !is.na(collection_location) ~ FormatPoland(collection_location), 
+   # collection_country == 'greece' && !is.na(collection_location) ~ FormatGreece(collection_location), 
+   # .default = collection_country)) %>%
+  #as_tibble() %>%
+  #left_join(geodata, 
+  #          by = join_by(match == match),
+   #         na_matches =  "never") %>%
 
   
   # Format host 
