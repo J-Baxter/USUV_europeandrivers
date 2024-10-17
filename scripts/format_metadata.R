@@ -390,14 +390,23 @@ rownames(alignment) <- ReNameAlignment(alignment , data_formatted)
 start <- apply(alignment, 1, function(x) match(letters, x)[1])
 end <- ncol(alignment) - apply(alignment[,ncol(alignment):1], 1, function(x) match(letters, x)[1])
 
+
+
+sub_alignment_coords <- tibble(start = c(1003, 8968, 9100, 10042),
+                               region = c('env', 'ns5', 'ns5', 'ns5'),
+                               end = c(1491, 9264, 9600, 10314))
+
+
 coords <- cbind('sequence_start' = start,
                            'sequence_end' = end) %>%
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
   mutate(sequence_generegion = case_when(
     sequence_start < 400 & sequence_end >9500 ~ 'nflg',
-    sequence_start < 1100 & sequence_end <3000 ~ 'E',
-    sequence_start >7000 ~ 'NS5'
+    sequence_start < 1100 & sequence_end <3000 ~ 'env_1003_1491',
+    sequence_start > 7000 & sequence_end < 9300 ~ 'NS5_8968_9264',
+    sequence_start > 7000 & sequence_end > 9400 ~ 'NS5_9100_9600',
+    sequence_start > 9000 & sequence_end > 10000 ~ 'NS5_10042_10314'
   )) 
 
 
