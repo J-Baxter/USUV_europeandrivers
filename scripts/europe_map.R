@@ -29,7 +29,20 @@ regions %>%
   select(iso_a2, geometry)
 
 
+italy_3 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "10", #1:10million
+  nuts_level = "3",
+  country = 'italy') 
 
+italy_3 %>%
+  mutate(test = case_when(grepl('Bologna', NUTS_NAME) ~ '1', .default = 0))
+
+ggplot(italy_3) + 
+  geom_sf(aes(fill = grepl('Bologna', NUTS_NAME))) + 
+  #coord_sf(ylim = c(34,60), xlim = c(-12, 45), expand = FALSE) + 
+  theme_void()
 
 nuts2 <- gisco_get_nuts(
   year = "2021",

@@ -167,6 +167,11 @@ nuts0 <- gisco_get_nuts(
   resolution = "10", #1:10million
   nuts_level = "0")
 
+nuts1 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "10", #1:10million
+  nuts_level = "1")
 
 nuts2 <- gisco_get_nuts(
   year = "2021",
@@ -294,11 +299,15 @@ data_formatted <- data %>%
   
   # Identify level of precision for each sequence: 
   mutate(location_precision = case_when(
+    
+    #Country Only
     collection_country == collection_tag ~ 'nuts0',
-    collection_country == collection_tag ~ 'nuts1',
-    collection_country == collection_tag ~ 'nuts2',
-    collection_country == collection_tag ~ 'nuts3',
-    collection_country == collection_tag ~ 'exact',
+    
+    #
+    any(grepl(collection_location, tolower(nuts1$NUTS_NAME))) ~ 'nuts1',
+    any(grepl(collection_location, tolower(nuts2$NUTS_NAME))) ~ 'nuts2',
+    any(grepl(collection_location, tolower(nuts3$NUTS_NAME))) ~ 'nuts3',
+    #collection_country == collection_tag ~ 'exact',
     .default = NA_character_
     
   ))
