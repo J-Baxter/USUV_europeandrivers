@@ -288,8 +288,20 @@ data_formatted <- data %>%
          nuts0_name = NUTS_NAME) %>%
   
   # Identify sequences where only country is known
-  mutate(country_only = case_when(collection_country == collection_tag ~ '1',
-                                  .default = '0')) %>%
+  #mutate(country_only = case_when(collection_country == collection_tag ~ '1',
+                                 # .default = '0')) %>%
+  
+  
+  # Identify level of precision for each sequence: 
+  mutate(location_precision = case_when(
+    collection_country == collection_tag ~ 'nuts0',
+    collection_country == collection_tag ~ 'nuts1',
+    collection_country == collection_tag ~ 'nuts2',
+    collection_country == collection_tag ~ 'nuts3',
+    collection_country == collection_tag ~ 'exact',
+    .default = NA_character_
+    
+  ))
   
   # Allocate NUTS2 labels
   split(~country_only) %>% 
