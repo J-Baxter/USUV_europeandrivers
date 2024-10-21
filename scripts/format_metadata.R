@@ -67,22 +67,27 @@ updated_old_data <- old_data %>%
 
 
 # NCBI Genbank Data
-data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv') %>%
-  left_join(updated_old_data, join_by(Accession)) %>%
-  mutate(Collection_Date = coalesce(Collection_Date.y, Collection_Date.x),
-         Geo_Location = coalesce(Geo_Location.y, Geo_Location.x),
-         Host = coalesce(Host.x, Host.y)) %>%
+data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::locale(encoding = "UTF-8")) %>%
+  rows_update(updated_old_data %>%
+                select(Accession, Collection_Date, Host), 
+              by = 'Accession', 
+              unmatched = 'ignore') %>%
+  left_join(updated_old_data %>% select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
   dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
+  # Allocate date format
+  mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
   mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd", 
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date) & as.numeric(str_split_i('date', '-', 2)) <= 12 ~ "dd-mm-yyyy", 
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm", 
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
     grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy" )) 
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing')) 
+
 
 
 # ANSES FRANCE Data
-anses <- read_csv('./data/anses_data.csv') %>%
+anses <- read_csv('./data/anses_data.csv', locale = readr::locale(encoding = "UTF-8")) %>%
   
   # Clean date col
   mutate(Collection_Date = case_when(
@@ -164,32 +169,37 @@ all_taxa <- bind_rows(birds, mammals, mosquitos, ticks)
 nuts0 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
-  resolution = "10", #1:10million
+  resolution = "03", #1:10million
   nuts_level = "0")
 
 nuts1 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
-  resolution = "10", #1:10million
+  resolution = "03", #1:10million
   nuts_level = "1")
 
 nuts2 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
-  resolution = "10", #1:10million
+  resolution = "03", #1:10million
   nuts_level = "2")
 
 nuts3 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
-  resolution = "10", #1:10million
+  resolution = "03", #1:10million
   nuts_level = "3")
 
-
-
+all_countries <- ne_countries(scale = 10, returnclass = "sf") %>%
+  dplyr::select(name_en,
+                iso_a2_eh,
+                geometry) %>%
+  rename(nuts0_id = iso_a2_eh,
+         nuts0_name = name_en) %>%
+  st_make_valid()
 
 #############  Pipeline start ############# 
-data_formatted <- data %>%
+data_formatted_date <- data %>%
   bind_rows(.,anses) %>%
   bind_rows(.,apha) %>%
   bind_rows(.,izsve) %>%
@@ -258,12 +268,11 @@ data_formatted <- data %>%
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
     is.na(date_ymd) & !is.na(date_ym) ~ date_ym,
-    .default = as.character(date_ymd))) %>%
-  
-  
+    .default = as.character(date_ymd)))
+
   
   # Format geolocation
-  
+data_formatted_geodata <- data_formatted_date %>%
   # Format available data
   mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
   mutate(collection_location = str_trim(collection_location),
@@ -272,75 +281,88 @@ data_formatted <- data %>%
   rowwise() %>%
   mutate(collection_tag = case_when(!grepl(collection_country, collection_location) ~ paste(collection_location, collection_country),
                                     .default = collection_location)) %>%
-  as_tibble() %>%
+  #as_tibble() %>%
   
   # Using ggmaps:geocode, obtain precise lat-lon for each location. NB will give centroids
   # for large areas e.g cities or countries
   mutate(coords = geocode(collection_tag)) %>%
+  as_tibble() %>%
   unnest(coords) %>%
   
   # format as sf point
+data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
   st_as_sf(coords = c('lon', 'lat'), crs = 4326) %>%
   
-  # join country
-  st_join(nuts0 %>%
+  # Allocate NUTS codes for each sequence
+  st_join(.,
+          nuts0 %>%
             dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
           join = st_within, 
-          largest = TRUE, 
-          left = FALSE) %>%
+         # left = FALSE,
+          largest = TRUE) %>%
   rename(geocode_coords = geometry,
          nuts0_id = NUTS_ID,
          nuts0_name = NUTS_NAME) %>%
   
-  # Identify sequences where only country is known
-  #mutate(country_only = case_when(collection_country == collection_tag ~ '1',
-                                 # .default = '0')) %>%
+  st_join(.,
+          nuts1 %>%
+            dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+          join = st_within, 
+         # left = FALSE,
+          largest = TRUE) %>%
+  rename(nuts1_id = NUTS_ID,
+         nuts1_name = NUTS_NAME) %>%
+  
+  st_join(.,
+          nuts2 %>%
+            dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+          join = st_within, 
+          #left = FALSE,
+          largest = TRUE) %>%
+  rename(nuts2_id = NUTS_ID,
+         nuts2_name = NUTS_NAME) %>%
+  
+  st_join(.,
+          nuts3 %>%
+            dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
+          join = st_within, 
+          #left = FALSE,
+          largest = TRUE) %>%
+  rename(nuts3_id = NUTS_ID,
+         nuts3_name = NUTS_NAME) %>%
   
   
+  # African and Asian Countries need some form of annnotation
+  st_join(., 
+          all_countries,
+          join = st_within, 
+          largest = TRUE) %>%
+  mutate(nuts0_id = coalesce(nuts0_id.x, nuts0_id.y),
+         nuts0_name = coalesce(nuts0_name.x, nuts0_name.y),
+         .keep = 'unused')
+
+
   # Identify level of precision for each sequence: 
+data_formatted_geodata_2 <- data_formatted_geodata_1 %>% 
+  rowwise() %>%
   mutate(location_precision = case_when(
-    
     #Country Only
     collection_country == collection_tag ~ 'nuts0',
-    
-    #
-    any(grepl(collection_location, tolower(nuts1$NUTS_NAME))) ~ 'nuts1',
-    any(grepl(collection_location, tolower(nuts2$NUTS_NAME))) ~ 'nuts2',
-    any(grepl(collection_location, tolower(nuts3$NUTS_NAME))) ~ 'nuts3',
-    #collection_country == collection_tag ~ 'exact',
-    .default = NA_character_
-    
-  ))
+    any(collection_location == tolower(nuts1$NUTS_NAME)) ~ 'nuts1',
+    any(collection_location == tolower(nuts2$NUTS_NAME)) ~ 'nuts2',
+    any(collection_location == tolower(nuts3$NUTS_NAME)) ~ 'nuts3')) %>%
+  as_tibble() %>%
   
-  # Allocate NUTS2 labels
-  split(~country_only) %>% 
-  map_at('0',  
-         ~ st_join(.x, 
-                   nuts2 %>% 
-                     dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
-                   join = st_within,
-                   largest = TRUE, 
-                   left = FALSE) %>%
-           rename(nuts2_code= NUTS_ID,
-                  nuts2_name= NUTS_NAME) %>%
-           
-           # Allocate NUTS3 labels: Need to determine what is appropriate - false precision issue
-           # with 'exact' point inferred for regions
-           
-           st_join(nuts3 %>% 
-                     dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
-                   join = st_within,
-                   largest = TRUE, 
-                   left = FALSE) %>%
-           rename(nuts3_code= NUTS_ID,
-                  nuts3_name= NUTS_NAME)) %>%
-  map_at('1',  
-         ~ mutate(.x, 
-                  nuts2_code = NA_character_,
-                  nuts2_name = NA_character_,
-                  nuts3_code = NA_character_,
-                  nuts3_name = NA_character_)) %>%
-  list_rbind() 
+  group_split(location_precision, .keep = TRUE)
+  map_at('nuts0', 
+         ~ .x %>% dplyr::select(-starts_with(c('nuts1', 'nuts2', 'nuts3')))) %>%
+  map_at('nuts1', 
+         ~ mutate(.x, across(starts_with(c('nuts2', 'nuts3')), .fns = ~ NA))) %>%
+  map_at('nuts2', 
+         ~ mutate(.x, across(starts_with( 'nuts3'), .fns = ~ NA))) %>%
+  list_rbind()
+  
+
 
   #select(-c(collection_date, date_format, complete_date)) %>%
  
