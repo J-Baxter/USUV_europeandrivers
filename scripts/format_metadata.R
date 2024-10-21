@@ -353,53 +353,21 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
     any(collection_location == tolower(nuts3$NUTS_NAME)) ~ 'nuts3')) %>%
   as_tibble() %>%
   
-  group_split(location_precision, .keep = TRUE)
+  split(~location_precision) %>%
   map_at('nuts0', 
-         ~ .x %>% dplyr::select(-starts_with(c('nuts1', 'nuts2', 'nuts3')))) %>%
+         ~ .x %>% mutate(across(starts_with("nuts1"), ~ NA),
+                         across(starts_with("nuts2"), ~ NA),
+                         across(starts_with("nuts3"), ~ NA))) %>%
+  
   map_at('nuts1', 
-         ~ mutate(.x, across(starts_with(c('nuts2', 'nuts3')), .fns = ~ NA))) %>%
+         ~ .x %>% mutate(across(starts_with("nuts2"), ~ NA),
+                         across(starts_with("nuts3"), ~ NA))) %>%
+  
   map_at('nuts2', 
-         ~ mutate(.x, across(starts_with( 'nuts3'), .fns = ~ NA))) %>%
+         ~ .x %>% mutate(across(starts_with("nuts3"), ~ NA))) %>%
   list_rbind()
   
-
-
-  #select(-c(collection_date, date_format, complete_date)) %>%
- 
-   # Format geolocation
-  #mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
-  #mutate(collection_location = str_trim(collection_location)) %>%
-    
-    
-    
- # rowwise() %>%
-  #mutate(match = case_when(
-   # collection_country == 'austria' && !is.na(collection_location) ~ FormatAustria(collection_location),
-   # collection_country == 'belgium' && !is.na(collection_location) ~ FormatBelgium(collection_location), 
-    #collection_country == 'croatia' && !is.na(collection_location) ~ FormatCroatia(collection_location),
-   # collection_country == 'czech republic' && !is.na(collection_location) ~ FormatCzechia(collection_location), 
-   # collection_country == 'france' && !is.na(collection_location) ~ FormatFrance(collection_location),
-    #collection_country == 'germany' && !is.na(collection_location) ~ FormatGermany(collection_location),
-   # collection_country == 'hungary' && !is.na(collection_location) ~ FormatHungary(collection_location), 
-   # collection_country == 'italy' && !is.na(collection_location) ~ FormatItaly(collection_location),
-   # collection_country == 'netherlands' && !is.na(collection_location) ~ FormatNetherlands(collection_location),
-   # collection_country == 'romania' && !is.na(collection_location) ~ FormatRomania(collection_location),
-   # collection_country == 'senegal' && !is.na(collection_location) ~ FormatSenegal(collection_location), 
-   # collection_country == 'serbia' && !is.na(collection_location) ~ FormatSerbia(collection_location),
-   # collection_country == 'slovakia' && !is.na(collection_location) ~ FormatSlovakia(collection_location),
-   # collection_country == 'spain' && !is.na(collection_location) ~ FormatSpain(collection_location),
-   # collection_country == 'switzerland' && !is.na(collection_location) ~ FormatSwitzerland(collection_location),
-   # collection_country == 'uganda' && !is.na(collection_location) ~ FormatUganda(collection_location), 
-   # collection_country == 'uk' && !is.na(collection_location) ~ FormatUK(collection_location), 
-   # collection_country == 'poland' && !is.na(collection_location) ~ FormatPoland(collection_location), 
-   # collection_country == 'greece' && !is.na(collection_location) ~ FormatGreece(collection_location), 
-   # .default = collection_country)) %>%
-  #as_tibble() %>%
-  #left_join(geodata, 
-  #          by = join_by(match == match),
-   #         na_matches =  "never") %>%
-
-  
+data_formatted_host <- data_formatted_geodata_2 %>%
   # Format host 
   mutate(host = gsub("_", " ", tolower(host))) %>%
   mutate(host = str_trim(host)) %>%
@@ -410,7 +378,9 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
   mutate(primary_com_name = FormatTicks(primary_com_name)) %>%
   as_tibble() %>%
   left_join(all_taxa, 
-            by = join_by(primary_com_name)) %>%
+            by = join_by(primary_com_name)) 
+
+# OU674388 - luxembourg date and host are in origial csv by now are NA?
   
   # Additional Host info: local/migratory/captive
   # Bergmann et al R = resident species, P = partial migrants, S = short-distance migrants, L = long-distance migrants, Captive, NA
