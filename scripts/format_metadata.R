@@ -287,7 +287,7 @@ data_formatted_geodata <- data_formatted_date %>%
   # for large areas e.g cities or countries
   mutate(coords = geocode(collection_tag)) %>%
   as_tibble() %>%
-  unnest(coords) %>%
+  unnest(coords)
   
   # format as sf point
 data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
@@ -350,10 +350,11 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
     collection_country == collection_tag ~ 'nuts0',
     any(collection_location == tolower(nuts1$NUTS_NAME)) ~ 'nuts1',
     any(collection_location == tolower(nuts2$NUTS_NAME)) ~ 'nuts2',
-    any(collection_location == tolower(nuts3$NUTS_NAME)) ~ 'nuts3')) %>%
+    collection_country == 'greece' ~ 'nuts2',
+    any(collection_location == tolower(nuts3$NUTS_NAME)) ~ 'nuts3',
+    .default = 'exact')) %>%
   as_tibble() %>%
-  
-  split(~location_precision) %>%
+  base:: split(~location_precision) %>%
   map_at('nuts0', 
          ~ .x %>% mutate(across(starts_with("nuts1"), ~ NA),
                          across(starts_with("nuts2"), ~ NA),
@@ -365,7 +366,9 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
   
   map_at('nuts2', 
          ~ .x %>% mutate(across(starts_with("nuts3"), ~ NA))) %>%
+  
   list_rbind()
+  
   
 data_formatted_host <- data_formatted_geodata_2 %>%
   # Format host 
@@ -393,22 +396,22 @@ data_formatted_host <- data_formatted_geodata_2 %>%
    # .default = NA_character_
   #)) %>%
   
-  
+data_formatted <- data_formatted_host %>%  
   # Arrange and rename columns
   dplyr::rename(
-    collection_regionname = region,
-    collection_countryname = country,
-    collection_countrycode = gid_0,
-    collection_countrylat = adm0_lat,
-    collection_countrylong = adm0_long,
-    collection_subdiv1name = name_1,
-    collection_subdiv1code = hasc_1,
-    collection_subdiv1lat = adm1_lat,
-    collection_subdiv1long = adm1_long,
-    collection_subdiv2name = name_2,
-    collection_subdiv2code = hasc_2,
-    collection_subdiv2lat = adm2_lat,
-    collection_subdiv2long = adm2_long,
+    #collection_regionname = region,
+    #collection_countryname = country,
+    #collection_countrycode = gid_0,
+    #collection_countrylat = adm0_lat,
+   #collection_countrylong = adm0_long,
+    #collection_subdiv1name = name_1,
+    #collection_subdiv1code = hasc_1,
+    #collection_subdiv1lat = adm1_lat,
+    #collection_subdiv1long = adm1_long,
+    #collection_subdiv2name = name_2,
+    #collection_subdiv2code = hasc_2,
+    #collection_subdiv2lat = adm2_lat,
+    #collection_subdiv2long = adm2_long,
     host_class = class,
     host_order = order,
     host_family = family,
@@ -421,19 +424,27 @@ data_formatted_host <- data_formatted_geodata_2 %>%
     sequence_isolate,
     sequence_length,
     sequence_completeness,
-    collection_regionname,
-    collection_countryname,
-    collection_countrycode,
-    collection_countrylat,
-    collection_countrylong,
-    collection_subdiv1name,
-    collection_subdiv1code,
-    collection_subdiv1lat,
-    collection_subdiv1long,
-    collection_subdiv2name,
-    collection_subdiv2code,
-    collection_subdiv2lat,
-    collection_subdiv2long,
+    #collection_regionname,
+    #collection_countryname,
+    #collection_countrycode,
+    #collection_countrylat,
+    #collection_countrylong,
+    #collection_subdiv1name,
+    #collection_subdiv1code,
+    #collection_subdiv1lat,
+    #collection_subdiv1long,
+    #collection_subdiv2name,
+    #collection_subdiv2code,
+    #collection_subdiv2lat,
+    #collection_subdiv2long,
+    nuts0_name,
+    nuts0_id,
+    nuts1_name,
+    nuts1_id,
+    nuts2_name,
+    nuts2_id,
+    nuts3_name,
+    nuts3_id,
     date_ymd,
     date_dec,
     date_ym,
@@ -449,21 +460,28 @@ data_formatted_host <- data_formatted_geodata_2 %>%
   mutate(across(everything(), .fns = ~ gsub('^NA$', NA, .x))) %>%
   
   # Select columns
- # select(-c(collection_location, 
-           # collection_country,
-           # host, 
-           # `migration pattern`,
-            ##notes, 
-           # match,
-            #iso_1, 
-           # `wild/captive`, 
-           # sequence_length,
-           # complete_location)) %>%
+  select(-c(organism_name,
+            assembly,
+            species,
+            sequence_length,
+            usa,
+            collection_country,
+            collection_date,
+            notes,
+            `migration pattern`,
+            `wild/captive`,
+            collection_tag,
+            complete_location,
+            complete_date,
+            sequence_completeness,
+            org_location,
+            host,
+            isolation_source)) %>%
   
   # location codes
-  mutate(collection_tipcode = coalesce(collection_subdiv2code, collection_subdiv1code, collection_countrycode)) %>%
-  mutate(unique_id = coalesce(sequence_accession, sequence_isolate)) %>%
-  mutate(collection_tipcode = gsub('\\.', '_', collection_tipcode)) %>%
+  #mutate(collection_tipcode = coalesce(nuts3_id, nuts2_id, nuts1_id, nuts0_id)) %>%
+  #mutate(unique_id = coalesce(sequence_accession, sequence_isolate)) %>%
+  #mutate(collection_tipcode = gsub('\\.', '_', collection_tipcode)) %>%
   
   # Generate sequence names
   unite(.,
@@ -471,7 +489,7 @@ data_formatted_host <- data_formatted_geodata_2 %>%
         sequence_accession, 
         sequence_isolate,
         host_sciname,
-        collection_tipcode,
+        nuts0_id,
         date_tipdate,
         sep = '|',                        
         remove = FALSE) %>%
@@ -481,7 +499,7 @@ data_formatted_host <- data_formatted_geodata_2 %>%
   mutate(tipnames = gsub('\\.', '', tipnames)) %>%
   mutate(tipnames = gsub('[^A-Za-z0-9_.\\|/\\-]', '_', tipnames)) %>%
   
-  dplyr::select(-unique_id)
+  dplyr::select(-date_tipdate)
 
 
 
@@ -492,7 +510,7 @@ alignment <- ape::read.dna('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligne
                            as.character = T) 
 
 
-rownames(alignment) <- ReNameAlignment(alignment , data_formatted) 
+rownames(alignment) <- ReNameAlignment(alignment, data_formatted) 
 
 
 start <- apply(alignment, 1, function(x) match(letters, x)[1])
@@ -509,68 +527,81 @@ coords <- cbind('sequence_start' = start,
                            'sequence_end' = end) %>%
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
-  mutate(sequence_generegion = case_when(
-    sequence_start < 400 & sequence_end >9500 ~ 'nflg',
-    sequence_start < 1100 & sequence_end <3000 ~ 'env_1003_1491',
-    sequence_start > 7000 & sequence_end < 9300 ~ 'NS5_8968_9264',
-    sequence_start > 7000 & sequence_end > 9400 ~ 'NS5_9100_9600',
-    sequence_start > 9000 & sequence_end > 10000 ~ 'NS5_10042_10314'
-  )) 
+  rowwise() %>%
+  mutate(generegion_NS5_8968_9264 = ifelse(sequence_start <= 9100 && sequence_end >= 9100, 1, 0),
+         generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
+         generegion_NS5_10042_10312 = ifelse(sequence_start <= 10142 && sequence_end >= 10300, 1, 0),
+         generegion_env_1003_1491 = ifelse(sequence_start <= 1100 && sequence_end >= 1200, 1, 0),
+         generegion_nflg = ifelse(sequence_length >4200, 1, 0))
 
+unnassigned <- coords %>%
+  filter(if_all(starts_with('generegion'), ~ .x ==0))
+
+
+#############  Previous Lineage assignments ############# 
+old_lineages <- read_csv('./data/existing_lineages.csv')
 
 #############  Join sequence data to metadata ############# 
 metadata <- data_formatted %>%
-  select(-c(
-    organism_name,
-    assembly,
-    species,
-    collection_country,
-    collection_location,
-    host,
-    collection_date,
-    collection_location,
-    date_format,
-    isolation_source,
-    complete_date,
-    complete_location,
-    `wild/captive`,
-    `migration pattern`,
-    notes,
-    match,
-    iso_1,
-    collection_tipcode,
-    sequence_length,
-    sequence_completeness,
-    usa,
-    tissue_specimen_source
-  )) %>%
   left_join(., coords) %>%
+  left_join(old_lineages) %>%
   
   # Include only data in alignment
-  filter(tipnames %in% rownames(alignment)) %>%
-  left_join(data %>% select(Accession, Isolate, Organization, Release_Date), 
+  #filter(tipnames %in% rownames(alignment)) %>%
+  left_join(data %>% select(Accession, Isolate, Release_Date), 
             by = join_by(sequence_accession == Accession,
                          sequence_isolate == Isolate)) %>%
   # Key to exclude FLI
-  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', Organization) & Release_Date > as_date("2020-01-01") ~ TRUE,
+  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) && Release_Date > as_date("2020-01-01") ~ TRUE,
                               .default = FALSE)) %>%
-  select(-c(Release_Date)) %>%
-  rename(collection_organsiation = Organization)
+  dplyr::select(-Release_Date) 
 
 
  
 #############  Write metadata to file ############# #
-write_csv(metadata, './data/USUV_metadata_all_2024Aug28.csv')
+write_csv(metadata, './data/USUV_metadata_all_2024Oct20.csv')
 
 
 #############  Write alignment to file ############# 
 alignment <- alignment[order(start),]
-write.dna(alignment, './2024Aug13/alignments/USUV_2024Aug28_alldata_aligned_formatted.fasta', format = 'fasta')
+write.dna(alignment, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted.fasta', format = 'fasta')
 
 
 #############  Alignment without FLI ############# 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Aug13/alignments/USUV_2024Aug28_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
-write_csv(metadata_noFLI , './data/USUV_metadata_noFLI_2024Aug28.csv')
+write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
+write_csv(metadata_noFLI , './data/USUV_metadata_noFLI_2024Oct20.csv')
+
+
+#############  Sub-aligments ############# 
+write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                filter(generegion_nflg == 1) %>% 
+                                                pull(tipnames)),],
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta', 
+          format = 'fasta')
+
+write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                filter(generegion_NS5_8968_9264== 1) %>% 
+                                                pull(tipnames)),],
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_8968-9264.fasta', 
+          format = 'fasta')
+
+write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                filter(generegion_NS5_9100_9600 == 1) %>%
+                                                pull(tipnames)),],
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_9100-9600.fasta', 
+          format = 'fasta')
+
+write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                filter(generegion_NS5_10042_10312 == 1) %>% 
+                                                pull(tipnames)),],
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_10042-10312.fasta', 
+          format = 'fasta')
+
+write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>%
+                                                filter(generegion_env_1003_1491 == 1) %>%
+                                                pull(tipnames)),],
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_env_1003-1491.fasta', 
+          format = 'fasta')
