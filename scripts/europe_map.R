@@ -3,7 +3,7 @@ library(terra)
 library(sf)
 library(rnaturalearth)
 library(giscoR)
-library(eurostat)
+#library(eurostat)
 library(tidyverse)
 
 
@@ -68,10 +68,10 @@ nuts3 <- gisco_get_nuts(
   resolution = "03", #1:10million
   nuts_level = "3")
 
-all_europe_sf <- bind_rows(nuts2, nongisco_shapefile)
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
 # Import data
-metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv.csv')
+metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv')
 lu_spatialdata <- readRDS('./spatial_data/Predictors_tep_20231014.Rdata')
 
 #test raster
@@ -79,17 +79,18 @@ test_df <- lu_spatialdata %>%
   dplyr::select(c(lon, lat, Deciduous_broad))
 
 # metadat
-test_metadata <- metadata %>%
+#test_metadata <- metadata %>%
   #drop_na(c('collection_subdiv1lat', 'collection_subdiv1long')) %>%
-  st_as_sf(coords = 'geocode_coords', crs = 4326) %>%
-  st_join(nuts2, join = st_within, largest = TRUE,  left = FALSE) %>%
-  dplyr::select(-c(
-    starts_with('collection_subdiv1'),
-    starts_with('collection_subdiv2')
-  )) %>%
-  dplyr::select(-geometry) %>%
-  as_tibble()
+  #st_as_sf(coords = 'geocode_coords', crs = 4326) %>%
+  #st_join(nuts2, join = st_within, largest = TRUE,  left = FALSE) %>%
+  #dplyr::select(-c(
+    #starts_with('collection_subdiv1'),
+    #starts_with('collection_subdiv2')
+  #)) %>%
+  #dplyr::select(-geometry) %>%
+  #as_tibble()
 
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
 plt1 <- expand_grid(gene_region = c('nflg', 
                                     'env_1003_1491',
@@ -99,12 +100,12 @@ plt1 <- expand_grid(gene_region = c('nflg',
                     NUTS_ID = all_europe_sf$NUTS_ID,
                     n = NA_integer_) %>%
   rows_patch(metadata %>%
-               rename(NUTS_ID = nuts2_id) %>%
+               rename(NUTS_ID = nuts1_id) %>%
                pivot_longer(starts_with('generegion'), names_to = 'gene_region') %>%
                mutate(gene_region = gsub('^generegion_', '', gene_region)) %>%
                summarise(n = sum(value), .by = c(NUTS_ID, gene_region)),
              unmatched = 'ignore',
-             by = c('NUTS_ID', 'gene_region'))%>%
+             by = c('NUTS_ID', 'gene_region')) %>%
   left_join(all_europe_sf, .) %>%
   filter(CNTR_CODE != 'TR') %>%
   ggplot() +
@@ -112,7 +113,7 @@ plt1 <- expand_grid(gene_region = c('nflg',
   geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
   coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
   scale_fill_distiller(palette = 'RdPu', transform = 'log10', direction = -1, , na.value="lightgrey", breaks = c(0, 1, 5, 10, 20, 50, 100)) +
-  facet_grid(cols = vars(sequence_generegion)) +
+  facet_grid(cols = vars(gene_region)) +
   theme_void() + 
   theme(legend.position = 'none')
   
@@ -131,27 +132,67 @@ cowplot::plot_grid(plt1, plt2, nrow = 2, align = 'hv')
 
 
 # alternative plot (facet by genomic region and year)
-expand_grid(sequence_generegion = unique(test_metadata$sequence_generegion),
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
+
+expand_grid(gene_region = c('nflg', 
+                            'env_1003_1491',
+                            #'NS5_9100_9600', 
+                            #'NS5_8968_9264',
+                            'NS5_9000_9600',
+                            'NS5_10042_10312'),
             NUTS_ID = all_europe_sf$NUTS_ID,
-            n = NA_integer_,
-            date_y = ) %>%
-  rows_patch(test_metadata %>%
-               summarise(n = n(), .by = c(NUTS_ID, sequence_generegion, date_y)),
-             by = c('NUTS_ID', 'sequence_generegion')) %>%
+            year_group = c("<2004-2010", "2011-2015", "2016-2020", '2021-2024'),
+            n = NA_integer_) %>%
+  rows_patch(metadata %>%
+               rename(NUTS_ID = nuts1_id) %>%
+               pivot_longer(starts_with('generegion'), names_to = 'gene_region') %>%
+               mutate(gene_region = gsub('^generegion_', '', gene_region)) %>%
+               mutate(year_group = cut(as.numeric(date_y), 
+                                       breaks = c(0, 2010, 2015, 2020, 2024), 
+                                       labels = c("<2004-2010", "2011-2015", "2016-2020", '2021-2024'))) %>%
+               summarise(n = sum(value), .by = c(NUTS_ID, gene_region, year_group)),
+             unmatched = 'ignore',
+             by = c('NUTS_ID', 'gene_region', 'year_group')) %>%
   left_join(all_europe_sf, .) %>%
   filter(CNTR_CODE != 'TR') %>%
   ggplot() +
-  geom_sf(aes(fill = n), colour = 'white') + 
-  geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
+  geom_sf(aes(fill = n), colour = 'white', linewidth = 0.1) + 
+  geom_sf(colour = 'white', data = nuts0, linewidth = 0.2, alpha = 0.01) + 
   coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
   scale_fill_distiller(palette = 'RdPu', transform = 'log10', direction = -1, , na.value="lightgrey", breaks = c(0, 1, 5, 10, 20, 50, 100)) +
-  facet_grid(cols = vars(sequence_generegion)) +
+  facet_grid(rows = vars(gene_region),
+             cols = vars(year_group)) +
   theme_void() + 
   theme(legend.position = 'none')
-ggplot(nuts2) + 
-  geom_sf() + 
-  coord_sf(ylim = c(34,72), xlim = c(-12, 45), expand = FALSE) + 
-  geom_raster(aes(y = lat, x = lon, fill = Deciduous_broad), data = test_df)
+
+
+#year only
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
+expand_grid( NUTS_ID = all_europe_sf$NUTS_ID,
+            year_group = c("<2004-2010", "2011-2015", "2016-2020", '2021-2024'),
+            n = NA_integer_) %>%
+  rows_patch(metadata %>%
+               rename(NUTS_ID = nuts1_id) %>%
+               mutate(year_group = cut(as.numeric(date_y), 
+                                       breaks = c(0, 2010, 2015, 2020, 2024), 
+                                       labels = c("<2004-2010", "2011-2015", "2016-2020", '2021-2024'))) %>%
+               summarise(n = n(), .by = c(NUTS_ID, year_group)),
+             unmatched = 'ignore',
+             by = c('NUTS_ID', 'year_group')) %>%
+  left_join(all_europe_sf, .) %>%
+  filter(CNTR_CODE != 'TR') %>%
+  ggplot() +
+  geom_sf(aes(fill = n), colour = 'white', linewidth = 0.1) + 
+  geom_sf(colour = 'white', data = nuts0, linewidth = 0.2, alpha = 0.01) + 
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  scale_fill_fermenter(palette = 'RdPu',
+                       direction = -1, 
+                       transform = 'log10',
+                       na.value="lightgrey", 
+                       breaks = c(1, 5, 10, 20, 50, 100)) +
+  facet_grid(cols = vars(year_group)) +
+  theme_void(base_size = 20) + 
+  theme(legend.position = 'bottom') 
 
 
 coordinates(test_df) <- ~ lon + lat

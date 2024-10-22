@@ -69,10 +69,10 @@ updated_old_data <- old_data %>%
 # NCBI Genbank Data
 data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::locale(encoding = "UTF-8")) %>%
   rows_update(updated_old_data %>%
-                select(Accession, Collection_Date, Host), 
+                dplyr::select(Accession, Collection_Date, Host), 
               by = 'Accession', 
               unmatched = 'ignore') %>%
-  left_join(updated_old_data %>% select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
+  left_join(updated_old_data %>% dplyr::select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
   dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
@@ -460,7 +460,7 @@ data_formatted <- data_formatted_host %>%
   mutate(across(everything(), .fns = ~ gsub('^NA$', NA, .x))) %>%
   
   # Select columns
-  select(-c(organism_name,
+  dplyr::select(-c(organism_name,
             assembly,
             species,
             sequence_length,
@@ -528,8 +528,8 @@ coords <- cbind('sequence_start' = start,
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
   rowwise() %>%
-  mutate(generegion_NS5_8968_9264 = ifelse(sequence_start <= 9100 && sequence_end >= 9100, 1, 0),
-         generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
+  mutate(generegion_NS5_9000_9600 = ifelse(sequence_start <= 9100 && sequence_end >= 9150, 1, 0),
+         #generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
          generegion_NS5_10042_10312 = ifelse(sequence_start <= 10142 && sequence_end >= 10300, 1, 0),
          generegion_env_1003_1491 = ifelse(sequence_start <= 1100 && sequence_end >= 1200, 1, 0),
          generegion_nflg = ifelse(sequence_length >4200, 1, 0))
@@ -548,13 +548,16 @@ metadata <- data_formatted %>%
   
   # Include only data in alignment
   #filter(tipnames %in% rownames(alignment)) %>%
-  left_join(data %>% select(Accession, Isolate, Release_Date), 
+  left_join(data %>% dplyr::select(Accession, Isolate, Release_Date), 
             by = join_by(sequence_accession == Accession,
                          sequence_isolate == Isolate)) %>%
   # Key to exclude FLI
-  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) && Release_Date > as_date("2020-01-01") ~ TRUE,
+  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & dmy(Release_Date) > as_date("2020-01-01") ~ TRUE,
                               .default = FALSE)) %>%
-  dplyr::select(-Release_Date) 
+  dplyr::select(-Release_Date)  %>%
+  
+  #Europe
+  mutate(is_europe = case_when(nuts0_id %in% nuts0$NUTS_ID ~ 1, .default = 0))
 
 
  
@@ -582,23 +585,28 @@ write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>%
           './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta', 
           format = 'fasta')
 
+
+# Alignment has 953 sequences with 665 columns, 385 distinct patterns, 152 parsimony-informative, 80 singleton sites, 433 constant sites
 write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
-                                                filter(generegion_NS5_8968_9264== 1) %>% 
+                                                filter(generegion_NS5_9000_9600 == 1) %>% 
                                                 pull(tipnames)),],
-          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_8968-9264.fasta', 
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_9000-9600.fasta', 
           format = 'fasta')
 
-write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
-                                                filter(generegion_NS5_9100_9600 == 1) %>%
-                                                pull(tipnames)),],
-          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_9100-9600.fasta', 
-          format = 'fasta')
+# 
+#write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                              #  filter(generegion_NS5_9100_9600 == 1) %>%
+                                               # pull(tipnames)),],
+          #'./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_9100-9600.fasta', 
+         # format = 'fasta')
+
 
 write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
                                                 filter(generegion_NS5_10042_10312 == 1) %>% 
                                                 pull(tipnames)),],
           './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NS5_10042-10312.fasta', 
           format = 'fasta')
+
 
 write.dna(alignment[rownames(alignment) %in% (metadata_noFLI %>%
                                                 filter(generegion_env_1003_1491 == 1) %>%
