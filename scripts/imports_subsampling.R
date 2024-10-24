@@ -12,7 +12,7 @@ library(ggtree)
 nflg_ml <- read.newick('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta.contree')
 
 # import metadata
-metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv')
+metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
 
 
 ############# Import 'Master' Alignment ############# 
