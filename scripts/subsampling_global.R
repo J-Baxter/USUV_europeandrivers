@@ -142,9 +142,9 @@ tip_data_order <- bind_rows(as_tibble(trees[[1]]) %>%
   
 
 
-subsample_2 <- data_per_alignment_wgroups %>%
+subsample_2 <- tip_data_order  %>%
   
-  left_join(tip_data_order) %>%
+  left_join(data_per_alignment_wgroups) %>%
   #(left join tidytree with tr)
   
   # group by sequence_identity > best_location > host_class
