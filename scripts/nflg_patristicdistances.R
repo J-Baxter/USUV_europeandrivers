@@ -31,10 +31,15 @@ nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD
 nflg_ca %<>% 
   full_join(metadata %>% 
               dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames) %>%
-              rename(label = tipnames)) %>%
-  
-  mutate(branch)
-  
+              rename(label = tipnames)) 
+
+
+phyclip_lineages <- read_delim('./data/phyCLIP/.txt') %>%
+  dplyr::select(c(1,2)) %>%
+  rename(lineage = CLUSTER,
+         label = TAXA) %>%
+  mutate(lineage =as.factor(lineage))
+
 ############################################## MAIN ################################################
 
 europe_tips <- nflg_ca %>%
@@ -138,7 +143,7 @@ non_europe <- patristic_distances_noneurope %>%
 all_patristic_distances_clade <- bind_rows(non_europe,
                                      within_europe_clades)
 
-ggplot(all_patristic_distances_clade) +
+ggplot(within_europe_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
   scale_fill_brewer(NULL,
                     palette = 'Dark2')+
