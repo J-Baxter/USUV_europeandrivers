@@ -20,6 +20,7 @@ library(treeio)
 library(TreeTools)
 library(ggtree)
 library(ggnewscale)
+library(ggtreeExtra)
 
 # User functions
 
