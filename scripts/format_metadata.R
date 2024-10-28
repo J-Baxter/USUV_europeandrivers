@@ -151,7 +151,6 @@ izsve <- read_csv('./data/izsve_data.csv') %>%
   filter(is.na(Accession))
 
 
-geodata <- read_csv('data/updated_geodata.csv')
 birds <- read_csv('bird_taxonomy.csv')
 mammals <- read_csv('mammal_taxonomy.csv')
 ticks <- read_csv('tick_taxonomy.csv') %>%
@@ -384,34 +383,10 @@ data_formatted_host <- data_formatted_geodata_2 %>%
             by = join_by(primary_com_name)) 
 
 # OU674388 - luxembourg date and host are in origial csv by now are NA?
-  
-  # Additional Host info: local/migratory/captive
-  # Bergmann et al R = resident species, P = partial migrants, S = short-distance migrants, L = long-distance migrants, Captive, NA
- # mutate(host_migration = case_when(
-   # primary_com_name %in% c('european blackbird', 'blue tit') ~ 'resident',
-  #  primary_com_name %in% c() ~ 'partial',
-   # primary_com_name %in% c() ~ 'short-distance',
-   # primary_com_name %in% c() ~ 'long-distance',
-   # primary_com_name %in% c() ~ 'captive',
-   # .default = NA_character_
-  #)) %>%
-  
+
 data_formatted <- data_formatted_host %>%  
   # Arrange and rename columns
   dplyr::rename(
-    #collection_regionname = region,
-    #collection_countryname = country,
-    #collection_countrycode = gid_0,
-    #collection_countrylat = adm0_lat,
-   #collection_countrylong = adm0_long,
-    #collection_subdiv1name = name_1,
-    #collection_subdiv1code = hasc_1,
-    #collection_subdiv1lat = adm1_lat,
-    #collection_subdiv1long = adm1_long,
-    #collection_subdiv2name = name_2,
-    #collection_subdiv2code = hasc_2,
-    #collection_subdiv2lat = adm2_lat,
-    #collection_subdiv2long = adm2_long,
     host_class = class,
     host_order = order,
     host_family = family,
@@ -424,19 +399,6 @@ data_formatted <- data_formatted_host %>%
     sequence_isolate,
     sequence_length,
     sequence_completeness,
-    #collection_regionname,
-    #collection_countryname,
-    #collection_countrycode,
-    #collection_countrylat,
-    #collection_countrylong,
-    #collection_subdiv1name,
-    #collection_subdiv1code,
-    #collection_subdiv1lat,
-    #collection_subdiv1long,
-    #collection_subdiv2name,
-    #collection_subdiv2code,
-    #collection_subdiv2lat,
-    #collection_subdiv2long,
     nuts0_name,
     nuts0_id,
     nuts1_name,
@@ -477,11 +439,6 @@ data_formatted <- data_formatted_host %>%
             org_location,
             host,
             isolation_source)) %>%
-  
-  # location codes
-  #mutate(collection_tipcode = coalesce(nuts3_id, nuts2_id, nuts1_id, nuts0_id)) %>%
-  #mutate(unique_id = coalesce(sequence_accession, sequence_isolate)) %>%
-  #mutate(collection_tipcode = gsub('\\.', '_', collection_tipcode)) %>%
   
   # Generate sequence names
   unite(.,
