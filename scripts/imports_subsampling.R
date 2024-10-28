@@ -1,6 +1,20 @@
-#nflg downsampling
+####################################################################################################
+####################################################################################################
+## Script name: nflg downsampling
+##
+## Purpose of script:
+##
+## Date created: 2024-10-28
+##
+##
+########################################## SYSTEM OPTIONS ##########################################
+options(scipen = 6, digits = 4) 
+memory.limit(30000000) 
 
-#dependencies
+  
+########################################## DEPENDENCIES ############################################
+# Packages
+library(tidyverse)
 library(ape)
 library(tidyverse)
 library(treeio)
@@ -8,32 +22,7 @@ library(TreeTools)
 library(ggtree)
 
 
-# import ML tree
-nflg_ml <- read.newick('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta.contree')
-
-# import metadata
-metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
-
-
-############# Import 'Master' Alignment ############# 
-nflg_alignment <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta',
-                as.matrix = T,
-                format = 'fasta')
-
-# exclude Tempest outliers
-to_exclude <- c('MK230893|Grivegnee/2017|turdus_merula|BE|2017-08',
-                'OQ414983|TV193/2019|culex_pipiens|RO|2019-07',
-                'KT445930|13-662|culex_modestus|CZ|2013-08-07')
-
-nflg_alignment %<>% .[!rownames(.) %in% to_exclude,]
-
-
-
-#################### Subsampling 1 #################### 
-# Details stratified subsampling aiming to 'thin' the tree by removing sequences that are identical
-# in composition and near-identical in traits.
-# This is applied across the entire 'global' dataset.
-
+# User functions
 # Calculates pairwise hamming distance, then groups at a threshold difference
 GroupSequences <- function(aln, snp_threshold = 0){
   
@@ -82,6 +71,33 @@ GroupSequences <- function(aln, snp_threshold = 0){
   return(out)
 }
 
+############################################## DATA ################################################
+nflg_alignment <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta',
+                           as.matrix = T,
+                           format = 'fasta')
+
+# import ML tree
+nflg_ml <- read.newick('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta.contree')
+
+# import metadata
+metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
+
+
+
+############################################## MAIN ################################################
+
+# exclude Tempest outliers
+to_exclude <- c('MK230893|Grivegnee/2017|turdus_merula|BE|2017-08',
+                'OQ414983|TV193/2019|culex_pipiens|RO|2019-07',
+                'KT445930|13-662|culex_modestus|CZ|2013-08-07')
+
+nflg_alignment %<>% .[!rownames(.) %in% to_exclude,]
+
+
+# Subsampling 1 
+# Details stratified subsampling aiming to 'thin' the tree by removing sequences that are identical
+# in composition and near-identical in traits.
+# This is applied across the entire 'global' dataset.
 
 groups <- GroupSequences(nflg_alignment, 5) 
 
@@ -109,11 +125,41 @@ subsample_1 <- metadata %>%
 
 aln_subsampled <- nflg_alignment[rownames(nflg_alignment) %in% subsample_1$tipnames,]
 
+
+# Subsampling 2
+# this uses the tip order from the MCC tree calculated using the previous subsample
+
+subsample_2 <- metadata %>%
+  
+  # include only sequences in alignment
+  filter(tipnames %in% rownames(nflg_alignment)) %>%
+  
+  # join identity groups
+  left_join(groups) %>%
+  
+  # establish groupings
+  group_by(nuts1_id,
+           date_y,
+           sequence_group) %>%
+  
+  slice_sample(n = 1)
+
+
+aln_subsampled_2 <- nflg_alignment[rownames(nflg_alignment) %in% subsample_2$tipnames,]
+
+
+############################################## WRITE ###############################################
 write.dna(aln_subsampled,
           './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta', 
           format = 'fasta')
 
 
 
-#################### Subsampling 2 #################### 
+write.dna(aln_subsampled_2,
+          './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample2.fasta', 
+          format = 'fasta')
 
+
+############################################## END #################################################
+####################################################################################################
+####################################################################################################
