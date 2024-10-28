@@ -8,8 +8,7 @@
 ##
 ##
 ########################################## SYSTEM OPTIONS ##########################################
-options(scipen = 6, digits = 4) 
-memory.limit(30000000) 
+
 
   
 ########################################## DEPENDENCIES ############################################
@@ -19,7 +18,7 @@ library(magrittr)
 library(treeio)
 library(TreeTools)
 library(ape)
-library(ad4)
+library(ade4)
 library(adephylo)
 
 # User functions
@@ -27,11 +26,14 @@ library(adephylo)
 
 ############################################## DATA ################################################
 nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
+metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
+
 
 nflg_ca %<>% 
-  full_join(metadata %>% 
+  left_join(metadata %>% 
               dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames) %>%
-              rename(label = tipnames)) 
+              rename(label = tipnames),
+            by = 'label') 
 
 
 phyclip_lineages <- read_delim('./data/phyCLIP/.txt') %>%
