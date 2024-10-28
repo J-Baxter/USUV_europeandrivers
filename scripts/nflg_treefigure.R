@@ -29,7 +29,7 @@ library(ggtreeExtra)
 nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
 nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
 
-phyclip_lineages <- read_delim('./data/phyCLIP/cluster_optimal_parameter_cs3_fdr0.1_gam3.0_sol0_f0_zero-branch-length-collapsed_rooted_nflg.txt') %>%
+phyclip_lineages <- read_delim('./data/phyCLIP/cluster_optimal_parameter_cs6_fdr0.1_gam3.0_sol0_f0_zero-branch-length-collapsed_rooted_nflg_subsample.txt') %>%
   dplyr::select(c(1,2)) %>%
   rename(lineage = CLUSTER,
          label = TAXA) %>%
@@ -61,18 +61,14 @@ p <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(shape = is.na(sequence_accession), fill = is.na(sequence_accession)),
-                colour = NA) +
+                colour = 'white') +
   scale_shape_manual(values = c("TRUE" = 23),'New Sequences') +
   scale_fill_manual(values = c("TRUE" = 'lightblue'), 'New Sequences') + 
   
   # node colour to show pp support
   geom_nodepoint(aes(colour = posterior), alpha = 0.7) +
   scale_color_distiller(palette = 'OrRd', direction = 1, 'Posterior Support') + 
-  theme_tree2() +
-  
-  # add new scale for heat map
-  new_scale_fill() 
-  
+  theme_tree2() 
 
 # Add 'is europe'
 p1 <- gheatmap(p + new_scale_fill(), metadata_in_tree %>% 
@@ -82,6 +78,7 @@ p1 <- gheatmap(p + new_scale_fill(), metadata_in_tree %>%
          offset=1, 
          width=0.05, 
          colnames = FALSE) +
+  geom_tiplab(align = T, size = 0) + 
   scale_fill_brewer('Location', palette = 'Dark2', labels = c('0' = 'Outside of Europe',
                                                         '1' = 'Within Europe')) +
   scale_x_ggtree(breaks = c(1920, 1940, 1960, 1980, 2000, 2020),

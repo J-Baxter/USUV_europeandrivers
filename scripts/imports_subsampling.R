@@ -83,6 +83,8 @@ nflg_ml <- read.newick('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_fo
 metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
 
 
+nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
+
 
 ############################################## MAIN ################################################
 
@@ -129,21 +131,51 @@ aln_subsampled <- nflg_alignment[rownames(nflg_alignment) %in% subsample_1$tipna
 # Subsampling 2
 # this uses the tip order from the MCC tree calculated using the previous subsample
 
-subsample_2 <- metadata %>%
+# get list of tips from major european clusters on MCC tree
+eu_clusters <- offspring(nflg_mcc, c(737, 624, 450, 852, 435), tiponly = TRUE) %>%
+  lapply(., function(x) dplyr::select(as_tibble(nflg_mcc), c(label, node)) %>% 
+           filter(node %in% x) %>%
+           pull(label)) %>%
+  set_names(c('A', 'B', 'C')) %>%
+  lapply(., as_tibble) %>%
+  bind_rows(,.id = 'cluster') %>%
+  rename(tipnames = value)
+  
+
+subsample_2_noneu <- metadata %>%
   
   # include only sequences in alignment
   filter(tipnames %in% rownames(nflg_alignment)) %>%
+  filter(is_europe == 0) %>%
   
-  # join identity groups
   left_join(groups) %>%
   
   # establish groupings
   group_by(nuts1_id,
-           date_y,
-           sequence_group) %>%
-  
+           date_y) %>%
   slice_sample(n = 1)
 
+subsample_2_eu <- metadata %>%
+  
+  # include only sequences in alignment
+  filter(tipnames %in% rownames(nflg_alignment)) %>%
+  
+  #left join clusters
+  left_join(eu_clusters) %>%
+  
+  # keep only main cluster 
+  filter(!is.na(cluster)) %>%
+  
+  group_by(cluster,
+           is_europe) %>%
+
+  # Sample first and last sequence from reassortant
+  slice(which(date_y == max(date_y, na.rm = T) | date_y == min(date_y, na.rm = T)), 
+        .preserve = T) %>%
+  group_by(date_y, .add = TRUE) %>%
+  slice_sample(n = 1)
+  
+subsample_2 <- bind_rows(subsample_2_noneu, subsample_2_eu)
 
 aln_subsampled_2 <- nflg_alignment[rownames(nflg_alignment) %in% subsample_2$tipnames,]
 
