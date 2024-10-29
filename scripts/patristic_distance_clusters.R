@@ -136,7 +136,8 @@ nflg_mcc %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = dist_60))
+  geom_tippoint(aes(colour = dist_60)) # Facet not possible - must run as independent plots then 
+# combined in cowplot (idea: one column of tree with corresponding distribution opposite)
 
 ############################################## WRITE ###############################################
 
