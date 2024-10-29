@@ -1,0 +1,138 @@
+####################################################################################################
+####################################################################################################
+## Script name: Cluster inference 
+##
+## Purpose of script: Estimate clusters based on the maximum patristic distance of sub trees to 
+## qualitatively compare import scenarios
+##
+## Date created: 2024-10-25
+##
+##
+########################################## SYSTEM OPTIONS ##########################################
+
+
+
+########################################## DEPENDENCIES ############################################
+# Packages
+library(tidyverse)
+library(magrittr)
+library(treeio)
+library(TreeTools)
+library(ape)
+library(ade4)
+library(adephylo)
+
+# User functions
+InferClusters <- function(phylo, n_threshold = 3, dist_threshold, filter = TRUE, metadata ){
+  
+  stopifnot(class(phylo) == 'phylo')
+  print(length(subtrees))
+  # Get subtrees from main tree and filter by minimum tip threshold
+  subtrees <- subtrees(phylo) %>%
+    .[lapply(., Ntip) %>% unlist() >= n_threshold]
+  
+  if(isTRUE(filter)){
+    int <- lapply(subtrees, function(tree) metadata %>% filter(tipnames %in% tree$tip.label)) %>%
+      lapply(., function(x) x %>% dplyr::pull(is_europe)) %>% 
+      lapply(., function(x) all(x == 1)) %>%
+      unlist() %>%
+      which()
+    
+    subtrees <-  subtrees[int]
+  }
+  
+  print(length(subtrees))
+  
+  # Calculate patristic distance matrix for all subtrees
+  subtree_patristic <- lapply(subtrees, adephylo::distTips) %>%
+    lapply(., as.matrix) 
+  
+  # determine maximum patristic distance for each subtree
+  subtree_maxpat <- lapply(subtree_patristic, max) %>% 
+    unlist()
+  
+  # filter subtrees (upper bound patristic distance)
+  subtree_below_threshold <-  subtrees[which(subtree_maxpat < dist_threshold)] 
+  
+  # Determine which subtrees are fully subsumed by other subtrees
+  tips_per_subtree <- lapply(subtree_below_threshold, function(x) x$tip.label) 
+  
+  part_of <- vector(mode = "list", length = length(tips_per_subtree))
+  
+  for (i in 1:length(tips_per_subtree)){
+    
+    tips_per_subtree[[1]]
+    
+    for ( j in 1:length(tips_per_subtree)){
+      
+      if(all(tips_per_subtree[[i]] %in% tips_per_subtree[[j]]) & i!=j){
+        
+        part_of[[i]] <- c(part_of[[i]], j)
+        
+      }
+    }
+  }
+  
+  # Elements left null are the 'top tier' clusters 
+  int_parent_nodes <- lapply(part_of, is.null) %>%
+    unlist() %>% 
+    which()
+  
+  clusters <- subtree_below_threshold[int_parent_nodes]
+  
+  # Format output tibble containing tip names and cluster designation
+  cluster_tips <- lapply(clusters, TipLabels) %>%
+    setNames(LETTERS[1:length(.)]) %>%
+    lapply(., cbind.data.frame) %>%
+    lapply(., as_tibble) %>%
+    bind_rows(., .id = 'cluster') %>%
+    rename(label = `X[[i]]`)
+  
+  return(cluster_tips)
+  
+}
+
+
+
+############################################## DATA ################################################
+nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
+metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
+
+
+############################################## MAIN ################################################
+InferClusters(phylo = nflg_ca@phylo,
+              metadata, 
+              n_threshold = 3, 
+              dist_threshold = 50)
+
+
+# Get clusters with maximum patristic distances of 30, 40, 50 and 60
+cluster_long <- lapply(c(30, 40, 50, 60),
+       InferClusters, 
+       phylo = nflg_ca@phylo,
+       n_threshold = 3, 
+       metadata) %>%
+  setNames(c('30', '40', '50', '60')) %>%
+  bind_rows(, .id = 'distance_threshold') 
+
+
+cluster_wide <- cluster_long %>%
+  pivot_wider(values_from = cluster,
+              names_from = distance_threshold,
+              names_prefix = 'dist_')
+## test
+nflg_mcc %>% 
+  left_join(cluster_tips) %>%
+  ggtree(mrsd = most_recent_date) + 
+  
+  # tip colour + shape = new sequences
+  geom_tippoint(aes(colour = cluster))
+
+############################################## WRITE ###############################################
+
+
+
+
+############################################## END #################################################
+####################################################################################################
+####################################################################################################
