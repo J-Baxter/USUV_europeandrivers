@@ -5,7 +5,7 @@
 ## Purpose of script: Estimate clusters based on the maximum patristic distance of sub trees to 
 ## qualitatively compare import scenarios
 ##
-## Date created: 2024-10-25
+## Date created: 2024-10-29
 ##
 ##
 ########################################## SYSTEM OPTIONS ##########################################
@@ -140,9 +140,8 @@ nflg_mcc %>%
 # combined in cowplot (idea: one column of tree with corresponding distribution opposite)
 
 ############################################## WRITE ###############################################
-
-
-
+write_csv(cluster_wide,
+          './2024Oct20/nflg_patristic_distance_clusters.csv')
 
 ############################################## END #################################################
 ####################################################################################################
