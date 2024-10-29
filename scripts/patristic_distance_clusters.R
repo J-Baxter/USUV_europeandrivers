@@ -113,7 +113,7 @@ InferClusters(phylo = nflg_ca@phylo,
 cluster_long <- lapply(c(30, 40, 50, 60),
        InferClusters, 
        phylo = nflg_ca@phylo,
-       n_threshold = 3, 
+       n_threshold = 2, 
        filter = TRUE,
        metadata) %>%
   setNames(c('30', '40', '50', '60')) %>%
@@ -136,7 +136,7 @@ nflg_mcc %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = dist_60)) # Facet not possible - must run as independent plots then 
+  geom_tippoint(aes(colour = dist_30)) # Facet not possible - must run as independent plots then 
 # combined in cowplot (idea: one column of tree with corresponding distribution opposite)
 
 ############################################## WRITE ###############################################
