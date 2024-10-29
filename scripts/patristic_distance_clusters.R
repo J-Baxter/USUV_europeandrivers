@@ -9,7 +9,7 @@
 ##
 ##
 ########################################## SYSTEM OPTIONS ##########################################
-
+options(ignore.negative.edge=TRUE)
 
 
 ########################################## DEPENDENCIES ############################################
@@ -21,6 +21,7 @@ library(TreeTools)
 library(ape)
 library(ade4)
 library(adephylo)
+library(ggtree)
 
 # User functions
 InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = TRUE, metadata){
@@ -96,6 +97,8 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 
 ############################################## DATA ################################################
 nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
+nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
+
 metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
 
 
@@ -121,13 +124,19 @@ cluster_wide <- cluster_long %>%
   pivot_wider(values_from = cluster,
               names_from = distance_threshold,
               names_prefix = 'dist_')
-## test
+
+# Test plot
+most_recent_date <- metadata %>%
+  filter(tipnames %in% nflg_mcc@phylo$tip.label) %>%
+  pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
+  max(na.rm = TRUE)
+
 nflg_mcc %>% 
-  left_join(cluster_tips) %>%
+  left_join(cluster_wide) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = cluster))
+  geom_tippoint(aes(colour = dist_60))
 
 ############################################## WRITE ###############################################
 
