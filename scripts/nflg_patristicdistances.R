@@ -283,6 +283,7 @@ ggplot(within_europe_clades) +
 ############################################## WRITE ###############################################
 # Panel 1: left column annotated phylo, right column corresponding patristic distance distribution
 
+
 # Phylos
 phylo_60 <- nflg_mcc %>% 
   left_join(patristic_distance_clusters) %>%
@@ -290,7 +291,7 @@ phylo_60 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_60)) +
-  scale_color_brewer(palette = 'Dark2') + 
+  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -300,7 +301,7 @@ phylo_50 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_50)) +
-  scale_color_brewer(palette = 'Dark2') + 
+  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -310,17 +311,18 @@ phylo_40 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_40)) +
-  scale_color_brewer(palette = 'Dark2') + 
+  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
+mycolours <- c("#1B9E77" ,"#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#4f77a4" ,"#48aa35","#666666")
 phylo_30 <- nflg_mcc %>% 
   left_join(patristic_distance_clusters) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_30)) +
-  scale_color_brewer(palette = 'Dark2') + 
+  scale_color_manual(values = mycolours, na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
