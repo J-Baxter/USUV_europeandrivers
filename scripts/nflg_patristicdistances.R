@@ -62,19 +62,13 @@ non_europe_tips <- nflg_ca %>%
   pull(label) 
 
 
-patristic_distances_withineurope <- distTips(nflg_ca@phylo,
-                                             tips = europe_tips,
-                                             useC = FALSE) 
+patristic_distances <- distTips(nflg_ca@phylo,
+                                method = "patristic") 
 
 
-patristic_distances_noneurope <- adephylo::distTips(nflg_ca@phylo,
-                                          tips = non_europe_tips,
-                                          method = "patristic",
-                                          useC = FALSE) 
-
-
-within_europe <- patristic_distances_withineurope %>%
+within_europe <- patristic_distances %>%
   as.matrix() %>%
+  .[europe_tips,europe_tips]
   as_tibble(rownames = 'a') %>%
   pivot_longer(-a, names_to = 'b', values_to =  'distance') %>%
   filter(a != b) %>%
@@ -82,8 +76,9 @@ within_europe <- patristic_distances_withineurope %>%
   mutate(type = 'Within Europe')
 
 
-non_europe <- patristic_distances_noneurope %>%
-  as.matrix()%>%
+non_europe <- patristic_distances %>%
+  as.matrix() %>%
+  .[non_europe_tips, non_europe_tips]
   as_tibble(rownames = 'a') %>%
   pivot_longer(-a, names_to = 'b', values_to =  'distance') %>%
   filter(a != b) %>%
@@ -243,7 +238,7 @@ ggplot(within_europe_clades) +
 
 #nflg_mcc %>% 
  # full_join(cut_avg %>% filter(k==6),
-            by = 'label') %>%
+            #by = 'label') %>%
  # ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
@@ -259,7 +254,7 @@ ggplot(within_europe_clades) +
     filter(a != b) %>%
     rowid_to_column(var = 'pair_id') %>%
     pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-    left_join(cluster_wide) %>%
+    left_join(cluster_wide %>% dplyr::select(label, dist_30)) %>%
     group_by(pair_id) %>%
     mutate(type = case_when(n_distinct(dist_30) == 1 ~ 'Within Europe: Within Clade',
                             .default = 'Within Europe: Between Clade')) %>%
