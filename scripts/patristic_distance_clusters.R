@@ -23,10 +23,11 @@ library(ade4)
 library(adephylo)
 
 # User functions
-InferClusters <- function(phylo, n_threshold = 3, dist_threshold, filter = TRUE, metadata ){
+InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = TRUE, metadata){
   
   stopifnot(class(phylo) == 'phylo')
-  print(length(subtrees))
+  
+  
   # Get subtrees from main tree and filter by minimum tip threshold
   subtrees <- subtrees(phylo) %>%
     .[lapply(., Ntip) %>% unlist() >= n_threshold]
@@ -40,20 +41,19 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold, filter = TRUE,
     
     subtrees <-  subtrees[int]
   }
-  
-  print(length(subtrees))
+
   
   # Calculate patristic distance matrix for all subtrees
   subtree_patristic <- lapply(subtrees, adephylo::distTips) %>%
     lapply(., as.matrix) 
-  
+
   # determine maximum patristic distance for each subtree
   subtree_maxpat <- lapply(subtree_patristic, max) %>% 
     unlist()
   
   # filter subtrees (upper bound patristic distance)
   subtree_below_threshold <-  subtrees[which(subtree_maxpat < dist_threshold)] 
-  
+
   # Determine which subtrees are fully subsumed by other subtrees
   tips_per_subtree <- lapply(subtree_below_threshold, function(x) x$tip.label) 
   
@@ -103,17 +103,18 @@ metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
 InferClusters(phylo = nflg_ca@phylo,
               metadata, 
               n_threshold = 3, 
+              filter = TRUE,
               dist_threshold = 50)
-
 
 # Get clusters with maximum patristic distances of 30, 40, 50 and 60
 cluster_long <- lapply(c(30, 40, 50, 60),
        InferClusters, 
        phylo = nflg_ca@phylo,
        n_threshold = 3, 
+       filter = TRUE,
        metadata) %>%
   setNames(c('30', '40', '50', '60')) %>%
-  bind_rows(, .id = 'distance_threshold') 
+  bind_rows(., .id = 'distance_threshold') 
 
 
 cluster_wide <- cluster_long %>%
