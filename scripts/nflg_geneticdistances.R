@@ -25,6 +25,9 @@ library(ade4)
 ############################################## DATA ################################################
 temp_tree <- read.tree('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta.treefile') %>%
   multi2di()
+
+temp_tree$node.label <- ifelse(temp_tree$node.label == '', '100',temp_tree$node.label)
+
 write.tree(temp_tree, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1_bifur.tree')
 
 aln_subsampled <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta',
