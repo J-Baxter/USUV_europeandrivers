@@ -24,6 +24,7 @@ library(magrittr)
 ############################################## DATA ################################################
 nflg_mcc<- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
 metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
+patristic_distance_clusters <- read_csv('./2024Oct20/nflg_patristic_distance_clusters.csv')
 
 
 metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
@@ -43,13 +44,20 @@ beast_data <- metadata_in_tree %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   
+  left_join(patristic_distance_clusters,
+            by = join_by(tipnames == label)) %>%
+  
   # Select columns for BEAST
   dplyr::select(
     tipnames,
     lat,
     lon,
-    nuts0_id,
-    is_europe)
+    is_europe,
+    starts_with('dist_')) %>%
+  
+  mutate(across(starts_with('dist'), .fns = ~ case_when(grepl('KU760915', tipnames) ~ 'X',
+                                                       grepl('not_europe', is_europe) ~ 'source',
+                                                       .default = .x)))
 
 
 ############################################## WRITE ###############################################
