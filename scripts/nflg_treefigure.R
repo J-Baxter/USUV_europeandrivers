@@ -10,7 +10,7 @@
 ########################################## SYSTEM OPTIONS ##########################################
 options(scipen = 6, digits = 4) 
 memory.limit(30000000) 
-
+options(ignore.negative.edge=TRUE)
   
 ########################################## DEPENDENCIES ############################################
 # Packages
@@ -47,65 +47,85 @@ most_recent_date <- metadata_in_tree %>%
   pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
   max(na.rm = TRUE)
 
-ggtree(nflg_ca,
-       mrsd = most_recent_date) + 
-  theme_tree2() +
+#ggtree(nflg_ca,
+      # mrsd = most_recent_date) + 
+ # theme_tree2() +
 
 p <- nflg_mcc %>% 
-  full_join(phyclip_lineages) %>%
-  full_join(metadata %>% 
+  
+  left_join(metadata %>% 
               dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage) %>%
               rename(label = tipnames),
             by = 'label') %>%
   ggtree(mrsd = most_recent_date) + 
+  theme_tree2(plot.margin = unit(c(1,1,1,1), units = "cm"),
+              axis.text.x = element_text(size = 20)) +
+  
+  scale_x_continuous(
+    #limits = c(2000, 2023),
+    breaks = seq(1920, 2020, 20)) +
   
   # tip colour + shape = new sequences
-  geom_tippoint(aes(shape = is.na(sequence_accession), fill = is.na(sequence_accession)),
-                colour = 'white') +
-  scale_shape_manual(values = c("TRUE" = 23),'New Sequences') +
-  scale_fill_manual(values = c("TRUE" = 'lightblue'), 'New Sequences') + 
+  geom_tippoint(aes(colour = is.na(sequence_accession),
+                    shape = is.na(sequence_accession)),
+                size = 3, 
+                alpha = 0.9) +
+  
+  geom_tiplab(aes(colour = is.na(sequence_accession)),
+              #align = TRUE, 
+              size = 0) +
+
+  scale_shape_manual(values = c("TRUE" = 18),
+                     'New Sequences') +
+  scale_colour_manual(values = c("TRUE" = 'blue'), 
+                      'New Sequences') + 
   
   # node colour to show pp support
+  new_scale_colour()+
   geom_nodepoint(aes(colour = posterior), alpha = 0.7) +
-  scale_color_distiller(palette = 'OrRd', direction = 1, 'Posterior Support') + 
-  theme_tree2() 
-
-# Add 'is europe'
-p1 <- gheatmap(p + new_scale_fill(), metadata_in_tree %>% 
-           dplyr::select(is_europe, tipnames) %>%
-           mutate(is_europe = as.factor(is_europe)) %>%
-           column_to_rownames(var = 'tipnames'), 
-         offset=1, 
-         width=0.05, 
-         colnames = FALSE) +
-  geom_tiplab(align = T, size = 0) + 
+  scale_color_distiller(palette = 'YlOrRd', direction = 1, 'Posterior Support') + 
+  
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = as.factor(is_europe)),
+             width = 3,
+             colour = "white",
+             pwidth = 1,
+             offset = 0.03) + 
   scale_fill_brewer('Location', palette = 'Dark2', labels = c('0' = 'Outside of Europe',
-                                                        '1' = 'Within Europe')) +
-  scale_x_ggtree(breaks = c(1920, 1940, 1960, 1980, 2000, 2020),
-    labels = c(1920, 1940, 1960, 1980, 2000, 2020)) + 
-  scale_y_continuous(expand=c(0, 0.3))
+                                                              '1' = 'Within Europe')) + 
+  
+  new_scale_fill()+
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = nuts0_id),
+             width = 3,
+             colour = "white",
+             pwidth = 1,
+             offset = 00.04) +
+  scale_fill_d3(name = 'Country', 
+                palette ='category20', 
+                alpha = 0.99, 
+                labels = c('AT' = 'Austria',
+                           'BE' = 'Belgium',
+                           'CF' = 'Central African Republic',
+                           'DE' = 'Germany',
+                           'ES' = 'Spain',
+                           'FR' = 'France',
+                           'HU' = 'Hungary',
+                           'IL' = 'Israel',
+                           'IT' = 'Italy',
+                           'LU' = 'Luxembourg',
+                           'NL' = 'Netherlands',
+                           'RS' = 'Serbia',
+                           'SE' = 'Sweden',
+                           'SK' = 'Slovakia',
+                           'SN' = 'Senegal',
+                           'UG' = 'Uganda',
+                           'UK' = 'United Kingdom',
+                           'ZA' = 'South Africa' )) 
+           
 
-# Add phyclip lineages
-p2 <- gheatmap(p1 + new_scale_fill(), phyclip_lineages %>% 
-                 column_to_rownames(var = 'label'), 
-               offset=8, 
-               width=0.05, 
-               colnames = FALSE,
-               custom_column_labels = '') +
-  #scale_fill_brewer('Lineage', palette = 'Paired') + #colour scheme needs factors in the right order so sublineages are the 'correct' colour
-  scale_x_ggtree(breaks = c(1920, 1940, 1960, 1980, 2000, 2020),
-                 labels = c(1920, 1940, 1960, 1980, 2000, 2020)) + 
-  scale_y_continuous(expand=c(0, 0.3))
+ggsave(p, filename = "./summarytree.png", width = 13, height = 12)
 
-p3 <- gheatmap(p2 + new_scale_fill(), metadata %>% column_to_rownames(var = 'tipnames') %>% dplyr::select(lineage), 
-               offset=16, 
-               width=0.05, 
-               colnames = FALSE,
-               custom_column_labels = '') +
-  #scale_fill_brewer('Lineage', palette = 'Paired') + #colour scheme needs factors in the right order so sublineages are the 'correct' colour
-  scale_x_ggtree(breaks = c(1920, 1940, 1960, 1980, 2000, 2020),
-                 labels = c(1920, 1940, 1960, 1980, 2000, 2020)) + 
-  scale_y_continuous(expand=c(0, 0.3))
 ############################################## WRITE ###############################################
 
 
