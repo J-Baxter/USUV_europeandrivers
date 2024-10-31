@@ -127,7 +127,21 @@ outside_europe_between <- patristic_distances %>%
   theme(legend.position = 'inside',
         legend.position.inside = c(0.75, 0.75))
  
+nflg_mcc <- read.beast('./2024Oct20/test_beast/traits/USUV_2024Oct20_nflg_subsample1_traits_mcc.tree')
+most_recent_date <- metadata_in_tree %>%
+  pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
+  max(na.rm = TRUE)
 
+p1 <- nflg_mcc %>% 
+  ggtree(mrsd = most_recent_date, aes(colour = is_europe)) + 
+  theme_tree2(plot.margin = unit(c(1,1,1,1), units = "cm"),
+              axis.text.x = element_text(size = 20)) +
+  scale_colour_brewer('Location', palette = 'Dark2', labels = c('not_europe' = 'Outside of Europe',
+                                                                'europe' = 'Within Europe'))+
+  new_scale_colour()+
+  geom_nodepoint(aes(colour = is_europe))+
+  scale_colour_brewer('Location', palette = 'Dark2', labels = c('not_europe' = 'Outside of Europe',
+                                                                'europe' = 'Within Europe'))
    
 # Distributions for minimum number of imports (ie, one intro per phyly of EU sequences)
 minimum_import_clades <- offspring(nflg_mcc, c(737, # Africa 3
