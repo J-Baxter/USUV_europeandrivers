@@ -31,12 +31,14 @@ concat_alignment <- read.dna('./2024Oct20/alignments/concatenated_alignments/USU
                            as.matrix = T,
                            format = 'fasta')
 
-ml_concat <- read.tree('./2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_withconcatenated.fasta.contree')
-metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
-
 clusters <- read_csv('./data/clusters_2024Oct29.csv')
 
-metadata %<>%
+concat_metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20_withconcatenated.csv') %>%
+  left_join(clusters)
+
+ml_concat <- read.tree('./2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_withconcatenated.fasta.contree')
+
+concat_metadata %<>%
   left_join(clusters)
 
 
@@ -48,9 +50,9 @@ rooted_concat <- root(ml_concat, outgroup =  "EU074021|NA|NA|ZA|1958" , resolve.
 
 
 # Determine the MRCA of clusters, as determined by NFLG sequences
-rooted_concat %>%
+cluster_mrcas <- rooted_concat %>%
   as.treedata() %>%
-  left_join(metadata,
+  left_join(concat_metadata,
             by = join_by(label == tipnames)) %>%
   as_tibble() %>%
   drop_na(cluster) %>%
@@ -59,7 +61,25 @@ rooted_concat %>%
   lapply(., getMRCA, phy = rooted_concat)
 
 
+cluster_offspring <- lapply(cluster_mrcas, offspring, .data =  rooted_concat, tiponly = TRUE) %>%
+  lapply(., function(x) rooted_concat$tip.label[x]) %>% 
+  lapply(., as_tibble) %>%
+  setNames(LETTERS[1:5]) %>%
+  bind_rows(., .id = 'cluster') %>%
+  rename(tipnames = value)
 
+
+# Subset alignments and update metadata
+cluster_metadata <- concat_metadata %>%
+  rows_patch(., cluster_offspring, by='tipnames') 
+
+cluster_metadata_split <- cluster_metadata %>%
+  group_split(cluster)
+
+cluster_concat_alignments <- lapply(cluster_metadata_split, function(x) concat_alignment[rownames(concat_alignment) %in% x$tipnames,])
+
+
+############################################## WRITE ###############################################
 # Plot ML tree with labelled clades
 rooted_concat %>%
   as.treedata() %>%
@@ -75,14 +95,18 @@ rooted_concat %>%
   geom_hilight(node=1739, fill="purple")+
   geom_hilight(node=2031, fill="green")+
   geom_hilight(node=2323, fill="blue")+
-  geom_hilight(node=2321, fill="red")+
+  geom_hilight(node=2321, fill="red")
+  
   
 
-# Subset alignments and update metadata
+filenames <- paste0('./2024Oct20/alignments/concatenated_alignments//USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_',
+                    c('A', 'B', 'C', 'D', 'E'),
+                    '.fasta')
 
-############################################## WRITE ###############################################
-
-
+mapply(write.dna,
+       cluster_concat_alignments[-6],
+       filenames,
+       format = 'fasta')
 
 
 ############################################## END #################################################
