@@ -216,44 +216,45 @@ plot(log10(cattle))
 
 ######################## 30th October
 clusters <- read_csv('./data/clusters_2024Oct29.csv')
+concat_metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20_withconcatenated.csv') %>%
+  left_join(clusters)
+ml_concat <- read.tree('./2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_withconcatenated.fasta.contree')
 
-# NFLG only
-expand_grid(gene_region = 'nflg',
-            cluster = LETTERS[1:5],
-            NUTS_ID = all_europe_sf$NUTS_ID,
-            n = NA_integer_) %>%
-  rows_patch(metadata %>%
-               left_join(clusters) %>%
-               rename(NUTS_ID = nuts1_id) %>%
-               filter(generegion_nflg == 1) %>%
-               pivot_longer(starts_with('generegion'), names_to = 'gene_region') %>%
-               mutate(gene_region = gsub('^generegion_', '', gene_region)) %>%
-               summarise(n = sum(value), .by = c(NUTS_ID, gene_region, cluster)),
-             unmatched = 'ignore',
-             by = c('NUTS_ID', 'gene_region', 'cluster')) %>%
-  left_join(all_europe_sf, .) %>%
-  filter(CNTR_CODE != 'TR') %>%
-  ggplot() +
-  geom_sf(aes(fill = n), colour = 'white') + 
-  geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
-  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
-  scale_fill_fermenter(palette = 'RdPu',
-                       direction = -1, 
-                       #transform = 'log10',
-                       na.value="lightgrey", 
-                       breaks = c(1, 5, 10, 20, 50, 100)) +
-  facet_grid(cols = vars(cluster)) +
-  theme_void() 
+# first root ml tree by south african sequences
+rooted_concat <- root(ml_concat, outgroup =  "EU074021|NA|NA|ZA|1958" , resolve.root = TRUE)
+
+
+# Determine the MRCA of clusters, as determined by NFLG sequences
+cluster_mrcas <- rooted_concat %>%
+  as.treedata() %>%
+  left_join(concat_metadata,
+            by = join_by(label == tipnames)) %>%
+  as_tibble() %>%
+  drop_na(cluster) %>%
+  group_split(cluster) %>%
+  lapply(., pull, 'node') %>%
+  lapply(., getMRCA, phy = rooted_concat)
+
+
+cluster_offspring <- lapply(cluster_mrcas, offspring, .data =  rooted_concat, tiponly = TRUE) %>%
+  lapply(., function(x) rooted_concat$tip.label[x]) %>% 
+  lapply(., as_tibble) %>%
+  setNames(LETTERS[1:5]) %>%
+  bind_rows(., .id = 'cluster') %>%
+  rename(tipnames = value)
+
+cluster_metadata <- concat_metadata %>%
+  rows_patch(., cluster_offspring, by='tipnames') 
+
+cluster_metadata_split <- cluster_metadata %>%
+  group_split(cluster)
+
 
 # Requires cluster designation for partial genomes
-expand_grid(gene_region = c('nflg', 
-                            'env_1003_1491',
-                            'NS5_9100_9600', 
-                            'NS5_8968_9264',
-                            'NS5_10042_10312'),
-            cluster = LETTERS[1:5],
-            NUTS_ID = all_europe_sf$NUTS_ID,
-            n = NA_integer_) %>%
+nlfg_mapdata <- expand_grid(gene_region = 'nflg',
+                            cluster = LETTERS[1:5],
+                            NUTS_ID = all_europe_sf$NUTS_ID,
+                            n = NA_integer_) %>%
   rows_patch(metadata %>%
                left_join(clusters) %>%
                rename(NUTS_ID = nuts1_id) %>%
@@ -263,6 +264,21 @@ expand_grid(gene_region = c('nflg',
                summarise(n = sum(value), .by = c(NUTS_ID, gene_region, cluster)),
              unmatched = 'ignore',
              by = c('NUTS_ID', 'gene_region', 'cluster')) %>%
+  mutate(row = 'nflg')
+
+all_sequences_mapdata <- expand_grid(cluster = LETTERS[1:5],
+                                     NUTS_ID = all_europe_sf$NUTS_ID,
+                                     n = NA_integer_) %>%
+  rows_patch(cluster_metadata %>%
+               rename(NUTS_ID = nuts1_id) %>%
+               summarise(n = n(), .by = c(NUTS_ID, cluster)),
+             unmatched = 'ignore',
+             by = c('NUTS_ID', 'cluster')) %>%
+  mutate(row = 'all_sequences')
+
+bind_rows(nlfg_mapdata,
+          all_sequences_mapdata) %>%
+  mutate(row = factor(row, levels = c('nflg', 'all_sequences'))) %>%
   left_join(all_europe_sf, .) %>%
   filter(CNTR_CODE != 'TR') %>%
   ggplot() +
@@ -274,5 +290,12 @@ expand_grid(gene_region = c('nflg',
                        #transform = 'log10',
                        na.value="lightgrey", 
                        breaks = c(1, 5, 10, 20, 50, 100)) +
-  facet_grid(cols = vars(cluster)) +
-  theme_void() 
+  facet_grid(cols = vars(cluster), rows= vars(row),
+             labeller = labeller(cluster = c('A' = 'A (EU1+2)',
+                                             'B' = 'B (EU3)',
+                                             'C' = 'C (AF3)',
+                                             'D' = 'D (AF2)',
+                                             'E' = 'E (AF1)'),
+                                 row = c('all_sequences' = 'All sequences',
+                                         'nflg' = 'NFLG')), switch = 'y') +
+  theme_void(base_size = 18) 
