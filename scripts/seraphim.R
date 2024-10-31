@@ -1,17 +1,19 @@
 # Phylogeography visualisation
 library(seraphim)
+library(giscoR)
+library(diagram)
 
 # seraphim plots
 
-allTrees <- scan(file = '~/Downloads/USUV_EU3_nflg_2024May7_subsampled.trees',
+allTrees <- scan(file = './2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_C_subsampled_traits_1000.trees',
                  what = '',
                  sep = '\n',
                  quiet = T)
-localTreesDirectory = "./Extracted_trees/"
+localTreesDirectory = "./2024Oct20/alignments/subset_alignments/C/"
 burnIn <- 0
 randomSampling <- FALSE
 nberOfTreesToSample <- 1000
-mostRecentSamplingDatum <- 2021
+mostRecentSamplingDatum <- decimal_date(c_most_recent_date %>% ym())
 coordinateAttributeName <- "location"
 treeExtractions(localTreesDirectory,
                 allTrees,
@@ -22,8 +24,8 @@ treeExtractions(localTreesDirectory,
                 coordinateAttributeName)
 
 
-mcc_tre <-readAnnotatedNexus('~/Downloads/USUV_EU3_nflg_2024May7_subsampled_mcc.tree')
-source("~/Downloads/mccExtractions.R") # Script obtained from the GitHub tutorial folder.
+mcc_tre <-readAnnotatedNexus('./2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_C_subsampled_traits_mcc.tree')
+source("./imported_scripts/mccExtractions.r") # Script obtained from the GitHub tutorial folder.
 
 mcc_tab <- mccExtractions(mcc_tre, mostRecentSamplingDatum)
 
@@ -50,74 +52,74 @@ for (i in 1:length(polygons)){
 
 # Step 6: Co-plotting the HPD regions and MCC tree ----
 # Step 6: Co-plotting the HPD regions and MCC tree ----
-map <- ne_countries(returnclass = "sf") %>% st_transform(., 4326) filter(COUNTRY%in% c(
-  'United Kingdom','France','Spain', 'Portugal', 'Andorra', 'Ireland', 'Poland',
-  'Monaco', 'Switzerland', 'Italy', 'Luxembourg', 'Netherlands', 'Moldova', "Bosnia and Herzegovina",
-  'Belgium', 'Netherlands', 'Germany', 'Denmark', 'Norway', 
-  'Sweden', 'Finland', 'Estonia', 'Lithuania', 'Latvia', 
-  'Belarus', 'Ukraine', 'Turkey', 'Greece', 'Cyprus', "North Macedonia", "Liechtenstein",
-  'Slovakia', 'Slovenia', 'Croatia', 'Serbia', 'Hungary', 'Romania', 'Bulgaria', 
-  'Czechia', 'Austria', 'Albania', 'Kosovo', 'Guernsey', 'Jersey', 'Isle of Man', 'Faroe Islands',
-  'Iceland', 'Monaco', 'San Marino', 'Russia', 'Morocco', 'Algeria', 'Tunisia', "Libya", 'Egypt', 'Israel', 'Syria', 'Lebanon'))%>% 
-   # Set CRS to lat-long.
+map <-all_europe_sf
+# plot nodes on map
+nodes <- mcc_tre_tbl %>%
+  dplyr::select(node,height, location1, location2) %>%
+  mutate(year = decimal_date(ym(c_most_recent_date)) - as.numeric(height)) %>%
+  st_as_sf(coords = c( 'location2', 'location1'), 
+           crs = 4326)
 
 
-#%>%
-#st_as_sf(coords = c("location1", "location2"), crs = 4326) %>% 
- # st_transform(crs = crs_use)
-# Plot the continuous phylogeography in an external PDF:
-pdf("test.pdf", width = 6, height = 6.3)
-par(mar=c(0,0,0,0), oma=c(1.2,3.5,1,0), mgp=c(0,0.4,0), lwd=0.2, bty="o")
+arrows <-  mcc_tre_tbl %>%
+  dplyr::select(node, parent) %>%
+  left_join(mcc_tre_tbl %>%
+              dplyr::select(node, location1, location2)) %>%
+  left_join(mcc_tre_tbl %>%
+              dplyr::select(node, location1, location2),
+            by = join_by(parent== node)) %>%
+  mutate(across(starts_with('location'), .fns = ~ as.numeric(.x))) %>%
+  mutate(location1.y = case_when(location1.y == location1.x ~ location1.y + 0.00000001, 
+                                 .default = location1.y),
+         location2.y = case_when(location2.y == location2.x ~ location2.y + 0.00000001,
+                                 .default = location2.y))
 
-plot(st_geometry(map),
-     col="grey", border = "#D1D1D1", lwd = 1.5,
-     xlim = c(4, 25),
-     ylim = c(45, 65))
-for (i in 1:length(polygons)){
-  plot(polygons[[i]], axes=F, col=polygons_colours[i], add=T, border=NA)
-}
-for (i in 1:dim(mcc_tab)[1]){
-  curvedarrow(cbind(mcc_tab[i,"startLon"],mcc_tab[i,"startLat"]), cbind(mcc_tab[i,"endLon"],mcc_tab[i,"endLat"]), arr.length=0,
-              arr.width=0, lwd=0.2, lty=1, lcol="gray10", arr.col=NA, arr.pos=FALSE, curve=0.1, dr=NA, endhead=F)
-}
-for (i in dim(mcc_tab)[1]:1){
-  if (i == 1)
-  {
-    points(mcc_tab[i,"startLon"], mcc_tab[i,"startLat"], pch=16, col=colour_scale[1], cex=0.8)
-    points(mcc_tab[i,"startLon"], mcc_tab[i,"startLat"], pch=1, col="gray10", cex=0.8)
-  }
-  points(mcc_tab[i,"endLon"], mcc_tab[i,"endLat"], pch=16, col=endYears_colours[i], cex=0.8)
-  points(mcc_tab[i,"endLon"], mcc_tab[i,"endLat"], pch=1, col="gray10", cex=0.8)
-}
+sf_list <- lapply(polygons, st_as_sf) 
+sf_combined <- bind_rows(sf_list) %>%
+  pivot_longer(cols = starts_with('2'), names_to = 'year', values_to = 'value') %>%
+  filter(value == 1) %>%
+  mutate(year = as.numeric(year)) %>%
+  dplyr::select(-value) %>%
+  st_set_crs(4326) 
 
-# 2nd add the axes:
-#axis(side = 1, 
-    # at = seq(-5, -3.8, 0.1), 
-    # pos= 55.372, # originally at 55.4
-    # mgp=c(0,0.2,0), 
-     #cex.axis=0.5, 
-     #lwd=1, 
-     #lwd.tick=0.2, 
-     #padj=-0.8, 
-     #tck=-0.01, 
-     #col.axis="gray30")
-#axis(side = 2, 
-    # at = seq(55.3, 56.1, 0.1), 
-    # pos= -4.877, # originally at -5
-    # mgp=c(0,0.2,0), 
-     #cex.axis=0.5, 
-     #lwd=1, 
-     #lwd.tick=0.2, 
-     #padj=-0.8, 
-     #tck=-0.01, 
-     #col.axis="gray30")
 
-# 3rd add the legend:
-rast = raster(matrix(nrow=1, ncol=2)); rast[1] = min(mcc_tab[,"startYear"]); rast[2] = max(mcc_tab[,"endYear"])
-plot(rast, legend.only=T, add=T, col=colour_scale, legend.width=0.5, legend.shrink=0.3, smallplot=c(0.45,0.95,0.08,0.1),
-     legend.args=list(text="", cex=0.7, line=0.3, col="gray30"), horizontal=T,
-     axis.args=list(cex.axis=0.6, lwd=0, lwd.tick=0.2, tck=-0.5, col.axis="gray30", line=0, mgp=c(0,-0.02,0), at=seq(2008,2023,1)))
-dev.off()
+ggplot(map) +
+  geom_sf() +
+  
+  # Plot HPD polygons
+  geom_sf(data = sf_combined ,aes(fill = year),lwd = 0,
+          alpha = 0.2) + 
+  
+  
+  # Plot Branches (support level?)
+  geom_curve(data = arrows, aes(x = location2.x, y = location1.x,
+                                xend = location2.y, yend = location1.y),
+             lwd = 0.3,
+             curvature = 0.2) + 
+  
+  # Plot nodes
+  geom_sf(data = nodes, shape = 21 , size = 2, aes(fill = year))+
+  
+  # Set colour scale
+  scale_fill_viridis_c('Year',
+                       direction = -1,
+                       option = 'C')+
+  
+  
+  coord_sf(ylim = c(40,60), xlim = c(-5, 20), expand = FALSE) +
+  theme_void(base_size = 18) + 
+  guides(fill = guide_colourbar(
+                                theme = theme(
+                                  legend.key.width  = unit(15, "lines"),
+                                  legend.key.height = unit(1, "lines")
+                                  ))) + 
+  
+  theme(legend.background = element_rect(colour="white", fill="white"),
+        legend.position =c(.7,.1),
+        legend.title = element_text( vjust = 1),
+        legend.direction="horizontal")
+
+
 
 
 # Phylogeography dispersal vectors
@@ -126,7 +128,7 @@ nberOfExtractionFiles = 100
 timeSlices = 100
 onlyTipBranches = FALSE
 showingPlots = FALSE
-outputName = "WNV"
+outputName = "USUV_C"
 nberOfCores = 1
 slidingWindow = 1
 
