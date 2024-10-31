@@ -2,14 +2,14 @@
 library(seraphim)
 library(giscoR)
 library(diagram)
-
+library(lubridate)
 # seraphim plots
 
-allTrees <- scan(file = './2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_B_subsampled_traits_1000.trees',
+allTrees <- scan(file = './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_D_subsampled_1000.trees',
                  what = '',
                  sep = '\n',
                  quiet = T)
-TREEFILE <- './2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_B_subsampled_traits_mcc.tree'
+TREEFILE <- './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_D_subsampled_mcc.tree'
 
 localTreesDirectory = "./2024Oct20/alignments/subset_alignments/B/"
 burnIn <- 0
