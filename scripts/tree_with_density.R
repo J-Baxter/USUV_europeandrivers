@@ -19,8 +19,8 @@ GetNodeAges <- function(mrsd, nodeheight){
   return(final_date)
   
 }
-all_europe <- read.beast('~/Downloads/ffs.tree')
-all_logs <- beastio::readLog('~/Downloads/USUV_nflg_2024May7_subsampled_SRD06_relaxLn_constant_traits_2.log') %>%
+all_europe <-  read.beast('./2024Oct20/test_beast/traits/USUV_2024Oct20_nflg_subsample1_traits_mcc.tree')
+all_logs <- beastio::readLog('./2024Oct20/test_beast/traits/USUV_2024Oct20_nflg_subsample1_traits.log') %>%
   ggs()
 tmrca <- all_logs %>% filter(Parameter == 'age.root.')
 

@@ -109,7 +109,7 @@ outside_europe_between <- patristic_distances %>%
 
 
 
-  bind_rows(within_europe,
+ p1b <-  bind_rows(within_europe,
             outside_europe_within,
             outside_europe_between) %>%
   ggplot() +
@@ -132,6 +132,11 @@ most_recent_date <- metadata_in_tree %>%
   pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
   max(na.rm = TRUE)
 
+
+# Define the shading intervals - age root for tmrca. Not sure yet on other nodes
+shading_intervals <- seq(1920, 2030, by = 10)
+shading_intervals_end <- c(shading_intervals[-1] - 1, 2030)
+
 p1 <- nflg_mcc %>% 
   ggtree(mrsd = most_recent_date, aes(colour = is_europe)) + 
   theme_tree2(plot.margin = unit(c(1,1,1,1), units = "cm"),
@@ -141,8 +146,15 @@ p1 <- nflg_mcc %>%
   new_scale_colour()+
   geom_nodepoint(aes(colour = is_europe))+
   scale_colour_brewer('Location', palette = 'Dark2', labels = c('not_europe' = 'Outside of Europe',
-                                                                'europe' = 'Within Europe'))
-   
+                                                                'europe' = 'Within Europe')) + 
+  #Background
+  annotate("rect", 
+           xmin = shading_intervals[seq(1, length(shading_intervals), 2)], 
+           xmax = shading_intervals_end[seq(1, length(shading_intervals_end), 2)], 
+           ymin = -Inf, ymax = Inf, alpha = 0.2, fill = "grey") 
+
+cowplot::plot_grid( p1, p1b, align = 'hv')
+
 # Distributions for minimum number of imports (ie, one intro per phyly of EU sequences)
 minimum_import_clades <- offspring(nflg_mcc, c(737, # Africa 3
                                                449, #EU1 + 2 
@@ -211,7 +223,7 @@ pdist30_clades <- patristic_distances %>%
   filter(a != b) %>%
   rowid_to_column(var = 'pair_id') %>%
   pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-  left_join(cluster_wide %>% dplyr::select(label, dist_30)) %>%
+  left_join(patristic_distance_clusters %>% dplyr::select(label, dist_30)) %>%
   group_by(pair_id) %>%
   mutate(type = case_when(n_distinct(dist_30) == 1 ~ 'Within Europe: Within Clade',
                           .default = 'Within Europe: Between Clade')) %>%
@@ -229,7 +241,7 @@ pdist40_clades <- patristic_distances %>%
   filter(a != b) %>%
   rowid_to_column(var = 'pair_id') %>%
   pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-  left_join(cluster_wide %>% dplyr::select(label, dist_40)) %>%
+  left_join(patristic_distance_clusters %>% dplyr::select(label, dist_40)) %>%
   group_by(pair_id) %>%
   mutate(type = case_when(n_distinct(dist_40) == 1 ~ 'Within Europe: Within Clade',
                           .default = 'Within Europe: Between Clade')) %>%
@@ -247,7 +259,7 @@ pdist50_clades <- patristic_distances %>%
   filter(a != b) %>%
   rowid_to_column(var = 'pair_id') %>%
   pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-  left_join(cluster_wide %>% dplyr::select(label, dist_50)) %>%
+  left_join(patristic_distance_clusters %>% dplyr::select(label, dist_50)) %>%
   group_by(pair_id) %>%
   mutate(type = case_when(n_distinct(dist_50) == 1 ~ 'Within Europe: Within Clade',
                           .default = 'Within Europe: Between Clade')) %>%
@@ -266,7 +278,7 @@ pdist60_clades <- patristic_distances %>%
     filter(a != b) %>%
     rowid_to_column(var = 'pair_id') %>%
     pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-    left_join(cluster_wide %>% dplyr::select(label, dist_60)) %>%
+    left_join(patristic_distance_clusters %>% dplyr::select(label, dist_60)) %>%
     group_by(pair_id) %>%
     mutate(type = case_when(n_distinct(dist_60) == 1 ~ 'Within Europe: Within Clade',
                             .default = 'Within Europe: Between Clade')) %>%
@@ -305,7 +317,10 @@ phylo_60 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_60)) +
-  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL,
+                  na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -315,7 +330,10 @@ phylo_50 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_50)) +
-  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL,
+                  na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -325,7 +343,10 @@ phylo_40 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_40)) +
-  scale_color_brewer(palette = 'Dark2', na.value = NA) + 
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL,
+                  na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -336,7 +357,10 @@ phylo_30 <- nflg_mcc %>%
   
   # tip colour + shape = new sequences
   geom_tippoint(aes(colour = dist_30)) +
-  scale_color_manual(values = mycolours, na.value = NA) + 
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL,
+                  na.value = NA) + 
   theme_tree2() +
   theme(legend.position = 'none')
 
@@ -345,17 +369,19 @@ phylo_grid <- plot_grid(phylo_60,
                         phylo_40,
                         phylo_30,
                         align = 'hv',
-                        ncol = 1)
+                        ncol = 4)
 
 
 # Distributions
 
 dist_60 <- ggplot(pdist60_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
-  scale_fill_brewer(NULL,
-                    palette = 'Dark2')+
-  scale_colour_brewer(NULL,
-                      palette = 'Dark2')+
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) + 
+  scale_fill_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) +
   scale_x_continuous('Patristic Distance',
                      expand = c(0.005,0),
                      limits = c(0,300))+
@@ -367,10 +393,12 @@ dist_60 <- ggplot(pdist60_clades) +
 
 dist_40 <- ggplot(pdist40_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
-  scale_fill_brewer(NULL,
-                    palette = 'Dark2')+
-  scale_colour_brewer(NULL,
-                      palette = 'Dark2')+
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) + 
+  scale_fill_d3(palette = 'category20',
+                alpha = 0.99,
+                name= NULL) +
   scale_x_continuous('Patristic Distance',
                      expand = c(0.005,0),
                      limits = c(0,300))+
@@ -381,10 +409,12 @@ dist_40 <- ggplot(pdist40_clades) +
 
 dist_50 <- ggplot(pdist50_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
-  scale_fill_brewer(NULL,
-                    palette = 'Dark2')+
-  scale_colour_brewer(NULL,
-                      palette = 'Dark2')+
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) + 
+  scale_fill_d3(palette = 'category20',
+                alpha = 0.99,
+                name= NULL) +
   scale_x_continuous('Patristic Distance',
                      expand = c(0.005,0),
                      limits = c(0,300))+
@@ -395,10 +425,12 @@ dist_50 <- ggplot(pdist50_clades) +
 
 dist_30 <- ggplot(pdist30_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
-  scale_fill_brewer(NULL,
-                    palette = 'Dark2')+
-  scale_colour_brewer(NULL,
-                      palette = 'Dark2')+
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) + 
+  scale_fill_d3(palette = 'category20',
+                alpha = 0.99,
+                name= NULL) +
   scale_x_continuous('Patristic Distance',
                      expand = c(0.005,0),
                      limits = c(0,300))+
@@ -413,11 +445,12 @@ dist_grid <- plot_grid(dist_60,
                         dist_40,
                         dist_30,
                         align = 'hv',
-                        ncol= 1)
+                        ncol= 4)
 
 plot_grid(phylo_grid,
           dist_grid,
-          ncol = 2,
+          #ncol = 4,
+          nrow = 2,
           align = 'hv')
 ############################################## END #################################################
 ####################################################################################################
