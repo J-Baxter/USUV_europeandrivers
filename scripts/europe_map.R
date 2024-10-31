@@ -112,7 +112,11 @@ plt1 <- expand_grid(gene_region = c('nflg',
   geom_sf(aes(fill = n), colour = 'white') + 
   geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
   coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
-  scale_fill_distiller(palette = 'RdPu', transform = 'log10', direction = -1, , na.value="lightgrey", breaks = c(0, 1, 5, 10, 20, 50, 100)) +
+  scale_fill_distiller(palette = 'RdPu', 
+                       #transform = 'log10', 
+                       direction = -1, , 
+                       na.value="lightgrey", 
+                       breaks = c(0, 1, 5, 10, 20, 50, 100)) +
   facet_grid(cols = vars(gene_region)) +
   theme_void() + 
   theme(legend.position = 'none')
@@ -210,3 +214,65 @@ plot(chicken)
 cattle <- raster('~/Downloads/GLW4-2020.D-DA.CTL.tif')
 plot(log10(cattle))
 
+######################## 30th October
+clusters <- read_csv('./data/clusters_2024Oct29.csv')
+
+# NFLG only
+expand_grid(gene_region = 'nflg',
+            cluster = LETTERS[1:5],
+            NUTS_ID = all_europe_sf$NUTS_ID,
+            n = NA_integer_) %>%
+  rows_patch(metadata %>%
+               left_join(clusters) %>%
+               rename(NUTS_ID = nuts1_id) %>%
+               filter(generegion_nflg == 1) %>%
+               pivot_longer(starts_with('generegion'), names_to = 'gene_region') %>%
+               mutate(gene_region = gsub('^generegion_', '', gene_region)) %>%
+               summarise(n = sum(value), .by = c(NUTS_ID, gene_region, cluster)),
+             unmatched = 'ignore',
+             by = c('NUTS_ID', 'gene_region', 'cluster')) %>%
+  left_join(all_europe_sf, .) %>%
+  filter(CNTR_CODE != 'TR') %>%
+  ggplot() +
+  geom_sf(aes(fill = n), colour = 'white') + 
+  geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  scale_fill_fermenter(palette = 'RdPu',
+                       direction = -1, 
+                       #transform = 'log10',
+                       na.value="lightgrey", 
+                       breaks = c(1, 5, 10, 20, 50, 100)) +
+  facet_grid(cols = vars(cluster)) +
+  theme_void() 
+
+# Requires cluster designation for partial genomes
+expand_grid(gene_region = c('nflg', 
+                            'env_1003_1491',
+                            'NS5_9100_9600', 
+                            'NS5_8968_9264',
+                            'NS5_10042_10312'),
+            cluster = LETTERS[1:5],
+            NUTS_ID = all_europe_sf$NUTS_ID,
+            n = NA_integer_) %>%
+  rows_patch(metadata %>%
+               left_join(clusters) %>%
+               rename(NUTS_ID = nuts1_id) %>%
+               filter(generegion_nflg == 1) %>%
+               pivot_longer(starts_with('generegion'), names_to = 'gene_region') %>%
+               mutate(gene_region = gsub('^generegion_', '', gene_region)) %>%
+               summarise(n = sum(value), .by = c(NUTS_ID, gene_region, cluster)),
+             unmatched = 'ignore',
+             by = c('NUTS_ID', 'gene_region', 'cluster')) %>%
+  left_join(all_europe_sf, .) %>%
+  filter(CNTR_CODE != 'TR') %>%
+  ggplot() +
+  geom_sf(aes(fill = n), colour = 'white') + 
+  geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  scale_fill_fermenter(palette = 'RdPu',
+                       direction = -1, 
+                       #transform = 'log10',
+                       na.value="lightgrey", 
+                       breaks = c(1, 5, 10, 20, 50, 100)) +
+  facet_grid(cols = vars(cluster)) +
+  theme_void() 
