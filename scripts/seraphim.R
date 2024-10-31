@@ -5,11 +5,11 @@ library(diagram)
 
 # seraphim plots
 
-allTrees <- scan(file = './2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_C_subsampled_traits_1000.trees',
+allTrees <- scan(file = './2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_A_subsampled_traits_1000.trees',
                  what = '',
                  sep = '\n',
                  quiet = T)
-localTreesDirectory = "./2024Oct20/alignments/subset_alignments/C/"
+localTreesDirectory = "./2024Oct20/alignments/subset_alignments/A/"
 burnIn <- 0
 randomSampling <- FALSE
 nberOfTreesToSample <- 1000
@@ -24,7 +24,8 @@ treeExtractions(localTreesDirectory,
                 coordinateAttributeName)
 
 
-mcc_tre <-readAnnotatedNexus('./2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_C_subsampled_traits_mcc.tree')
+mcc_tree <-readAnnotatedNexus('./2024Oct20/alignments/subset_alignments/run/USUV_2024Oct20_NFLG_A_subsampled_traits_mcc.tree')
+mcc_tree_tbl <- as_tibble(mcc_tree)
 source("./imported_scripts/mccExtractions.r") # Script obtained from the GitHub tutorial folder.
 
 mcc_tab <- mccExtractions(mcc_tre, mostRecentSamplingDatum)
@@ -35,20 +36,6 @@ prob <- 0.95
 precision <- 0.1 # time interval that will be used to define the successive time slices
 startDatum <- min(mcc_tab[,"startYear"])
 polygons <- suppressWarnings(spreadGraphic2(localTreesDirectory, nberOfExtractionFiles, prob, startDatum, precision))
-
-
-# Step 5: Defining the different colour scales to use ----
-colour_scale <- colorRampPalette(brewer.pal(9,"YlGnBu"))(141)[21:121]
-minYear <- min(mcc_tab[,"startYear"])
-maxYear <- max(mcc_tab[,"endYear"])
-endYears_indices <- (((mcc_tab[,"endYear"]-minYear)/(maxYear-minYear))*100)+1
-endYears_colours <- colour_scale[endYears_indices]
-polygons_colours <- rep(NA, length(polygons))
-for (i in 1:length(polygons)){
-  date <- as.numeric(names(polygons[[i]]))
-  polygon_index <- round((((date-minYear)/(maxYear-minYear))*100)+1)
-  polygons_colours[i] <- paste0(colour_scale[polygon_index],"40")
-}
 
 # Step 6: Co-plotting the HPD regions and MCC tree ----
 # Step 6: Co-plotting the HPD regions and MCC tree ----
