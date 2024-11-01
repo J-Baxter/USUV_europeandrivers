@@ -1,21 +1,40 @@
 # Phylogeography visualisation
 library(seraphim)
 library(giscoR)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthhires)
 library(diagram)
 library(lubridate)
+library(tidyverse)
+library(treeio)
 # seraphim plots
 
-allTrees <- scan(file = './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_D_subsampled_1000.trees',
+allTrees <- scan(file = './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_C_subsampled_1000.trees',
                  what = '',
                  sep = '\n',
                  quiet = T)
-TREEFILE <- './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_D_subsampled_mcc.tree'
+TREEFILE <- './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_C_subsampled_mcc.tree'
+mcc_tree <-read.beast(TREEFILE)
+mcc_tree_tbl <- as_tibble(mcc_tree)
 
-localTreesDirectory = "./2024Oct20/alignments/subset_alignments/B/"
+
+
+metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20_withconcatenated.csv') %>%
+  dplyr::filter(tipnames %in% mcc_tree@phylo$tip.label) 
+
+stopifnot(nrow(metadata_in_tree) == Ntip(mcc_tree@phylo)) #sanity check
+
+most_recent_date <- metadata_in_tree %>%
+  pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
+  max(na.rm = TRUE)
+
+
+localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/C/"
 burnIn <- 0
-randomSampling <- FALSE
+randomSampling <- TRUE
 nberOfTreesToSample <- 500
-mostRecentSamplingDatum <- decimal_date(b_most_recent_date %>% ymd())
+mostRecentSamplingDatum <- decimal_date(most_recent_date%>% ymd())
 coordinateAttributeName <- "location"
 treeExtractions(localTreesDirectory,
                 allTrees,
@@ -24,11 +43,10 @@ treeExtractions(localTreesDirectory,
                 nberOfTreesToSample, 
                 mostRecentSamplingDatum,
                 coordinateAttributeName,
-                nberOfCores = 16)
+                nberOfCores = 6)
 
-mcc_tree <-read.beast(TREEFILE)
-mcc_tree_tbl <- as_tibble(mcc_tree)
-source("./imported_scripts/mccExtractions.r") # Script obtained from the GitHub tutorial folder.
+
+source('./scripts/import_scripts_2/mccExtractions.r') # Script obtained from the GitHub tutorial folder.
 
 mcc_tab <- mccExtractions(readAnnotatedNexus(TREEFILE), mostRecentSamplingDatum)
 
@@ -55,13 +73,29 @@ sf_combined <- bind_rows(sf_list) %>%
   st_set_crs(4326) 
 
 # Set Base Map
+nongisco_shapefile <- ne_countries(scale = 10, country = c('bosnia and herzegovina', 'kosovo', 'andorra'), returnclass = "sf") %>%
+  dplyr::select(name_en,
+                iso_a2_eh,
+                geometry) %>%
+  rename(CNTR_CODE = iso_a2_eh,
+         NAME_LATN = name_en) %>%
+  mutate(NUTS_ID = CNTR_CODE)
+
+nuts1 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "03", #1:10million
+  nuts_level = "1")
+
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
+
 map <-all_europe_sf
 
 
 # Format Nodes
 nodes <- mcc_tree_tbl %>%
   dplyr::select(node,height, location1, location2) %>%
-  mutate(year = decimal_date(ymd(b_most_recent_date)) - as.numeric(height)) %>%
+  mutate(year = decimal_date(ymd(most_recent_date)) - as.numeric(height)) %>%
   st_as_sf(coords = c( 'location2', 'location1'), 
            crs = 4326)
 
@@ -85,7 +119,7 @@ ggplot(map) +
   
   # Plot HPD polygons
   geom_sf(data = sf_combined ,aes(fill = year),lwd = 0,
-          alpha = 0.2) + 
+          alpha = 0.1) + 
   
   
   # Plot Branches (support level?)
@@ -103,30 +137,28 @@ ggplot(map) +
                        option = 'C')+
   
   
-  coord_sf(ylim = c(40,60), xlim = c(-2, 33), expand = FALSE) +
+  coord_sf(ylim = c(36,60), xlim = c(-3, 33), expand = FALSE) +
   theme_void(base_size = 18) + 
-  guides(fill = guide_colourbar(
-                                theme = theme(
-                                  legend.key.width  = unit(15, "lines"),
-                                  legend.key.height = unit(1, "lines")
-                                  ))) + 
+  guides(fill = guide_colourbar( )) + 
   
   theme(legend.background = element_rect(colour="white", fill="white"),
         legend.position =c(.7,.1),
         legend.title = element_text( vjust = 1),
-        legend.direction="horizontal")
+        legend.direction="horizontal",
+        legend.key.width  = unit(3, "lines"),
+        legend.key.height = unit(1, "lines"))
 
 
 
 
 # Phylogeography dispersal vectors
-
+localTreesDirectory <-"./2024Oct20/alignments/concatenated_alignments/A/"
 nberOfExtractionFiles = 100
 timeSlices = 100
 onlyTipBranches = FALSE
 showingPlots = FALSE
-outputName = "USUV_C"
-nberOfCores = 1
+outputName = "USUV_A"
+nberOfCores = 6
 slidingWindow = 1
 
 spreadStatistics(localTreesDirectory, nberOfExtractionFiles, timeSlices, onlyTipBranches, 
