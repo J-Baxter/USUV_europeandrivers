@@ -1,0 +1,14 @@
+Median value of the mean branch dispersal velocity = 103.0986
+	95% HPD = [51.0481, 203.1903]
+Median value of the weighted branch dispersal velocity = 46.93024
+	95% HPD = [29.41565, 76.45782]
+Median value of the original diffusion coefficient = 3956.309
+	95% HPD = [2331.952, 6595.189]
+Median value of the weighted diffusion coefficient = 3719.252
+	95% HPD = [2043.846, 6250.313]
+Median value of the isolation-by-distance (IBD) signal (rS) = 0.7127422
+	95% HPD = [0.4937979, 0.7920715]
+Median value of the isolation-by-distance (IBD) signal (rP #1) = 0.5746164
+	95% HPD = [0.4240098, 0.6991571]
+Median value of the isolation-by-distance (IBD) signal (rP #2) = 0.4439665
+	95% HPD = [0.36727, 0.5820292]
