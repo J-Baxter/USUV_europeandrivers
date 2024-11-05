@@ -195,8 +195,8 @@ C_velocity <- mapply(LeastCostModel,
 C_velocity %<>% bind_rows()
 
 D_velocity <- mapply(LeastCostModel,
-                     raster_list[-c(1, 2, 36, 37)],
-                     features[-c(1, 2, 36, 37)],
+                     raster_list[-c(1, 2, 36, 37, 38)], #38 returns error
+                     features[-c(1, 2, 36, 37, 38)],
                 file_prefix = 'USUV_D',
                 localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/D/",
                 nberOfExtractionFiles= 100,
