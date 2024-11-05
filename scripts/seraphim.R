@@ -10,11 +10,11 @@ library(tidyverse)
 library(treeio)
 # seraphim plots
 
-allTrees <- scan(file = './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_C_subsampled_1000.trees',
+allTrees <- scan(file = './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_noFLI_concat_C_subsampled_temp_1000.trees',
                  what = '',
                  sep = '\n',
                  quiet = T)
-TREEFILE <- './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_C_subsampled_mcc.tree'
+TREEFILE <- './2024Oct20/alignments/concatenated_alignments/USUV_2024Oct20_noFLI_concat_C_subsampled_temp_mcc.tree'
 mcc_tree <-read.beast(TREEFILE)
 mcc_tree_tbl <- as_tibble(mcc_tree)
 
@@ -119,7 +119,7 @@ ggplot(map) +
   
   # Plot HPD polygons
   geom_sf(data = sf_combined ,aes(fill = year),lwd = 0,
-          alpha = 0.1) + 
+          alpha = 0.05) + 
   
   
   # Plot Branches (support level?)
@@ -137,7 +137,7 @@ ggplot(map) +
                        option = 'C')+
   
   
-  coord_sf(ylim = c(36,60), xlim = c(-3, 33), expand = FALSE) +
+  coord_sf(ylim = c(35,60), xlim = c(-8, 33), expand = FALSE) +
   theme_void(base_size = 18) + 
   guides(fill = guide_colourbar( )) + 
   
@@ -152,12 +152,12 @@ ggplot(map) +
 
 
 # Phylogeography dispersal vectors
-localTreesDirectory <-"./2024Oct20/alignments/concatenated_alignments/A/"
+localTreesDirectory <-"./2024Oct20/alignments/concatenated_alignments/C/"
 nberOfExtractionFiles = 100
 timeSlices = 100
 onlyTipBranches = FALSE
 showingPlots = FALSE
-outputName = "USUV_A"
+outputName = "USUV_C"
 nberOfCores = 6
 slidingWindow = 1
 
