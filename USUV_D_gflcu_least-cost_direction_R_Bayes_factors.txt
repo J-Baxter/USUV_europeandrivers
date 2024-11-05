@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+gflcu_C	2.4483

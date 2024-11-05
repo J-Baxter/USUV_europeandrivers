@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+gsecd_C	0.4085
