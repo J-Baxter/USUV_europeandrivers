@@ -1,0 +1,3 @@
+BFs_deltaR2_randomisation_1
+null_raster	NA
+cul_veg_R	0.8519

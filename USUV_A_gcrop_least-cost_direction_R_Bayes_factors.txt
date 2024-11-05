@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+gcrop_C	2.8462

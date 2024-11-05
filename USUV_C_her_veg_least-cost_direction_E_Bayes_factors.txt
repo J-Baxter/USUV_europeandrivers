@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+her_veg_C	0.6129

@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+Flyway_Apod_C	1.0833

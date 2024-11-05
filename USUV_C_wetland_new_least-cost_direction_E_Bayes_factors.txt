@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+wetland_new_C	2.8462

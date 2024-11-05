@@ -1,0 +1,3 @@
+BFs_deltaR2_randomisation_1
+null_raster	NA
+tmp_R	0.5152

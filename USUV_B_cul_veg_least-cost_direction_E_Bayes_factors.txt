@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+cul_veg_C	7.3333

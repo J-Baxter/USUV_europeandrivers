@@ -1,0 +1,3 @@
+BF
+null_raster	NA
+Deciduous_broad_C	0.3889
