@@ -70,7 +70,7 @@ rast <- env_data %>%
 
 raster_list <- lapply(3:ncol(env_data),
                       function(i) env_data %>%
-                        select(lon, lat, i) %>%
+                        dplyr::select(lon, lat, i) %>%
                         rasterFromXYZ())
 
 features <- colnames(env_data)[3:ncol(env_data)]
@@ -91,8 +91,8 @@ LeastCostModel <- function(rast, var_name, file_prefix, localTreesDirectory, nbe
   # > 2 -> dispersal velocity (least-cost)
   
   if(pathModel == 2){
-    resistances = list(TRUE)
-    avgResistances = list(TRUE)
+    resistances = list(FALSE)
+    avgResistances = list(FALSE)
     fourCells = FALSE
     nberOfRandomisations = 0
     randomProcedure = 3
@@ -108,12 +108,12 @@ LeastCostModel <- function(rast, var_name, file_prefix, localTreesDirectory, nbe
     table = read.table(temp,
                        header=T)
     
-    col <- paste0("Univariate_LR_coefficients_", var_name[1], "_R")
+    col <- paste0("Univariate_LR_coefficients_", var_name[1], "_C")
     
     LR_coefficients = table[,col]
     print(sum(LR_coefficients > 0))
     
-    col <- paste0("Univariate_LR_delta_R2_", var_name[1], "_R")
+    col <- paste0("Univariate_LR_delta_R2_", var_name[1], "_C")
     
     Qs = table[,col]
     print(sum(Qs > 0))
@@ -164,7 +164,7 @@ LeastCostModel <- function(rast, var_name, file_prefix, localTreesDirectory, nbe
 A_velocity <- mapply(LeastCostModel,
                 raster_list[-c(1, 2, 36, 37)],
                 features[-c(1, 2, 36, 37)],
-                file_prefix = 'USUV_A',
+                file_prefix = 'USUV_A_conduct',
                 localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/A/",
                 nberOfExtractionFiles= 100,
                 pathModel = 2,
@@ -176,7 +176,7 @@ A_velocity <- mapply(LeastCostModel,
 B_velocity <- mapply(LeastCostModel,
                      raster_list[-c(1, 2, 36, 37)],
                      features[-c(1, 2, 36, 37)],
-                file_prefix = 'USUV_B',
+                file_prefix = 'USUV_B_conduct',
                 localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/B/",
                 nberOfExtractionFiles= 100,
                 pathModel = 2,
@@ -186,7 +186,7 @@ B_velocity <- mapply(LeastCostModel,
 C_velocity <- mapply(LeastCostModel,
                      raster_list[-c(1, 2, 36, 37)],
                      features[-c(1, 2, 36, 37)],
-                file_prefix = 'USUV_C',
+                file_prefix = 'USUV_C_conduct',
                 localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/C/",
                 nberOfExtractionFiles= 100,
                 pathModel = 2,
@@ -197,7 +197,7 @@ C_velocity %<>% bind_rows()
 D_velocity <- mapply(LeastCostModel,
                      raster_list[-c(1, 2, 36, 37, 38)], #38 returns error
                      features[-c(1, 2, 36, 37, 38)],
-                file_prefix = 'USUV_D',
+                file_prefix = 'USUV_D_conduct',
                 localTreesDirectory = "./2024Oct20/alignments/concatenated_alignments/D/",
                 nberOfExtractionFiles= 100,
                 pathModel = 2,
@@ -210,7 +210,7 @@ combined_output <- bind_rows(A_velocity,
                              C_velocity,
                              D_velocity)
 
-write_csv(combined_output, './2024Oct20/alignments/concatenated_alignments/leastcostmodelresults_velocity.csv')
+write_csv(combined_output, './2024Oct20/alignments/concatenated_alignments/leastcostmodelresults_velocity_conductance.csv')
 
 
 #plotRaster(rast, addAxes=TRUE, addLegend=TRUE)
