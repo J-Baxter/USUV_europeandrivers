@@ -1,0 +1,3 @@
+BFs_deltaR2_randomisation_1
+null_raster	NA
+Mixed_C	0.6949

@@ -1,0 +1,3 @@
+BFs_deltaR2_randomisation_1
+null_raster	NA
+Shrubs_C	0.3333
