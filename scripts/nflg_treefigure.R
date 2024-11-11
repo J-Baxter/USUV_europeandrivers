@@ -20,6 +20,7 @@ library(treeio)
 library(TreeTools)
 library(ggtree)
 library(ggnewscale)
+library(ggcsi)
 library(ggtreeExtra)
 
 # User functions
@@ -53,13 +54,15 @@ most_recent_date <- metadata_in_tree %>%
 
 p <- nflg_mcc %>% 
   
-  left_join(metadata %>% 
-              dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage) %>%
+  left_join(metadata_in_tree %>% 
+              dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage, host_class) %>%
               rename(label = tipnames),
             by = 'label') %>%
   ggtree(mrsd = most_recent_date) + 
   theme_tree2(plot.margin = unit(c(1,1,1,1), units = "cm"),
-              axis.text.x = element_text(size = 20)) +
+              axis.text.x = element_text(size = 20),
+              legend.title = element_text(size = 20),
+              legend.text = element_text(size = 16)) +
   
   scale_x_continuous(
     #limits = c(2000, 2023),
@@ -76,30 +79,36 @@ p <- nflg_mcc %>%
               size = 0) +
 
   scale_shape_manual(values = c("TRUE" = 18),
-                     'New Sequences') +
+                     'New Sequences',
+                     guide = 'none') +
   scale_colour_manual(values = c("TRUE" = 'blue'), 
-                      'New Sequences') + 
+                      'New Sequences',
+                      guide = 'none') + 
+
   
   # node colour to show pp support
   new_scale_colour()+
   geom_nodepoint(aes(colour = posterior), alpha = 0.7) +
-  scale_color_distiller(palette = 'YlOrRd', direction = 1, 'Posterior Support') + 
+  scale_color_distiller(palette = 'YlOrRd', direction = 1, 'Posterior Support',
+                        guide = guide_colourbar(order = 4)) + 
   
   geom_fruit(geom = geom_tile,
              mapping = aes(fill = as.factor(is_europe)),
-             width = 3,
+             width = 4,
              colour = "white",
-             pwidth = 1,
+             pwidth = 1.2,
              offset = 0.03) + 
-  scale_fill_brewer('Location', palette = 'Dark2', labels = c('0' = 'Outside of Europe',
-                                                              '1' = 'Within Europe')) + 
+  scale_fill_brewer('Location', palette = 'Dark2', direction = -1, 
+                    labels = c('0' = 'Outside of Europe',
+                               '1' = 'Within Europe'),
+                    guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 1, order = 2)) + 
   
   new_scale_fill()+
   geom_fruit(geom = geom_tile,
              mapping = aes(fill = nuts0_id),
-             width = 3,
+             width = 4,
              colour = "white",
-             pwidth = 1,
+             pwidth = 1.2,
              offset = 00.04) +
   scale_fill_d3(name = 'Country', 
                 palette ='category20', 
@@ -121,10 +130,32 @@ p <- nflg_mcc %>%
                            'SN' = 'Senegal',
                            'UG' = 'Uganda',
                            'UK' = 'United Kingdom',
-                           'ZA' = 'South Africa' )) 
-           
+                           'ZA' = 'South Africa' ),
+                guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 2, order = 1)) +
+  
+  new_scale_fill()+
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = host_class),
+             width = 4,
+             colour = "white",
+             pwidth = 1.2,
+             offset = 00.04) +
+  scale_fill_brewer('Host Class', 
+                    labels = c('Aves' = 'Bird',
+                               'insecta'= 'Insect',
+                               'mammalia' = 'Mammal',
+                               'arachnida' = 'Arachnid'),
+                    guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 1, order = 3))+
+  theme(legend.position = c(0.2,0.6),
+       # legend.position = "bottom",       # Place legends at the bottom
+        legend.box = "vertical",
+       legend.direction = 'vertical'
+        )
 
-ggsave(p, filename = "./summarytree.png", width = 13, height = 12)
+
+
+
+ggsave(p, filename = "~/Downloads/summarytree.png", width = 13, height = 12)
 
 ############################################## WRITE ###############################################
 

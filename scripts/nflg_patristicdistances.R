@@ -312,7 +312,7 @@ ggplot(within_europe_clades) +
 
 # Phylos
 phylo_60 <- nflg_mcc %>% 
-  left_join(patristic_distance_clusters) %>%
+              mutate(dist_60  = case_when(dist_60 == 'source' ~ NA_character_, .default =  dist_60)) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
@@ -325,7 +325,7 @@ phylo_60 <- nflg_mcc %>%
   theme(legend.position = 'none')
 
 phylo_50 <- nflg_mcc %>% 
-  left_join(patristic_distance_clusters) %>%
+  mutate(dist_50  = case_when(dist_50 == 'source' ~ NA_character_, .default =  dist_50)) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
@@ -338,7 +338,7 @@ phylo_50 <- nflg_mcc %>%
   theme(legend.position = 'none')
 
 phylo_40 <- nflg_mcc %>% 
-  left_join(patristic_distance_clusters) %>%
+  mutate(dist_40  = case_when(dist_40 == 'source' ~ NA_character_, .default =  dist_40)) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
@@ -350,9 +350,8 @@ phylo_40 <- nflg_mcc %>%
   theme_tree2() +
   theme(legend.position = 'none')
 
-mycolours <- c("#1B9E77" ,"#D95F02", "#7570B3", "#E7298A", "#66A61E", "#E6AB02", "#A6761D", "#4f77a4" ,"#48aa35","#666666")
 phylo_30 <- nflg_mcc %>% 
-  left_join(patristic_distance_clusters) %>%
+  mutate(dist_30  = case_when(dist_30 == 'source' ~ NA_character_, .default =  dist_30)) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
@@ -364,12 +363,12 @@ phylo_30 <- nflg_mcc %>%
   theme_tree2() +
   theme(legend.position = 'none')
 
-phylo_grid <- plot_grid(phylo_60,
+phylo_grid <- cowplot::plot_grid(phylo_60,
                         phylo_50,
                         phylo_40,
                         phylo_30,
                         align = 'hv',
-                        ncol = 4)
+                        nrow = 2)
 
 
 # Distributions

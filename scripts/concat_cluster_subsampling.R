@@ -96,7 +96,7 @@ concat_subset_alignments <- lapply(concat_alignment_files,
 # import metadata
 concat_metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20_withconcatenated.csv')
 
-metadata_split <- lapply(concat_subset_alignments, function(x) metadata %>% filter(tipnames %in% rownames(x)))
+metadata_split <- lapply(concat_subset_alignments, function(x) concat_metadata %>% filter(tipnames %in% rownames(x)))
 
 ############################################## MAIN ################################################
 

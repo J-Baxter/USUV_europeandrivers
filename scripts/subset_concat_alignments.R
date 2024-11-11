@@ -91,13 +91,13 @@ rooted_concat %>%
                      'New Sequences') +
   
   new_scale_colour()+
-  geom_hilight(node=1683, fill="gold") + 
-  geom_hilight(node=1739, fill="purple")+
-  geom_hilight(node=2031, fill="green")+
-  geom_hilight(node=2323, fill="blue")+
-  geom_hilight(node=2321, fill="red")
+  geom_hilight(node=1683, fill="#1B9E77") + 
+  geom_hilight(node=1739, fill= "#D95F02" )+
+  geom_hilight(node=2031, fill="#7570B3")+
+  geom_hilight(node=2323, fill= "#E7298A")+
+  geom_hilight(node=2321, fill= "#66A61E")
   
-  
+
 
 filenames <- paste0('./2024Oct20/alignments/concatenated_alignments//USUV_2024Oct20_alldata_aligned_formatted_noFLI_concat_',
                     c('A', 'B', 'C', 'D', 'E'),
