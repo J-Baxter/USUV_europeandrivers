@@ -20,6 +20,7 @@ library(ape)
 library(ggmap)
 library(sf)
 library(giscoR)
+library(rnaturalearth)
 
 # User functions
 ReNameAlignment <- function(alignment, data){
@@ -206,6 +207,8 @@ data <- ncbi_aug13 %>%
               unmatched = 'ignore') %>%
   left_join(updated_old_data %>% dplyr::select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
   dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
+  
+  # Update with Cadar
   rows_update(cadar_metadata, by = 'Accession') %>%
   
   # Allocate date format
@@ -224,6 +227,7 @@ data_formatted_date <- data %>%
   bind_rows(.,anses) %>%
   bind_rows(.,apha) %>%
   bind_rows(.,izsve) %>%
+  bind_rows(., erasmus) %>%
   
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
@@ -239,8 +243,12 @@ data_formatted_date <- data %>%
   
   # drop duplicate ZA sequences
   filter(!grepl('MF374485|EU074021|AY453412', sequence_accession)) %>%
+  
   # drop reference sequence
   filter(!grepl('NC_006551', sequence_accession)) %>%
+  
+  # drop lab sequences (mostly senegal)
+  
   
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
