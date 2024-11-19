@@ -54,11 +54,12 @@ erasmus_data <- original_format %>%
                    Long,
                    Lat,
                    CT)) %>%
-  unite(., 'Geo_Location', postal.code, location, province, sep = ' ') %>%
+  unite(., 'Geo_Location', postal.code, location, province, sep = ' ', na.rm = T) %>%
   rename(Isolate = UniqueID,
          Collection_Date = DeathOrSampleDate,
          Host = Latin,
-         Isolation_Source = Sample) 
+         Isolation_Source = Sample,
+         Accession = GenBank) 
 
 ############################################## WRITE ###############################################
 
