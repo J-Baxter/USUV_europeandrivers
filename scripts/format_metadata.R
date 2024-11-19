@@ -46,12 +46,12 @@ source('./scripts/FormatBirds.R')
 source('./scripts/FormatMammals.R')
 source('./scripts/FormatMosquitos.R')
 source('./scripts/FormatTicks.R')
-source('./scripts/FormatGeo.R')
+#source('./scripts/FormatGeo.R')
 
 
 #############  Required data ############# 
 
-# Import previous search (that contains manual edits) and update with data from FLI
+# Import previous search (that contains manual edits) and update with data from FLI and D Cadar
 old_data <- read_csv('./data/ncbi_sequencemetadata_Apr12.csv') %>%
   dplyr::select(c(Accession, Collection_Date, Geo_Location, Host)) 
 
@@ -62,8 +62,18 @@ fli_updated <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
   dplyr::select(-Admission_Date) %>%
   filter(Accession %in% old_data$Accession)
 
+cadar_metadata <- read_csv('./data/Dcadar_metadata.csv') %>%
+  dplyr::select(accession, geo_location, collection_date, host) %>%
+  rename_with(~gsub('_', ' ', .x) %>%
+                str_to_title() %>%
+                gsub(' ', '_', .)) %>%
+  mutate(Collection_Date = dmy(Collection_Date) %>%
+           format(., '%Y-%m-%d'))
+
+
 updated_old_data <- old_data %>%
-  rows_update(fli_updated, by = 'Accession')
+  rows_update(fli_updated, by = 'Accession') 
+
 
 
 # NCBI Genbank Data
@@ -74,6 +84,12 @@ data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::
               unmatched = 'ignore') %>%
   left_join(updated_old_data %>% dplyr::select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
   dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
+  rows_update(cadar_metadata, by = 'Accession')
+  
+
+  
+  
+  
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
   mutate(date_format = case_when(
@@ -82,7 +98,7 @@ data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::
     grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
     grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
     grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing')) 
+    .default = 'missing'))  
 
 
 
@@ -151,6 +167,21 @@ izsve <- read_csv('./data/izsve_data.csv') %>%
   filter(is.na(Accession))
 
 
+# ERASMUS Data
+erasmus <- read_csv('./data/erasmus_data.csv') %>%
+  select(-GenBank) %>%
+  
+  # Allocate date format
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing'))
+
+
+
 birds <- read_csv('bird_taxonomy.csv')
 mammals <- read_csv('mammal_taxonomy.csv')
 ticks <- read_csv('tick_taxonomy.csv') %>%
@@ -214,6 +245,11 @@ data_formatted_date <- data %>%
          collection_location = geo_location) %>%
   
   mutate(collection_location = coalesce(collection_location, collection_country)) %>%
+  
+  # drop duplicate ZA sequences
+  filter(!grepl('MF374485|EU074021|AY453412', sequence_accession)) %>%
+  # drop reference sequence
+  filter(!grepl('NC_006551', sequence_accession)) %>%
 
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
