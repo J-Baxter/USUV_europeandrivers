@@ -1,12 +1,27 @@
-############# Dependencies ############# 
+####################################################################################################
+####################################################################################################
+## Script name:
+##
+## Purpose of script:
+##
+## Date created: 202
+##
+##
+########################################## SYSTEM OPTIONS ##########################################
+options(scipen = 6, digits = 4) 
+memory.limit(30000000) 
+
+  
+########################################## DEPENDENCIES ############################################
+# Packages
 library(tidyverse)
+library(magrittr)
 library(ape)
 library(ggmap)
 library(sf)
 library(giscoR)
 
-
-#############  Required user functions ############# 
+# User functions
 ReNameAlignment <- function(alignment, data){
   names <- rownames(alignment)
   isolates <- rep(NA, length(names))
@@ -41,27 +56,52 @@ ReNameAlignment <- function(alignment, data){
   return(new_seqnames)
 }
 
-#############  Required source files ############# 
+
+FormatNewData <- function(data){
+  out <- data %>%
+    
+    # Clean date col
+    mutate(Collection_Date = case_when(
+      grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
+      .default = Collection_Date) %>%
+        gsub('/', '-', .)) %>%
+    
+    # Allocate date format
+    mutate(date_format = case_when(
+      grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+      grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+      grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+      grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+      grepl('\\d{4}', Collection_Date) ~ "yyyy",
+      .default = 'missing')) %>%
+    
+    # Unpublished data only
+    filter(is.na(Accession))
+  
+  return(out)
+}
+
+
+# Source Files
 source('./scripts/FormatBirds.R')
 source('./scripts/FormatMammals.R')
 source('./scripts/FormatMosquitos.R')
 source('./scripts/FormatTicks.R')
-#source('./scripts/FormatGeo.R')
 
 
-#############  Required data ############# 
-
-# Import previous search (that contains manual edits) and update with data from FLI and D Cadar
+############################################## DATA ################################################
 old_data <- read_csv('./data/ncbi_sequencemetadata_Apr12.csv') %>%
   dplyr::select(c(Accession, Collection_Date, Geo_Location, Host)) 
 
-fli_updated <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
+# FLI sequences with additional location/date information
+fli_updates <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
   mutate(across(ends_with('Date'), .fns = ~dmy(.x))) %>%
   mutate(Admission_Date = format(Admission_Date, '%Y-%m')) %>%
   mutate(Collection_Date = coalesce(as.character(Collection_Date), Admission_Date)) %>%
   dplyr::select(-Admission_Date) %>%
   filter(Accession %in% old_data$Accession)
 
+# Additional data from Daniel Ca
 cadar_metadata <- read_csv('./data/Dcadar_metadata.csv') %>%
   dplyr::select(accession, geo_location, collection_date, host) %>%
   rename_with(~gsub('_', ' ', .x) %>%
@@ -71,13 +111,76 @@ cadar_metadata <- read_csv('./data/Dcadar_metadata.csv') %>%
            format(., '%Y-%m-%d'))
 
 
+# Import search from NCBI 2024-08-13
+ncbi_aug13 <- read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', 
+                       locale = readr::locale(encoding = "UTF-8")) 
+
+
+# ANSES FRANCE Data
+anses <- read_csv('./data/anses_data.csv',
+                  locale = readr::locale(encoding = "UTF-8")) %>%
+  FormatNewData(.)
+
+
+# APHA Data
+apha <- read_csv('./data/apha_data.csv', 
+                 locale = readr::locale(encoding = "UTF-8")) %>%
+  FormatNewData(.)
+
+
+# Izsve Data
+izsve <- read_csv('./data/izsve_data.csv', 
+                  locale = readr::locale(encoding = "UTF-8")) %>%
+  FormatNewData(.)
+
+
+# ERASMUS Data
+erasmus <- read_csv('./data/erasmus_data.csv', 
+                    locale = readr::locale(encoding = "UTF-8"))%>%
+  FormatNewData(.)
+
+
+############################################## MAIN ################################################
+
+
+
+############################################## WRITE ###############################################
+
+
+
+
+############################################## END #################################################
+####################################################################################################
+####################################################################################################
+
+
+
+
+
+#############  Required user functions ############# 
+
+
+#############  Required source files ############# 
+
+
+
+#############  Required data ############# 
+
+# Import previous search (that contains manual edits) and update with data from FLI and D Cadar
+
+
+fli_updated <- 
+
+
+
+
 updated_old_data <- old_data %>%
   rows_update(fli_updated, by = 'Accession') 
 
 
 
 # NCBI Genbank Data
-data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::locale(encoding = "UTF-8")) %>%
+data <-  %>%
   rows_update(updated_old_data %>%
                 dplyr::select(Accession, Collection_Date, Host), 
               by = 'Accession', 
@@ -102,83 +205,6 @@ data <-  read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', locale = readr::
 
 
 
-# ANSES FRANCE Data
-anses <- read_csv('./data/anses_data.csv', locale = readr::locale(encoding = "UTF-8")) %>%
-  
-  # Clean date col
-  mutate(Collection_Date = case_when(
-    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
-    .default = Collection_Date) %>%
-      gsub('/', '-', .)) %>%
-  
-  # Allocate date format
-  mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
-    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing'))%>%
-  
-  # Unpublished data only
-  filter(is.na(Accession))
-
-
-# APHA Data
-apha <- read_csv('./data/apha_data.csv') %>%
-  
-  # Clean date col
-  mutate(Collection_Date = case_when(
-    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
-    .default = Collection_Date) %>%
-      gsub('/', '-', .)) %>%
-  
-  # Allocate date format
-  mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
-    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing')) %>%
-  
-  # Unpublished data only
-  filter(is.na(Accession))
-
-# Izsve Data
-izsve <- read_csv('./data/izsve_data.csv') %>%
-  
-  # Clean date col
-  mutate(Collection_Date = case_when(
-    grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
-    .default = Collection_Date) %>%
-      gsub('/', '-', .)) %>%
-  
-  # Allocate date format
-  mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
-    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing')) %>%
-  
-  # Unpublished data only
-  filter(is.na(Accession))
-
-
-# ERASMUS Data
-erasmus <- read_csv('./data/erasmus_data.csv') %>%
-  select(-GenBank) %>%
-  
-  # Allocate date format
-  mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
-    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing'))
 
 
 
