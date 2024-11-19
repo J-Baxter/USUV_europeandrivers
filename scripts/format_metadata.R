@@ -140,80 +140,16 @@ erasmus <- read_csv('./data/erasmus_data.csv',
   FormatNewData(.)
 
 
-############################################## MAIN ################################################
-
-
-
-############################################## WRITE ###############################################
-
-
-
-
-############################################## END #################################################
-####################################################################################################
-####################################################################################################
-
-
-
-
-
-#############  Required user functions ############# 
-
-
-#############  Required source files ############# 
-
-
-
-#############  Required data ############# 
-
-# Import previous search (that contains manual edits) and update with data from FLI and D Cadar
-
-
-fli_updated <- 
-
-
-
-
-updated_old_data <- old_data %>%
-  rows_update(fli_updated, by = 'Accession') 
-
-
-
-# NCBI Genbank Data
-data <-  %>%
-  rows_update(updated_old_data %>%
-                dplyr::select(Accession, Collection_Date, Host), 
-              by = 'Accession', 
-              unmatched = 'ignore') %>%
-  left_join(updated_old_data %>% dplyr::select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
-  dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
-  rows_update(cadar_metadata, by = 'Accession')
-  
-
-  
-  
-  
-  # Allocate date format
-  mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
-  mutate(date_format = case_when(
-    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
-    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
-    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
-    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
-    grepl('\\d{4}', Collection_Date) ~ "yyyy",
-    .default = 'missing'))  
-
-
-
-
-
-
+# Import reference datasets for animal taxa
 birds <- read_csv('bird_taxonomy.csv')
+
 mammals <- read_csv('mammal_taxonomy.csv')
+
 ticks <- read_csv('tick_taxonomy.csv') %>%
   mutate(sci_name = scientificName) %>%
   rename(primary_com_name = scientificName) %>%
   dplyr::select(-genus)
+
 mosquitos <- read_csv('mosquito_taxonomy.csv') %>%
   mutate(sci_name = scientificName) %>%
   rename(primary_com_name = scientificName) %>%
@@ -222,6 +158,7 @@ mosquitos <- read_csv('mosquito_taxonomy.csv') %>%
 all_taxa <- bind_rows(birds, mammals, mosquitos, ticks)
 
 
+# Import shapefiles for geographic regions
 nuts0 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
@@ -254,12 +191,40 @@ all_countries <- ne_countries(scale = 10, returnclass = "sf") %>%
          nuts0_name = name_en) %>%
   st_make_valid()
 
-#############  Pipeline start ############# 
+
+############################################## MAIN ################################################
+
+# Update previously maintained data with new FLI data
+updated_old_data <- old_data %>%
+  rows_update(fli_updates, by = 'Accession') 
+
+# Merge 13th Aug data with old data
+data <- ncbi_aug13 %>%
+  rows_update(updated_old_data %>%
+                dplyr::select(Accession, Collection_Date, Host), 
+              by = 'Accession', 
+              unmatched = 'ignore') %>%
+  left_join(updated_old_data %>% dplyr::select(-c(Collection_Date, Geo_Location, Host)), join_by(Accession)) %>% 
+  dplyr::select(-c(ends_with('.y'), ends_with('.x')))  %>%
+  rows_update(cadar_metadata, by = 'Accession') %>%
+  
+  # Allocate date format
+  mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
+  mutate(date_format = case_when(
+    grepl('\\d{4}-\\d{2}-\\d{2}', Collection_Date)  ~ "yyyy-mm-dd",
+    grepl('\\d{2}-\\d{2}-\\d{4}', Collection_Date)  ~ "dd-mm-yyyy",
+    grepl('\\d{4}-\\d{2}', Collection_Date) ~ "yyyy-mm",
+    grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
+    grepl('\\d{4}', Collection_Date) ~ "yyyy",
+    .default = 'missing'))  
+
+
+# <------- Main pipeline starts here
 data_formatted_date <- data %>%
   bind_rows(.,anses) %>%
   bind_rows(.,apha) %>%
   bind_rows(.,izsve) %>%
-
+  
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
   dplyr::select(-c(submitters, release_date)) %>%
@@ -276,7 +241,7 @@ data_formatted_date <- data %>%
   filter(!grepl('MF374485|EU074021|AY453412', sequence_accession)) %>%
   # drop reference sequence
   filter(!grepl('NC_006551', sequence_accession)) %>%
-
+  
   # format date (create date_dec, date_ym date_ymd) %>%
   mutate(collection_date = str_trim(collection_date))%>%
   mutate(date_format = case_when(
@@ -322,17 +287,17 @@ data_formatted_date <- data %>%
                   date_ym = NA_character_,
                   date_dec = NA,
                   date_y = format(date_parsed, '%Y'))) %>%
-
+  
   list_rbind() %>%
   dplyr::select(-date_parsed) %>%
-
+  
   mutate(date_tipdate = case_when(
     is.na(date_ymd) & is.na(date_ym) ~ date_y,
     is.na(date_ymd) & !is.na(date_ym) ~ date_ym,
     .default = as.character(date_ymd)))
 
-  
-  # Format geolocation
+
+# Format geolocation
 data_formatted_geodata <- data_formatted_date %>%
   # Format available data
   mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
@@ -349,8 +314,8 @@ data_formatted_geodata <- data_formatted_date %>%
   mutate(coords = geocode(collection_tag)) %>%
   as_tibble() %>%
   unnest(coords)
-  
-  # format as sf point
+
+# format as sf point
 data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
   st_as_sf(coords = c('lon', 'lat'), crs = 4326) %>%
   
@@ -359,7 +324,7 @@ data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
           nuts0 %>%
             dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
           join = st_within, 
-         # left = FALSE,
+          # left = FALSE,
           largest = TRUE) %>%
   rename(geocode_coords = geometry,
          nuts0_id = NUTS_ID,
@@ -369,7 +334,7 @@ data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
           nuts1 %>%
             dplyr::select(geometry, NUTS_ID, NUTS_NAME), 
           join = st_within, 
-         # left = FALSE,
+          # left = FALSE,
           largest = TRUE) %>%
   rename(nuts1_id = NUTS_ID,
          nuts1_name = NUTS_NAME) %>%
@@ -403,7 +368,7 @@ data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
          .keep = 'unused')
 
 
-  # Identify level of precision for each sequence: 
+# Identify level of precision for each sequence: 
 data_formatted_geodata_2 <- data_formatted_geodata_1 %>% 
   rowwise() %>%
   mutate(location_precision = case_when(
@@ -429,8 +394,8 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
          ~ .x %>% mutate(across(starts_with("nuts3"), ~ NA))) %>%
   
   list_rbind()
-  
-  
+
+
 data_formatted_host <- data_formatted_geodata_2 %>%
   # Format host 
   mutate(host = gsub("_", " ", tolower(host))) %>%
@@ -454,7 +419,7 @@ data_formatted <- data_formatted_host %>%
     host_family = family,
     host_sciname = sci_name,
     host_commonname = primary_com_name
-    )  %>%
+  )  %>%
   
   dplyr::relocate(
     sequence_accession,
@@ -485,22 +450,22 @@ data_formatted <- data_formatted_host %>%
   
   # Select columns
   dplyr::select(-c(organism_name,
-            assembly,
-            species,
-            sequence_length,
-            usa,
-            collection_country,
-            collection_date,
-            notes,
-            `migration pattern`,
-            `wild/captive`,
-            collection_tag,
-            complete_location,
-            complete_date,
-            sequence_completeness,
-            org_location,
-            host,
-            isolation_source)) %>%
+                   assembly,
+                   species,
+                   sequence_length,
+                   usa,
+                   collection_country,
+                   collection_date,
+                   notes,
+                   `migration pattern`,
+                   `wild/captive`,
+                   collection_tag,
+                   complete_location,
+                   complete_date,
+                   sequence_completeness,
+                   org_location,
+                   host,
+                   isolation_source)) %>%
   
   # Generate sequence names
   unite(.,
@@ -522,7 +487,8 @@ data_formatted <- data_formatted_host %>%
 
 
 
-#############  Import alignment ############# 
+
+# Import alignment 
 alignment <- ape::read.dna('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
@@ -543,7 +509,7 @@ sub_alignment_coords <- tibble(start = c(1003, 8968, 9100, 10042),
 
 
 coords <- cbind('sequence_start' = start,
-                           'sequence_end' = end) %>%
+                'sequence_end' = end) %>%
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
   rowwise() %>%
@@ -557,10 +523,10 @@ unnassigned <- coords %>%
   filter(if_all(starts_with('generegion'), ~ .x ==0))
 
 
-#############  Previous Lineage assignments ############# 
+# Previous Lineage assignments #
 old_lineages <- read_csv('./data/existing_lineages.csv')
 
-#############  Join sequence data to metadata ############# 
+##  Join sequence data to metadata # 
 metadata <- data_formatted %>%
   left_join(., coords) %>%
   left_join(old_lineages) %>%
@@ -579,19 +545,25 @@ metadata <- data_formatted %>%
   mutate(is_europe = case_when(nuts0_id %in% nuts0$NUTS_ID ~ 1, .default = 0))
 
 
- 
-#############  Write metadata to file ############# #
+############################################## WRITE ###############################################
+
+# Write metadata to file #
 write_csv(metadata, './data/USUV_metadata_all_2024Oct20.csv')
 
 
-#############  Write alignment to file ############# 
+# Write alignment to file # 
 alignment <- alignment[order(start),]
 write.dna(alignment, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted.fasta', format = 'fasta')
 
 
-#############  Alignment without FLI ############# 
+# Alignment without FLI # 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
 write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
 write_csv(metadata_noFLI , './data/USUV_metadata_noFLI_2024Oct20.csv')
+
+
+############################################## END #################################################
+####################################################################################################
+####################################################################################################
