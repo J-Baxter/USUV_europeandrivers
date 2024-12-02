@@ -1,130 +1,130 @@
-Collection_Date,Host,Geo_Location,Accession,Isolate,Isolation_Source
-2018-07-30,Chloris chloris,4330 Middelburg Zeeland,NA,AS201800085,brain
-2018-08-22,Turdus merula,8741 Wunseradiel Friesland,NA,AS201800175,brain
-2019-08-19,Turdus merula,3958 Utrechtse heuvelrug Utrecht,NA,AS20190530,brain
-2019-08-27,Turdus merula,Renkum Gelderland,NA,AS20190490,brain
-2019-08-28,Turdus merula,Amersfoort Utrecht,NA,AS20190494,brain
-2019-09-03,Turdus merula,Gemert-bakel Brabant,NA,AS20190450,brain
-2019-09-18,Passer domesticus,Vlagtwedde Groningen,NA,AS20190643,brain
-2019-09-19,Prunella modularis,Vught Brabant,NA,AS20190579,brain
-2020-08-16,Turdus merula,Overbetuwe Gelderland,NA,AS20200367,brain
-2020-08-19,Turdus merula,Overbetuwe Gelderland,NA,AS20200415,brain
-2020-08-23,Turdus merula,Buren Gelderland,NA,AS20200342,brain
-2020-08-25,Cyanistes caeruleus,Ubbergen Gelderland,NA,AS20200444,spleen
-2020-09-15,Turdus merula,Alblasserwaard Z-Holland,NA,AS20200487,brain
-2020-09-15,Cyanistes caeruleus,Haarlemmermeer N-Holland,NA,AS20200586,brain
-2020-09-17,Cyanistes caeruleus,Arnhem Gelderland,NA,AS20200531,brain
-2020-08-22,Turdus merula,Wageningen Gelderland,NA,AS20200605,brain
-2020-08-26,Turdus merula,Laag-Soeren Gelderland,NA,AS20200610,brain
-2020-09-21,Turdus merula,Eersel Brabant,NA,AS20200526,brain
-2020-09-24,Columba palumbus,Weesp N-Holland,NA,AS20200536,brain
-2020-09-27,Turdus merula,Soest Utrecht,NA,AS20200561,brain
-2020-09-27,Turdus merula,Utrecht Utrecht,NA,AS20200523,brain
-2020-09-27,Turdus merula,Utrecht Utrecht,NA,AS20200566,brain
-2020-09-30,Turdus merula,Beesel Limburg,NA,AS20200689,brain
-2021-08-30,Turdus merula,Nieuwegein Utrecht,NA,AS20210914,brain
-2021-09-19,Turdus merula,Wanssum Limburg,NA,AS20210829,brain
-2022-07-24,Turdus merula,Eindhoven Brabant,NA,AS20221670,lung
-2022-07-28,Turdus merula,Eindhoven Brabant,NA,AS20221627,brain
-2022-08-04,Turdus merula,Hoogerheide Brabant,NA,AS20221637,brain
-2022-08-08,Turdus merula,Den bosch Brabant,NA,AS20221660,lung
-2022-08-04,Turdus merula,Klein zundert Brabant,NA,AS20221657,brain
-2022-08-08,Turdus merula,Drunen Brabant,NA,AS20221617,brain
-2022-08-11,Turdus merula,Drunen Brabant,NA,AS20221784,brain
-2022-08-22,Turdus merula,Hardinxveld-giessendam Z-Holland,NA,AS20221838,brain
-2022-08-24,Turdus merula,Heelsum Gelderland,NA,AS20221760,brain
-2022-08-26,Turdus merula,Heelsum Gelderland,NA,AS20221780,brain
-2022-08-24,Turdus merula,Alblasserdam Z-Holland,NA,AS20221789,brain
-2022-08-24,Turdus merula,Heelsum Gelderland,NA,AS20221813,brain
-2022-08-28,Turdus merula,Venlo Limburg,NA,AS20221775,brain
-2022-08-28,Turdus merula,Almere Flevoland,NA,AS20221833,brain
-2022-08-26,Turdus merula,Klein zundert Brabant,NA,AS20221828,brain
-2022-08-30,Turdus merula,Gendt Gelderland,NA,AS20221798,lung
-2022-08-31,Turdus merula,Eindhoven Brabant,NA,AS20221818,brain
-2022-09-02,Turdus merula,Bosschenhoofd Brabant,NA,AS20221803,brain
-2022-09-03,Turdus merula,Houten Utrecht,NA,AS20221851,brain
-2022-09-03,Turdus merula,Delft Z-Holland,NA,AS20221846,lung
-2022-09-04,Turdus merula,Delft Z-Holland,NA,AS20221842,brain
-2022-09-04,Turdus merula,Heesch Brabant,NA,AS20221923,brain
-2022-09-11,Turdus merula,Bennekom Gelderland,NA,AS20221898,lung
-2022-09-11,Turdus merula,Sibculo Overijssel,NA,AS20221875,brain
-2022-09-12,Turdus merula,Enschede Overijssel,NA,AS20221880,brain
-2022-09-12,Turdus merula,Nuenen Brabant,NA,AS20221908,brain
-2022-09-11,Turdus merula,Saasveld Overijssel,NA,AS20221913,brain
-2022-09-14,Turdus merula,Son Brabant,NA,AS20221860,brain
-2022-09-13,Turdus merula,Nieuw-vennep N-Holland,NA,AS20221903,brain
-2022-09-14,Turdus merula,Steenenkamer Gelderland,NA,AS20221884,brain
-2022-09-18,Turdus merula,Leersum Utrecht,NA,AS20221889,brain
-2022-09-15,Cyanistes caeruleus,Zundert Brabant,NA,AS20221918,brain
-2022-09-19,Passer domesticus,5991 XJ Baarlo Limburg,NA,AS20221994,brain
-2022-09-20,Turdus merula,6717 ET Ede Gelderland,NA,AS20221942,brain
-2022-09-20,Turdus merula,6261 NJ Mheer Limburg,NA,AS20221974,brain
-2022-09-22,Turdus philomelos,8523 BG Enschede Overijssel,NA,AS20221999,brain
-2022-09-25,Turdus merula,1411 BR Naarden N-Holland,NA,AS20221928,Pharyngeal_Swab
-2022-09-25,Turdus merula,6866 NA Heelsum Gelderland,NA,AS20221958,feather
-2022-09-26,Columba palumbus,6721 NN Bennekom Gelderland,NA,AS20221964,brain
-2022-09-25,Turdus merula,6861 ZM Oosterbeek Gelderland,NA,AS20221957,brain
-2022-09-27,Streptopelia decaocto,3832 BE Leusden Utrecht,NA,AS20221952,brain
-2022-10-03,Turdus philomelos,2082 EN Santpoort N-Holland,NA,AS20221979,brain
-2022-11-10,Turdus merula,4171 ca herwijnen Gelderland,NA,AS20222401,brain
-2016,Strix nebulosa,5681 BestZoo Brabant,NA,AS201600289_BEC009,HipposboscidaeSingle
-2016-08-13,Strix nebulosa,"6460 AB Kerkrade, GaiaZoo Limburg",NA,AS201600064,liver
-2016-09-01,Bubo scandiacus,"6460 AB Kerkrade, GaiaZoo Limburg",NA,AS201600073,spleen
-2016-09-09,Strix nebulosa,"6121 XK Born, Kasteelpark Limburg",NA,AS201600067,brain
-2016-09-20,Strix nebulosa,4181 PT Waardenburg Gelderland,NA,AS201600082,brain
-2016-09-25,Strix nebulosa,"3911 AV Rhenen, Ouwehands DP Utrecht",NA,AS201600269,heart
-2017-07-31,Strix nebulosa,7504 Enschede Overijssel,NA,AS201700148,liver
-2017-08-09,Strix nebulosa,7345 DG Wenum Wiesel Gelderland,NA,AS201700142,brain
-2017-08-14,Branta ruficollis,"6460 AB Kerkrade, GaiaZoo Limburg",NA,AS201700144,brain
-2017-08-14,Branta ruficollis,"3460 AB Kerkrade, GaiaZoo Limburg",NA,AS201700147,brain
-2017-08-25,Strix nebulosa,"3000 AM Rotterdam, Blijdorp Zoo Z-Holland",NA,AS201700173,brain
-2017-09-05,Strix nebulosa,"3000 AM Rotterdam, Blijdorp Zoo Z-Holland",NA,AS201700198,brain
-2018-07-24,Strix nebulosa,3800 Amersfoort Utrecht,NA,AS201800080,brain
-2018-08-16,Strix nebulosa,"7801 BA Emmen, Wildlands Zoo Drenthe",NA,AS201800117,brain
-2019-09-03,Taeniopygia (genus),2905 RP Capelle aan den IJssel,NA,AS20190482,brain
-2019-09-12,Gracula religiosa,6652 DH Druten,NA,AS20190438,brain
-2019-10-07,Copsychus malabaricus,"6816 SH Arnhem, Burgers Zoo",NA,AS20190715,cloaca swab
-2019-10-07,Copsychus malabaricus,"6816 SH Arnhem, Burgers Zoo",NA,AS20190716,mouth swab
-2022-07-21,Strix nebulosa,4721 Schijf Brabant,NA,AS20221755,heart
-2017-07-21,Turdus merula,Mijdrecht Turkoois Van Den Berg,NA,NA,Throat_Cloacal_Swab
-2017-07-21,Turdus merula,Mijdrecht Turkoois Van Den Berg,NA,NA,DBS
-2017-08-02,Turdus merula,,NA,NA,Throat_Cloacal_Swab
-2017-09-07,Turdus merula,,NA,NA,Throat_Cloacal_Swab
-2017-09-07,Turdus merula,,NA,NA,DBS
-2017-10-26,Turdus merula,Maastricht Maasveld,NA,NA,DBS
-2018-08-17,Turdus merula,Tuin Karveel,NA,NA,Throat_Cloacal_Swab
-2018-08-17,Turdus merula,Tuin Karveel,NA,NA,DBS
-2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,Throat_Cloacal_Swab
-2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,Throat_Cloacal_Swab
-2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,DBS
-2018-09-10,Turdus merula,Erf Achterweg 4 9261 Vx Eastermar Frl.,NA,NA,DBS
-2018-09-16,Turdus philomelos,Ringstation Overdinkel,NA,NA,Throat_Cloacal_Swab
-2018-10-06,Turdus merula,Zwarte Meer West,NA,NA,Throat_Cloacal_Swab
-2018-10-11,Turdus merula,Erf Achterweg 4 9261 Vx Eastermar Frl.,NA,NA,Throat_Cloacal_Swab
-2018-10-13,Turdus merula,Natuurgebied De Burgumermar Oostoever Frl.,NA,NA,Throat_Cloacal_Swab
-2018-10-31,Turdus merula,,NA,NA,Throat_Cloacal_Swab
-2019-04-12,Turdus merula,Karveel Tuin,NA,NA,Throat_Cloacal_Swab
-2019-04-12,Turdus merula,Karveel Tuin,NA,NA,DBS
-2019-04-24,Passer domesticus,Karveel Tuin,NA,NA,Throat_Cloacal_Swab
-2020-08-29,Turdus merula,Ringstation Overdinkel,NA,NA,TickSingle
-2022-07-29,Turdus merula,Lumen Tuin,NA,NA,Throat_Cloacal_Swab
-2022-08-24,Cyanistes caeruleus,Vleuten Panbos Ringmus Locatie,NA,NA,Throat_Cloacal_Swab
-2022-08-24,Turdus merula,,NA,NA,Throat_Cloacal_Swab
-2022-08-28,Turdus philomelos,Haarzuilens Eendenkooi Ces Locatie,NA,NA,Throat_Cloacal_Swab
-2022-08-27,Turdus merula,Haarzuilens Griend,NA,NA,Throat_Cloacal_Swab
-2022-08-27,Turdus merula,Haarzuilens Griend,NA,NA,Feces
-2022-09-09,Turdus merula,Krommenie,NA,NA,Throat_Cloacal_Swab
-2022-10-02,Turdus merula,Haarzuilens Griend,NA,NA,Throat_Cloacal_Swab
-2022-09-11,Turdus merula,Oprit Papenpad 3,NA,NA,Throat_Cloacal_Swab
-2022-09-08,Turdus merula,,NA,NA,Throat_Cloacal_Swab
-2022-09-21,Turdus philomelos,Dassenbos Wageningen,NA,NA,Throat_Cloacal_Swab
-2022-09-04,Turdus merula,Haarzuilens Griend,NA,NA,Throat_Cloacal_Swab
-2022-09-04,Turdus merula,Haarzuilens Griend,NA,NA,Feces
-2022-09-03,Turdus merula,Haarzuilens Griend,NA,NA,feather
-2022-10-02,Turdus merula,Haarzuilens Griend,NA,NA,feather
-2022-10-08,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,feather
-2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,feather
-2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,feather
-2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,NA,feather
-2022-12-03,Turdus merula,Tuin Gravenburg Groningen,NA,NA,feather
-2022-09-16,Turdus merula,,NA,NA,Throat_Cloacal_Swab
+Collection_Date,Host,Geo_Location,Accession,Isolation_Source,Isolate
+2018-07-30,Chloris chloris,4330 Middelburg Zeeland,NA,brain,AS201800085
+2018-08-22,Turdus merula,8741 Wunseradiel Friesland,NA,brain,AS201800175
+2019-08-19,Turdus merula,3958 Utrechtse heuvelrug Utrecht,NA,brain,AS20190530
+2019-08-27,Turdus merula,Renkum Gelderland,NA,brain,AS20190490
+2019-08-28,Turdus merula,Amersfoort Utrecht,NA,brain,AS20190494
+2019-09-03,Turdus merula,Gemert-bakel Brabant,NA,brain,AS20190450
+2019-09-18,Passer domesticus,Vlagtwedde Groningen,NA,brain,AS20190643
+2019-09-19,Prunella modularis,Vught Brabant,NA,brain,AS20190579
+2020-08-16,Turdus merula,Overbetuwe Gelderland,NA,brain,AS20200367
+2020-08-19,Turdus merula,Overbetuwe Gelderland,NA,brain,AS20200415
+2020-08-23,Turdus merula,Buren Gelderland,NA,brain,AS20200342
+2020-08-25,Cyanistes caeruleus,Ubbergen Gelderland,NA,spleen,AS20200444
+2020-09-15,Turdus merula,Alblasserwaard Z-Holland,NA,brain,AS20200487
+2020-09-15,Cyanistes caeruleus,Haarlemmermeer N-Holland,NA,brain,AS20200586
+2020-09-17,Cyanistes caeruleus,Arnhem Gelderland,NA,brain,AS20200531
+2020-08-22,Turdus merula,Wageningen Gelderland,NA,brain,AS20200605
+2020-08-26,Turdus merula,Laag-Soeren Gelderland,NA,brain,AS20200610
+2020-09-21,Turdus merula,Eersel Brabant,NA,brain,AS20200526
+2020-09-24,Columba palumbus,Weesp N-Holland,NA,brain,AS20200536
+2020-09-27,Turdus merula,Soest Utrecht,NA,brain,AS20200561
+2020-09-27,Turdus merula,Utrecht Utrecht,NA,brain,AS20200523
+2020-09-27,Turdus merula,Utrecht Utrecht,NA,brain,AS20200566
+2020-09-30,Turdus merula,Beesel Limburg,NA,brain,AS20200689
+2021-08-30,Turdus merula,Nieuwegein Utrecht,NA,brain,AS20210914
+2021-09-19,Turdus merula,Wanssum Limburg,NA,brain,AS20210829
+2022-07-24,Turdus merula,Eindhoven Brabant,NA,lung,AS20221670
+2022-07-28,Turdus merula,Eindhoven Brabant,NA,brain,AS20221627
+2022-08-04,Turdus merula,Hoogerheide Brabant,NA,brain,AS20221637
+2022-08-08,Turdus merula,Den bosch Brabant,NA,lung,AS20221660
+2022-08-04,Turdus merula,Klein zundert Brabant,NA,brain,AS20221657
+2022-08-08,Turdus merula,Drunen Brabant,NA,brain,AS20221617
+2022-08-11,Turdus merula,Drunen Brabant,NA,brain,AS20221784
+2022-08-22,Turdus merula,Hardinxveld-giessendam Z-Holland,NA,brain,AS20221838
+2022-08-24,Turdus merula,Heelsum Gelderland,NA,brain,AS20221760
+2022-08-26,Turdus merula,Heelsum Gelderland,NA,brain,AS20221780
+2022-08-24,Turdus merula,Alblasserdam Z-Holland,NA,brain,AS20221789
+2022-08-24,Turdus merula,Heelsum Gelderland,NA,brain,AS20221813
+2022-08-28,Turdus merula,Venlo Limburg,NA,brain,AS20221775
+2022-08-28,Turdus merula,Almere Flevoland,NA,brain,AS20221833
+2022-08-26,Turdus merula,Klein zundert Brabant,NA,brain,AS20221828
+2022-08-30,Turdus merula,Gendt Gelderland,NA,lung,AS20221798
+2022-08-31,Turdus merula,Eindhoven Brabant,NA,brain,AS20221818
+2022-09-02,Turdus merula,Bosschenhoofd Brabant,NA,brain,AS20221803
+2022-09-03,Turdus merula,Houten Utrecht,NA,brain,AS20221851
+2022-09-03,Turdus merula,Delft Z-Holland,NA,lung,AS20221846
+2022-09-04,Turdus merula,Delft Z-Holland,NA,brain,AS20221842
+2022-09-04,Turdus merula,Heesch Brabant,NA,brain,AS20221923
+2022-09-11,Turdus merula,Bennekom Gelderland,NA,lung,AS20221898
+2022-09-11,Turdus merula,Sibculo Overijssel,NA,brain,AS20221875
+2022-09-12,Turdus merula,Enschede Overijssel,NA,brain,AS20221880
+2022-09-12,Turdus merula,Nuenen Brabant,NA,brain,AS20221908
+2022-09-11,Turdus merula,Saasveld Overijssel,NA,brain,AS20221913
+2022-09-14,Turdus merula,Son Brabant,NA,brain,AS20221860
+2022-09-13,Turdus merula,Nieuw-vennep N-Holland,NA,brain,AS20221903
+2022-09-14,Turdus merula,Steenenkamer Gelderland,NA,brain,AS20221884
+2022-09-18,Turdus merula,Leersum Utrecht,NA,brain,AS20221889
+2022-09-15,Cyanistes caeruleus,Zundert Brabant,NA,brain,AS20221918
+2022-09-19,Passer domesticus,5991 XJ Baarlo Limburg,NA,brain,AS20221994
+2022-09-20,Turdus merula,6717 ET Ede Gelderland,NA,brain,AS20221942
+2022-09-20,Turdus merula,6261 NJ Mheer Limburg,NA,brain,AS20221974
+2022-09-22,Turdus philomelos,8523 BG Enschede Overijssel,NA,brain,AS20221999
+2022-09-25,Turdus merula,1411 BR Naarden N-Holland,NA,Pharyngeal_Swab,AS20221928
+2022-09-25,Turdus merula,6866 NA Heelsum Gelderland,NA,feather,AS20221958
+2022-09-26,Columba palumbus,6721 NN Bennekom Gelderland,NA,brain,AS20221964
+2022-09-25,Turdus merula,6861 ZM Oosterbeek Gelderland,NA,brain,AS20221957
+2022-09-27,Streptopelia decaocto,3832 BE Leusden Utrecht,NA,brain,AS20221952
+2022-10-03,Turdus philomelos,2082 EN Santpoort N-Holland,NA,brain,AS20221979
+2022-11-10,Turdus merula,4171 ca herwijnen Gelderland,NA,brain,AS20222401
+2016,Strix nebulosa,5681 BestZoo Brabant,NA,HipposboscidaeSingle,AS201600289_BEC009
+2016-08-13,Strix nebulosa,"6460 AB Kerkrade, GaiaZoo Limburg",NA,liver,AS201600064
+2016-09-01,Bubo scandiacus,"6460 AB Kerkrade, GaiaZoo Limburg",NA,spleen,AS201600073
+2016-09-09,Strix nebulosa,"6121 XK Born, Kasteelpark Limburg",NA,brain,AS201600067
+2016-09-20,Strix nebulosa,4181 PT Waardenburg Gelderland,NA,brain,AS201600082
+2016-09-25,Strix nebulosa,"3911 AV Rhenen, Ouwehands DP Utrecht",NA,heart,AS201600269
+2017-07-31,Strix nebulosa,7504 Enschede Overijssel,NA,liver,AS201700148
+2017-08-09,Strix nebulosa,7345 DG Wenum Wiesel Gelderland,NA,brain,AS201700142
+2017-08-14,Branta ruficollis,"6460 AB Kerkrade, GaiaZoo Limburg",NA,brain,AS201700144
+2017-08-14,Branta ruficollis,"3460 AB Kerkrade, GaiaZoo Limburg",NA,brain,AS201700147
+2017-08-25,Strix nebulosa,"3000 AM Rotterdam, Blijdorp Zoo Z-Holland",NA,brain,AS201700173
+2017-09-05,Strix nebulosa,"3000 AM Rotterdam, Blijdorp Zoo Z-Holland",NA,brain,AS201700198
+2018-07-24,Strix nebulosa,3800 Amersfoort Utrecht,NA,brain,AS201800080
+2018-08-16,Strix nebulosa,"7801 BA Emmen, Wildlands Zoo Drenthe",NA,brain,AS201800117
+2019-09-03,Taeniopygia (genus),2905 RP Capelle aan den IJssel,NA,brain,AS20190482
+2019-09-12,Gracula religiosa,6652 DH Druten,NA,brain,AS20190438
+2019-10-07,Copsychus malabaricus,"6816 SH Arnhem, Burgers Zoo",NA,cloaca swab,AS20190715
+2019-10-07,Copsychus malabaricus,"6816 SH Arnhem, Burgers Zoo",NA,mouth swab,AS20190716
+2022-07-21,Strix nebulosa,4721 Schijf Brabant,NA,heart,AS20221755
+2017-07-21,Turdus merula,Mijdrecht Turkoois Van Den Berg,NA,Throat_Cloacal_Swab,17TV1199
+2017-07-21,Turdus merula,Mijdrecht Turkoois Van Den Berg,NA,DBS,17TV1199
+2017-08-02,Turdus merula,"51.82560003, 5.908509493",NA,Throat_Cloacal_Swab,16TV1045
+2017-09-07,Turdus merula,"51.35479527, 5.164886534",NA,Throat_Cloacal_Swab,17TV1446
+2017-09-07,Turdus merula,"51.35479527, 5.164886534",NA,DBS,17TV1446
+2017-10-26,Turdus merula,Maastricht Maasveld,NA,DBS,17TV1463
+2018-08-17,Turdus merula,Tuin Karveel,NA,Throat_Cloacal_Swab,18TV0344
+2018-08-17,Turdus merula,Tuin Karveel,NA,DBS,18TV0344
+2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,Throat_Cloacal_Swab,18TV0825
+2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,Throat_Cloacal_Swab,18TV0475
+2018-08-18,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,DBS,18TV0475
+2018-09-10,Turdus merula,Erf Achterweg 4 9261 Vx Eastermar Frl.,NA,DBS,18TV0937
+2018-09-16,Turdus philomelos,Ringstation Overdinkel,NA,Throat_Cloacal_Swab,18TV1196
+2018-10-06,Turdus merula,Zwarte Meer West,NA,Throat_Cloacal_Swab,17TV1510
+2018-10-11,Turdus merula,Erf Achterweg 4 9261 Vx Eastermar Frl.,NA,Throat_Cloacal_Swab,18TV1517
+2018-10-13,Turdus merula,Natuurgebied De Burgumermar Oostoever Frl.,NA,Throat_Cloacal_Swab,18TV1221
+2018-10-31,Turdus merula,"52.2636648, 5.0992524",NA,Throat_Cloacal_Swab,18TV0252
+2019-04-12,Turdus merula,Karveel Tuin,NA,Throat_Cloacal_Swab,19TV0329
+2019-04-12,Turdus merula,Karveel Tuin,NA,DBS,19TV0329
+2019-04-24,Passer domesticus,Karveel Tuin,NA,Throat_Cloacal_Swab,19TV0102
+2020-08-29,Turdus merula,Ringstation Overdinkel,NA,TickSingle,20TV2299
+2022-07-29,Turdus merula,Lumen Tuin,NA,Throat_Cloacal_Swab,21TV5071
+2022-08-24,Cyanistes caeruleus,Vleuten Panbos Ringmus Locatie,NA,Throat_Cloacal_Swab,22TV2594
+2022-08-24,Turdus merula,"52.316636, 6.132229",NA,Throat_Cloacal_Swab,22TV2538
+2022-08-28,Turdus philomelos,Haarzuilens Eendenkooi Ces Locatie,NA,Throat_Cloacal_Swab,22TV2724
+2022-08-27,Turdus merula,Haarzuilens Griend,NA,Throat_Cloacal_Swab,22TV3658
+2022-08-27,Turdus merula,Haarzuilens Griend,NA,Feces,22TV3658
+2022-09-09,Turdus merula,Krommenie,NA,Throat_Cloacal_Swab,22B00462
+2022-10-02,Turdus merula,Haarzuilens Griend,NA,Throat_Cloacal_Swab,21TV8157
+2022-09-11,Turdus merula,Oprit Papenpad 3,NA,Throat_Cloacal_Swab,22TV3780
+2022-09-08,Turdus merula,"51.35479527, 5.164886534",NA,Throat_Cloacal_Swab,21TV9171
+2022-09-21,Turdus philomelos,Dassenbos Wageningen,NA,Throat_Cloacal_Swab,22B00749
+2022-09-04,Turdus merula,Haarzuilens Griend,NA,Throat_Cloacal_Swab,22TV2684
+2022-09-04,Turdus merula,Haarzuilens Griend,NA,Feces,22TV2684
+2022-09-03,Turdus merula,Haarzuilens Griend,NA,feather,22TV2828
+2022-10-02,Turdus merula,Haarzuilens Griend,NA,feather,22TV3602
+2022-10-08,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,feather,22TV3632
+2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,feather,22B00207
+2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,feather,22B00237
+2022-11-12,Turdus merula,Haarzuilens Eendenkooi Ces Locatie,NA,feather,22B00186
+2022-12-03,Turdus merula,Tuin Gravenburg Groningen,NA,feather,22B04271
+2022-09-16,Turdus merula,"53.19182109, 6.77770516",NA,Throat_Cloacal_Swab,22B00483

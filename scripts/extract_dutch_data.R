@@ -44,19 +44,19 @@ erasmus_sequences <- original_format %>%
 erasmus_data <- original_format %>% 
   dplyr::select(-c(Sequence,
                    1,
-                   ID,
                    DateInfo,
                    English,
                    family,
                    order,
                    Remark,
                    Surveillance,
-                   Long,
-                   Lat,
                    CT)) %>%
+  unite(., coords, Lat, Long, sep = ', ') %>%
+  mutate(Isolate = coalesce(UniqueID, ID),
+         location = coalesce(location, coords)) %>%
   unite(., 'Geo_Location', postal.code, location, province, sep = ' ', na.rm = T) %>%
-  rename(Isolate = UniqueID,
-         Collection_Date = DeathOrSampleDate,
+  dplyr::select(-c(ID, UniqueID, coords)) %>%
+  rename(Collection_Date = DeathOrSampleDate,
          Host = Latin,
          Isolation_Source = Sample,
          Accession = GenBank) 
