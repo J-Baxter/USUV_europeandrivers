@@ -287,8 +287,9 @@ pdist60_clades <- patristic_distances %>%
     filter(!duplicated(paste0(pmax(label_a, label_b), pmin(label_a, label_b)))) %>%
     drop_na(starts_with('dist_60'))
     
-  
-  
+pdist30_clades %>%
+  summarise(mean = mean(distance), sd = sd(distance), .by = type)
+
 
 ggplot(within_europe_clades) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
