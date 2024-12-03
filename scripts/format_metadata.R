@@ -559,7 +559,7 @@ coords <- cbind('sequence_start' = start,
   
   # ambiguities
   mutate(sequence_ambig = n_ambig) %>%
-  mutate(sequence_amib = n_ambig/sequence_length) %>%
+  mutate(sequence_ambig = n_ambig/sequence_length) %>%
   rowwise() %>%
   mutate(generegion_NS5_9000_9600 = ifelse(sequence_start <= 9100 && sequence_end >= 9150, 1, 0),
          #generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
