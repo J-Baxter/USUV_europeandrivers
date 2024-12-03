@@ -11,7 +11,7 @@
 options(scipen = 6, digits = 4) 
 memory.limit(30000000) 
 
-  
+
 ########################################## DEPENDENCIES ############################################
 # Packages
 library(tidyverse)
@@ -31,6 +31,8 @@ ReNameAlignment <- function(alignment, data){
   izsve_isolates <- which(grepl('\\d{2}(VIR|pool)\\d{3,4}', names))
   anses_isolates <- which(grepl('\\/France\\/', names))
   apha_isolates <- which(grepl('^Blackbird', names))
+  erasmus_isolates <- which(grepl('^[a-zA-Z0-9_.-]{8,18}\\|\\d{4}(-\\d{2}-\\d{2}){0,1}', names))
+  greece_isolates <- which(grepl('USUV-GR1439', names))
   
   isolates[published_isolates] <- str_extract(names[published_isolates], "([^|]*)\\||([^,]*),")%>%
     str_replace_all("\\||,", "") %>%
@@ -47,10 +49,26 @@ ReNameAlignment <- function(alignment, data){
   isolates[apha_isolates] <- names[apha_isolates] %>%
     str_trim()
   
+  isolates[erasmus_isolates] <- names[erasmus_isolates] %>%
+    str_replace_all("\\|.*", "") %>%
+    str_trim()
+  
+  isolates[greece_isolates] <- names[greece_isolates] %>%
+    str_trim()
+  
   
   new_seqnames <- c()
   for (i in 1:length(isolates)){
-    new_seqnames[i] <- data$tipnames[which(data$sequence_accession == isolates[i] | data$sequence_isolate == isolates[i])]
+
+    new_name <- data$tipnames[which(data$sequence_accession == isolates[i] | data$sequence_isolate == isolates[i])]
+    old_name <- names[i]
+    
+    if(length(new_name) > 0){
+      new_seqnames[i] <- new_name
+      
+    }else{
+      new_seqnames[i] <- old_name
+    }
     
   }
   
@@ -62,6 +80,7 @@ FormatNewData <- function(data){
   out <- data %>%
     
     # Clean date col
+    mutate(Collection_Date = as.character(Collection_Date)) %>%
     mutate(Collection_Date = case_when(
       grepl('appro{0,1}x.', Collection_Date) ~ gsub(' appro{0,1}x.', '', Collection_Date) %>% gsub('^[^/]*/', '', .),
       .default = Collection_Date) %>%
@@ -102,7 +121,7 @@ fli_updates <- read_csv('./data/fli_supplementary/fli_dates.csv') %>%
   dplyr::select(-Admission_Date) %>%
   filter(Accession %in% old_data$Accession)
 
-# Additional data from Daniel Ca
+# Additional data from Daniel Cadar
 cadar_metadata <- read_csv('./data/Dcadar_metadata.csv') %>%
   dplyr::select(accession, geo_location, collection_date, host) %>%
   rename_with(~gsub('_', ' ', .x) %>%
@@ -116,6 +135,11 @@ cadar_metadata <- read_csv('./data/Dcadar_metadata.csv') %>%
 ncbi_aug13 <- read_csv('./data/ncbi_sequencemetadata_2024Aug13.csv', 
                        locale = readr::locale(encoding = "UTF-8")) 
 
+
+# Import search from NCBI 2024-09 - 2024-12
+ncbi_dec  <- read_csv('./ncbi_aug24todec24/ncbi_aug24-dec24_metadata.csv', 
+                      locale = readr::locale(encoding = "UTF-8")) %>%
+  mutate(Release_Date = as.character(Release_Date))
 
 # ANSES FRANCE Data
 anses <- read_csv('./data/anses_data.csv',
@@ -137,9 +161,13 @@ izsve <- read_csv('./data/izsve_data.csv',
 
 # ERASMUS Data
 erasmus <- read_csv('./data/erasmus_data.csv', 
-                    locale = readr::locale(encoding = "UTF-8"))%>%
+                    locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
 
+# Greece Data
+greece <- read_csv('./greece_data/greece_data.csv', 
+                   locale = readr::locale(encoding = "UTF-8")) %>%
+  FormatNewData(.)
 
 # Import reference datasets for animal taxa
 birds <- read_csv('bird_taxonomy.csv')
@@ -211,6 +239,9 @@ data <- ncbi_aug13 %>%
   # Update with Cadar
   rows_update(cadar_metadata, by = 'Accession') %>%
   
+  # Add New data post Dec 2024
+  rows_insert(ncbi_dec) %>%
+  
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
   mutate(date_format = case_when(
@@ -228,6 +259,7 @@ data_formatted_date <- data %>%
   bind_rows(.,apha) %>%
   bind_rows(.,izsve) %>%
   bind_rows(., erasmus) %>%
+  bind_rows(., greece) %>%
   
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
@@ -461,7 +493,7 @@ data_formatted <- data_formatted_host %>%
                    assembly,
                    species,
                    sequence_length,
-                   usa,
+                   usa,  
                    collection_country,
                    collection_date,
                    notes,
@@ -497,7 +529,7 @@ data_formatted <- data_formatted_host %>%
 
 
 # Import alignment 
-alignment <- ape::read.dna('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligned.fasta',
+alignment <- ape::read.dna('./2024Dec02/alignments/USUV_2024Dec02_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
                            as.character = T) 
@@ -505,10 +537,14 @@ alignment <- ape::read.dna('./2024Aug13/alignments/USUV_2024Aug13_alldata_aligne
 
 rownames(alignment) <- ReNameAlignment(alignment, data_formatted) 
 
+alignment <- alignment[rownames(alignment) %in% data_formatted$tipnames,]
+agtc <- c('a', 't', 'g', 'c', 'x')
+start <- apply(alignment, 1, function(x) match(agtc, x)[1])
+end <- ncol(alignment) - apply(alignment[,ncol(alignment):1], 1, function(x) match(agtc, x)[1])
 
-start <- apply(alignment, 1, function(x) match(letters, x)[1])
-end <- ncol(alignment) - apply(alignment[,ncol(alignment):1], 1, function(x) match(letters, x)[1])
-
+n_ambig <- apply(alignment, 1, function(x) str_c(x, collapse = '') %>%
+                   sub(".*?[atcg]", "", .) %>%
+                   str_count(., "n")) 
 
 
 sub_alignment_coords <- tibble(start = c(1003, 8968, 9100, 10042),
@@ -520,6 +556,10 @@ coords <- cbind('sequence_start' = start,
                 'sequence_end' = end) %>%
   as_tibble(rownames = 'tipnames') %>%
   mutate(sequence_length = sequence_end - sequence_start) %>%
+  
+  # ambiguities
+  mutate(sequence_ambig = n_ambig) %>%
+  mutate(sequence_amib = n_ambig/sequence_length) %>%
   rowwise() %>%
   mutate(generegion_NS5_9000_9600 = ifelse(sequence_start <= 9100 && sequence_end >= 9150, 1, 0),
          #generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
@@ -545,8 +585,8 @@ metadata <- data_formatted %>%
             by = join_by(sequence_accession == Accession,
                          sequence_isolate == Isolate)) %>%
   # Key to exclude FLI
-  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & dmy(Release_Date) > as_date("2020-01-01") ~ TRUE,
-                              .default = FALSE)) %>%
+  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & dmy(Release_Date)  > as_date("2020-01-01") ~ TRUE,
+                              .default = FALSE)) %>% #ignore warnings - these are because some Release_Date are NA or not in the correct format
   dplyr::select(-Release_Date)  %>%
   
   #Europe
@@ -556,20 +596,23 @@ metadata <- data_formatted %>%
 ############################################## WRITE ###############################################
 
 # Write metadata to file #
-write_csv(metadata, './data/USUV_metadata_all_2024Oct20.csv')
+write_csv(metadata, './data/USUV_metadata_all_2024Dec02.csv')
 
 
 # Write alignment to file # 
-alignment <- alignment[order(start),]
-write.dna(alignment, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted.fasta', format = 'fasta')
+alignment <-  alignment %>%
+  as.DNAbin() %>%
+  .[order(start),]
+
+write.FASTA(alignment, './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted.fasta')
 
 
 # Alignment without FLI # 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.dna(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI.fasta', format = 'fasta')
-write_csv(metadata_noFLI , './data/USUV_metadata_noFLI_2024Oct20.csv')
+write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI.fasta')
+
 
 
 ############################################## END #################################################
