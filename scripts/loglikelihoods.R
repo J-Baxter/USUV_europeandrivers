@@ -18,13 +18,13 @@ summary_stats <- list(pdist30_clades,
 log_likelihood_distance <- function(dist, same_cluster, mu_within, sigma_within, mu_between, sigma_between) {
   if (same_cluster) {
     # Within-cluster distances: use within-cluster parameters
-    density <- dnorm(dist, mean = mu_within, sd = sigma_within)
+    density <- dnorm(dist, mean = mu_within, sd = sigma_within, log = T)
   } else {
     # Between-cluster distances: use between-cluster parameters
-    density <- dnorm(dist, mean = mu_between, sd = sigma_between)
+    density <- dnorm(dist, mean = mu_between, sd = sigma_between, log = T)
   }
   
-  return(log(density))
+  return()
 }
 
 # Calculate log-likelihood using pmap
