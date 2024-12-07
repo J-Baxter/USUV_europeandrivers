@@ -8,7 +8,7 @@
 ##
 ##
 ########################################## SYSTEM OPTIONS ##########################################
-options(scipen = 6, digits = 4) 
+options(scipen = 6, digits = 7) 
 memory.limit(30000000) 
 
 
@@ -561,11 +561,9 @@ coords <- cbind('sequence_start' = start,
   mutate(sequence_ambig = n_ambig) %>%
   mutate(sequence_ambig = n_ambig/sequence_length) %>%
   rowwise() %>%
-  mutate(generegion_NS5_9000_9600 = ifelse(sequence_start <= 9100 && sequence_end >= 9150, 1, 0),
-         #generegion_NS5_9100_9600 = ifelse(sequence_start <= 9200 && sequence_end >= 9500, 1, 0),
-         generegion_NS5_10042_10312 = ifelse(sequence_start <= 10142 && sequence_end >= 10300, 1, 0),
-         generegion_env_1003_1491 = ifelse(sequence_start <= 1100 && sequence_end >= 1200, 1, 0),
-         generegion_nflg = ifelse(sequence_length >4200, 1, 0))
+  mutate(generegion_NS5 = ifelse(sequence_start <= 9100 && sequence_end >= 10300, 1, 0),
+         generegion_env = ifelse(sequence_start <= 1100 && sequence_end >= 1200, 1, 0),
+         generegion_nflg = ifelse(sequence_length > 9500, 1, 0))
 
 unnassigned <- coords %>%
   filter(if_all(starts_with('generegion'), ~ .x ==0))
@@ -613,6 +611,17 @@ metadata_noFLI <- metadata %>%
 
 write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI.fasta')
 
+
+# NFLG alignments only # 
+write.FASTA(alignment[rownames(alignment) %in% (metadata %>% 
+                                                  filter(generegion_nflg == 1) %>% 
+                                                  pull(tipnames)),],
+            './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_NFLG.fasta')
+
+write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                filter(generegion_nflg == 1) %>% 
+                                                pull(tipnames)),],
+          './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI_NFLG.fasta')
 
 
 ############################################## END #################################################
