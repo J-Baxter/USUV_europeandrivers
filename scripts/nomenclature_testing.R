@@ -82,14 +82,14 @@ nflg_aln <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_form
 
 
 ############################################## DATA ################################################
-ml_tree <- read.iqtree('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta.treefile')
+ml_tree <- read.tree('nextstrain/results/tree_raw.nwk')
 
 #nflg_mcc <- read.beast('./2024Oct20/test_beast/USU')
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2024Dec02.csv') %>%
+  filter(tipnames %in%ml_tree$tip.label) 
 
-stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
+stopifnot(nrow(metadata_in_tree) == Ntip(ml_tree)) #sanity check
 
 ############################################## MAIN ################################################
 most_recent_date <- metadata_in_tree %>%
@@ -105,7 +105,7 @@ tree_tbl <- as_tibble(ml_tree) %>%
 #2. Containing at least 5 sequences
 #3. genomes within the lineage must share at least one nucleotide change relative to ancestral
 ml_tree@phylo <- midpoint.root(ml_tree@phylo)
-
+#http://127.0.0.1:19839/graphics/plot_zoom_png?width=1400&height=1190
 wellsupported_nodes <- ml_tree %>% 
   as_tibble() %>%
   # Only include nodes with bootstrap support greater than 70%
@@ -120,7 +120,7 @@ subtrees <- lapply(wellsupported_nodes, function(x) as_tibble(ml_tree) %>% offsp
 #2. Containing at least 5 sequences
   # Force NA means we only count terminal nodes
 # n = 119
-  .[sapply(. , function(x) x %>% filter(is.na(UFboot)) %>% nrow(.) >= 2)] %>%
+  .[sapply(. , function(x) x %>% filter(is.na(UFboot)) %>% nrow(.) >= 5)] %>%
   
 #3. Genomes within the lineage must share at least one nucleotide change relative to ancestral
   # (filter parent branch must be at least one substitution different)
@@ -130,7 +130,7 @@ subtrees <- lapply(wellsupported_nodes, function(x) as_tibble(ml_tree) %>% offsp
            pull(branch.length) %>%
            multiply_by(10315) %>%
              round() %>%
-             is_weakly_greater_than(5))] %>%
+             is_weakly_greater_than(10))] %>%
   bind_rows(., .id = 'lineage')
 
 
@@ -145,26 +145,116 @@ lineage_nodes <- subtrees %>%
   
 
   
+autolin_labels <- read_tsv('./2024Dec02/nomenclature/labels.tsv') %>%
+  rename(label = sample) %>%
+  separate_wider_delim(lineage, delim = '.', names = c('level_0', 'level_1', 'level_2', 'level_3'),
+                       too_few = 'align_start') %>%
+  mutate(level_3 = case_when(!is.na(level_3) ~ paste(level_0, level_1, level_2, level_3, sep = '.')),
+         level_2 = case_when(!is.na(level_2) ~ paste(level_0, level_1, level_2, sep = '.')),
+         level_1 = case_when(!is.na(level_1) ~ paste(level_0, level_1, sep = '.')))
 
 
+midpoint.root(ml_tree) %>% 
 
-midpoint.root(ml_tree@phylo) %>% 
-
-  left_join(metadata_in_tree %>% 
-              dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage, host_class) %>%
-              rename(label = tipnames),
-            by = 'label') %>%
+  #left_join(metadata_in_tree %>% 
+             # dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage, host_class) %>%
+            #  rename(label = tipnames),
+          #  by = 'label') %>%
   
-  left_join(tree_tbl) %>% 
-  mutate(wellsupported = ifelse( UFboot > 0.7, '1', '0')) %>%
+ # left_join(tree_tbl) %>% 
+ # mutate(wellsupported = ifelse( UFboot > 0.7, '1', '0')) %>%
   
-  left_join(lineage_nodes) %>%
+  left_join(autolin_labels) %>%
+  
+ # left_join(lineage_nodes) %>%
   ggtree() + 
   theme_tree2() + 
-  geom_nodepoint(aes(colour = is_start_lineage)) #+ 
+  
+  geom_cladelabel()
+
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = level_0),
+             width = 0.002,
+             colour = NA,
+             pwidth = 1.2,
+             offset = 0.03) + 
+  geom_fruit(geom = geom_text,
+             mapping = aes(label = level_0),
+             offset = 0.03) + 
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = level_1),
+             width = 0.002,
+             colour = "white",
+             pwidth = 1.2,
+             offset = 0.06)
+  scale_fill_brewer('Location', palette = 'Dark2', direction = -1, 
+                    labels = c('0' = 'Outside of Europe',
+                               '1' = 'Within Europe'),
+                    guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 1, order = 2)) 
   #geom_text(aes(label=node), hjust=-.3)
   #scale_colour_distiller(palette = 'OrRd', direction = 1)
+  
+  
+test <- treeio::read.nextstrain.json('./2024Dec02/nomenclature/annotated.json')
 
+test_mrca_level0 <- test@data %>%
+  filter(`GRI Lineage Level 0` != 'not assigned') %>%
+  group_by(`GRI Lineage Level 0`) %>%
+  slice_min(num_date) %>% 
+  select(node, country, starts_with('GRI')) %>%
+  rename(label = `GRI Lineage Level 0`)
+
+
+test_mrca_level1 <- test@data %>%
+  filter(`GRI Lineage Level 1` != 'not assigned') %>%
+  group_by(`GRI Lineage Level 1`) %>%
+  slice_min(num_date) %>% 
+  select(node, country, starts_with('GRI')) %>%
+  rename(label = `GRI Lineage Level 1`) %>%
+  mutate(label = case_when(!grepl('\\.', label) ~ NA_character_, .default = label)) %>%
+  drop_na()
+
+
+
+test_mrca_level2 <- test@data %>%
+  filter(`GRI Lineage Level 2` != 'not assigned') %>%
+  group_by(`GRI Lineage Level 2`) %>%
+  slice_min(num_date) %>% 
+  select(node, country, starts_with('GRI')) %>%
+  rename(label = `GRI Lineage Level 2`) %>%
+  mutate(label = case_when(!grepl('\\.[[:digit:]]\\.', label) ~ NA_character_, .default = label)) %>%
+  drop_na()
+
+
+ test %>% 
+  ggtree() + 
+  geom_cladelab(data = test_mrca_level0 , 
+                mapping = aes(node = node, label = label, colour = label), 
+                align = TRUE, 
+                fontsize = 4, 
+                textcolour = 'black',
+                barsize = 15,
+                offset = 0.005,
+                offset.text = -0.0004) + 
+   geom_hilight(data = test_mrca_level0 , 
+                mapping = aes(node = node, label = label, fill = label))+ 
+  geom_cladelab(data = test_mrca_level1 , 
+                mapping = aes(node = node, label = label, colour = label), 
+                align = TRUE, 
+                fontsize = 4, 
+                textcolour = 'black',
+                barsize = 15,
+                offset = 0.003,
+                offset.text = -0.0005) + 
+  geom_cladelab(data = test_mrca_level2 , 
+                mapping = aes(node = node, label = label, colour = label), 
+                align = TRUE, 
+                fontsize = 4, 
+                textcolour = 'black',
+                barsize = 15,
+                offset = 0.001,
+                offset.text = -0.0005)
+  
 ############################################## WRITE ###############################################
 
 
