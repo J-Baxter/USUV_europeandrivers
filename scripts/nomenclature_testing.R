@@ -16,7 +16,12 @@ memory.limit(30000000)
 # Packages
 library(tidyverse)
 library(magrittr)
-
+library(tidytree)
+library(treeio)
+library(ggtree)
+library(ggtreeExtra)
+library(ggsci)
+library(ggnewscale)
 
 # User functions
 GroupSequences <- function(aln, snp_threshold = 0){
@@ -194,7 +199,64 @@ midpoint.root(ml_tree) %>%
   #geom_text(aes(label=node), hjust=-.3)
   #scale_colour_distiller(palette = 'OrRd', direction = 1)
   
+
+
+primary_lineages <- autolin_labels %>%
+  select(lineage) %>%
+  filter(!grepl('\\.', lineage)) %>%
+  distinct() %>%
+  rename(level_0 = lineage)
   
+level_0_cols <- pal_d3(palette = "category10")(nrow(primary_lineages))
+
+primary_lineages %<>%
+  cbind.data.frame(primary_lineage_cols)
+
+level_1_cols <- autolin_labels %>%
+  select(lineage) %>%
+  distinct() %>%
+  #filter(grepl('\\.', lineage)) %>%
+  separate_wider_delim(lineage, delim = '.', names = c('level_0', 'level_1', 'level_2'),
+                       too_few = 'align_start') %>%
+  select(-level_2) %>%
+  distinct() %>%
+  mutate(level_1  = as.integer(level_1)) %>%
+  group_by(level_0) %>%
+  arrange(level_1,.by_group = TRUE) %>%
+  filter(!(is.na(level_1) & n() > 2)) %>%
+  mutate(n = cur_group_id()) %>%
+  mutate(level_1_col = lighten(primary_lineage_cols[n], 
+                               amount = seq(0.2, 0.8, length.out = n()))) %>%
+  ungroup() %>%
+  drop_na() %>%
+  pull(level_1_col)
+
+
+level_2_cols <- autolin_labels %>%
+  select(lineage) %>%
+  distinct() %>%
+  #filter(grepl('\\.', lineage)) %>%
+  separate_wider_delim(lineage, delim = '.', names = c('level_0', 'level_1', 'level_2'),
+                       too_few = 'align_start') %>%
+  select(-level_1) %>%
+  distinct() %>%
+  mutate(level_2  = as.integer(level_2)) %>%
+  group_by(level_0) %>%
+  arrange(level_2,.by_group = TRUE) %>%
+  filter(!(is.na(level_2) & n() > 2)) %>%
+  mutate(n = cur_group_id()) %>%
+  mutate(level_2_col = lighten(primary_lineage_cols[n], 
+                               amount = seq(0.2, 0.8, length.out = n()))) %>%
+  ungroup() %>%
+  drop_na() %>%
+  pull(level_2_col)
+
+separate_wider_delim(lineage, delim = '.', names = c('level_0', 'level_1', 'level_2', 'level_3'),
+                     too_few = 'align_start') %>%
+  mutate(level_3 = case_when(!is.na(level_3) ~ paste(level_0, level_1, level_2, level_3, sep = '.')),
+         level_2 = case_when(!is.na(level_2) ~ paste(level_0, level_1, level_2, sep = '.')),
+         level_1 = case_when(!is.na(level_1) ~ paste(level_0, level_1, sep = '.')))
+
 test <- treeio::read.nextstrain.json('./2024Dec02/nomenclature/annotated.json')
 
 test_mrca_level0 <- test@data %>%
@@ -226,34 +288,65 @@ test_mrca_level2 <- test@data %>%
   drop_na()
 
 
- test %>% 
+ p1 <- test %>% 
   ggtree() + 
   geom_cladelab(data = test_mrca_level0 , 
                 mapping = aes(node = node, label = label, colour = label), 
                 align = TRUE, 
-                fontsize = 4, 
-                textcolour = 'black',
+                textcolour = NA,
                 barsize = 15,
-                offset = 0.005,
-                offset.text = -0.0004) + 
-   geom_hilight(data = test_mrca_level0 , 
-                mapping = aes(node = node, label = label, fill = label))+ 
-  geom_cladelab(data = test_mrca_level1 , 
-                mapping = aes(node = node, label = label, colour = label), 
-                align = TRUE, 
-                fontsize = 4, 
-                textcolour = 'black',
-                barsize = 15,
-                offset = 0.003,
-                offset.text = -0.0005) + 
-  geom_cladelab(data = test_mrca_level2 , 
-                mapping = aes(node = node, label = label, colour = label), 
-                align = TRUE, 
-                fontsize = 4, 
-                textcolour = 'black',
-                barsize = 15,
-                offset = 0.001,
-                offset.text = -0.0005)
+                offset = 0.004) + 
+   
+   geom_cladelab(data = test_mrca_level0 , 
+                 mapping = aes(node = node, label = label, colour = label), 
+                 align = TRUE, 
+                 fontsize = 4, 
+                 textcolour = 'black',
+                 barsize = 0,
+                 offset = 0.004,
+                 offset.text = -0.0004) + 
+   scale_colour_manual(values = primary_lineage_cols) + 
+   new_scale_colour()+
+   
+   geom_cladelab(data = test_mrca_level1 , 
+                 mapping = aes(node = node, label = label, colour = label), 
+                 align = TRUE, 
+                 textcolour = NA,
+                 barsize = 15,
+                 offset = 0.0025) + 
+   
+   geom_cladelab(data = test_mrca_level1 , 
+                 mapping = aes(node = node, label = label, colour = label), 
+                 align = TRUE, 
+                 fontsize = 4, 
+                 textcolour = 'black',
+                 barsize = 0,
+                 offset = 0.0025,
+                 offset.text = -0.00055) + 
+   scale_colour_manual(values = level_1_cols) + 
+   
+   new_scale_colour() +
+   geom_cladelab(data = test_mrca_level2 , 
+                 mapping = aes(node = node, label = label, colour = label), 
+                 align = TRUE, 
+                 fontsize = 4, 
+                 textcolour = 'black',
+                 barsize = 0) + 
+   
+   theme(legend.position = 'none') + geom_tiplab(align = TRUE, aes(label = ""))
+
+
+p <- purrr::reduce(
+  test_mrca_level2$node,
+  \(x,y) 
+    collapse(x,y,mode = "max",fill="black",size=0.05),
+  .init = p1
+)
+   
+
+ggsave(p, filename = "~/Downloads/summarytree2.png", width = 13, height = 25)
+
+
   
 ############################################## WRITE ###############################################
 
