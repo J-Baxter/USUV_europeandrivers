@@ -20,14 +20,14 @@ library(treeio)
 library(TreeTools)
 library(ggtree)
 library(ggnewscale)
-library(ggcsi)
+library(ggsci)
 library(ggtreeExtra)
 
 # User functions
 
 
 ############################################## DATA ################################################
-nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
+nflg_mcc <- read.beast('./2024Dec02/global_beast/USUV_2024Dec02_nflg_subsample1_SRD06_relaxLn_constant_mcc.tree')
 nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
 
 phyclip_lineages <- read_delim('./data/phyCLIP/cluster_optimal_parameter_cs6_fdr0.1_gam3.0_sol0_f0_zero-branch-length-collapsed_rooted_nflg_subsample.txt') %>%
@@ -36,7 +36,7 @@ phyclip_lineages <- read_delim('./data/phyCLIP/cluster_optimal_parameter_cs6_fdr
          label = TAXA) %>%
   mutate(lineage =as.factor(lineage))
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2024Dec02.csv') %>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
 stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
@@ -130,6 +130,7 @@ p <- nflg_mcc %>%
                            'SN' = 'Senegal',
                            'UG' = 'Uganda',
                            'UK' = 'United Kingdom',
+                           'EL' = 'Greece',
                            'ZA' = 'South Africa' ),
                 guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 2, order = 1)) +
   
