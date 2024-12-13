@@ -1,0 +1,3 @@
+WorkflowError in file /home/jbaxter/Documents/USUV_europeandrivers/nextstrain/Snakefile, line 31:
+Rule align is not defined in this workflow. Available rules: all, index_sequences
+  File "/home/jbaxter/Documents/USUV_europeandrivers/nextstrain/Snakefile", line 31, in <module>
