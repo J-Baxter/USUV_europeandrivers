@@ -28,14 +28,14 @@ library(phangorn)
 
 
 ############################################## DATA ################################################
-nflg_traits <- read.beast('./2024Oct20/test_beast/traits/USUV_2024Oct20_nflg_subsample1_traits_mcc.tree')
-nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
+#nflg_traits <- read.beast('./2024Dec02/global_beast/USUV_2024Dec02_nflg_subsample1_SRD06_relaxLn_constant_mcc.tree')
+nflg_mcc <- read.beast('./2024Dec02/global_beast/USUV_2024Dec02_nflg_subsample1_SRD06_relaxLn_constant_mcc.tree')
 
-nflg_ml <- read.newick('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta.treefile') %>% 
+nflg_ml <- read.newick('./2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI_NFLG.fasta.treefile') %>% 
   phytools::midpoint_root()
 
 
-metadata_in_beast_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
+metadata_in_beast_tree <- read_csv('./data/USUV_metadata_all_2024Dec02.csv') %>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
 stopifnot(nrow(metadata_in_beast_tree ) == Ntip(nflg_mcc@phylo)) #sanity check

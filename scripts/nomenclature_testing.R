@@ -103,7 +103,7 @@ stopifnot(nrow(metadata_in_tree) == Ntip(ml_tree)) #sanity check
 autolin_labels <- read_tsv('./2024Dec02/nomenclature/labels.tsv') %>%
   rename(label = sample)
 
-test <- treeio::read.nextstrain.json('./2024Dec02/nomenclature/annotated.json')
+test <- treeio::read.nextstrain.json('./2024Dec02/nomenclature/annotated_05.json')
 
 
 ############################################## MAIN ################################################
