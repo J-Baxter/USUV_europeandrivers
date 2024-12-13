@@ -18,7 +18,7 @@ direction <-  list.files(pattern = '(E|R)_Bayes')   %>%
           #gsub('[[:punct:]]+', ' ', .) %>%
           str_to_lower(),
         statistic = gsub('.*direction_|_Bayes.*', '', filename)) %>%
-  select(-1) %>%
+  dplyr::select(-1) %>%
   pivot_wider(names_from = statistic, values_from = BF) %>%
   rename(remain_in = E,
          leave_from = R)
@@ -32,4 +32,4 @@ direction <-  list.files(pattern = '(E|R)_Bayes')   %>%
 # R rather measures the tendency of lineages to disperse towards lower/higher environmental values.
 
 
-direction_strong <- direction %>% filter(E>20 | R >20)
+direction_strong <- direction %>% filter(remain_in>20 | leave_from >20)
