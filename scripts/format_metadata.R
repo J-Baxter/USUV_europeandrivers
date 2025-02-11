@@ -141,8 +141,13 @@ ncbi_dec  <- read_csv('./ncbi_aug24todec24/ncbi_aug24-dec24_metadata.csv',
                       locale = readr::locale(encoding = "UTF-8")) %>%
   mutate(Release_Date = as.character(Release_Date))
 
+# Import search from NCBI 2024-09 - 2024-12
+ncbi_feb  <- read_csv('./ncbi_dec24tofeb25/ncbi_dec24-feb25_metadata.csv', 
+                      locale = readr::locale(encoding = "UTF-8")) %>%
+  mutate(Release_Date = as.character(Release_Date))
+
 # ANSES FRANCE Data
-anses <- read_csv('./data/anses_data.csv',
+anses <- read_csv('./data/anses_data_updated.csv',
                   locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
 
@@ -152,12 +157,10 @@ apha <- read_csv('./data/apha_data.csv',
                  locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
 
-
 # Izsve Data
 izsve <- read_csv('./data/izsve_data.csv', 
                   locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
-
 
 # ERASMUS Data
 erasmus <- read_csv('./data/erasmus_data.csv', 
@@ -168,6 +171,13 @@ erasmus <- read_csv('./data/erasmus_data.csv',
 greece <- read_csv('./greece_data/greece_data.csv', 
                    locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
+
+
+# Portugal Data
+portugal <- read_csv('./portugal_data/portugal_data.csv', 
+                     locale = readr::locale(encoding = "UTF-8")) %>%
+  FormatNewData(.)
+
 
 # Import reference datasets for animal taxa
 birds <- read_csv('bird_taxonomy.csv')
@@ -241,6 +251,7 @@ data <- ncbi_aug13 %>%
   
   # Add New data post Dec 2024
   rows_insert(ncbi_dec) %>%
+  rows_insert(ncbi_feb %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
   
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
@@ -260,6 +271,8 @@ data_formatted_date <- data %>%
   bind_rows(.,izsve) %>%
   bind_rows(., erasmus) %>%
   bind_rows(., greece) %>%
+  bind_rows(., portugal) %>%
+  
   
   # format colnames
   rename_with(., ~ tolower(.x)) %>%
