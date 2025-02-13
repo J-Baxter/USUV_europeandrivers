@@ -20,7 +20,7 @@ FormatTicks <- function(x){
    'carios erraticus' = '(carios|ornithodours) erraticus',
    'ornithodours' = '(ornithodours|carios)$',
    
-   'ixodida spp.' = '^tick' )
+   'ixodida spp.' = '^tick|ixodida' )
   
   for (i in 1:length(ticks)){
     if(any(grepl(ticks[[i]], x))){

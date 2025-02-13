@@ -29,7 +29,8 @@ FormatMammal <- function(x){
     "coucha rat" = "mastomys natalensis|coucha rat",
     "black rat"="rattus rattus|black rat",
     'common pipistrelle' = 'pipistrellus pipistrellus|common pipistrelle',
-    'chimpanzee' = 'troglodytes|chimpanzee'
+    'chimpanzee' = 'troglodytes|chimpanzee',
+    'red sheep' = 'red sheep|ovis aries'
     )
   
   for (i in 1:length(mammals)){

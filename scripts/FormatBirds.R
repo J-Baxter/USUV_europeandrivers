@@ -287,7 +287,7 @@ FormatPasseriformes <- function(x){
     "house sparrow" = "passer domesticus|house sparrow",
     "crow/raven sp." = "corvidae \\(crow/raven sp\\.\\)|crow/raven sp\\.|jungle crow|^crow$|^raven$|american raven",
     "large-billed crow" = "corvus macrorhynchos|large[- ]bill(ed){0,1} crow",
-    "eurasian blackbird" =	"turdus merula|(eurasian|european) blackbird",
+    "eurasian blackbird" =	"t[eu]rdus merula|(eurasian|european) blackbird",
     'eurasian nuthatch' = '(eurasian|european) nuthatch|sitta europaea',
     "song thrush" = "turdus philomelos|song thrush",
     "black-billed magpie" = "pica hudsonia|black-billed magpie", # magpies divided by region
@@ -321,7 +321,12 @@ FormatPasseriformes <- function(x){
     'hooded crow' = 'corvus cornix|hooded crow',
     'goldcrest' =	'regulus regulus|goldcrest',
     'eurasian blackcap'	= 'sylvia atricapilla|eurasian blackcap',
-    'common redpoll' = 'acanthis flammea|common redpoll'
+    'common redpoll' = 'acanthis flammea|common redpoll',
+    'white-rumped shama' = 'white-rumped shama|copsychus malabaricus',
+    'mistle thrush' = 'turdus viscivorus|mistle thrush',
+    'european greenfinch' = 'chloris chloris|european greenfinch',
+    'dunnock' = 'prunella modularis|dunnock',
+    'zebra finch' = 'taeniopygia( guttata){0,1}|zebra finch'
   )
   
   for (i in 1:length(passeriformes)){

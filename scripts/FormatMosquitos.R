@@ -2368,7 +2368,7 @@ FormatMosquito <- function(x){
     "culex nanus" = "culex nanus",
     "aedes sapphirina" = "aedes sapphirina",
     "aedes sp." = "aedes sp.",
-    "culex sp." = "culex sp.|culex$",
+    "culex sp." = "culex sp.|culex$|torrentium|culex longi",
     "anopheles sp." = "anopheles sp."
     )
   
