@@ -39,7 +39,7 @@ GroupSequences <- function(aln, snp_threshold = 0){
   }
   
   # Calculate hamming distance
-  hd_normalised <- dist.hamming(aln) %>%
+  hd_normalised <- dist.hamming(aln_formatted) %>%
     as.matrix()
   hd_raw <- hd_normalised * ncol(aln)
   
@@ -48,7 +48,7 @@ GroupSequences <- function(aln, snp_threshold = 0){
   groups <- which(hd_raw <= snp_threshold, 
                   arr.ind = TRUE) %>%
     dplyr::as_tibble(rownames = 'tipnames') %>% 
-    filter(row !=col) %>%
+    filter(row != col) %>%
     dplyr::select(-tipnames) %>%
     
     # Infer network from HDs
@@ -77,13 +77,13 @@ GroupSequences <- function(aln, snp_threshold = 0){
 }
 
 ############################################## DATA ################################################
-nflg_alignment <- read.dna('./2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI_NFLG.fasta',
+nflg_alignment <- read.dna('./2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG.fasta',
                       as.matrix = T,
                       format = 'fasta')
 
 
 # import metadata
-metadata_nflg <- read_csv('./data/USUV_metadata_all_2024Dec02.csv') %>%
+metadata_nflg <- read_csv('./data/USUV_metadata_all_2025Feb10.csv') %>%
   filter(generegion_nflg == 1)
   
 
@@ -137,18 +137,100 @@ subsample_1 <- metadata %>%
 aln_subsampled <- nflg_alignment[rownames(nflg_alignment) %in% subsample_1$tipnames,]
 
 
-# Subsampling 2
+# Subsampling for sensitivity analysis
+n_noneurope <- subsample_1 %>% 
+  filter(is_europe == 0) %>%
+  nrow()
+
+n_europe <- subsample_1 %>% 
+  filter(is_europe == 1) %>%
+  nrow()
+
+noneurope_subsamples <- subsample_1 %>% 
+  filter(is_europe == 0) 
+
+# 10% of downsampled europe sequences n = 45
+groups_10 <- GroupSequences(nflg_alignment, 28) 
+europe_10percent_subsample <- subsample_1 %>% 
+  ungroup() %>%
+  filter(is_europe == 1) %>%
+  select(-sequence_group) %>%
+  left_join(groups_10) %>%
+  group_by(sequence_group,  nuts0_id) %>% # ngroups = 43
+  slice_min(date_dec)
+europe_10percent_subsample
+
+
+# 25% of downsampled europe sequences n = 113
+groups_25 <- GroupSequences(nflg_alignment, 21) 
+europe_25percent_subsample <- subsample_1 %>% 
+  ungroup() %>%
+  filter(is_europe == 1) %>%
+  select(-sequence_group) %>%
+  left_join(groups_25) %>%
+  group_by(sequence_group, date_y, nuts0_id) %>% # ngroups = 123
+  slice_sample(n = 1)
+europe_25percent_subsample
+
+
+# 50% of downsampled europe sequences n = 227
+groups_50 <- GroupSequences(nflg_alignment, 14) 
+europe_50percent_subsample <- subsample_1 %>% 
+  ungroup() %>%
+  filter(is_europe == 1) %>%
+  select(-sequence_group) %>%
+  left_join(groups_50) %>%
+  group_by(sequence_group, date_y, nuts1_id) %>% # ngroups = 230
+  slice_sample(n = 1)
+europe_50percent_subsample
+
+
+# 75% of downsampled europe sequences n = 340
+groups_75 <- GroupSequences(nflg_alignment, 8) 
+europe_75percent_subsample <- subsample_1 %>% 
+  ungroup() %>%
+  filter(is_europe == 1) %>%
+  select(-sequence_group) %>%
+  left_join(groups_75) %>%
+  group_by(sequence_group,  date_y , nuts0_id) %>% # ngroups = 357
+  slice_sample(n = 1)
+
+
+
+p75_subsample <- europe_75percent_subsample %>%
+  bind_rows(noneurope_subsamples)
+
+p75_subsample_aln <- nflg_alignment[rownames(nflg_alignment) %in% p75_subsample$tipnames,]
+
+
+p50_subsample <- europe_50percent_subsample %>%
+  bind_rows(noneurope_subsamples)
+
+p50_subsample_aln <- nflg_alignment[rownames(nflg_alignment) %in% p50_subsample$tipnames,]
+
+
+p25_subsample <- europe_25percent_subsample %>%
+  bind_rows(noneurope_subsamples)
+
+p25_subsample_aln <- nflg_alignment[rownames(nflg_alignment) %in% p25_subsample$tipnames,]
+
+
+p10_subsample <- europe_10percent_subsample %>%
+  bind_rows(noneurope_subsamples)
+
+p10_subsample_aln <- nflg_alignment[rownames(nflg_alignment) %in% p10_subsample$tipnames,]
+
 # this uses the tip order from the MCC tree calculated using the previous subsample
 
 # get list of tips from major european clusters on MCC tree
-eu_clusters <- offspring(nflg_mcc, c(737, 624, 450, 852, 435), tiponly = TRUE) %>%
-  lapply(., function(x) dplyr::select(as_tibble(nflg_mcc), c(label, node)) %>% 
-           filter(node %in% x) %>%
-           pull(label)) %>%
-  set_names(c('A', 'B', 'C')) %>%
-  lapply(., as_tibble) %>%
-  bind_rows(,.id = 'cluster') %>%
-  rename(tipnames = value)
+#eu_clusters <- offspring(nflg_mcc, c(737, 624, 450, 852, 435), tiponly = TRUE) %>%
+  #lapply(., function(x) dplyr::select(as_tibble(nflg_mcc), c(label, node)) %>% 
+    #       filter(node %in% x) %>%
+    #       pull(label)) %>%
+  #set_names(c('A', 'B', 'C')) %>%
+ # lapply(., as_tibble) %>%
+  #bind_rows(,.id = 'cluster') %>%
+  #rename(tipnames = value)
   
 
 #subsample_2_noneu <- metadata %>%
@@ -191,13 +273,19 @@ eu_clusters <- offspring(nflg_mcc, c(737, 624, 450, 852, 435), tiponly = TRUE) %
 
 ############################################## WRITE ###############################################
 write.FASTA(aln_subsampled,
-          './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta')
+          './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample1.fasta')
 
-write.nexus.data()
+write.FASTA(p75_subsample_aln,
+            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p75.fasta')
 
-#write.dna(aln_subsampled_2,
-       #   './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample2.fasta', 
-        #  format = 'fasta')
+write.FASTA(p50_subsample_aln,
+            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta')
+
+write.FASTA(p25_subsample_aln,
+            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p25.fasta')
+
+write.FASTA(p10_subsample_aln,
+            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p10.fasta')
 
 
 ############################################## END #################################################
