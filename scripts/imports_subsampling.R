@@ -287,6 +287,59 @@ write.FASTA(p25_subsample_aln,
 write.FASTA(p10_subsample_aln,
             './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p10.fasta')
 
+subsample_1 %>% 
+  ungroup() %>%
+  select(tipnames, is_europe) %>%
+  mutate(is_europe = case_when(is_europe == 1 ~'europe',
+                                   .default = 'not_europe')) %>%
+  write_delim(.,
+              './2025Feb10/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample1_traits.txt',
+              delim = '\t',
+              quote= 'needed')
+
+
+p75_subsample %>% 
+  ungroup() %>%
+  select(tipnames, is_europe) %>%
+  mutate(is_europe = case_when(is_europe == 1 ~'europe',
+                               .default = 'not_europe')) %>%
+  write_delim(.,
+              './2025Feb10/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p75_traits.txt',
+              delim = '\t',
+              quote= 'needed')
+
+
+p50_subsample %>% 
+  ungroup() %>%
+  select(tipnames, is_europe) %>%
+  mutate(is_europe = case_when(is_europe == 1 ~'europe',
+                               .default = 'not_europe')) %>%
+  write_delim(.,
+              './2025Feb10/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p50_traits.txt',
+              delim = '\t',
+              quote= 'needed')
+
+
+p25_subsample %>% 
+  ungroup() %>%
+  select(tipnames, is_europe) %>%
+  mutate(is_europe = case_when(is_europe == 1 ~'europe',
+                               .default = 'not_europe')) %>%
+  write_delim(.,
+              './2025Feb10/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p25_traits.txt',
+              delim = '\t',
+              quote= 'needed')
+
+p10_subsample %>% 
+  ungroup() %>%
+  select(tipnames, is_europe) %>%
+  mutate(is_europe = case_when(is_europe == 1 ~'europe',
+                               .default = 'not_europe')) %>%
+  write_delim(.,
+              './2025Feb10/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p10_traits.txt',
+              delim = '\t',
+              quote= 'needed')
+
 
 ############################################## END #################################################
 ####################################################################################################
