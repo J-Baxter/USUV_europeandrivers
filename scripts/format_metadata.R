@@ -28,8 +28,8 @@ ReNameAlignment <- function(alignment, data){
   isolates <- rep(NA, length(names))
   
   published_isolates <- which(str_count(names, '\\|') >=2)
-  izsve_isolates <- which(grepl('\\d{2}(VIR|pool)\\d{3,4}', names))
-  anses_isolates <- which(grepl('\\/France\\/', names))
+  izsve_isolates <- which(grepl('^\\d{2}(VIR|pool)\\d{3,4}', names))
+  anses_isolates <- which(grepl('^Usutu virus isolate', names))
   apha_isolates <- which(grepl('^Blackbird', names))
   erasmus_isolates <- which(grepl('^[a-zA-Z0-9_.-]{8,18}\\|\\d{4}(-\\d{2}-\\d{2}){0,1}', names))
   greece_isolates <- which(grepl('USUV-GR1439', names))
@@ -43,7 +43,7 @@ ReNameAlignment <- function(alignment, data){
   isolates[izsve_isolates] <- gsub("_[A-Za-z].+", "", names[izsve_isolates])%>%
     str_trim()
   
-  isolates[anses_isolates] <- str_extract(names[anses_isolates], "USUV-[A-Za-z]{0,8}\\d+\\/France\\/\\d{4}") %>%
+  isolates[anses_isolates] <- str_extract(names[anses_isolates], "\\d+\\/France\\/\\d{2}\\/\\d{4}") %>%
     str_trim()
   
   isolates[apha_isolates] <- names[apha_isolates] %>%
@@ -174,9 +174,9 @@ greece <- read_csv('./greece_data/greece_data.csv',
 
 
 # Portugal Data
-portugal <- read_csv('./portugal_data/portugal_data.csv', 
-                     locale = readr::locale(encoding = "UTF-8")) %>%
-  FormatNewData(.)
+#portugal <- read_csv('./portugal_data/portugal_data.csv', 
+                  #   locale = readr::locale(encoding = "UTF-8")) %>%
+  #FormatNewData(.)
 
 
 # Import reference datasets for animal taxa
@@ -271,7 +271,7 @@ data_formatted_date <- data %>%
   bind_rows(.,izsve) %>%
   bind_rows(., erasmus) %>%
   bind_rows(., greece) %>%
-  bind_rows(., portugal) %>%
+  #bind_rows(., portugal) %>%
   
   
   # format colnames
@@ -292,7 +292,11 @@ data_formatted_date <- data %>%
   # drop reference sequence
   filter(!grepl('NC_006551', sequence_accession)) %>%
   
-  # drop lab sequences (mostly senegal)
+  # drop lab sequences (mostly senegal and france)
+  filter(!grepl('PP482814|PP482817|LP944231|EU303236|LC227579|KU760915', sequence_accession)) %>%
+  
+  # drop KC754958 (highly divergent 1969 sequence)
+  filter(!grepl('KC754958', sequence_accession)) %>%
   
   
   # format date (create date_dec, date_ym date_ymd) %>%
@@ -542,7 +546,7 @@ data_formatted <- data_formatted_host %>%
 
 
 # Import alignment 
-alignment <- ape::read.dna('./2024Dec02/alignments/USUV_2024Dec02_alldata_aligned.fasta',
+alignment <- ape::read.dna('./2025Feb10/alignments/USUV_2025Feb10_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
                            as.character = T) 
@@ -607,7 +611,7 @@ metadata <- data_formatted %>%
 ############################################## WRITE ###############################################
 
 # Write metadata to file #
-write_csv(metadata, './data/USUV_metadata_all_2024Dec02.csv')
+write_csv(metadata, './data/USUV_metadata_all_2025Feb10.csv')
 
 
 # Write alignment to file # 
@@ -615,26 +619,26 @@ alignment <-  alignment %>%
   as.DNAbin() %>%
   .[order(start),]
 
-write.FASTA(alignment, './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted.fasta')
+write.FASTA(alignment, './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted.fasta')
 
 
 # Alignment without FLI # 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI.fasta')
+write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI.fasta')
 
 
 # NFLG alignments only # 
 write.FASTA(alignment[rownames(alignment) %in% (metadata %>% 
                                                   filter(generegion_nflg == 1) %>% 
                                                   pull(tipnames)),],
-            './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_NFLG.fasta')
+            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_NFLG.fasta')
 
 write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
                                                 filter(generegion_nflg == 1) %>% 
                                                 pull(tipnames)),],
-          './2024Dec02/alignments/USUV_2024Dec02_alldata_aligned_formatted_noFLI_NFLG.fasta')
+          './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG.fasta')
 
 
 ############################################## END #################################################
