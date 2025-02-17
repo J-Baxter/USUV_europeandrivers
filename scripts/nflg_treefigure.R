@@ -27,17 +27,11 @@ library(ggtreeExtra)
 
 
 ############################################## DATA ################################################
-nflg_mcc <- read.beast('./2024Dec02/global_beast/USUV_2024Dec02_nflg_subsample1_SRD06_relaxLn_constant_mcc.tree')
-nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
+nflg_mcc <- read.beast('./2025Feb10/global_analysis/beast_plain/USUV_2025Feb10_NFLG_SRD06_relaxLn_constant_mcc.tree')
+nflg_ca <- read.beast('./2025Feb10/global_analysis/beast_plain/USUV_2025Feb10_NFLG_SRD06_relaxLn_constant_ca.tree')
 
-phyclip_lineages <- read_delim('./data/phyCLIP/cluster_optimal_parameter_cs6_fdr0.1_gam3.0_sol0_f0_zero-branch-length-collapsed_rooted_nflg_subsample.txt') %>%
-  dplyr::select(c(1,2)) %>%
-  rename(lineage = CLUSTER,
-         label = TAXA) %>%
-  mutate(lineage =as.factor(lineage))
-
-metadata_in_tree <- read_csv('./data/USUV_metadata_all_2024Dec02.csv') %>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Feb10.csv') %>%
+  filter(tipnames %in% nflg_ca@phylo$tip.label) 
 
 stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
 
@@ -52,7 +46,7 @@ most_recent_date <- metadata_in_tree %>%
       # mrsd = most_recent_date) + 
  # theme_tree2() +
 
-p <- nflg_mcc %>% 
+p <- nflg_ca %>% 
   
   left_join(metadata_in_tree %>% 
               dplyr::select(is_europe, sequence_accession, nuts0_id, tipnames, lineage, host_class) %>%
@@ -124,6 +118,7 @@ p <- nflg_mcc %>%
                            'IT' = 'Italy',
                            'LU' = 'Luxembourg',
                            'NL' = 'Netherlands',
+                           'PT' = 'Portugal',
                            'RS' = 'Serbia',
                            'SE' = 'Sweden',
                            'SK' = 'Slovakia',
