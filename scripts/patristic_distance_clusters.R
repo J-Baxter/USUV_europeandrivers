@@ -81,9 +81,11 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
   
   clusters <- subtree_below_threshold[int_parent_nodes]
   
+  LETTERS702 <- c(LETTERS, sapply(LETTERS, function(x) paste0(x, LETTERS)))
+  
   # Format output tibble containing tip names and cluster designation
   cluster_tips <- lapply(clusters, TipLabels) %>%
-    setNames(LETTERS[1:length(.)]) %>%
+    setNames(LETTERS702[1:length(.)]) %>%
     lapply(., cbind.data.frame) %>%
     lapply(., as_tibble) %>%
     bind_rows(., .id = 'cluster') %>%
@@ -96,10 +98,10 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 
 
 ############################################## DATA ################################################
-nflg_ca <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_ca.tree')
-nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
+nflg_ca <- read.beast('./2025Feb10/global_analysis/beast_plain/USUV_2025Feb10_NFLG_SRD06_relaxLn_constant_mcc.tree')
+#nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
 
-metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
+metadata <- read_csv('./data/USUV_metadata_all_2025Feb10.csv')
 
 
 ############################################## MAIN ################################################
@@ -127,11 +129,11 @@ cluster_wide <- cluster_long %>%
 
 # Test plot
 most_recent_date <- metadata %>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) %>%
+  filter(tipnames %in% nflg_ca@phylo$tip.label) %>%
   pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
   max(na.rm = TRUE)
 
-nflg_mcc %>% 
+nflg_ca %>% 
   left_join(cluster_wide) %>%
   ggtree(mrsd = most_recent_date) + 
   
