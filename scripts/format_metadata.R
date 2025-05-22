@@ -141,8 +141,13 @@ ncbi_dec  <- read_csv('./ncbi_aug24todec24/ncbi_aug24-dec24_metadata.csv',
                       locale = readr::locale(encoding = "UTF-8")) %>%
   mutate(Release_Date = as.character(Release_Date))
 
-# Import search from NCBI 2024-09 - 2024-12
+# Import search from NCBI 2024-12 - 2025-02
 ncbi_feb  <- read_csv('./ncbi_dec24tofeb25/ncbi_dec24-feb25_metadata.csv', 
+                      locale = readr::locale(encoding = "UTF-8")) %>%
+  mutate(Release_Date = as.character(Release_Date))
+
+# Import search from NCBI 2025-02 - 2025-05
+ncbi_may <- read_csv('./ncbi_feb25tomay25/ncbi_feb25-may25_metadata.csv', 
                       locale = readr::locale(encoding = "UTF-8")) %>%
   mutate(Release_Date = as.character(Release_Date))
 
@@ -252,6 +257,7 @@ data <- ncbi_aug13 %>%
   # Add New data post Dec 2024
   rows_insert(ncbi_dec) %>%
   rows_insert(ncbi_feb %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
+  rows_insert(ncbi_may %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
   
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
@@ -546,11 +552,10 @@ data_formatted <- data_formatted_host %>%
 
 
 # Import alignment 
-alignment <- ape::read.dna('./2025Feb10/alignments/USUV_2025Feb10_alldata_aligned.fasta',
+alignment <- ape::read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
                            as.character = T) 
-
 
 rownames(alignment) <- ReNameAlignment(alignment, data_formatted) 
 
@@ -611,7 +616,7 @@ metadata <- data_formatted %>%
 ############################################## WRITE ###############################################
 
 # Write metadata to file #
-write_csv(metadata, './data/USUV_metadata_all_2025Feb10.csv')
+write_csv(metadata, './data/USUV_metadata_all_2025May22.csv')
 
 
 # Write alignment to file # 
@@ -619,26 +624,26 @@ alignment <-  alignment %>%
   as.DNAbin() %>%
   .[order(start),]
 
-write.FASTA(alignment, './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted.fasta')
+write.FASTA(alignment, './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted.fasta')
 
 
 # Alignment without FLI # 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI.fasta')
+write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI.fasta')
 
 
 # NFLG alignments only # 
 write.FASTA(alignment[rownames(alignment) %in% (metadata %>% 
                                                   filter(generegion_nflg == 1) %>% 
                                                   pull(tipnames)),],
-            './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_NFLG.fasta')
+            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_NFLG.fasta')
 
 write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
                                                 filter(generegion_nflg == 1) %>% 
                                                 pull(tipnames)),],
-          './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG.fasta')
+          './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG.fasta')
 
 
 ############################################## END #################################################
