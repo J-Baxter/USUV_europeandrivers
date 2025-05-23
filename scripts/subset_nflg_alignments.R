@@ -2,7 +2,7 @@
 ####################################################################################################
 ## Script name:
 ##
-## Purpose of script:
+## Purpose of script: Split the NFLG alignment according to a csv of lineage/cluster designations+
 ##
 ## Date created: 2024-10-29
 ##
@@ -24,7 +24,7 @@ library(TreeTools)
 library(ggtree)
 
 # User functions
-
+# 
 
 ############################################## DATA ################################################
 nflg_alignment <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_NFLG.fasta',
