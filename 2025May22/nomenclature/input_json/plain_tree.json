@@ -1,0 +1,2965 @@
+{
+  "alignment": null,
+  "generated_by": {
+    "program": "augur",
+    "version": "31.0.0"
+  },
+  "input_tree": "plain_tree.nwk",
+  "nodes": {
+    "AY453411|NA|NA|AT|2001": {
+      "branch_length": 0.00029123
+    },
+    "EF206350|Budapest|turdus_merula|HU|2005": {
+      "branch_length": 0.00078092
+    },
+    "HM569263|NA|homo_sapiens|IT|2009-09-24": {
+      "branch_length": 0.00058269
+    },
+    "JF266698|NA|turdus_merula|IT|2009": {
+      "branch_length": 0.00048552
+    },
+    "JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29": {
+      "branch_length": 0.00116629
+    },
+    "KC754954|ArD19848|culex_perfuscus|SN|1974": {
+      "branch_length": 1e-06
+    },
+    "KC754955|HB81P08|homo_sapiens|CF|1981": {
+      "branch_length": 0.00472211
+    },
+    "KC754956|ArD101291|culex_univittatus|SN|1993": {
+      "branch_length": 0.00676467
+    },
+    "KC754957|ArD192495|culex_neavei|SN|2007": {
+      "branch_length": 0.00335689
+    },
+    "KF573410|NA|culex_pipiens|ES|2006-08-22": {
+      "branch_length": 0.00295057
+    },
+    "KJ438705|NA|culex_pipiens|DE|2010-07-14": {
+      "branch_length": 0.00038836
+    },
+    "KJ438729|NA|turdus_merula|DE|2012-07-18": {
+      "branch_length": 0.00038836
+    },
+    "KJ438730|NA|turdus_merula|DE|2011-09-14": {
+      "branch_length": 0.00038836
+    },
+    "KJ438735|NA|turdus_merula|DE|2012-07-24": {
+      "branch_length": 0.00038836
+    },
+    "KJ438737|NA|culex_sp|DE|2011-08-21": {
+      "branch_length": 0.00058234
+    },
+    "KJ438738|NA|turdus_merula|DE|2011-09-16": {
+      "branch_length": 0.00048552
+    },
+    "KJ438739|NA|turdus_merula|DE|2013-09-10": {
+      "branch_length": 0.00058269
+    },
+    "KJ438741|NA|turdus_merula|DE|2013-08-26": {
+      "branch_length": 0.00058269
+    },
+    "KJ438742|NA|turdus_merula|DE|2013-09-23": {
+      "branch_length": 0.00058269
+    },
+    "KJ438744|NA|turdus_merula|DE|2012-06-23": {
+      "branch_length": 0.00068053
+    },
+    "KJ438745|NA|turdus_merula|DE|2011-09-16": {
+      "branch_length": 0.00066295
+    },
+    "KJ438746|NA|turdus_merula|DE|2011-09-27": {
+      "branch_length": 0.00077713
+    },
+    "KJ438747|NA|turdus_merula|DE|2012-07-17": {
+      "branch_length": 0.0006799
+    },
+    "KJ438748|NA|turdus_merula|DE|2012-07-23": {
+      "branch_length": 0.0006799
+    },
+    "KJ438749|NA|turdus_merula|DE|2012-07-18": {
+      "branch_length": 0.00077713
+    },
+    "KJ438750|NA|turdus_merula|DE|2011-09-14": {
+      "branch_length": 0.00058269
+    },
+    "KJ438751|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.00058269
+    },
+    "KJ438752|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.0006799
+    },
+    "KJ438753|NA|turdus_merula|DE|2011-09-16": {
+      "branch_length": 0.00046898
+    },
+    "KJ438754|NA|turdus_merula|DE|2012-09-18": {
+      "branch_length": 0.00048552
+    },
+    "KJ438755|NA|turdidae_sp|DE|2011-09-15": {
+      "branch_length": 0.00029123
+    },
+    "KJ438756|NA|turdus_merula|DE|2011-09-26": {
+      "branch_length": 0.00077713
+    },
+    "KJ438757|NA|turdus_merula|DE|2013-08-26": {
+      "branch_length": 0.00058269
+    },
+    "KJ438758|NA|turdus_merula|DE|2013-08-13": {
+      "branch_length": 0.00029123
+    },
+    "KJ438759|NA|turdus_merula|DE|2011-09-28": {
+      "branch_length": 0.00069626
+    },
+    "KJ438760|NA|turdus_merula|DE|2011-09-16": {
+      "branch_length": 0.0006799
+    },
+    "KJ438761|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.00097166
+    },
+    "KJ438762|NA|turdus_merula|DE|2011-09-18": {
+      "branch_length": 0.00116629
+    },
+    "KJ438763|NA|turdus_merula|DE|2012-07-17": {
+      "branch_length": 0.0012626
+    },
+    "KJ438764|NA|turdus_merula|DE|2012-07-17": {
+      "branch_length": 0.0006799
+    },
+    "KJ438765|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.00087663
+    },
+    "KJ438766|NA|turdus_merula|DE|2012-09-19": {
+      "branch_length": 0.00106896
+    },
+    "KJ438767|NA|culex_sp|DE|2011-09-08": {
+      "branch_length": 0.00116769
+    },
+    "KJ438768|NA|culex_sp|DE|2013-08-22": {
+      "branch_length": 0.00087438
+    },
+    "KJ438769|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.00019379
+    },
+    "KJ438770|NA|turdus_merula|DE|2011-09-15": {
+      "branch_length": 0.00029125
+    },
+    "KJ438771|NA|turdus_merula|DE|2013-05-05": {
+      "branch_length": 0.00038836
+    },
+    "KJ438773|NA|turdus_merula|DE|2011-09-29": {
+      "branch_length": 0.00019413
+    },
+    "KJ438774|NA|turdus_merula|DE|2012-09-04": {
+      "branch_length": 0.00058184
+    },
+    "KJ438775|NA|turdus_merula|DE|2011-09-16": {
+      "branch_length": 0.00019413
+    },
+    "KJ438776|NA|turdus_merula|DE|2011-09-14": {
+      "branch_length": 0.00038836
+    },
+    "KJ438777|NA|turdus_merula|DE|2011-09-14": {
+      "branch_length": 0.00067981
+    },
+    "KJ438778|NA|turdus_merula|DE|2011-09-19": {
+      "branch_length": 0.00038836
+    },
+    "KJ438779|NA|turdus_merula|DE|2012-07-12": {
+      "branch_length": 0.00038799
+    },
+    "KJ438780|NA|turdus_merula|DE|2011-09-14": {
+      "branch_length": 0.00116629
+    },
+    "KJ438781|NA|turdus_merula|DE|2011-09-26": {
+      "branch_length": 0.00058269
+    },
+    "KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|DE|2013-09-21": {
+      "branch_length": 0.00038836
+    },
+    "KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|DE|2013-10-05": {
+      "branch_length": 0.00019413
+    },
+    "KM659877|NA|turdus_merula|DE|2014-09-11": {
+      "branch_length": 0.00029123
+    },
+    "KU573070|216606/2013|culex_pipiens|IT|2013": {
+      "branch_length": 1e-06
+    },
+    "KU573072|221034-3/2013|culex_pipiens|IT|2013": {
+      "branch_length": 0.0013591
+    },
+    "KU573073|229615-1/2013|culex_pipiens|IT|2013": {
+      "branch_length": 0.00136133
+    },
+    "KU573074|245735-8/2013|culex_pipiens|IT|2013": {
+      "branch_length": 1e-06
+    },
+    "KU573075|201602-24/2014|culex_pipiens|IT|2014": {
+      "branch_length": 0.00097166
+    },
+    "KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21": {
+      "branch_length": 9.705e-05
+    },
+    "KX268472|HU10279_09|culex_perexiguus|ES|2009": {
+      "branch_length": 0.00058223
+    },
+    "KX555625|NA|turdus_merula|IT|2010": {
+      "branch_length": 0.00048552
+    },
+    "KX555627|NA|turdus_merula|IT|2010": {
+      "branch_length": 0.00038836
+    },
+    "KX555628|NA|turdus_merula|IT|2010": {
+      "branch_length": 0.00029123
+    },
+    "KX555629|NA|turdus_merula|IT|2015": {
+      "branch_length": 0.00282925
+    },
+    "KX601690|USUV-HautRhin7315/France/2015|turdus_merula|FR|2015-08-10": {
+      "branch_length": 0.00087438
+    },
+    "KX601691|USUV-HautRhin7316/France/2015|turdus_merula|FR|2015-08-05": {
+      "branch_length": 0.00077713
+    },
+    "KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23": {
+      "branch_length": 0.00322051
+    },
+    "KX816646|200092/2010|turdus_merula|IT|2010-08": {
+      "branch_length": 0.00088258
+    },
+    "KX816647|208576-8/2011|culex_pipiens|IT|2011-08": {
+      "branch_length": 1e-06
+    },
+    "KX816650|211984-4/2012|culex_pipiens|IT|2012-08": {
+      "branch_length": 0.00038836
+    },
+    "KX816651|211204-8/2012|culex_pipiens|IT|2012-08": {
+      "branch_length": 0.00019413
+    },
+    "KX816652|211204-7/2012|culex_pipiens|IT|2012-08": {
+      "branch_length": 0.00097166
+    },
+    "KX816653|206795-3/2012|culex_pipiens|IT|2012-09": {
+      "branch_length": 0.0016534
+    },
+    "KX977447|NA|turdus_merula|BE|2016-09": {
+      "branch_length": 0.00058612
+    },
+    "KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|FR|2016-09-22": {
+      "branch_length": 0.00185121
+    },
+    "KY128482|Snebulosa-6004/NL/2016|strix_nebulosa|NL|2016-09": {
+      "branch_length": 0.00019413
+    },
+    "KY199556|NA|strix_nebulosa|DE|2016": {
+      "branch_length": 0.00145805
+    },
+    "KY199557|NA|turdus_merula|DE|2016": {
+      "branch_length": 0.00058269
+    },
+    "KY199558|NA|turdus_merula|DE|2016": {
+      "branch_length": 0.00097166
+    },
+    "KY263624|NA|turdus_merula|BE|2016-10": {
+      "branch_length": 0.00106896
+    },
+    "KY263625|NA|turdus_merula|BE|2016-10": {
+      "branch_length": 0.00087438
+    },
+    "KY294722|S-1232|turdus_merula|DE|2016": {
+      "branch_length": 1e-06
+    },
+    "KY294723|S-1238|turdus_merula|DE|2016": {
+      "branch_length": 0.00058269
+    },
+    "KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|BE|2016-10-03": {
+      "branch_length": 0.00019413
+    },
+    "KY426751|NA|turdus_pilaris|DE|2015-09-01": {
+      "branch_length": 0.00048552
+    },
+    "KY426753|NA|turdus_merula|DE|2015-08-18": {
+      "branch_length": 9.705e-05
+    },
+    "KY426754|NA|turdus_merula|DE|2015-09-09": {
+      "branch_length": 0.00116629
+    },
+    "KY426755|NA|turdus_merula|DE|2016-09-19": {
+      "branch_length": 0.00077713
+    },
+    "KY426756|NA|turdus_merula|DE|2016-09-23": {
+      "branch_length": 0.00019413
+    },
+    "KY426757|NA|turdus_merula|DE|2016-09-23": {
+      "branch_length": 0.00106896
+    },
+    "KY426758|NA|turdus_merula|DE|2016-09-25": {
+      "branch_length": 0.00097166
+    },
+    "KY426759|NA|turdus_merula|DE|2016-09-12": {
+      "branch_length": 0.00058269
+    },
+    "KY426760|NA|turdus_merula|DE|2016-09-29": {
+      "branch_length": 0.00077713
+    },
+    "KY426761|NA|turdus_merula|DE|2016-09-04": {
+      "branch_length": 0.00058269
+    },
+    "KY426762|NA|turdus_merula|DE|2016-09-26": {
+      "branch_length": 0.00116629
+    },
+    "KY426764|NA|turdus_merula|DE|2016-10-04": {
+      "branch_length": 0.00048432
+    },
+    "KY426765|NA|turdus_merula|DE|2016-09-30": {
+      "branch_length": 0.00058269
+    },
+    "KY426766|NA|turdus_merula|DE|2016-10-11": {
+      "branch_length": 0.00048552
+    },
+    "KY426767|NA|turdus_merula|DE|2016-10-14": {
+      "branch_length": 0.00126263
+    },
+    "KY426769|NA|turdus_merula|DE|2016-09-20": {
+      "branch_length": 0.00029123
+    },
+    "KY426770|NA|turdus_merula|DE|2016-09-20": {
+      "branch_length": 0.0006799
+    },
+    "MF063042|AT-N211/16|turdus_merula|AT|2016-09-29": {
+      "branch_length": 0.0013598
+    },
+    "MF063043|HU-47540/16|turdus_merula|HU|2016-09-26": {
+      "branch_length": 0.00126261
+    },
+    "MF991886|BD1/17-AT|homo_sapiens|AT|2017-07-24": {
+      "branch_length": 0.00116629
+    },
+    "MG461306|USUV_269m_Israel15_USUTU_|culex_perexiguus|IL|2015-06-30": {
+      "branch_length": 1e-06
+    },
+    "MG461307|USUV_569m_Israel15_USUTU_|culex_pipiens|IL|2015-09-08": {
+      "branch_length": 0.0004855
+    },
+    "MG461308|USUV_593m_Israel15_USUTU_|aedes_albopictus|IL|2015-09-21": {
+      "branch_length": 0.00098021
+    },
+    "MG461309|USUV_100m_Israel04_USUTU_|culex_pipiens|IL|2004-07-14": {
+      "branch_length": 0.00087438
+    },
+    "MG461310|USUV_269m_Israel04_USUTU_|culex_perexiguus|IL|2004-08-24": {
+      "branch_length": 0.00019413
+    },
+    "MG461312|USUV_355m_Israel04_USUTU_|culex_perexiguus|IL|2004-09-27": {
+      "branch_length": 0.00039002
+    },
+    "MG461313|USUV_550m_Israel15_USUTU_|culex_perexiguus|IL|2015-09-08": {
+      "branch_length": 0.00058316
+    },
+    "MG888044|NA|culex_pipiens|RS|2014-08": {
+      "branch_length": 0.00321823
+    },
+    "MH727238|ROD_259466|mastomys_natalensis|SN|2013-10-23": {
+      "branch_length": 0.00055473
+    },
+    "MH727239|ROD_259496|mastomys_natalensis|SN|2013-10-23": {
+      "branch_length": 0.00039975
+    },
+    "MH727240|CROC_259520|soricidae_sp|SN|2013-10-23": {
+      "branch_length": 0.00031883
+    },
+    "MH727241|ROD_259524|mastomys_natalensis|SN|2013-10-24": {
+      "branch_length": 0.00045749
+    },
+    "MH727242|ROD_259552|rattus_rattus|SN|2013-10-24": {
+      "branch_length": 0.00115776
+    },
+    "MK230890|Villers/2017|turdus_merula|BE|2017-08": {
+      "branch_length": 0.0006799
+    },
+    "MK230891|Seraing/2017|turdus_merula|BE|2017-08": {
+      "branch_length": 0.0006799
+    },
+    "MK230892|Richelle/2017|turdus_merula|BE|2017-08": {
+      "branch_length": 0.00214254
+    },
+    "MK419834|USU-BE-Scoter/2018|melanitta_nigra|BE|2018-08": {
+      "branch_length": 0.00174998
+    },
+    "MK796168|AS201600070|strix_nebulosa|NL|2016-09-13": {
+      "branch_length": 0.00029123
+    },
+    "MN122146|AS201600036|turdus_merula|NL|2016-09-06": {
+      "branch_length": 0.00029123
+    },
+    "MN122147|AS201600042|turdus_merula|NL|2016-09-07": {
+      "branch_length": 9.705e-05
+    },
+    "MN122149|AS201600048|turdus_merula|NL|2016-09-07": {
+      "branch_length": 0.00029123
+    },
+    "MN122151|AS201600057|turdus_merula|NL|2016-09-08": {
+      "branch_length": 0.00106896
+    },
+    "MN122152|AS201600060|turdus_merula|NL|2016-09-12": {
+      "branch_length": 0.00029123
+    },
+    "MN122155|AS201600095|turdus_merula|NL|2016-09-21": {
+      "branch_length": 0.00058269
+    },
+    "MN122156|AS201600098|turdus_merula|NL|2016-09-21": {
+      "branch_length": 0.00019413
+    },
+    "MN122157|AS201600101|turdus_merula|NL|2016-09-22": {
+      "branch_length": 0.00038836
+    },
+    "MN122158|AS201600104|turdus_merula|NL|2016-09-22": {
+      "branch_length": 9.705e-05
+    },
+    "MN122159|AS201600107|turdus_merula|NL|2016-09-22": {
+      "branch_length": 9.705e-05
+    },
+    "MN122160|AS201600110|turdus_merula|NL|2016-09-22": {
+      "branch_length": 0.0006799
+    },
+    "MN122161|AS201600115|turdus_merula|NL|2016-09-22": {
+      "branch_length": 0.00020542
+    },
+    "MN122163|AS201600121|turdus_merula|NL|2016-09-22": {
+      "branch_length": 0.00126365
+    },
+    "MN122166|AS201600133|turdus_merula|NL|2016-09-23": {
+      "branch_length": 0.00092472
+    },
+    "MN122167|AS201600136|turdus_merula|NL|2016-09-23": {
+      "branch_length": 0.00126261
+    },
+    "MN122168|AS201600148|turdus_merula|NL|2016-09-23": {
+      "branch_length": 0.0006799
+    },
+    "MN122169|AS201600173|turdus_merula|NL|2016-10-07": {
+      "branch_length": 0.00087438
+    },
+    "MN122170|AS201600197|turdus_merula|NL|2016-10-11": {
+      "branch_length": 0.00165278
+    },
+    "MN122174|AS201600241|turdus_merula|NL|2016-09-27": {
+      "branch_length": 0.00048552
+    },
+    "MN122175|AS201600244|turdus_merula|NL|2016-09-27": {
+      "branch_length": 0.00058269
+    },
+    "MN122177|AS201600253|turdus_merula|NL|2016-09-27": {
+      "branch_length": 0.00086983
+    },
+    "MN122178|AS201600265|turdus_merula|NL|2016-09-30": {
+      "branch_length": 0.00077713
+    },
+    "MN122179|AS201600268|turdus_merula|NL|2016-09-30": {
+      "branch_length": 0.00048552
+    },
+    "MN122181|AS201600277|turdus_merula|NL|2016-09-27": {
+      "branch_length": 0.00019413
+    },
+    "MN122182|AS201600280|turdus_merula|NL|2016-09-26": {
+      "branch_length": 0.00019413
+    },
+    "MN122183|AS201600281|turdus_merula|NL|2016-09-25": {
+      "branch_length": 0.00029123
+    },
+    "MN122184|AS201600283|turdus_merula|NL|2016-09-27": {
+      "branch_length": 0.00029123
+    },
+    "MN122186|AS201600286|turdus_merula|NL|2016-09-28": {
+      "branch_length": 0.00058163
+    },
+    "MN122188|AS201700024|turdus_merula|NL|2017-04-11": {
+      "branch_length": 0.00038836
+    },
+    "MN122189|AS201700077|turdus_merula|NL|2017-07-03": {
+      "branch_length": 0.00038836
+    },
+    "MN122190|AS201700080|turdus_merula|NL|2017-07-05": {
+      "branch_length": 0.00038836
+    },
+    "MN122191|AS201700084|turdus_merula|NL|2017-07-05": {
+      "branch_length": 0.00038836
+    },
+    "MN122192|AS201700086|turdus_merula|NL|2017-07-11": {
+      "branch_length": 0.00029123
+    },
+    "MN122193|AS201700087|turdus_merula|NL|2017-07-11": {
+      "branch_length": 9.705e-05
+    },
+    "MN122194|AS201700090|turdus_merula|NL|2017-07-13": {
+      "branch_length": 0.00029123
+    },
+    "MN122195|AS201700096|turdus_merula|NL|2017-07-14": {
+      "branch_length": 0.00048671
+    },
+    "MN122196|AS201700103|turdus_merula|NL|2017-07-19": {
+      "branch_length": 0.00058269
+    },
+    "MN122197|AS201700106|turdus_merula|NL|2017-07-25": {
+      "branch_length": 0.00029123
+    },
+    "MN122198|AS201700109|turdus_merula|NL|2017-07-25": {
+      "branch_length": 0.00029123
+    },
+    "MN122199|AS201700112|turdus_merula|NL|2017-07-27": {
+      "branch_length": 0.00038836
+    },
+    "MN122200|AS201700118|turdus_merula|NL|2017-08-03": {
+      "branch_length": 0.00048552
+    },
+    "MN122201|AS201700121|turdus_merula|NL|2017-08-01": {
+      "branch_length": 0.00058376
+    },
+    "MN122202|AS201700124|turdus_merula|NL|2017-08-01": {
+      "branch_length": 0.00048552
+    },
+    "MN122203|AS201700127|turdus_merula|NL|2017-07-30": {
+      "branch_length": 0.0006799
+    },
+    "MN122204|AS201700130|turdus_merula|NL|2017-08-16": {
+      "branch_length": 0.00058269
+    },
+    "MN122205|AS201700152|turdus_merula|NL|2017-07-19": {
+      "branch_length": 0.00029123
+    },
+    "MN122206|AS201700155|turdus_merula|NL|2017-08-10": {
+      "branch_length": 0.00019413
+    },
+    "MN122207|AS201700167|turdus_merula|NL|2017-09-01": {
+      "branch_length": 0.00039873
+    },
+    "MN122208|AS201700170|turdus_merula|NL|2017-08-25": {
+      "branch_length": 0.00038836
+    },
+    "MN122209|AS201700174|turdus_merula|NL|2017-08-29": {
+      "branch_length": 0.00029123
+    },
+    "MN122210|AS201700177|turdus_merula|NL|2017-09-15": {
+      "branch_length": 0.00087438
+    },
+    "MN122212|AS201700189|turdus_merula|NL|2017-09-14": {
+      "branch_length": 0.00058269
+    },
+    "MN122213|AS201700248|turdus_merula|NL|2017-09-20": {
+      "branch_length": 0.00077713
+    },
+    "MN122214|AS201700254|turdus_merula|NL|2017-09-22": {
+      "branch_length": 0.00116629
+    },
+    "MN122215|AS201800038|turdus_merula|NL|2017-09-11": {
+      "branch_length": 0.0012647
+    },
+    "MN122216|AS201800081|turdus_merula|NL|2018-07-27": {
+      "branch_length": 0.00155651
+    },
+    "MN122217|AS201800082|turdus_merula|NL|2018-07-27": {
+      "branch_length": 0.00058269
+    },
+    "MN122218|AS201800084|turdus_merula|NL|2018-07-31": {
+      "branch_length": 0.00097166
+    },
+    "MN122220|AS201800087|turdus_merula|NL|2018-08-01": {
+      "branch_length": 0.00058183
+    },
+    "MN122221|AS201800088|turdus_merula|NL|2018-08-01": {
+      "branch_length": 0.00087457
+    },
+    "MN122222|AS201800089|turdus_merula|NL|2018-08-02": {
+      "branch_length": 0.00048552
+    },
+    "MN122223|AS201800090|turdus_merula|NL|2018-08-02": {
+      "branch_length": 0.00165371
+    },
+    "MN122224|AS201800091|turdus_merula|NL|2018-08-02": {
+      "branch_length": 0.00097166
+    },
+    "MN122225|AS201800092|turdus_merula|NL|2018-08-02": {
+      "branch_length": 0.00145708
+    },
+    "MN122226|AS201800093|turdus_merula|NL|2018-08-03": {
+      "branch_length": 0.00038836
+    },
+    "MN122227|AS201800094|turdus_merula|NL|2018-08-03": {
+      "branch_length": 0.00097166
+    },
+    "MN122228|AS201800095|turdus_merula|NL|2018-08-06": {
+      "branch_length": 0.0006799
+    },
+    "MN122229|AS201800097|turdus_merula|NL|2018-08-03": {
+      "branch_length": 0.00058836
+    },
+    "MN122230|AS201800099|turdus_merula|NL|2018-08-07": {
+      "branch_length": 0.00077713
+    },
+    "MN122231|AS201800100|turdus_merula|NL|2018-08-07": {
+      "branch_length": 0.00087438
+    },
+    "MN122232|AS201800101|turdus_merula|NL|2018-08-07": {
+      "branch_length": 0.0006799
+    },
+    "MN122233|AS201800102|turdus_merula|NL|2018-08-09": {
+      "branch_length": 0.00116629
+    },
+    "MN122234|AS201800103|turdus_merula|NL|2018-08-10": {
+      "branch_length": 0.0006799
+    },
+    "MN122235|AS201800112|turdus_merula|NL|2018-08-14": {
+      "branch_length": 0.00096693
+    },
+    "MN122236|AS201800113|turdus_merula|NL|2018-08-14": {
+      "branch_length": 9.705e-05
+    },
+    "MN122237|AS201800114|turdus_merula|NL|2018-08-15": {
+      "branch_length": 0.00077713
+    },
+    "MN122238|AS201800115|turdus_merula|NL|2018-08-15": {
+      "branch_length": 0.00116629
+    },
+    "MN122239|AS201800116|turdus_merula|NL|2018-08-16": {
+      "branch_length": 0.0006799
+    },
+    "MN122240|AS201800118|turdus_merula|NL|2018-08-16": {
+      "branch_length": 0.00077713
+    },
+    "MN122241|AS201800120|turdus_merula|NL|2018-08-17": {
+      "branch_length": 0.00048542
+    },
+    "MN122242|AS201800121|turdus_merula|NL|2018-08-17": {
+      "branch_length": 0.0006799
+    },
+    "MN122243|AS201800122|turdus_merula|NL|2018-08-21": {
+      "branch_length": 0.00019413
+    },
+    "MN122244|AS201800123|turdus_merula|NL|2018-08-21": {
+      "branch_length": 0.00048552
+    },
+    "MN122245|AS201800125|turdus_merula|NL|2018-08-22": {
+      "branch_length": 0.00038916
+    },
+    "MN122246|AS201800126|turdus_merula|NL|2018-08-22": {
+      "branch_length": 0.00048552
+    },
+    "MN122247|AS201800127|turdus_merula|NL|2018-08-22": {
+      "branch_length": 0.00038836
+    },
+    "MN122248|AS201800128|turdus_merula|NL|2018-08-22": {
+      "branch_length": 0.00077713
+    },
+    "MN122249|AS201800129|turdus_merula|NL|2018-08-23": {
+      "branch_length": 0.00038836
+    },
+    "MN122250|AS201800150|turdus_merula|NL|2018-08-30": {
+      "branch_length": 0.00135985
+    },
+    "MN122251|AS201800151|turdus_merula|NL|2018-08-30": {
+      "branch_length": 0.00145842
+    },
+    "MN122252|AS201800152|turdus_merula|NL|2018-08-30": {
+      "branch_length": 0.00058269
+    },
+    "MN122253|AS201800154|turdus_merula|NL|2018-08-31": {
+      "branch_length": 0.00106896
+    },
+    "MN122254|AS201800155|turdus_merula|NL|2018-08-31": {
+      "branch_length": 0.00058269
+    },
+    "MN122255|AS201800156|turdus_merula|NL|2018-08-31": {
+      "branch_length": 9.705e-05
+    },
+    "MN122256|AS201800157|turdus_merula|NL|2018-09-04": {
+      "branch_length": 0.00126349
+    },
+    "MN813488|DakPM173701|culex_neavei|SN|2003": {
+      "branch_length": 0.00019413
+    },
+    "MN813489|HU10279-09|culex_perexiguus|ES|2009": {
+      "branch_length": 0.00058398
+    },
+    "MN813491|UG09615|culex_univittatus|UG|2012": {
+      "branch_length": 0.00665699
+    },
+    "MN813492|SARR1776|culex_neavei|ZA|1959": {
+      "branch_length": 9.651e-05
+    },
+    "MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|IT|2018-08-20": {
+      "branch_length": 0.00262784
+    },
+    "MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|SE|2019-08-01": {
+      "branch_length": 0.00077713
+    },
+    "MT580899|NA|strix_nebulosa|DE|2018": {
+      "branch_length": 0.0006799
+    },
+    "MT784898|NA|turdus_iliacus|IT|2017": {
+      "branch_length": 0.0014583
+    },
+    "MT784899|NA|turdus_merula|IT|2017": {
+      "branch_length": 0.00158123
+    },
+    "MT795154|NA|turdus_merula|DE|2016-09-30": {
+      "branch_length": 1e-06
+    },
+    "MT863562|HauteVienne4997/France/2018|turdus_merula|FR|2018-07-24": {
+      "branch_length": 0.0018526
+    },
+    "MW001216|NA|turdus_merula|UK|2020-07": {
+      "branch_length": 0.00077713
+    },
+    "MW164636|11pool1941|culex_pipiens|IT|2011-08-16": {
+      "branch_length": 9.705e-05
+    },
+    "MW164637|11pool1989|culex_pipiens|IT|2011-08-23": {
+      "branch_length": 0.00126365
+    },
+    "MW164638|11pool2109|culex_pipiens|IT|2011-08-24": {
+      "branch_length": 0.00077713
+    },
+    "MW164640|11pool2444|culex_pipiens|IT|2011-09-21": {
+      "branch_length": 0.00048552
+    },
+    "MW164644|12pool2194|culex_pipiens|IT|2012-08-09": {
+      "branch_length": 9.705e-05
+    },
+    "MW164646|12pool2249|culex_pipiens|IT|2012-08-07": {
+      "branch_length": 0.00048552
+    },
+    "MW164647|12pool2262|culex_pipiens|IT|2012-08-07": {
+      "branch_length": 1e-06
+    },
+    "MW164649|12pool2412|culex_pipiens|IT|2012-08-22": {
+      "branch_length": 0.00077713
+    },
+    "MW164651|12pool2626|culex_pipiens|IT|2012-09-05": {
+      "branch_length": 0.00029123
+    },
+    "MW164652|12pool2628|culex_pipiens|IT|2012-09-05": {
+      "branch_length": 0.00058269
+    },
+    "MW164654|12VIR6777-9|turdus_pilaris|IT|2012-09-05": {
+      "branch_length": 0.00029123
+    },
+    "MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03": {
+      "branch_length": 0.00048552
+    },
+    "MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03": {
+      "branch_length": 0.0006799
+    },
+    "MW164659|13pool5600|culex_pipiens|IT|2013-08-07": {
+      "branch_length": 0.00087438
+    },
+    "MW164660|13pool5678|culex_pipiens|IT|2013-08-08": {
+      "branch_length": 0.00038836
+    },
+    "MW164662|13pool5744|culex_pipiens|IT|2013-08-13": {
+      "branch_length": 9.705e-05
+    },
+    "MW164663|13pool5778|culex_pipiens|IT|2013-08-13": {
+      "branch_length": 0.00029123
+    },
+    "MW164664|13pool5827|culex_pipiens|IT|2013-08-13": {
+      "branch_length": 0.00087438
+    },
+    "MW164665|13pool5873|culex_pipiens|IT|2013-08-13": {
+      "branch_length": 0.00019413
+    },
+    "MW164666|13pool5999|culex_pipiens|IT|2013-08-21": {
+      "branch_length": 0.00048552
+    },
+    "MW164668|13pool6465|culex_pipiens|IT|2013-09-05": {
+      "branch_length": 0.00038836
+    },
+    "MW164670|13pool6472|culex_pipiens|IT|2013-09-05": {
+      "branch_length": 0.00019413
+    },
+    "MW164671|14pool1366|culex_pipiens|IT|2014-08-20": {
+      "branch_length": 0.00038836
+    },
+    "MW164674|14pool1419|culex_pipiens|IT|2014-08-26": {
+      "branch_length": 9.705e-05
+    },
+    "MW164676|14pool1478|culex_pipiens|IT|2014-09-02": {
+      "branch_length": 0.00029123
+    },
+    "MW164677|14pool1489|culex_pipiens|IT|2014-09-02": {
+      "branch_length": 0.00058269
+    },
+    "MW164678|14pool1494|culex_pipiens|IT|2014-09-02": {
+      "branch_length": 0.00077713
+    },
+    "MW164682|14pool857|culex_pipiens|IT|2014-07-22": {
+      "branch_length": 0.00038836
+    },
+    "MW164683|14pool895|culex_pipiens|IT|2014-07-22": {
+      "branch_length": 0.00019413
+    },
+    "MW164684|14VIR5467-8|NA|IT|2014-09-02": {
+      "branch_length": 0.00077713
+    },
+    "MW164686|15pool1335|culex_pipiens|IT|2015-08-03": {
+      "branch_length": 0.00058269
+    },
+    "MW164687|15pool1419|culex_pipiens|IT|2015-08-05": {
+      "branch_length": 0.00087438
+    },
+    "MW164688|15pool1426|culex_pipiens|IT|2015-08-06": {
+      "branch_length": 0.00038836
+    },
+    "MW164689|15pool1503|culex_pipiens|IT|2015-08-10": {
+      "branch_length": 0.00038836
+    },
+    "MW164691|15pool1751|culex_pipiens|IT|2015-09-02": {
+      "branch_length": 0.00048552
+    },
+    "MW164692|15pool1759|culex_pipiens|IT|2015-09-02": {
+      "branch_length": 1e-06
+    },
+    "MW164694|15VIR4781-31|turdus_iliacus|IT|2015-09-15": {
+      "branch_length": 0.00038836
+    },
+    "MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15": {
+      "branch_length": 0.00077713
+    },
+    "MW164698|16pool1777|culex_pipiens|IT|2016-07-25": {
+      "branch_length": 0.00048552
+    },
+    "MW164700|16pool1870|culex_pipiens|IT|2016-08-01": {
+      "branch_length": 1e-06
+    },
+    "MW164702|16pool2106|culex_pipiens|IT|2016-08-16": {
+      "branch_length": 0.00077713
+    },
+    "MW164703|16pool2117|culex_pipiens|IT|2016-08-16": {
+      "branch_length": 0.00029123
+    },
+    "MW164705|16pool2336|culex_pipiens|IT|2016-08-29": {
+      "branch_length": 0.00087367
+    },
+    "MW164707|16pool2571|culex_pipiens|IT|2016-09-14": {
+      "branch_length": 0.00038836
+    },
+    "MW164708|17pool103G|culex_pipiens|IT|2017-08-30": {
+      "branch_length": 0.00081674
+    },
+    "MW164709|17pool1191|culex_pipiens|IT|2017-07-17": {
+      "branch_length": 0.00019413
+    },
+    "MW164711|17pool1252|culex_pipiens|IT|2017-07-19": {
+      "branch_length": 0.00019413
+    },
+    "MW164712|17pool1309|culex_pipiens|IT|2017-07-24": {
+      "branch_length": 1e-06
+    },
+    "MW164713|17pool1488|culex_pipiens|IT|2017-08-02": {
+      "branch_length": 1e-06
+    },
+    "MW164714|17pool1493|culex_pipiens|IT|2017-08-02": {
+      "branch_length": 0.00116629
+    },
+    "MW164715|17pool1525|culex_pipiens|IT|2017-08-07": {
+      "branch_length": 0.00038836
+    },
+    "MW164719|17pool1647|culex_pipiens|IT|2017-08-16": {
+      "branch_length": 1e-06
+    },
+    "MW164721|17pool1664|culex_pipiens|IT|2017-08-16": {
+      "branch_length": 0.00263028
+    },
+    "MW164722|17pool1671|culex_pipiens|IT|2017-08-16": {
+      "branch_length": 0.00038836
+    },
+    "MW164724|17pool1709|culex_pipiens|IT|2017-08-17": {
+      "branch_length": 1e-06
+    },
+    "MW164727|17VIR7761-4|sturnus_vulgaris|IT|2017-09-01": {
+      "branch_length": 0.00029123
+    },
+    "MW164728|17VIR7838-4|turdus_merula|IT|2017-08-30": {
+      "branch_length": 0.00038836
+    },
+    "MW164729|17VIR8655-3|larus_michahellis|IT|2017-09-18": {
+      "branch_length": 9.705e-05
+    },
+    "MW164734|18pool1141|culex_pipiens|IT|2018-07-17": {
+      "branch_length": 0.00048552
+    },
+    "MW164736|18pool1219|culex_pipiens|IT|2018-07-17": {
+      "branch_length": 0.00058269
+    },
+    "MW164738|18pool1258|culex_pipiens|IT|2018-07-19": {
+      "branch_length": 0.00035695
+    },
+    "MW164739|18pool1261|culex_pipiens|IT|2018-07-19": {
+      "branch_length": 0.00097166
+    },
+    "MW164741|18pool1263|culex_pipiens|IT|2018-07-19": {
+      "branch_length": 0.00155699
+    },
+    "MW164742|18pool1264|culex_pipiens|IT|2018-07-19": {
+      "branch_length": 0.00114804
+    },
+    "MW164743|18pool1267|culex_pipiens|IT|2018-07-19": {
+      "branch_length": 0.00116629
+    },
+    "MW164744|18pool1347|culex_pipiens|IT|2018-07-24": {
+      "branch_length": 0.00029123
+    },
+    "MW164745|18pool1398|culex_pipiens|IT|2018-07-26": {
+      "branch_length": 0.00077713
+    },
+    "MW164747|18pool1430|culex_pipiens|IT|2018-07-31": {
+      "branch_length": 0.00048552
+    },
+    "MW164748|18pool1442|culex_pipiens|IT|2018-07-31": {
+      "branch_length": 0.00048552
+    },
+    "MW164750|18pool1509|culex_pipiens|IT|2018-07-31": {
+      "branch_length": 1e-06
+    },
+    "MW164753|18pool1523|culex_pipiens|IT|2018-08-02": {
+      "branch_length": 0.00029123
+    },
+    "MW164757|18pool1614|culex_pipiens|IT|2018-08-09": {
+      "branch_length": 0.00085985
+    },
+    "MW164758|18pool1617|culex_pipiens|IT|2018-08-09": {
+      "branch_length": 0.00077713
+    },
+    "MW164759|18pool1649|culex_pipiens|IT|2018-08-14": {
+      "branch_length": 0.00048552
+    },
+    "MW164760|18pool1660|culex_pipiens|IT|2018-08-14": {
+      "branch_length": 0.00058269
+    },
+    "MW164761|18pool1662|culex_pipiens|IT|2018-08-14": {
+      "branch_length": 0.00048552
+    },
+    "MW164764|18pool1795|culex_pipiens|IT|2018-08-23": {
+      "branch_length": 0.00048552
+    },
+    "MW164765|18pool1832|culex_pipiens|IT|2018-08-28": {
+      "branch_length": 0.00153815
+    },
+    "MW164766|18pool1965|culex_pipiens|IT|2018-09-06": {
+      "branch_length": 0.00058269
+    },
+    "MW164769|18pool948|culex_pipiens|IT|2018-07-06": {
+      "branch_length": 0.00020906
+    },
+    "MW164770|18VIR7808-6|ciconia_ciconia|IT|2018-09-07": {
+      "branch_length": 0.00136218
+    },
+    "MW164771|18VIR7859-4|turdus_merula|IT|2018-09-07": {
+      "branch_length": 0.00083439
+    },
+    "NA|16TV1045|turdus_merula|NL|2017-08-02": {
+      "branch_length": 0.00048552
+    },
+    "NA|17TV1446|turdus_merula|NL|2017-09-07": {
+      "branch_length": 0.00106896
+    },
+    "NA|17TV1510|turdus_merula|NL|2018-10-06": {
+      "branch_length": 0.0006863
+    },
+    "NA|18TV0252|turdus_merula|NL|2018-10-31": {
+      "branch_length": 0.00048552
+    },
+    "NA|18TV0475|turdus_merula|NL|2018-08-18": {
+      "branch_length": 0.00048552
+    },
+    "NA|18TV1196|turdidae_sp|NL|2018-09-16": {
+      "branch_length": 0.00130238
+    },
+    "NA|18TV1221|turdus_merula|NL|2018-10-13": {
+      "branch_length": 0.00085047
+    },
+    "NA|19TV0102|passer_domesticus|NL|2019-04-24": {
+      "branch_length": 0.00087438
+    },
+    "NA|20TV2299|turdus_merula|NL|2020-08-29": {
+      "branch_length": 0.00048552
+    },
+    "NA|20VIR4811|serinus_canaria|IT|2020-08-10": {
+      "branch_length": 0.00085099
+    },
+    "NA|20VIR4951|serinus_canaria|IT|2020-08-19": {
+      "branch_length": 0.00069503
+    },
+    "NA|20VIR5077|turdus_merula|IT|2020-08-21": {
+      "branch_length": 0.00029123
+    },
+    "NA|21TV5071|turdus_merula|NL|2022-07-29": {
+      "branch_length": 0.00145992
+    },
+    "NA|22B00207|turdus_merula|NL|2022-11-12": {
+      "branch_length": 0.00019413
+    },
+    "NA|22B00749|turdidae_sp|NL|2022-09-21": {
+      "branch_length": 0.00070362
+    },
+    "NA|22TV2594|cyanistes_caeruleus|NL|2022-08-24": {
+      "branch_length": 0.00019413
+    },
+    "NA|22TV3658|turdus_merula|NL|2022-08-27": {
+      "branch_length": 9.705e-05
+    },
+    "NA|22VIR7086-3|turdus_merula|IT|2022-07-18": {
+      "branch_length": 0.00048552
+    },
+    "NA|22VIR8404-2|turdus_merula|IT|2022-09-01": {
+      "branch_length": 0.00292968
+    },
+    "NA|23VIR8708|columbidae_sp|IT|2023-09-01": {
+      "branch_length": 0.00038836
+    },
+    "NA|23VIR8795|turdus_merula|IT|2023-08-23": {
+      "branch_length": 0.00058269
+    },
+    "NA|23VIR9292|turdus_merula|IT|2023-10-01": {
+      "branch_length": 0.00141205
+    },
+    "NA|23VIR9300|turdus_merula|IT|2023-10-01": {
+      "branch_length": 0.00058269
+    },
+    "NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05": {
+      "branch_length": 1e-06
+    },
+    "NA|23pool1901_23RS1909-300|culex_pipiens|IT|2023-08-16": {
+      "branch_length": 0.0006799
+    },
+    "NA|23pool2067_23RS1943-143|culex_pipiens|IT|2023-08-24": {
+      "branch_length": 1e-06
+    },
+    "NA|23pool2138_23RS2497-1|culex_pipiens|IT|2023-11-13": {
+      "branch_length": 0.0006799
+    },
+    "NA|AS201600067|strix_nebulosa|NL|2016-09-09": {
+      "branch_length": 0.00029123
+    },
+    "NA|AS201600269|strix_nebulosa|NL|2016-09-25": {
+      "branch_length": 0.00048552
+    },
+    "NA|AS201600289_BEC009|strix_nebulosa|NL|2016": {
+      "branch_length": 0.00048552
+    },
+    "NA|AS201700142|strix_nebulosa|NL|2017-08-09": {
+      "branch_length": 0.00019413
+    },
+    "NA|AS201700147|branta_ruficollis|NL|2017-08-14": {
+      "branch_length": 0.00111748
+    },
+    "NA|AS201700148|strix_nebulosa|NL|2017-07-31": {
+      "branch_length": 0.00087438
+    },
+    "NA|AS201700173|strix_nebulosa|NL|2017-08-25": {
+      "branch_length": 9.705e-05
+    },
+    "NA|AS201800175|turdus_merula|NL|2018-08-22": {
+      "branch_length": 0.00048458
+    },
+    "NA|AS20190438|gracula_religiosa|NL|2019-09-12": {
+      "branch_length": 0.00077713
+    },
+    "NA|AS20190450|turdus_merula|NL|2019-09-03": {
+      "branch_length": 0.00076546
+    },
+    "NA|AS20190490|turdus_merula|NL|2019-08-27": {
+      "branch_length": 0.00106896
+    },
+    "NA|AS20190494|turdus_merula|NL|2019-08-28": {
+      "branch_length": 0.00097166
+    },
+    "NA|AS20190530|turdus_merula|NL|2019-08-19": {
+      "branch_length": 0.00097166
+    },
+    "NA|AS20190579|prunella_modularis|NL|2019-09-19": {
+      "branch_length": 0.00097166
+    },
+    "NA|AS20190715|copsychus_malabaricus|NL|2019-10-07": {
+      "branch_length": 0.00106896
+    },
+    "NA|AS20200367|turdus_merula|NL|2020-08-16": {
+      "branch_length": 0.00106896
+    },
+    "NA|AS20200561|turdus_merula|NL|2020-09-27": {
+      "branch_length": 0.00155429
+    },
+    "NA|AS20200605|turdus_merula|NL|2020-08-22": {
+      "branch_length": 0.00067883
+    },
+    "NA|AS20200689|turdus_merula|NL|2020-09-30": {
+      "branch_length": 0.00038836
+    },
+    "NA|AS20210829|turdus_merula|NL|2021-09-19": {
+      "branch_length": 0.00204313
+    },
+    "NA|AS20210914|turdus_merula|NL|2021-08-30": {
+      "branch_length": 0.00029123
+    },
+    "NA|AS20221627|turdus_merula|NL|2022-07-28": {
+      "branch_length": 0.00058269
+    },
+    "NA|AS20221637|turdus_merula|NL|2022-08-04": {
+      "branch_length": 0.00059824
+    },
+    "NA|AS20221660|turdus_merula|NL|2022-08-08": {
+      "branch_length": 0.00169739
+    },
+    "NA|AS20221670|turdus_merula|NL|2022-07-24": {
+      "branch_length": 9.705e-05
+    },
+    "NA|AS20221755|strix_nebulosa|NL|2022-07-21": {
+      "branch_length": 0.0006799
+    },
+    "NA|AS20221760|turdus_merula|NL|2022-08-24": {
+      "branch_length": 0.00058269
+    },
+    "NA|AS20221775|turdus_merula|NL|2022-08-28": {
+      "branch_length": 0.00038836
+    },
+    "NA|AS20221780|turdus_merula|NL|2022-08-26": {
+      "branch_length": 0.00194498
+    },
+    "NA|AS20221784|turdus_merula|NL|2022-08-11": {
+      "branch_length": 0.00029123
+    },
+    "NA|AS20221789|turdus_merula|NL|2022-08-24": {
+      "branch_length": 0.00058269
+    },
+    "NA|AS20221798|turdus_merula|NL|2022-08-30": {
+      "branch_length": 0.00175056
+    },
+    "NA|AS20221803|turdus_merula|NL|2022-09-02": {
+      "branch_length": 0.00097166
+    },
+    "NA|AS20221818|turdus_merula|NL|2022-08-31": {
+      "branch_length": 0.00019413
+    },
+    "NA|AS20221828|turdus_merula|NL|2022-08-26": {
+      "branch_length": 0.00105667
+    },
+    "NA|AS20221838|turdus_merula|NL|2022-08-22": {
+      "branch_length": 0.00077713
+    },
+    "NA|AS20221842|turdus_merula|NL|2022-09-04": {
+      "branch_length": 0.0006799
+    },
+    "NA|AS20221846|turdus_merula|NL|2022-09-03": {
+      "branch_length": 0.00048552
+    },
+    "NA|AS20221851|turdus_merula|NL|2022-09-03": {
+      "branch_length": 0.00126467
+    },
+    "NA|AS20221860|turdus_merula|NL|2022-09-14": {
+      "branch_length": 0.0006799
+    },
+    "NA|AS20221875|turdus_merula|NL|2022-09-11": {
+      "branch_length": 0.00029123
+    },
+    "NA|AS20221880|turdus_merula|NL|2022-09-12": {
+      "branch_length": 0.00049027
+    },
+    "NA|AS20221884|turdus_merula|NL|2022-09-14": {
+      "branch_length": 0.00038836
+    },
+    "NA|AS20221889|turdus_merula|NL|2022-09-18": {
+      "branch_length": 0.00048552
+    },
+    "NA|AS20221898|turdus_merula|NL|2022-09-11": {
+      "branch_length": 0.00102248
+    },
+    "NA|AS20221913|turdus_merula|NL|2022-09-11": {
+      "branch_length": 0.0006799
+    },
+    "NA|AS20221918|cyanistes_caeruleus|NL|2022-09-15": {
+      "branch_length": 0.00058269
+    },
+    "NA|AS20221923|turdus_merula|NL|2022-09-04": {
+      "branch_length": 0.00097166
+    },
+    "NA|AS20221928|turdus_merula|NL|2022-09-25": {
+      "branch_length": 0.00069992
+    },
+    "NA|AS20221942|turdus_merula|NL|2022-09-20": {
+      "branch_length": 0.00019413
+    },
+    "NA|AS20221952|streptopelia_decaocto|NL|2022-09-27": {
+      "branch_length": 0.00170108
+    },
+    "NA|AS20221974|turdus_merula|NL|2022-09-20": {
+      "branch_length": 0.00194507
+    },
+    "NA|AS20221994|passer_domesticus|NL|2022-09-19": {
+      "branch_length": 0.00079472
+    },
+    "NA|AS20222401|turdus_merula|NL|2022-11-10": {
+      "branch_length": 0.00145708
+    },
+    "NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08": {
+      "branch_length": 0.00077713
+    },
+    "NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09": {
+      "branch_length": 0.0006799
+    },
+    "NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09": {
+      "branch_length": 0.00077713
+    },
+    "NA|USUV-GR1439/2024|homo_sapiens|EL|2024-09-16": {
+      "branch_length": 0.00380954
+    },
+    "NODE_0000000": {
+      "branch_length": 0.001
+    },
+    "NODE_0000001": {
+      "branch_length": 0.004157724999999996
+    },
+    "NODE_0000002": {
+      "branch_length": 0.01512459
+    },
+    "NODE_0000003": {
+      "branch_length": 0.00662304
+    },
+    "NODE_0000004": {
+      "branch_length": 0.00354368
+    },
+    "NODE_0000005": {
+      "branch_length": 0.00183574
+    },
+    "NODE_0000006": {
+      "branch_length": 0.00107008
+    },
+    "NODE_0000007": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000008": {
+      "branch_length": 0.00937533
+    },
+    "NODE_0000009": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000010": {
+      "branch_length": 0.00037871
+    },
+    "NODE_0000011": {
+      "branch_length": 0.00038949
+    },
+    "NODE_0000012": {
+      "branch_length": 0.00013391
+    },
+    "NODE_0000013": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000014": {
+      "branch_length": 0.000523205000000004
+    },
+    "NODE_0000015": {
+      "branch_length": 0.01410695
+    },
+    "NODE_0000016": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000017": {
+      "branch_length": 0.00794267
+    },
+    "NODE_0000018": {
+      "branch_length": 0.0004421
+    },
+    "NODE_0000019": {
+      "branch_length": 0.01171095
+    },
+    "NODE_0000020": {
+      "branch_length": 0.00094586
+    },
+    "NODE_0000021": {
+      "branch_length": 0.0001012
+    },
+    "NODE_0000022": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000023": {
+      "branch_length": 0.00057919
+    },
+    "NODE_0000024": {
+      "branch_length": 8.975e-05
+    },
+    "NODE_0000025": {
+      "branch_length": 9.825e-05
+    },
+    "NODE_0000026": {
+      "branch_length": 0.00058282
+    },
+    "NODE_0000027": {
+      "branch_length": 0.00078013
+    },
+    "NODE_0000028": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000029": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000030": {
+      "branch_length": 0.00148837
+    },
+    "NODE_0000031": {
+      "branch_length": 0.00074417
+    },
+    "NODE_0000032": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000033": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000034": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000035": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000036": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000037": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000038": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000039": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000040": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000041": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000042": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000043": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000044": {
+      "branch_length": 0.00053757
+    },
+    "NODE_0000045": {
+      "branch_length": 0.00063054
+    },
+    "NODE_0000046": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000047": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000048": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000049": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000050": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000051": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000052": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000053": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000054": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000055": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000056": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000057": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000058": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000059": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000060": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000061": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000062": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000063": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000064": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000065": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000066": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000067": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000068": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000069": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000070": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000071": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000072": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000073": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000074": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000075": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000076": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000077": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000078": {
+      "branch_length": 0.00049688
+    },
+    "NODE_0000079": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000080": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000081": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000082": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000083": {
+      "branch_length": 9.583e-05
+    },
+    "NODE_0000084": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000085": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000086": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000087": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000088": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000089": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000090": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000091": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000092": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000093": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000094": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000095": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000096": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000097": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000098": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000099": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000100": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000101": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000102": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000103": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000104": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000105": {
+      "branch_length": 0.0001965
+    },
+    "NODE_0000106": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000107": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000108": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000109": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000110": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000111": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000112": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000113": {
+      "branch_length": 9.634e-05
+    },
+    "NODE_0000114": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000115": {
+      "branch_length": 0.00022684
+    },
+    "NODE_0000116": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000117": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000118": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000119": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000120": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000121": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000122": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000123": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000124": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000125": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000126": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000127": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000128": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000129": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000130": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000131": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000132": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000133": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000134": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000135": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000136": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000137": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000138": {
+      "branch_length": 9.341e-05
+    },
+    "NODE_0000139": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000140": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000141": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000142": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000143": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000144": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000145": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000146": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000147": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000148": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000149": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000150": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000151": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000152": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000153": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000154": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000155": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000156": {
+      "branch_length": 0.00058145
+    },
+    "NODE_0000157": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000158": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000159": {
+      "branch_length": 0.00106896
+    },
+    "NODE_0000160": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000161": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000162": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000163": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000164": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000165": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000166": {
+      "branch_length": 2.51e-06
+    },
+    "NODE_0000167": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000168": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000169": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000170": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000171": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000172": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000173": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000174": {
+      "branch_length": 0.00097166
+    },
+    "NODE_0000175": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000176": {
+      "branch_length": 0.00092027
+    },
+    "NODE_0000177": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000178": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000179": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000180": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000181": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000182": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000183": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000184": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000185": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000186": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000187": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000188": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000189": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000190": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000191": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000192": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000193": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000194": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000195": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000196": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000197": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000198": {
+      "branch_length": 0.00047655
+    },
+    "NODE_0000199": {
+      "branch_length": 0.00590437
+    },
+    "NODE_0000200": {
+      "branch_length": 0.00488566
+    },
+    "NODE_0000201": {
+      "branch_length": 9.534e-05
+    },
+    "NODE_0000202": {
+      "branch_length": 0.00037206
+    },
+    "NODE_0000203": {
+      "branch_length": 0.00210439
+    },
+    "NODE_0000204": {
+      "branch_length": 0.00645156
+    },
+    "NODE_0000205": {
+      "branch_length": 0.00021949
+    },
+    "NODE_0000206": {
+      "branch_length": 0.00103764
+    },
+    "NODE_0000207": {
+      "branch_length": 0.00655602
+    },
+    "NODE_0000208": {
+      "branch_length": 8.813e-05
+    },
+    "NODE_0000209": {
+      "branch_length": 0.00019416
+    },
+    "NODE_0000210": {
+      "branch_length": 0.00246106
+    },
+    "NODE_0000211": {
+      "branch_length": 0.00058543
+    },
+    "NODE_0000212": {
+      "branch_length": 0.0066416
+    },
+    "NODE_0000213": {
+      "branch_length": 0.00592623
+    },
+    "NODE_0000214": {
+      "branch_length": 0.00529796
+    },
+    "NODE_0000215": {
+      "branch_length": 0.00118496
+    },
+    "NODE_0000216": {
+      "branch_length": 0.00156262
+    },
+    "NODE_0000217": {
+      "branch_length": 0.00126477
+    },
+    "NODE_0000218": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000219": {
+      "branch_length": 0.00175056
+    },
+    "NODE_0000220": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000221": {
+      "branch_length": 0.00077852
+    },
+    "NODE_0000222": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000223": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000224": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000225": {
+      "branch_length": 9.657e-05
+    },
+    "NODE_0000226": {
+      "branch_length": 9.67e-05
+    },
+    "NODE_0000227": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000228": {
+      "branch_length": 0.00068026
+    },
+    "NODE_0000229": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000230": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000231": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000232": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000233": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000234": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000235": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000236": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000237": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000238": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000239": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000240": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000241": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000242": {
+      "branch_length": 0.00082648
+    },
+    "NODE_0000243": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000244": {
+      "branch_length": 0.00063008
+    },
+    "NODE_0000245": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000246": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000247": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000248": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000249": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000250": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000251": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000252": {
+      "branch_length": 0.00011336
+    },
+    "NODE_0000253": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000254": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000255": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000256": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000257": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000258": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000259": {
+      "branch_length": 0.00175172
+    },
+    "NODE_0000260": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000261": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000262": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000263": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000264": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000265": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000266": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000267": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000268": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000269": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000270": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000271": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000272": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000273": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000274": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000275": {
+      "branch_length": 9.693e-05
+    },
+    "NODE_0000276": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000277": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000278": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000279": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000280": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000281": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000282": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000283": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000284": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000285": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000286": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000287": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000288": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000289": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000290": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000291": {
+      "branch_length": 9.576e-05
+    },
+    "NODE_0000292": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000293": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000294": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000295": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000296": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000297": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000298": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000299": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000300": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000301": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000302": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000303": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000304": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000305": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000306": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000307": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000308": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000309": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000310": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000311": {
+      "branch_length": 0.00039254
+    },
+    "NODE_0000312": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000313": {
+      "branch_length": 0.0001009
+    },
+    "NODE_0000314": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000315": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000316": {
+      "branch_length": 0.00018933
+    },
+    "NODE_0000317": {
+      "branch_length": 0.000693
+    },
+    "NODE_0000318": {
+      "branch_length": 9.397e-05
+    },
+    "NODE_0000319": {
+      "branch_length": 9.724e-05
+    },
+    "NODE_0000320": {
+      "branch_length": 0.00242486
+    },
+    "NODE_0000321": {
+      "branch_length": 0.00126826
+    },
+    "NODE_0000322": {
+      "branch_length": 0.00068103
+    },
+    "NODE_0000323": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000324": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000325": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000326": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000327": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000328": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000329": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000330": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000331": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000332": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000333": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000334": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000335": {
+      "branch_length": 0.00019373
+    },
+    "NODE_0000336": {
+      "branch_length": 0.00029085
+    },
+    "NODE_0000337": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000338": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000339": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000340": {
+      "branch_length": 0.00107244
+    },
+    "NODE_0000341": {
+      "branch_length": 9.875e-05
+    },
+    "NODE_0000342": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000343": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000344": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000345": {
+      "branch_length": 0.00058269
+    },
+    "NODE_0000346": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000347": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000348": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000349": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000350": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000351": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000352": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000353": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000354": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000355": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000356": {
+      "branch_length": 9.577e-05
+    },
+    "NODE_0000357": {
+      "branch_length": 0.00058396
+    },
+    "NODE_0000358": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000359": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000360": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000361": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000362": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000363": {
+      "branch_length": 0.00018461
+    },
+    "NODE_0000364": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000365": {
+      "branch_length": 0.00019242
+    },
+    "NODE_0000366": {
+      "branch_length": 0.00046408
+    },
+    "NODE_0000367": {
+      "branch_length": 0.00033078
+    },
+    "NODE_0000368": {
+      "branch_length": 0.00154788
+    },
+    "NODE_0000369": {
+      "branch_length": 0.00077713
+    },
+    "NODE_0000370": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000371": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000372": {
+      "branch_length": 0.00126239
+    },
+    "NODE_0000373": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000374": {
+      "branch_length": 0.00087305
+    },
+    "NODE_0000375": {
+      "branch_length": 0.00050416
+    },
+    "NODE_0000376": {
+      "branch_length": 0.00068114
+    },
+    "NODE_0000377": {
+      "branch_length": 0.00079704
+    },
+    "NODE_0000378": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000379": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000380": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000381": {
+      "branch_length": 0.0004659
+    },
+    "NODE_0000382": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000383": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000384": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000385": {
+      "branch_length": 0.00048815
+    },
+    "NODE_0000386": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000387": {
+      "branch_length": 0.00019541
+    },
+    "NODE_0000388": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000389": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000390": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000391": {
+      "branch_length": 0.00095613
+    },
+    "NODE_0000392": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000393": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000394": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000395": {
+      "branch_length": 0.00126467
+    },
+    "NODE_0000396": {
+      "branch_length": 9.603e-05
+    },
+    "NODE_0000397": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000398": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000399": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000400": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000401": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000402": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000403": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000404": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000405": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000406": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000407": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000408": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000409": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000410": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000411": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000412": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000413": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000414": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000415": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000416": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000417": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000418": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000419": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000420": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000421": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000422": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000423": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000424": {
+      "branch_length": 0.00028452
+    },
+    "NODE_0000425": {
+      "branch_length": 0.00136564
+    },
+    "NODE_0000426": {
+      "branch_length": 0.00048202
+    },
+    "NODE_0000427": {
+      "branch_length": 0.00048552
+    },
+    "NODE_0000428": {
+      "branch_length": 0.0003872
+    },
+    "NODE_0000429": {
+      "branch_length": 0.00082871
+    },
+    "NODE_0000430": {
+      "branch_length": 2.51e-06
+    },
+    "NODE_0000431": {
+      "branch_length": 0.00079713
+    },
+    "NODE_0000432": {
+      "branch_length": 0.00116568
+    },
+    "NODE_0000433": {
+      "branch_length": 0.00066381
+    },
+    "NODE_0000434": {
+      "branch_length": 0.00014345
+    },
+    "NODE_0000435": {
+      "branch_length": 0.00099153
+    },
+    "NODE_0000436": {
+      "branch_length": 0.00048776
+    },
+    "NODE_0000437": {
+      "branch_length": 2.98e-06
+    },
+    "NODE_0000438": {
+      "branch_length": 9.695e-05
+    },
+    "NODE_0000439": {
+      "branch_length": 9.978e-05
+    },
+    "NODE_0000440": {
+      "branch_length": 9.504e-05
+    },
+    "NODE_0000441": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000442": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000443": {
+      "branch_length": 0.00019575
+    },
+    "NODE_0000444": {
+      "branch_length": 0.00019563
+    },
+    "NODE_0000445": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000446": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000447": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000448": {
+      "branch_length": 9.602e-05
+    },
+    "NODE_0000449": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000450": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000451": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000452": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000453": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000454": {
+      "branch_length": 0.00046421
+    },
+    "NODE_0000455": {
+      "branch_length": 0.00043491
+    },
+    "NODE_0000456": {
+      "branch_length": 2.5e-06
+    },
+    "NODE_0000457": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000458": {
+      "branch_length": 0.00236439
+    },
+    "NODE_0000459": {
+      "branch_length": 0.00055933
+    },
+    "NODE_0000460": {
+      "branch_length": 0.00019343
+    },
+    "NODE_0000461": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000462": {
+      "branch_length": 0.00048571
+    },
+    "NODE_0000463": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000464": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000465": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000466": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000467": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000468": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000469": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000470": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000471": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000472": {
+      "branch_length": 0.00019413
+    },
+    "NODE_0000473": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000474": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000475": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000476": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000477": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000478": {
+      "branch_length": 0.00107028
+    },
+    "NODE_0000479": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000480": {
+      "branch_length": 0.00038836
+    },
+    "NODE_0000481": {
+      "branch_length": 0.0006799
+    },
+    "NODE_0000482": {
+      "branch_length": 9.705e-05
+    },
+    "NODE_0000483": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000484": {
+      "branch_length": 0.00023392
+    },
+    "NODE_0000485": {
+      "branch_length": 0.00029123
+    },
+    "NODE_0000486": {
+      "branch_length": 0.00034873
+    },
+    "NODE_0000487": {
+      "branch_length": 0.00109419
+    },
+    "NODE_0000488": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000489": {
+      "branch_length": 0.00087438
+    },
+    "NODE_0000490": {
+      "branch_length": 1e-06
+    },
+    "NODE_0000491": {
+      "branch_length": 1e-06
+    },
+    "OM202464|Greater_London_2021|turdus_merula|UK|2021-09": {
+      "branch_length": 0.00048552
+    },
+    "ON032474|ITA2020_115108|culex_pipiens|IT|2020": {
+      "branch_length": 0.00019413
+    },
+    "ON032476|ITA2020_155885|turdus_merula|IT|2020": {
+      "branch_length": 0.00048552
+    },
+    "ON032477|ITA2018_17495|turdus_merula|IT|2018-08-17": {
+      "branch_length": 0.00194664
+    },
+    "ON032479|ITA2010_12543|turdus_merula|IT|2010": {
+      "branch_length": 0.00048552
+    },
+    "ON032482|ITA2021_304421|larus_michahellis|IT|2021-09-08": {
+      "branch_length": 0.00048552
+    },
+    "ON032483|ITA2021_301597|turdus_merula|IT|2021-08-19": {
+      "branch_length": 0.00019413
+    },
+    "ON032484|ITA2021_305812|columba_palumbus|IT|2021-09-10": {
+      "branch_length": 0.00097357
+    },
+    "ON032485|ITA2021_302331|turdus_merula|IT|2021": {
+      "branch_length": 0.00048552
+    },
+    "ON032486|ITA2021_310782|turdus_merula|IT|2021": {
+      "branch_length": 0.00116629
+    },
+    "ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|NL|2016": {
+      "branch_length": 0.00078619
+    },
+    "ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|NL|2016": {
+      "branch_length": 0.00058963
+    },
+    "ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|NL|2016": {
+      "branch_length": 9.822e-05
+    },
+    "ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|NL|2016": {
+      "branch_length": 0.00077819
+    },
+    "ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|NL|2016": {
+      "branch_length": 0.00039304
+    },
+    "ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|NL|2016": {
+      "branch_length": 0.00030281
+    },
+    "ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016": {
+      "branch_length": 0.0022738
+    },
+    "ON813220|SN2016_286066|culex_neavei|SN|2016": {
+      "branch_length": 0.0033255
+    },
+    "ON813221|SN2016_288129|culex_neavei|SN|2016": {
+      "branch_length": 0.00709767
+    },
+    "ON813222|SN2016_288158|culex_neavei|SN|2016": {
+      "branch_length": 0.00260913
+    },
+    "ON813223|SN2016_286125|culex_neavei|SN|2016": {
+      "branch_length": 0.00203757
+    },
+    "ON813224|SN2016_286099|culex_poicilipes|SN|2016": {
+      "branch_length": 0.00207896
+    },
+    "ON813225|SN2013_260237|culex_neavei|SN|2013": {
+      "branch_length": 0.00260039
+    },
+    "ON813227|SN2005_ArD_171185|culex_neavei|SN|2005": {
+      "branch_length": 9.957e-05
+    },
+    "ON813229|SN2005_ArD_173133|culex_neavei|SN|2005": {
+      "branch_length": 9.705e-05
+    },
+    "ON813235|ITA2021_300240|turdus_merula|IT|2021": {
+      "branch_length": 0.00048552
+    },
+    "ON813236|305920/2021|culex_pipiens|IT|2021": {
+      "branch_length": 0.00264039
+    },
+    "OP007489|WBVR_bird-X-2016|strix_nebulosa|NL|2016-09-09": {
+      "branch_length": 0.00069112
+    },
+    "OP555956|NA|strix_nebulosa|BE|2017-07-10": {
+      "branch_length": 0.00136103
+    },
+    "OP555957|NA|turdus_merula|BE|2017-07-24": {
+      "branch_length": 9.705e-05
+    },
+    "OP555958|NA|turdus_merula|BE|2017-08-07": {
+      "branch_length": 0.00019413
+    },
+    "OP734245|NA|culex_pipiens|IT|2022-07-01": {
+      "branch_length": 0.00119494
+    },
+    "OP734246|NA|culex_pipiens|IT|2022-07-29": {
+      "branch_length": 0.00184995
+    },
+    "OP734248|NA|culex_pipiens|IT|2022-07-29": {
+      "branch_length": 0.0022914
+    },
+    "OP734249|NA|culex_pipiens|IT|2022-08-01": {
+      "branch_length": 0.00203529
+    },
+    "OP734251|NA|culex_pipiens|IT|2022-08-01": {
+      "branch_length": 0.00077899
+    },
+    "OP734252|NA|culex_pipiens|IT|2022-08-01": {
+      "branch_length": 0.0003909
+    },
+    "OP734254|NA|NA|IT|2022-08-08": {
+      "branch_length": 0.00119706
+    },
+    "OP734255|NA|culex_pipiens|IT|2022-07-27": {
+      "branch_length": 0.00247709
+    },
+    "OP734256|NA|culex_pipiens|IT|2022-07-29": {
+      "branch_length": 0.00068127
+    },
+    "OP734257|NA|culex_pipiens|IT|2022-07-22": {
+      "branch_length": 1e-06
+    },
+    "OP734258|NA|culex_pipiens|IT|2022-07-27": {
+      "branch_length": 0.0008033
+    },
+    "OP734259|NA|culex_pipiens|IT|2022-07-25": {
+      "branch_length": 0.00079574
+    },
+    "OP734260|NA|culex_pipiens|IT|2022-07-08": {
+      "branch_length": 0.00058269
+    },
+    "OP734261|NA|culex_pipiens|IT|2022-07-08": {
+      "branch_length": 0.00071054
+    },
+    "OP921077|16TV1039_Ixodesfrontalis|ixodes_frontalis|NL|2016-10-07": {
+      "branch_length": 0.00050325
+    },
+    "OP921078|18TV0973_Turdusphilomelos|turdidae_sp|NL|2018-08-18": {
+      "branch_length": 0.00050869
+    },
+    "OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|NL|2016-10-16": {
+      "branch_length": 0.000399
+    },
+    "OR757488|1572124|culex_pipiens|IT|2023-07-06": {
+      "branch_length": 0.00079549
+    },
+    "OR757489|1572126|culex_pipiens|IT|2023-07-07": {
+      "branch_length": 0.00059646
+    },
+    "OR757491|17404212|laridae_sp|IT|2023-07-20": {
+      "branch_length": 0.00069591
+    },
+    "OR757492|17404213|culex_pipiens|IT|2023-07-24": {
+      "branch_length": 0.00048552
+    },
+    "OR757493|17404216|culex_pipiens|IT|2023-07-15": {
+      "branch_length": 0.00272524
+    },
+    "OR757494|17404220|turdus_merula|IT|2023-07-24": {
+      "branch_length": 0.00097166
+    },
+    "OR757496|1740423|NA|IT|2023-07-15": {
+      "branch_length": 0.00151455
+    },
+    "OR757497|1740425|culex_pipiens|IT|2023-07-16": {
+      "branch_length": 0.0030246
+    },
+    "OR921093|2023TE1639111|culex_pipiens|IT|2023-08-11": {
+      "branch_length": 0.00139726
+    },
+    "OR921094|2023TE1640011|culex_pipiens|IT|2023-08-11": {
+      "branch_length": 0.00179299
+    },
+    "OR921095|2023TE1639211|culex_pipiens|IT|2023-08-11": {
+      "branch_length": 0.00079537
+    },
+    "OR921096|2023TE1822511|turdus_merula|IT|2023-09-07": {
+      "branch_length": 0.00110002
+    },
+    "OR921099|2023TE1908111|turdus_merula|IT|2023-09-15": {
+      "branch_length": 0.0004889
+    },
+    "OR921100|2023TE1837011|culex_pipiens|IT|2023-09-08": {
+      "branch_length": 0.0001179
+    },
+    "OR921101|2023TE1838411|culex_pipiens|IT|2023-09-08": {
+      "branch_length": 0.00078141
+    },
+    "OR921102|2023TE1908911|culex_pipiens|IT|2023-09-15": {
+      "branch_length": 0.00048552
+    },
+    "OR921103|2023TE1683411|culex_pipiens|IT|2023-08-11": {
+      "branch_length": 0.00088282
+    },
+    "OR921104|2023TE1838911|culex_pipiens|IT|2023-09-08": {
+      "branch_length": 0.00171036
+    },
+    "OR921105|2023TE1839111|phoenicurus_phoenicurus|IT|2023-09-08": {
+      "branch_length": 0.00078769
+    },
+    "OR921106|2023TE1699411|culex_pipiens|IT|2023-08-24": {
+      "branch_length": 0.00058662
+    },
+    "OU674388|NA|turdus_merula|LU|2020-09": {
+      "branch_length": 0.00252938
+    },
+    "PP104383|TE2518012|culex_pipiens|IT|2023-08-02": {
+      "branch_length": 0.00135983
+    },
+    "PP104384|TE2518112|culex_pipiens|IT|2023-09-22": {
+      "branch_length": 0.0009062
+    },
+    "PP104385|TE2518212|culex_pipiens|IT|2023-09-22": {
+      "branch_length": 0.00059655
+    },
+    "PP104386|TE2518312|culex_pipiens|IT|2023-09-08": {
+      "branch_length": 0.00169387
+    },
+    "PP104387|TE2518512|sturnus_vulgaris|IT|2023-09-13": {
+      "branch_length": 0.00048517
+    },
+    "PP104388|TE2518612|turdus_merula|IT|2023-09-22": {
+      "branch_length": 0.00058373
+    },
+    "PP482815|AeDet2-batch3_Nansouty_2023-08-18|culex_sp|FR|2023-08-18": {
+      "branch_length": 0.00243916
+    },
+    "PQ041659|USUV_TM_Netherlands_2016|NA|NL|2020": {
+      "branch_length": 0.00038836
+    },
+    "PQ633267|USUV/NL/2022/SCBC7P30|NA|NL|2022-11-18": {
+      "branch_length": 0.00079897
+    },
+    "PQ677887|Ar2|alectoris_rufa|PT|2023-11-05": {
+      "branch_length": 0.00341599
+    },
+    "PV207916|WNV0001|homo_sapiens|ES|2024-09-09": {
+      "branch_length": 0.00346229
+    },
+    "PV235993|USUV/NL/2019/CMV442|culex_sp|NL|2019-08-22": {
+      "branch_length": 0.00071413
+    },
+    "PV235994|USUV/NL/2021/CMV2045|culex_sp|NL|2021-07-26": {
+      "branch_length": 0.00146341
+    },
+    "PV235995|USUV/NL/2022/CMV3308|culex_sp|NL|2022-07-13": {
+      "branch_length": 0.00038997
+    },
+    "PV235996|USUV/NL/2022/CMV3394|culex_sp|NL|2022-07-26": {
+      "branch_length": 0.00156549
+    },
+    "PV501208|296|culex_sp|HU|2024-08-02": {
+      "branch_length": 0.00155605
+    },
+    "PV501209|373|culex_sp|HU|2024-08-16": {
+      "branch_length": 0.00313781
+    },
+    "PV501210|406|culex_sp|HU|2024-08-24": {
+      "branch_length": 0.00252854
+    },
+    "PV501211|412|culex_sp|HU|2024-08-07": {
+      "branch_length": 0.00157529
+    },
+    "PV501212|416|culex_sp|HU|2024-07-31": {
+      "branch_length": 0.00138265
+    },
+    "PV523802|9731|homo_sapiens|HU|2024-10-12": {
+      "branch_length": 0.00284485
+    },
+    "PV541149|7096_2024|homo_sapiens|HU|2024-08-07": {
+      "branch_length": 0.00352562
+    }
+  }
+}
