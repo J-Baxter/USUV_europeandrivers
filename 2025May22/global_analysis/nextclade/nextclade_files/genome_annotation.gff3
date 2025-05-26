@@ -1,0 +1,14 @@
+##gff-version 3
+##sequence-region NC_006551.1 1 11066
+##species https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=64286
+NC_006551.1	RefSeq	gene	97	408	.	+	.	gene_name=C
+NC_006551.1	RefSeq	gene	475	975	.	+	.	gene_name=PrM
+NC_006551.1	RefSeq	gene	976	2475	.	+	.	gene_name=E
+NC_006551.1	RefSeq	gene	2476	3531	.	+	.	gene_name=NS1
+NC_006551.1	RefSeq	gene	3532	4212	.	+	.	gene_name=NS2a
+NC_006551.1	RefSeq	gene	4213	4605	.	+	.	gene_name=NS2b
+NC_006551.1	RefSeq	gene	4606	6462	.	+	.	gene_name=NS3
+NC_006551.1	RefSeq	gene	6463	6840	.	+	.	gene_name=NS4a
+NC_006551.1	RefSeq	gene	6841	6909	.	+	.	gene_name=2K
+NC_006551.1	RefSeq	gene	6910	7683	.	+	.	gene_name=NS4b
+NC_006551.1	RefSeq	gene	7684	10305	.	+	.	gene_name=NS5

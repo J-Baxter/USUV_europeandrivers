@@ -1,0 +1,25 @@
+##gff-version 3
+##sequence-region NA|AS20221999|turdidae_sp|NL|2022-09-22 1 10305
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	region	1	10305	.	.	.	Name=NA|AS20221999|turdidae_sp|NL|2022-09-22;ID=NA|AS20221999|turdidae_sp|NL|2022-09-22;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	97	408	.	+	.	gene_name=C;Name=C;seq_index=0;product=C;ID=Gene-0-C
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	97	408	.	+	0	product=C;seq_index=0;ID=CDS-0-cds-segment-from-gene-C;gene_name=C;Parent=Gene-0-C;Name=C
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	475	975	.	+	.	seq_index=0;Name=PrM;product=PrM;gene_name=PrM;ID=Gene-0-PrM
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	475	975	.	+	0	Parent=Gene-0-PrM;Name=PrM;seq_index=0;ID=CDS-0-cds-segment-from-gene-PrM;product=PrM;gene_name=PrM
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	976	2475	.	+	.	ID=Gene-0-E;gene_name=E;Name=E;product=E;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	976	2475	.	+	0	product=E;Parent=Gene-0-E;gene_name=E;ID=CDS-0-cds-segment-from-gene-E;seq_index=0;Name=E
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	2476	3531	.	+	.	product=NS1;gene_name=NS1;Name=NS1;ID=Gene-0-NS1;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	2476	3531	.	+	0	Parent=Gene-0-NS1;product=NS1;Name=NS1;ID=CDS-0-cds-segment-from-gene-NS1;seq_index=0;gene_name=NS1
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	3532	4212	.	+	.	ID=Gene-0-NS2a;Name=NS2a;gene_name=NS2a;product=NS2a;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	3532	4212	.	+	0	product=NS2a;Name=NS2a;Parent=Gene-0-NS2a;gene_name=NS2a;ID=CDS-0-cds-segment-from-gene-NS2a;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	4213	4605	.	+	.	seq_index=0;gene_name=NS2b;ID=Gene-0-NS2b;Name=NS2b;product=NS2b
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	4213	4605	.	+	0	product=NS2b;ID=CDS-0-cds-segment-from-gene-NS2b;seq_index=0;gene_name=NS2b;Name=NS2b;Parent=Gene-0-NS2b
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	4606	6462	.	+	.	gene_name=NS3;seq_index=0;product=NS3;ID=Gene-0-NS3;Name=NS3
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	4606	6462	.	+	0	Parent=Gene-0-NS3;gene_name=NS3;seq_index=0;product=NS3;Name=NS3;ID=CDS-0-cds-segment-from-gene-NS3
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	6463	6840	.	+	.	Name=NS4a;product=NS4a;seq_index=0;gene_name=NS4a;ID=Gene-0-NS4a
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	6463	6840	.	+	0	product=NS4a;Parent=Gene-0-NS4a;gene_name=NS4a;seq_index=0;ID=CDS-0-cds-segment-from-gene-NS4a;Name=NS4a
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	6841	6909	.	+	.	Name=2K;gene_name=2K;product=2K;seq_index=0;ID=Gene-0-2K
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	6841	6909	.	+	0	Parent=Gene-0-2K;ID=CDS-0-cds-segment-from-gene-2K;gene_name=2K;Name=2K;product=2K;seq_index=0
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	6910	7683	.	+	.	product=NS4b;gene_name=NS4b;seq_index=0;Name=NS4b;ID=Gene-0-NS4b
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	6910	7683	.	+	0	gene_name=NS4b;Parent=Gene-0-NS4b;Name=NS4b;product=NS4b;seq_index=0;ID=CDS-0-cds-segment-from-gene-NS4b
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	gene	7684	10305	.	+	.	gene_name=NS5;seq_index=0;ID=Gene-0-NS5;Name=NS5;product=NS5
+NA|AS20221999|turdidae_sp|NL|2022-09-22	nextclade	CDS	7684	10305	.	+	0	Parent=Gene-0-NS5;gene_name=NS5;Name=NS5;product=NS5;seq_index=0;ID=CDS-0-cds-segment-from-gene-NS5

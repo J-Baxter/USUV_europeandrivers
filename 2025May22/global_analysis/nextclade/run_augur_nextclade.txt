@@ -1,0 +1,7 @@
+#! /bin/bash
+# CLI to generate json for lineage assignment
+augur tree --alignment USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta --output plain_tree.nwk 
+augur refine --tree plain_tree.nwk --root mid_point --output-tree plain_tree.nwk
+augur ancestral --tree plain_tree.nwk --alignment USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta --root-sequence reference.fasta --output-node-data nt_muts.json --inference joint
+augur export v2 --tree plain_tree.nwk --node-data plain_tree.json nt_muts.json --auspice-config auspice_config.json --output usuv.json
+
