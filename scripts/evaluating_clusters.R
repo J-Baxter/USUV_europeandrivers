@@ -93,7 +93,7 @@ tmp_data <- tmp_3 %>%
   dplyr::select(c(starts_with('type'), distance)) %>%
   mutate(across(starts_with('type'), .fns = ~  gsub('within europe\\: ', '', str_to_lower(.x)))) %>%
   pivot_longer(cols = starts_with('type'), names_to = 'threshold', values_to = 'group') %>%
-  filter(threshold == 'type_70') %>%
+  filter(threshold == 'type_35') %>%
   filter(group == 'between clade') %>%
   pull(distance)
 
