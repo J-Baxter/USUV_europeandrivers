@@ -1,8 +1,116 @@
-test <- treeio::read.nextstrain.json('./2024Dec02/nomenclature/annotated_05.json')
-autolin_labels <- read_tsv('./2024Dec02/nomenclature/labels_05.tsv') %>%
+####################################################################################################
+####################################################################################################
+## Script name:
+##
+## Purpose of script:
+##
+## Date created: 2025-05-26
+##
+##
+########################################## SYSTEM OPTIONS ##########################################
+options(scipen = 6, digits = 7) 
+memory.limit(30000000) 
+
+  
+########################################## DEPENDENCIES ############################################
+# Packages
+library(tidyverse)
+library(magrittr)
+library(treeio)
+library(TreeTools)
+library(ggtree)
+library(ggtreeExtra)
+# User functions
+
+
+############################################## DATA ################################################
+test <- treeio::read.nextstrain.json('./2025May22/nomenclature/usuv_lineages.json')
+autolin_labels <- read_tsv('./2025May22/global_analysis/nextstrain/automated-lineage-json/labels.tsv') %>%
   rename(label = sample)
+beast_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_mcc.tree')
+
+plain_ml <- ape::read.tree('./2025May22/global_analysis/global_subsampled_plain/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_ml.tree') %>%
+  midpoint_root()
 
 
+as_tibble(test) %>%
+  mutate(ancestors = )
+
+t1 <- test %>% 
+  as_tibble() %>% 
+  select(c(1,2,4))
+
+t2 <- beast_mcc %>% 
+  as_tibble() %>% 
+  select(c(1,2,4)) %>%
+  rename(new_parent = parent,
+         new_node = node)
+
+# match tips
+terminal <- t1 %>% filter(node<494) %>%
+  left_join(t2 %>% drop_na,  
+              by = 'label') 
+  
+
+# match parents of tips
+t4 <- t1 %>% filter(node>=494) %>%
+  left_join(terminal %>% select(node = parent, new_node = new_parent)) %>%
+  left_join(t2 %>% select(-label), by = join_by(new_node)) %>%
+  drop_na()
+
+# match parents of parents
+
+t1 %>% filter(node>=494) %>%
+  left_join(terminal %>% select(node = parent, new_node = new_parent)) %>%
+  left_join(t2 %>% select(-label), by = join_by(new_node)) %>%
+  filter(is.na(new_node)) %>%
+  select(-starts_with('new')) %>%
+  left_join(t4 %>% select(node = parent,
+                          new_node = new_parent), by = join_by(node)) %>%
+  left_join(t2 %>% select(-label), by = join_by(new_node)) %>%
+  
+  
+  left_join(t2 %>% select(node, new_parent = parent),  
+            by = join_by(new_node==node)) %>%
+  drop_na()
+  
+PathtoTips <- function(tree, node, tip){
+  ancestors <- ancestor(tree, tip)
+  branch_start <- tree$edge[1,]
+  branch_length <- tree$edge.length
+  
+  dist_to_tip <- 0
+  
+  for (anc in ancestors){
+    while(anc != node){
+      index = which(branch_start==anc)
+      dist_to_tip = dist_to_tip + branch_length[index]
+    }
+  }
+  return(dist_to_tip)
+}
+ancestors <- ancestor(plain_ml, 1)
+branch_start <- plain_ml$edge[,1]
+branch_length <- plain_ml$edge.length
+
+dist_to_tip <- 0
+
+  for (anc in ancestors){
+  print(anc)
+  index = which(branch_start==anc)
+  print(index)
+  dist_to_tip = dist_to_tip + branch_length[index]
+  
+  }
+
+PathtoTips(plain_ml, 702, 1)
+as_tibble(plain_ml) %>%
+  mutate(N = length(offspring(plain_ml, node, tiponly = TRUE)),
+         D = branch.length,
+         S = )
+
+
+############################################## MAIN ################################################
 primary_lineages <- autolin_labels %>%
   dplyr::select(lineage) %>%
   filter(!grepl('\\.', lineage)) %>%
@@ -171,5 +279,10 @@ p <-purrr::reduce(
 )
 
 
+############################################## WRITE ###############################################
 ggsave(p, filename = "~/Downloads/nomenclature_05.png", width = 13, height = 25)
 
+
+############################################## END #################################################
+####################################################################################################
+####################################################################################################
