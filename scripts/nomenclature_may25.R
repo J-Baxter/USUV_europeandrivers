@@ -1,6 +1,6 @@
 ################################################################################
-## Script Name:        <INSERT_SCRIPT_NAME_HERE>
-## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
+## Script Name:        USUV Nomenclature (May 2025)
+## Purpose:            1) reconcile labelled json and BEAST MCC
 ## Author:             James Baxter
 ## Date Created:      2025-05-27
 ################################################################################
@@ -157,6 +157,7 @@ all_levels_tbl %<>%
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
+write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
 
 #################################### END #######################################
 ################################################################################  
