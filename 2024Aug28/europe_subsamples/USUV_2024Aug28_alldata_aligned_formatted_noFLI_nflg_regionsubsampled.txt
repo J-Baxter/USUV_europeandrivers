@@ -1,4 +1,4 @@
-tipnames	collection_regionname	collection_countryname	host_sciname	lat	long
+tipnames	collection_regionname_nflg	collection_countryname_nflg	host_sciname_nflg	lat	long
 MG888044|NA|culex_pipiens|srb|2014-08	southern europe	serbia	culex pipiens	44.2155831781841	20.7992241330769
 MN122166|AS201600133|turdus_merula|nl_ov_lo|2016-09-23	western europe	netherlands	turdus merula	52.304302029648	7.00850436547834
 MN122213|AS201700248|turdus_merula|nl_zh_hg|2017-09-20	western europe	netherlands	turdus merula	51.8332126103346	4.85571721501593

@@ -1,4 +1,4 @@
-tipnames	collection_regionname	collection_countryname	host_sciname	lat	long
+tipnames	collection_regionname_ns5	collection_countryname_ns5	host_sciname_ns5	lat	long
 NA|23VIR9300|turdus_merula|it_vr|2023-10-01	southern europe	italy	turdus merula	45.4173535048033	11.0380386816998
 HM569263|NA|homo_sapiens|ita|2009-09-24	southern europe	italy	homo sapiens	42.7080607219025	12.208345049127
 MF063043|HU-47540/16|turdus_merula|hun|2016-09-26	eastern europe	hungary	turdus merula	47.1703761996839	19.3977670199114
