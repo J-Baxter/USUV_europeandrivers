@@ -149,11 +149,11 @@ WriteBEAST2Dat <- function(aln, filename, metadata, var){
 
 
 ############################################## DATA ################################################
-aln <- read.dna('./2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta',
+aln <- read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta',
                 format = 'fasta',
                 as.matrix = T)
 
-metadata <- read_csv('./data/USUV_metadata_all_2025Feb10.csv')
+metadata <- read_csv('./data/USUV_metadata_all_2025May22.csv')
 ############################################## MAIN ################################################
 
 
@@ -166,13 +166,13 @@ mutate(is_europe = case_when(is_europe == 1 ~ 'europe',
 ############################################# WRITE ################################################
 # Write NEXUS containing alignment, variable tip date precision and codon partitions
 WriteBEAST2Nexus(aln,
-                 './2025Feb10/alignments/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.nexus',
+                 './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.nexus',
                  metadata = metadata)
 
 
 # Write .Dat containing sub-populations for MASCOT analysis. 
 WriteBEAST2Dat(aln,
-               'test_3.dat',
+               './2025May22/global_analysis/mascot_subpopulations.dat',
                data,
                'geo_clade')
 
