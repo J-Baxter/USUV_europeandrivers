@@ -1,6 +1,6 @@
 cluster_verylong <- lapply(seq(5, 80, by = 5),
                        InferClusters, 
-                       phylo = nflg_ca@phylo,
+                       phylo = beast_mcc@phylo,
                        n_threshold = 2, 
                        filter = TRUE,
                        metadata) %>%
@@ -19,6 +19,15 @@ cluster_wide <- cluster_verylong %>%
   pivot_wider(values_from = cluster,
               names_from = distance_threshold,
               names_prefix = 'dist_')
+
+most_recent_date <- '2024-10-12'
+
+nflg_mcc %>% 
+  left_join(cluster_wide) %>%
+  ggtree(mrsd = most_recent_date) + 
+  # tip colour + shape = new sequences
+  geom_tippoint(aes(colour = dist_35))
+
 
 
 pdist_clades <- lapply()
@@ -43,34 +52,14 @@ tmp <- patristic_distances %>%
 
 tmp_2 <- tmp %>%
   group_by(pair_id) %>%
-  mutate(type_5 = case_when(n_distinct(dist_5) == 1 ~ 'Within Europe: Within Clade',
-                          .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_10 = case_when(n_distinct(dist_10) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_51 = case_when(n_distinct(dist_15) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_20 = case_when(n_distinct(dist_20) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_25 = case_when(n_distinct(dist_25) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_30 = case_when(n_distinct(dist_30) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_35 = case_when(n_distinct(dist_35) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_40 = case_when(n_distinct(dist_40) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_45 = case_when(n_distinct(dist_45) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_50 = case_when(n_distinct(dist_50) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_55 = case_when(n_distinct(dist_55) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_60 = case_when(n_distinct(dist_60) == 1 ~ 'Within Europe: Within Clade',
-                            .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_70 = case_when(n_distinct(dist_70) == 1 ~ 'Within Europe: Within Clade',
-                             .default = 'Within Europe: Between Clade')) %>%
-  mutate(type_80 = case_when(n_distinct(dist_80) == 1 ~ 'Within Europe: Within Clade',
-                             .default = 'Within Europe: Between Clade'))
+  mutate(across(
+    starts_with("dist_"),
+    ~ case_when(
+      n_distinct(.x) == 1 ~ 'Within Europe: Within Clade',
+      TRUE ~ 'Within Europe: Between Clade'
+    ),
+    .names = "type_{str_extract(.col, '\\\\d+')}"
+  ))
 
 
 tmp_3 <- tmp_2 %>%
@@ -102,7 +91,7 @@ glance(fit)
 ggplot(tmp_3) +
   geom_histogram(aes(x = distance, 
                      #y = after_stat(ndensity),
-                     fill = type_80, colour = type_80),
+                     fill = type_35, colour = type_35),
                  alpha = 0.5,
                  binwidth = 5,
                  position="identity" )+
