@@ -98,14 +98,14 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 
 
 ############################################## DATA ################################################
-nflg_ca <- read.beast('./2025Feb10/global_analysis/beast_plain/USUV_2025Feb10_NFLG_SRD06_relaxLn_constant_mcc.tree')
-#nflg_mcc <- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
-
-metadata <- read_csv('./data/USUV_metadata_all_2025Feb10.csv')
+#nflg_ca <- read.beast('./2025Feb10/global_analysis/beast_plain/USUV_2025Feb10_NFLG_SRD06_relaxLn_constant_mcc.tree')
+nflg_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_mcc.tree')
+ml_tree <- read.tree('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG.fasta.treefile')
+metadata <- read_csv('./data/USUV_metadata_all_2025May22.csv')
 
 
 ############################################## MAIN ################################################
-InferClusters(phylo = nflg_ca@phylo,
+InferClusters(phylo = nflg_mcc@phylo,
               metadata, 
               n_threshold = 3, 
               filter = TRUE,
@@ -114,7 +114,7 @@ InferClusters(phylo = nflg_ca@phylo,
 # Get clusters with maximum patristic distances of 30, 40, 50 and 60
 cluster_long <- lapply(c(30, 40, 50, 60),
        InferClusters, 
-       phylo = nflg_ca@phylo,
+       phylo = nflg_mcc@phylo,
        n_threshold = 2, 
        filter = TRUE,
        metadata) %>%
@@ -128,17 +128,14 @@ cluster_wide <- cluster_long %>%
               names_prefix = 'dist_')
 
 # Test plot
-most_recent_date <- metadata %>%
-  filter(tipnames %in% nflg_ca@phylo$tip.label) %>%
-  pull(date_ymd) %>% #note explicit assumption that most recent date will be ymd not ym
-  max(na.rm = TRUE)
+most_recent_date <- '2024-10-12'
 
-nflg_ca %>% 
+nflg_mcc %>% 
   left_join(cluster_wide) %>%
   ggtree(mrsd = most_recent_date) + 
   
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = dist_30)) # Facet not possible - must run as independent plots then 
+  geom_tippoint(aes(colour = dist_60)) # Facet not possible - must run as independent plots then 
 # combined in cowplot (idea: one column of tree with corresponding distribution opposite)
 
 ############################################## WRITE ###############################################
