@@ -159,5 +159,24 @@ all_levels_tbl %<>%
 # Save output files, plots, or results
 write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
 
+write_delim(as_tibble(test) %>%
+            select(label, starts_with('GRI')) %>% 
+            filter(!grepl('^Node', label)) ,
+          './2025May22/nomenclature/wide_lineages.txt')
+
+as_tibble(test) %>%
+  select(label, `GRI Lineage Level 0`) %>% 
+  rename(taxa = `GRI Lineage Level 0`) %>%
+  mutate(taxa = if_else(taxa == 'not assigned', NA_character_, taxa)) %>%
+  drop_na(taxa) %>%
+  filter(!grepl('^NODE', label)) %>%
+  group_split(taxa) %>%
+  set_names(LETTERS[1:7]) %>%
+  lapply(., function(x) x %>% select(label)) %>%
+  mapply(function(x,y) write_delim(x, paste0('./2025May22/nomenclature/lineage_level0_', y, '.txt'),col_names = FALSE,),
+         .,
+         LETTERS[1:7],
+         SIMPLIFY = FALSE)
+
 #################################### END #######################################
 ################################################################################  
