@@ -23,22 +23,19 @@ library(ade4)
 
 
 ############################################## DATA ################################################
-temp_tree <- read.tree('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta.treefile') %>%
+temp_tree <- read.tree('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG.fasta.treefile') %>%
   multi2di()
 
-temp_tree$node.label <- ifelse(temp_tree$node.label == '', '100',temp_tree$node.label)
+#temp_tree$node.label <- ifelse(temp_tree$node.label == '', '100',temp_tree$node.label)
 
-write.tree(temp_tree, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1_bifur.tree')
+#write.tree(temp_tree, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1_bifur.tree')
 
-aln_subsampled <- read.dna('./2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1.fasta',
+aln_subsampled <- read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta',
                            format = 'fasta',
                            as.matrix = T)
 
 
-metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
-
-
-metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
 stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
@@ -49,21 +46,16 @@ europe_tips <- metadata_in_tree %>%
   filter(is_europe == 1) %>% 
   pull(tipnames) 
 
-
 non_europe_tips <- metadata_in_tree %>%
   filter(is_europe == 0) %>% 
   pull(tipnames) 
 
 
-############################################## WRITE ###############################################
-
 geneticdistance_withineurope <- dist.dna(aln_subsampled[rownames(aln_subsampled) %in% europe_tips, ],
                                          model = "TN93")
 
 geneticdistance_noneurope <- dist.dna(aln_subsampled[rownames(aln_subsampled) %in% non_europe_tips, ],
-                                         model = "TN93")
-
-
+                                      model = "TN93")
 
 within_europe <- geneticdistance_withineurope %>%
   as.matrix() %>%
@@ -72,7 +64,6 @@ within_europe <- geneticdistance_withineurope %>%
   filter(a != b) %>%
   filter(!duplicated(paste0(pmax(a, b), pmin(a, b))))%>%
   mutate(type = 'Within Europe')
-
 
 non_europe <- geneticdistance_noneurope %>%
   as.matrix()%>%
@@ -90,8 +81,7 @@ non_europe <- geneticdistance_noneurope %>%
   filter(!duplicated(paste0(pmax(a, b), pmin(a, b)))) 
 
 all_genetic_distances <- bind_rows(non_europe,
-                                     within_europe)
-
+                                   within_europe)
 
 ggplot(all_genetic_distances ) +
   geom_density(aes(x = distance, fill = type, colour = type),alpha = 0.5)+
@@ -106,6 +96,13 @@ ggplot(all_genetic_distances ) +
   theme_classic(base_size = 20)+
   theme(legend.position = 'inside',
         legend.position.inside = c(0.75, 0.75))
+
+
+############################################## WRITE ###############################################
+
+
+
+
 ############################################## END #################################################
 ####################################################################################################
 ####################################################################################################
