@@ -22,149 +22,15 @@ library(TreeTools)
 library(ggtree)
 library(ggtreeExtra)
 
-GetLineageRoots <- function(treedata, lineage_name){
-  tree <- treedata@phylo
-  data <- as_tibble(treedata) %>% 
-    select(label, {{lineage_name}})
-  
-  # Infer all subtrees and attach associated metadata
-  out <- subtrees(tree) %>% 
-    lapply(., function(x) as.treedata(x) %>%
-             left_join(data,
-                       by= 'label')) %>%
-    
-    # Convert to tibble format
-    lapply(., as_tibble) %>%
-    bind_rows(.id = 'subtree') %>%
-    group_by(subtree) %>%
-    
-    # Include only subtrees that are monophyletic wrt lineage
-    filter(n_distinct(.data[[lineage_name]]) == 1)  %>% 
-    
-    # Exclude unassigned subtrees
-    filter(.data[[lineage_name]] != 'not assigned') %>%
-    
-    mutate(n = n()) %>%
-    ungroup() %>%
-    group_by(.data[[lineage_name]]) %>%
-    # include only the largest subtree
-    filter(n == max(n)) %>%
-    
-    # extract root node as list
-    filter(node == parent) %>%
-    
-    select(label,
-           {{lineage_name}}) %>%
-    summarise(named_vec = list(label), .groups = "drop") %>%
-    deframe()
-  
-  return(out)
-}
 
 ################################### DATA #######################################
 # Read and inspect data
 lineage_json <- treeio::read.nextstrain.json('./2025May22/nomenclature/usuv_lineages.json')
 
-autolin_labels <- read_tsv('./2025May22/global_analysis/nextstrain/automated-lineage-json/labels.tsv') %>%
-  rename(label = sample)
-
-beast_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_mcc.tree')
-
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
-# Map nodes between nextrain json (with autolin clades) and time-scaled BEAST tree
-match <- as_tibble(ape::makeNodeLabel(lineage_json@phylo, method = "md5sum")) %>% 
-  select(node, label) %>%
-  rename(t1.node = node) %>%
-  left_join(.,
-            as_tibble(ape::makeNodeLabel(beast_mcc@phylo, method = "md5sum")) %>% 
-              select(node,label) %>% 
-              rename(t2.node=node)) %>%
-  left_join(as_tibble(lineage_json) %>%
-              select(t1.node = node, 
-                     starts_with('GRI')))
-
-
-# Infer Root nodes for lineage levels
-level_0 <- GetLineageRoots(lineage_json, 'GRI Lineage Level 0')
-level_1 <- GetLineageRoots(lineage_json, 'GRI Lineage Level 1') %>%
-  { .[grepl("\\.", names(.))] }
-level_2 <- GetLineageRoots(lineage_json, 'GRI Lineage Level 2') %>%
-  { .[grepl("\\.\\d+\\.", names(.))] }
-
-
-# Extract BEAST MCC root nodes for each lineage
-level_0_tbl <- lapply(level_0, function(x) as_tibble(lineage_json)$node[as_tibble(lineage_json)$label == x]) %>%
-  lapply(., function(x) match$t2.node[match$t1.node == x]) %>%
-  enframe() %>%
-  unnest(value) %>%
-  mutate(level = 0) %>%
-  rename(lineage = name,
-         root_node = value)
-
-level_1_tbl <- lapply(level_1, function(x) as_tibble(lineage_json)$node[as_tibble(lineage_json)$label == x]) %>%
-  lapply(., function(x) match$t2.node[match$t1.node == x]) %>%
-  enframe() %>%
-  unnest(value) %>%
-  mutate(level = 1) %>%
-  rename(lineage = name,
-         root_node = value)
-
-level_2_tbl <- lapply(level_2, function(x) as_tibble(lineage_json)$node[as_tibble(lineage_json)$label == x]) %>%
-  lapply(., function(x) match$t2.node[match$t1.node == x]) %>%
-  enframe() %>%
-  unnest(value) %>%
-  mutate(level = 2) %>%
-  rename(lineage = name,
-         root_node = value)
-
-all_levels_tbl <- bind_rows(level_0_tbl,
-                            level_1_tbl,
-                            level_2_tbl)
-
-
-# Infer missing (no direct match between nodes)
-level_1_inferred <- level_1[names(level_1) %in% (all_levels_tbl %>% filter(is.na(root_node)) %>%  pull(lineage))] %>%
-  lapply(., function(x) offspring(lineage_json, x , type = 'tips')) %>%
-  lapply(., function(x) as_tibble(lineage_json)$label[as_tibble(lineage_json)$node %in% x]) %>%
-  lapply(., function(x) as_tibble(beast_mcc)$node[as_tibble(beast_mcc)$label %in% x]) %>%
-  lapply(., function(x) MRCA(beast_mcc, x)) %>%
-  enframe() %>%
-  unnest(value) %>%
-  mutate(level = 1) %>%
-  rename(lineage = name,
-         root_node = value)
-
-level_2_inferred <- level_2[names(level_2) %in% (all_levels_tbl %>% filter(is.na(root_node)) %>%  pull(lineage))] %>%
-  lapply(., function(x) offspring(lineage_json, x , type = 'tips')) %>%
-  lapply(., function(x) as_tibble(lineage_json)$label[as_tibble(lineage_json)$node %in% x]) %>%
-  lapply(., function(x) as_tibble(beast_mcc)$node[as_tibble(beast_mcc)$label %in% x]) %>%
-  lapply(., function(x) MRCA(beast_mcc, x)) %>%
-  enframe() %>%
-  unnest(value) %>%
-  mutate(level = 2) %>%
-  rename(lineage = name,
-         root_node = value)
-
-
-# Update all_lineage tibble with inferred root nodes (for missing only)
-all_levels_tbl %<>% 
-  rows_patch(level_1_inferred, by = c('lineage', 'level')) %>%
-  rows_patch(level_2_inferred, by = c('lineage', 'level'))
-
-
-
-################################### OUTPUT #####################################
-# Save output files, plots, or results
-write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
-
-write_delim(as_tibble(test) %>%
-            select(label, starts_with('GRI')) %>% 
-            filter(!grepl('^Node', label)) ,
-          './2025May22/nomenclature/wide_lineages.txt')
-
-as_tibble(test) %>%
+taxa_for_beast <- as_tibble(lineage_json) %>%
   select(label, `GRI Lineage Level 0`) %>% 
   rename(taxa = `GRI Lineage Level 0`) %>%
   mutate(taxa = if_else(taxa == 'not assigned', NA_character_, taxa)) %>%
@@ -172,7 +38,18 @@ as_tibble(test) %>%
   filter(!grepl('^NODE', label)) %>%
   group_split(taxa) %>%
   set_names(LETTERS[1:7]) %>%
-  lapply(., function(x) x %>% select(label)) %>%
+  lapply(., function(x) x %>% select(label))
+
+
+################################### OUTPUT #####################################
+# Save output files, plots, or results
+write_delim(as_tibble(lineage_json) %>%
+            select(label, starts_with('GRI')) %>% 
+            filter(!grepl('^Node', label)) ,
+          './2025May22/nomenclature/wide_lineages.txt')
+
+
+taxa_for_beast %>%
   mapply(function(x,y) write_delim(x, paste0('./2025May22/nomenclature/lineage_level0_', y, '.txt'),col_names = FALSE,),
          .,
          LETTERS[1:7],
