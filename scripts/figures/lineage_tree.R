@@ -89,7 +89,7 @@ match <- as_tibble(ape::makeNodeLabel(lineage_json@phylo, method = "md5sum")) %>
   select(node, label) %>%
   rename(t1.node = node) %>%
   left_join(.,
-            as_tibble(ape::makeNodeLabel(beast_mcc@phylo, method = "md5sum")) %>% 
+            as_tibble(ape::makeNodeLabel(nflg_mcc@phylo, method = "md5sum")) %>% 
               select(node,label) %>% 
               rename(t2.node=node)) %>%
   left_join(as_tibble(lineage_json) %>%
@@ -184,7 +184,7 @@ basic_tree <- nflg_mcc %>%
               dplyr::select(is_europe, tipnames) %>%
               rename(label = tipnames),
             by = 'label') %>%
-  left_join(level_0_tbl, by = 'node') %>%
+  left_join(level_0_tbl, by = join_by(node ==root_node)) %>%
   ggtree(mrsd = '2024-10-12') + 
   theme_tree2() +
   scale_y_reverse(expand = expansion(mult = c(0, .05))) + 
@@ -221,8 +221,9 @@ basic_tree +
             p_limits = c(0.001, 0.999),
             inherit.aes = FALSE) +
   geom_linerange(data = log_file %>%
-                 summarise(mu = mean(draw), .by = lineage) %>%
+                 summarise(mu = median(draw), .by = lineage) %>%
                  left_join(level_0_tbl) %>%
+                   rename(node= root_node) %>%
                  left_join(basic_tree[["data"]] %>% select(node, y)), 
                aes(x= mu,
                    ymin = Inf,
