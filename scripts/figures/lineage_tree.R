@@ -73,8 +73,8 @@ metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
 
 nflg_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_mcc.tree')
 
-log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_2.log',
-                                 burnin = 0.1) %>%
+log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_1000.log',
+                                 burnin = 0) %>%
   as_tibble() %>%
   select(starts_with('age.lineage')) %>%
   pivot_longer(everything(),
