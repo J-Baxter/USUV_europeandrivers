@@ -73,8 +73,8 @@ metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
 
 nflg_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_mcc.tree')
 
-log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_1000.log',
-                                 burnin = 0) %>%
+log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_2.log',
+                                 burnin = 0.1) %>%
   as_tibble() %>%
   select(starts_with('age.lineage')) %>%
   pivot_longer(everything(),
@@ -191,7 +191,7 @@ basic_tree <- nflg_mcc %>%
   scale_x_continuous(limits = c(1900, 2031))
 
 basic_tree + 
-  #Background
+  #Backgrounds
   annotate("rect", 
            xmin = shading_intervals[seq(1, length(shading_intervals), 2)], 
            xmax = shading_intervals_end[seq(1, length(shading_intervals_end), 2)], 
@@ -218,18 +218,18 @@ basic_tree +
             #slab_colour = 'black',
             slab_linewidth = 0.75,
             #normalize = 'groups',
-            p_limits = c(0.05, 0.95),
+            p_limits = c(0.001, 0.999),
             inherit.aes = FALSE) +
-  geom_segment(data = log_file %>%
-                 summarise(mu = median(draw), .by = lineage) %>%
+  geom_linerange(data = log_file %>%
+                 summarise(mu = mean(draw), .by = lineage) %>%
                  left_join(level_0_tbl) %>%
                  left_join(basic_tree[["data"]] %>% select(node, y)), 
                aes(x= mu,
-                   y = Inf,
-                   yend = y,
+                   ymin = Inf,
+                   ymax = y,
                    group = lineage,
                    colour = lineage),
-               inherit.aes = FALSE, linetype = "dashed") +
+               inherit.aes = FALSE, linetype = "dashed", position = position_dodge(width = 0.5)) +
   geom_point2(aes(subset= !is.na(lineage), colour = lineage))  +
   scale_colour_manual(values = lineage_colours)+
   scale_colour_manual(aesthetics = 'slab_colour',values = lineage_colours)+
