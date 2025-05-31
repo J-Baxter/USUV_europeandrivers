@@ -23,7 +23,9 @@ library(ggtree)
 library(ggtreeExtra)
 library(beastio)
 library(ggmcmc)
+library(treeio)
 library(ggnewscale)
+library(ggdist)
 
 GetLineageRoots <- function(treedata, lineage_name){
   tree <- treedata@phylo
@@ -68,9 +70,6 @@ GetLineageRoots <- function(treedata, lineage_name){
 
 ################################### DATA #######################################
 # Read and inspect data
-metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
-
 nflg_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_mcc.tree')
 
 log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_1000.log',
@@ -82,7 +81,10 @@ log_file <- beastio::readLog('./2025May22/global_analysis/global_subsampled_plai
                names_to = 'lineage') %>%
   mutate(lineage = gsub('age.lineage_level0_|\\.$', '', lineage))
 
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
+  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
+lineage_json <- read.nextstrain.json('./2025May22/nomenclature/usuv_lineages.json')
 ################################### MAIN #######################################
 # Map nodes between nextrain json (with autolin clades) and time-scaled BEAST tree
 match <- as_tibble(ape::makeNodeLabel(lineage_json@phylo, method = "md5sum")) %>% 
@@ -139,8 +141,8 @@ all_levels_tbl <- bind_rows(level_0_tbl,
 level_1_inferred <- level_1[names(level_1) %in% (all_levels_tbl %>% filter(is.na(root_node)) %>%  pull(lineage))] %>%
   lapply(., function(x) offspring(lineage_json, x , type = 'tips')) %>%
   lapply(., function(x) as_tibble(lineage_json)$label[as_tibble(lineage_json)$node %in% x]) %>%
-  lapply(., function(x) as_tibble(beast_mcc)$node[as_tibble(beast_mcc)$label %in% x]) %>%
-  lapply(., function(x) MRCA(beast_mcc, x)) %>%
+  lapply(., function(x) as_tibble(nflg_mcc)$node[as_tibble(nflg_mcc)$label %in% x]) %>%
+  lapply(., function(x) MRCA(nflg_mcc, x)) %>%
   enframe() %>%
   unnest(value) %>%
   mutate(level = 1) %>%
@@ -150,8 +152,8 @@ level_1_inferred <- level_1[names(level_1) %in% (all_levels_tbl %>% filter(is.na
 level_2_inferred <- level_2[names(level_2) %in% (all_levels_tbl %>% filter(is.na(root_node)) %>%  pull(lineage))] %>%
   lapply(., function(x) offspring(lineage_json, x , type = 'tips')) %>%
   lapply(., function(x) as_tibble(lineage_json)$label[as_tibble(lineage_json)$node %in% x]) %>%
-  lapply(., function(x) as_tibble(beast_mcc)$node[as_tibble(beast_mcc)$label %in% x]) %>%
-  lapply(., function(x) MRCA(beast_mcc, x)) %>%
+  lapply(., function(x) as_tibble(nflg_mcc)$node[as_tibble(nflg_mcc)$label %in% x]) %>%
+  lapply(., function(x) MRCA(nflg_mcc, x)) %>%
   enframe() %>%
   unnest(value) %>%
   mutate(level = 2) %>%
