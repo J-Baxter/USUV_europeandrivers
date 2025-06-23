@@ -1,10 +1,229 @@
-# paper figures
+################################################################################
+## Script Name:        <INSERT_SCRIPT_NAME_HERE>
+## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
+## Author:             James Baxter
+## Date Created:       2025-06-04
+################################################################################
+
+############################### SYSTEM OPTIONS #################################
+options(
+  scipen = 6,     # Avoid scientific notation
+  digits = 7      # Set precision for numerical display
+)
+memory.limit(30000000)
+
+############################### DEPENDENCIES ###################################
+# Load required libraries
+library(tidyverse)
+library(magrittr)
 library(terra)
 library(sf)
 library(rnaturalearth)
+library(rnaturalearthdata)
+library(rnaturalearthhires)
 library(giscoR)
 #library(eurostat)
-library(tidyverse)
+
+
+################################### DATA #######################################
+# Read and inspect data
+
+nongisco_shapefile <- ne_countries(scale = 10, country = c('bosnia and herzegovina', 'kosovo', 'andorra'), returnclass = "sf") %>%
+  dplyr::select(name_en,
+                iso_a2_eh,
+                geometry) %>%
+  rename(CNTR_CODE = iso_a2_eh,
+         NAME_LATN = name_en) %>%
+  mutate(NUTS_ID = CNTR_CODE)
+
+nuts0 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "03", #1:10million
+  nuts_level = "0") 
+
+nuts1 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "03", #1:10million
+  nuts_level = "1")
+
+nuts2 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "03", #1:10million
+  nuts_level = "3") %>%
+  ggplot() + geom_sf() +  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE)
+
+
+nuts3 <- gisco_get_nuts(
+  year = "2021",
+  epsg = "4326", #WGS84 projection
+  resolution = "03", #1:10million
+  nuts_level = "3")
+
+all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
+
+vector_net <- read_sf('~/Downloads/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
+  st_make_valid() %>%
+  st_transform(st_crs(vector_net))
+
+metadata <- read_csv('./data/USUV_metadata_all_2025May22.csv')
+
+################################### MAIN #######################################
+# Plot Maps of Europe stratified by selected lineage
+level_1_lineages <- lineage_tbl$`GRI Lineage Level 1` %>% unique() %>% .[!is.na(.)]
+
+
+vect_id <- as_tibble(vector_net[-1083,]) %>%
+  rowid_to_column() %>%
+  st_as_sf()
+
+map_metadata <- metadata %>%
+  
+  # format geo
+  mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%
+  separate(geocode_coords, into = c("lat", "lon"), sep = ", ", convert = TRUE) %>%
+  st_as_sf(coords = c('lat','lon'), crs = st_crs(vector_net), sf_column_name = 'coords') %>%
+  st_join(.,
+          vect_id, 
+          join = st_within, 
+          # left = FALSE,
+          # largest = TRUE
+  ) %>% 
+  drop_na(nuts2_id) %>%
+
+  # format 
+  left_join(lineage_tbl, by = join_by('tipnames' == 'label')) %>%
+  drop_na(`GRI Lineage Level 1`) %>%
+  count(`GRI Lineage Level 1`, rowid) %>%
+  rename(lineage = `GRI Lineage Level 1`) %>%
+  st_drop_geometry()
+  
+  
+map_data <- expand_grid(lineage = level_1_lineages,
+            rowid = vect_id$rowid,
+            n = NA_integer_) %>%
+  rows_patch(map_metadata,
+             unmatched = 'ignore',
+             by = c('rowid', 'lineage')) %>%
+  left_join(vect_id) %>%
+  filter(grepl('^A', lineage)) 
+ # filter(CNTR_CODE != 'TR') 
+
+
+map_data %>%
+  st_as_sf() %>%
+  ggplot() +
+  geom_sf(aes(fill = n), colour = 'white') + 
+  #geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  scale_fill_distiller(palette = 'RdPu', 
+                       #transform = 'log10', 
+                       direction = -1, , 
+                       na.value="lightgrey", 
+                       breaks = c(0, 1, 5, 10, 20, 50, 100)) +
+  facet_wrap(~lineage) +
+  theme_void() + 
+  theme(legend.position = 'none')
+
+
+
+
+mdt <- get_elev_raster(vector_net, z = 5)
+
+# convert to terra and mask area of interest
+mdt <- rast(mdt) |>
+  mask(vect(vector_net))
+
+# reproject
+mdt <- project(mdt, crs(vector_net))
+
+sl <- terrain(mdt, "slope", unit = "radians")
+asp <- terrain(mdt, "aspect", unit = "radians")
+
+hill_single <- shade(sl, asp,
+                     angle = 45,
+                     direction = 300,
+                     normalize = TRUE
+)
+
+plot(hill_single)
+
+hilldf_single <- as.data.frame(hill_single, xy = TRUE)
+mdtdf <- as.data.frame(mdt, xy = TRUE)
+names(mdtdf)[3] <- "alt"
+
+ggplot() +
+  geom_raster(
+    data = hilldf_single,
+    aes(x, y, fill = hillshade),
+    show.legend = FALSE
+  ) +
+  scale_fill_distiller(palette = "Greys") +
+  new_scale_fill() +
+  geom_raster(
+    data = mdtdf,
+    aes(x, y, fill = alt),
+    alpha = .7
+  ) +
+  scale_fill_hypso_tint_c(breaks = c(
+    180, 250, 500, 1000,
+    1500, 2000, 2500,
+    3000, 3500, 4000
+  )) +
+ 
+  guides(fill = guide_colorsteps(
+    barwidth = 20,
+    barheight = .5,
+    title.position = "right"
+  )) +
+  labs(fill = "m") +
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  theme_void() + 
+  theme(legend.position = 'none')
+
+
+
+
+# reproject vect
+suiz <- st_transform(suiz, st_crs(suiz_lakes))
+plot(mdt)
+
+vector_net <- spdep::poly2nb(st_make_valid(vector_net)) %>%
+  st_transform(st_crs(vector_net))
+
+
+
+  map %>%
+  ggplot() + 
+  geom_sf() + 
+  geom_sf(data = nuts0, colour = 'black', linewidth = 0.2, fill = NA) +
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  theme_void()
+
+metadata %>%
+  mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%
+  separate(geocode_coords, into = c("lat", "lon"), sep = ", ", convert = TRUE) %>%
+  st_as_sf(coords = c('lat','lon'), crs = st_crs(vector_net), sf_column_name = 'geometry') %>% 
+  st_join(.,
+          vector_net[-1083,], 
+          join = st_within, 
+          # left = FALSE,
+         # largest = TRUE
+          ) %>% 
+  mutate(geometry = if_else(is.na(nuts3_id), NA, geometry)) %>%
+  count()
+
+
+
+################################### OUTPUT #####################################
+# Save output files, plots, or results
+
+#################################### END #######################################
+################################################################################
+# paper figures
+
 
 
 # Initialise map of europe subdivisions (NUTS level 2)
@@ -12,13 +231,7 @@ library(tidyverse)
 # package giscoR
 #temp <- read_sf('~/Downloads/NUTS_RG_10M_2021_4326.shp/NUTS_RG_10M_2021_4326.shp')
 
-nongisco_shapefile <- ne_countries(scale = 10, country = c('bosnia and herzegovina', 'kosovo', 'andorra'), returnclass = "sf") %>%
-  dplyr::select(name_en,
-         iso_a2_eh,
-         geometry) %>%
-  rename(CNTR_CODE = iso_a2_eh,
-         NAME_LATN = name_en) %>%
-  mutate(NUTS_ID = CNTR_CODE)
+
 
 #ggplot(balkan_noneu) + 
   #geom_sf() + 
@@ -44,34 +257,10 @@ nongisco_shapefile <- ne_countries(scale = 10, country = c('bosnia and herzegovi
   #coord_sf(ylim = c(34,60), xlim = c(-12, 45), expand = FALSE) + 
   #theme_void()
 
-nuts0 <- gisco_get_nuts(
-  year = "2021",
-  epsg = "4326", #WGS84 projection
-  resolution = "03", #1:10million
-  nuts_level = "0")
 
-nuts1 <- gisco_get_nuts(
-  year = "2021",
-  epsg = "4326", #WGS84 projection
-  resolution = "03", #1:10million
-  nuts_level = "1")
 
-nuts2 <- gisco_get_nuts(
-  year = "2021",
-  epsg = "4326", #WGS84 projection
-  resolution = "03", #1:10million
-  nuts_level = "2")
-
-nuts3 <- gisco_get_nuts(
-  year = "2021",
-  epsg = "4326", #WGS84 projection
-  resolution = "03", #1:10million
-  nuts_level = "3")
-
-all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
 # Import data
-metadata <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv')
 lu_spatialdata <- readRDS('./spatial_data/Predictors_tep_20231014.Rdata')
 
 #test raster
@@ -93,10 +282,8 @@ test_df <- lu_spatialdata %>%
 all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
 plt1 <- expand_grid(gene_region = c('nflg', 
-                                    'env_1003_1491',
-                                    'NS5_9100_9600', 
-                                    'NS5_8968_9264',
-                                    'NS5_10042_10312'),
+                                    'env',
+                                    'NS5'),
                     NUTS_ID = all_europe_sf$NUTS_ID,
                     n = NA_integer_) %>%
   rows_patch(metadata %>%
