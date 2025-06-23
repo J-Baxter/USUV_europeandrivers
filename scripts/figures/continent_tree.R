@@ -196,16 +196,15 @@ lineage_colours <- c('A' = '#a4243b',
 
 nflg_mcc %>%
   left_join(metadata_in_tree %>% 
-              dplyr::select(is_europe, tipnames) %>%
+              dplyr::select(is_europe, tipnames, nuts0_id, host_class) %>%
               rename(label = tipnames),
             by = 'label') %>% 
   left_join(level_0_tbl, by = join_by(node ==root_node)) %>% 
   left_join(lineage_tbl, by = 'label') %>% 
   ggtree(mrsd = '2024-10-12') + 
   theme_tree2() +
-  scale_y_reverse(expand = expansion(mult = c(0.02, .02))) +
-  scale_x_continuous(limits = c(1900, 2030),
-                     breaks = seq(1905, 2025, by = 10)) + 
+  #scale_y_reverse(expand = expansion(mult = c(0.02, .02))) +
+  scale_x_continuous(breaks = seq(1905, 2025, by = 10)) + 
   #Backgrounds
   annotate("rect", 
            xmin = shading_intervals[seq(1, length(shading_intervals), 2)], 
@@ -222,13 +221,66 @@ nflg_mcc %>%
    labels = c('0' = 'Non-Europe',
               '1' = 'Europe'),
   lineage_colours) +
+  
+  new_scale_fill()+
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = nuts0_id),
+             width = 4,
+             colour = "white",
+             pwidth = 1.2,
+             offset = 00.04) +
+  scale_fill_d3(name = 'Country', 
+                palette ='category20', 
+                alpha = 0.99, 
+                labels = c('AT' = 'Austria',
+                           'BE' = 'Belgium',
+                           'CF' = 'Central African Republic',
+                           'DE' = 'Germany',
+                           'ES' = 'Spain',
+                           'FR' = 'France',
+                           'HU' = 'Hungary',
+                           'IL' = 'Israel',
+                           'IT' = 'Italy',
+                           'LU' = 'Luxembourg',
+                           'NL' = 'Netherlands',
+                           'PT' = 'Portugal',
+                           'RS' = 'Serbia',
+                           'SE' = 'Sweden',
+                           'SK' = 'Slovakia',
+                           'SN' = 'Senegal',
+                           'UG' = 'Uganda',
+                           'UK' = 'United Kingdom',
+                           'EL' = 'Greece',
+                           'ZA' = 'South Africa' ),
+                guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 2, order = 1)) +
+  
+  new_scale_fill()+
+  geom_fruit(geom = geom_tile,
+             mapping = aes(fill = host_class),
+             width = 4,
+             colour = "white",
+             pwidth = 1.2,
+             offset = 00.04) +
+  scale_fill_brewer('Host Class', 
+                    labels = c('Aves' = 'Bird',
+                               'insecta'= 'Insect',
+                               'mammalia' = 'Mammal',
+                               'arachnida' = 'Arachnid'),
+                    guide = guide_legend(keywidth = 1.5, keyheight = 1, ncol = 1, order = 3))+
+  theme(legend.position = c(0.2,0.6),
+        # legend.position = "bottom",       # Place legends at the bottom
+        legend.box = "vertical",
+        legend.direction = 'vertical'
+  ) +
+
   theme(legend.position = 'inside',
         legend.title = element_blank(),
         legend.background = element_blank(),
-        legend.position.inside = c(0,0),
-        legend.justification=c(0,0),
+        legend.position.inside = c(0,1),
+        legend.justification=c(0,1),
         text = element_text(size = 16)) 
- 
+
+                    
 ggsave('~/Downloads/europe_tree.pdf', height = 30, width = 20, units = 'cm', dpi =360, device = "pdf")
 
 write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
