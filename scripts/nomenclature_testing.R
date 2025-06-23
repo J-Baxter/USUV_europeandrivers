@@ -210,7 +210,7 @@ old_nomenclature <- as_tibble(cbind.data.frame(
 
 
 # set colour scheme
-level_0_cols <- pal_d3(palette = "category10")(nrow(primary_lineages))
+level_0_cols <- pal_d3(palette = "category10")(nrow(root_lineage %>% filter(level == 0) ))
 
 primary_lineages %<>%
   cbind.data.frame(level_0_cols)
