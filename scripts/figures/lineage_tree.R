@@ -85,6 +85,12 @@ metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
 lineage_json <- read.nextstrain.json('./2025May22/nomenclature/usuv_lineages.json')
+
+lineage_tbl <- read_csv('./2025May22/nomenclature/wide_lineages.csv') %>%
+  mutate(across(starts_with('GRI'), .fns = ~ gsub('not assigned', NA_character_, .x)))
+
+root_lineage <- read_csv('./2025May22/nomenclature/mcc_lineage_root_nodes.csv')
+
 ################################### MAIN #######################################
 # Map nodes between nextrain json (with autolin clades) and time-scaled BEAST tree
 match <- as_tibble(ape::makeNodeLabel(lineage_json@phylo, method = "md5sum")) %>% 
@@ -166,6 +172,13 @@ all_levels_tbl %<>%
   rows_patch(level_2_inferred, by = c('lineage', 'level'))
 
 
+level_1_tbl %<>% 
+  rows_patch(level_1_inferred, by = c('lineage', 'level')) %>%
+  mutate(root_node = if_else(lineage == 'B.2', 977, root_node))
+
+level_2_tbl  %<>% 
+  rows_patch(level_2_inferred, by = c('lineage', 'level'))
+
 ################################### OUTPUT #####################################
 # Plot on Tree
 shading_intervals <- seq(1900, 2030, by = 10)
@@ -185,12 +198,14 @@ basic_tree <- nflg_mcc %>%
   left_join(metadata_in_tree %>% 
               dplyr::select(is_europe, tipnames) %>%
               rename(label = tipnames),
-            by = 'label') %>%
-  left_join(level_0_tbl, by = join_by(node ==root_node)) %>%
+            by = 'label') %>% 
+  left_join(level_0_tbl, by = join_by(node ==root_node)) %>% 
+  left_join(lineage_tbl, by = 'label') %>% 
   ggtree(mrsd = '2024-10-12') + 
   theme_tree2() +
-  scale_y_reverse(expand = expansion(mult = c(0, .05))) + 
-  scale_x_continuous(limits = c(1900, 2031))
+  scale_y_reverse(expand = expansion(mult = c(0, .01))) +
+  scale_x_continuous(limits = c(1900, 2049),
+                     breaks = seq(1905, 2025, by = 10))
 
 basic_tree + 
   #Backgrounds
@@ -200,25 +215,26 @@ basic_tree +
            ymin = -Inf, ymax = Inf, alpha = 0.2, fill = "grey") +
   
   #Tip Colour (In/Out of Europe)
-  geom_tippoint(aes(fill = as.factor(is_europe)),
-                size = 3, 
-                shape = 21) +
+  #geom_tippoint(aes(fill = factor(is_europe)),
+                #size = 3, 
+                #shape = 21) +
   
-  scale_fill_manual(values = c("0" = '#24a489', 
-                               '1' = '#2f91bd'), 
-                    guide = 'none') +
+  #scale_fill_manual(values = c("0" = '#24a489', 
+                              # '1' = '#2f91bd'), 
+                      #lineage_colours,
+                   # guide = 'none') +
   
   # Lineage TMRCA densities
   stat_slab(data = log_file , 
             aes(x =  draw,
                 group = lineage,
-                height = 250,
+                height = 200,
                 slab_fill = lineage,
                 slab_colour = lineage,
                 y =550),
             slab_alpha = 0.7,
             #slab_colour = 'black',
-            slab_linewidth = 0.75,
+            slab_linewidth = 0.0,
             #normalize = 'groups',
             p_limits = c(0.001, 0.999),
             inherit.aes = FALSE) +
@@ -233,15 +249,113 @@ basic_tree +
                    group = lineage,
                    colour = lineage),
                inherit.aes = FALSE, linetype = "dashed", position = position_dodge(width = 0.5)) +
-  geom_point2(aes(subset= !is.na(lineage), colour = lineage))  +
-  scale_colour_manual(values = lineage_colours)+
+  geom_nodepoint(aes(subset= !is.na(lineage), colour = lineage))  +
+  scale_colour_manual(values = lineage_colours, guide = 'none') +
   scale_colour_manual(aesthetics = 'slab_colour',values = lineage_colours)+
-  
   scale_fill_manual(aesthetics = 'slab_fill',
-                    values = lineage_colours)
+                    values = lineage_colours) + 
 
+  # Highlight level 0
+  geom_hilight(data = level_0_tbl %>% rename(lineage_label = lineage), 
+               mapping = aes(node = root_node, 
+                             #label = lineage_label, 
+                             fill = lineage_label),
+               alpha = 0.6, to.bottom = T, align = 'right', gradient.direction = 'tr', type = 'gradient', extend = 4) + 
+  scale_fill_manual(values = lineage_colours, guide= 'none') + 
+  
+  new_scale_colour() +
+  
+  # Label level 2
+  geom_cladelab(data = level_2_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+                mapping = aes(node = root_node, 
+                              label = lineage_label, 
+                              colour = level_0),
+                offset = -32,
+                offset.text = -17,
+                fontsize = 3, 
+                
+                #textcolour = NA,
+                #size = 0.01,
+                align = T
+               # barsize = 15
+                ) +
+ 
+  
+  #geom_cladelab(data = level_2_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+                #mapping = aes(node = root_node, 
+                             # label = lineage_label, 
+                              #colour = level_0),
+               # offset = -32,
+               # offset.text = -25,
+               # align = TRUE, 
+               # fontsize = 4, 
+               # textcolour = 'black',
+                #barsize = 0
+  #) +#
+  scale_colour_manual(values = lineage_colours, guide = 'none')+
+  new_scale_colour() +
+  # Label level 1
+  geom_cladelab(data = level_1_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+                mapping = aes(node = root_node, 
+                              label = lineage_label, 
+                              colour = level_0),
+                offset = -20,
+                offset.text = -17,
+               # size = 0.01,
+                align = TRUE, 
+               fontsize = 3, 
+                #textcolour = NA,
+                #barsize = 15,
+  ) +
+  
+  #geom_cladelab(data = level_1_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+               # mapping = aes(node = root_node, 
+               #               label = lineage_label, 
+               #               colour = level_0),
+               # offset = -15,
+               # offset.text = -25,
+               # align = TRUE, 
+               # fontsize = 4, 
+               # textcolour = 'black',
+               # barsize = 0
+  #) +
+  
+  scale_colour_manual(values = lineage_colours, guide = 'none')+
+  new_scale_colour() +
+  # Label level 0
+ # geom_cladelab(data = level_0_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+                #mapping = aes(node = root_node, 
+                            #  label = lineage_label, 
+                             # colour = level_0),
+                #offset = -5,
+               # align = TRUE, 
+                #textcolour = NA,
+               #barsize = 15
+ # ) +
+  
+ # geom_cladelab(data = level_0_tbl %>% rename(lineage_label = lineage) %>% mutate(level_0 = gsub('\\..*', '', lineage_label)),
+                #mapping = aes(node = root_node, 
+                             # label = lineage_label, 
+                             # colour = level_0),
+                #offset = -5,
+                #offset.text = -25,
+                #align = TRUE, 
+                #fontsize = 4, 
+                #textcolour = 'black',
+                #barsize = 0
+  #) +
+  scale_colour_manual(values = lineage_colours, guide = 'none')+
+  theme(legend.position = 'inside',
+        legend.background = element_blank(),
+        legend.position.inside = c(0,1),
+        legend.justification=c(0,1),
+        text = element_text(size = 9)) 
+  
+ggsave('~/Downloads/lineage_tree.pdf', height = 30, width = 20, units = 'cm', dpi =360, device = "pdf")
 
 write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
+
+
 
 #################################### END #######################################
 ################################################################################  
