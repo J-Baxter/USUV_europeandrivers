@@ -261,7 +261,7 @@ all_countries <- ne_countries(scale = 10, returnclass = "sf") %>%
 
 eurostat_polygons <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
   st_make_valid() %>%
-  st_transform(st_crs(vector_net))
+  st_transform(st_crs(nuts0))
 
 
 ############################################## MAIN ################################################
@@ -391,6 +391,7 @@ data_formatted_date <- data %>%
 
 
 # Format geolocation
+register_google('AIzaSyBkz-A4kEs2LKFrjNtbLyaQdLtH_gedMF8')
 data_formatted_geodata <- data_formatted_date %>%
   # Format available data
   mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
@@ -463,6 +464,17 @@ data_formatted_geodata_1 <- as_tibble(data_formatted_geodata) %>%
 
 # Identify level of precision for each sequence: 
 data_formatted_geodata_2 <- data_formatted_geodata_1 %>% 
+  
+  st_join(., 
+          eurostat_polygons[-1083, ] %>% rowid_to_column(var = 'eurostat_polygon'),
+          join = st_within, 
+          largest = TRUE) %>%
+  
+  mutate(eurostat_polygon = case_when(is.na(eurostat_polygon) & nuts3_id == 'PL634' ~ 956, 	
+                                      is.na(eurostat_polygon) & nuts3_id == 'ITH35' ~ 646, 
+                                      .default = eurostat_polygon)) %>%
+  
+  
   rowwise() %>%
   mutate(location_precision = case_when(
     #Country Only
@@ -473,20 +485,23 @@ data_formatted_geodata_2 <- data_formatted_geodata_1 %>%
     any(collection_location == tolower(nuts3$NUTS_NAME)) ~ 'nuts3',
     .default = 'exact')) %>%
   as_tibble() %>%
+  
   base:: split(~location_precision) %>%
   map_at('nuts0', 
          ~ .x %>% mutate(across(starts_with("nuts1"), ~ NA),
                          across(starts_with("nuts2"), ~ NA),
-                         across(starts_with("nuts3"), ~ NA))) %>%
+                         across(starts_with("nuts3"), ~ NA),
+                         across(starts_with("eurostat_polygon"), ~ NA))) %>%
   
   map_at('nuts1', 
          ~ .x %>% mutate(across(starts_with("nuts2"), ~ NA),
-                         across(starts_with("nuts3"), ~ NA))) %>%
+                         across(starts_with("nuts3"), ~ NA),
+                         across(starts_with("eurostat_polygon"), ~ NA))) %>%
   
   map_at('nuts2', 
          ~ .x %>% mutate(across(starts_with("nuts3"), ~ NA))) %>%
   
-  list_rbind()
+  list_rbind() 
 
 
 data_formatted_host <- data_formatted_geodata_2 %>%
