@@ -94,9 +94,9 @@ FormatNewData <- function(data){
       grepl('\\d{2}-\\d{4}', Collection_Date) ~ "mm-yyyy",
       grepl('\\d{4}', Collection_Date) ~ "yyyy",
       .default = 'missing')) %>%
-    
-    # Unpublished data only
     filter(is.na(Accession))
+  
+
   
   return(out)
 }
@@ -151,6 +151,13 @@ ncbi_may <- read_csv('./ncbi_feb25tomay25/ncbi_feb25-may25_metadata.csv',
                       locale = readr::locale(encoding = "UTF-8")) %>%
   mutate(Release_Date = as.character(Release_Date))
 
+# Import search from NCBI 2025-06 - 2025-06-31
+ncbi_june <- read_csv('./ncbi_jun25/ncbi_jun25_metadata.csv', 
+                     locale = readr::locale(encoding = "UTF-8")) %>%
+  mutate(across(ends_with('Date'), .fns = ~ as.character(.x))) %>%
+  select(-Genotype)
+
+
 # ANSES FRANCE Data
 anses <- read_csv('./data/anses_data_updated.csv',
                   locale = readr::locale(encoding = "UTF-8")) %>%
@@ -177,6 +184,22 @@ greece <- read_csv('./greece_data/greece_data.csv',
                    locale = readr::locale(encoding = "UTF-8")) %>%
   FormatNewData(.)
 
+# FLI new data
+fli_2024 <- read_csv('./fli_2024_data/fli_2024_data.csv', 
+                    locale = readr::locale(encoding = "UTF-8")) %>%
+  mutate(Collection_Date = dmy(Collection_Date) %>%
+           format(., '%Y-%m-%d') %>%
+           as.character()) %>%
+  select(-c('Isolation_Source', 
+            'complete_date', 
+            'complete_location', 
+            'date_format', 
+            'wild/captive',
+            'migration pattern',
+            'notes'))
+
+ncbi_june %<>%
+  rows_update(., fli_2024 , by = 'Accession') 
 
 # Portugal Data
 #portugal <- read_csv('./portugal_data/portugal_data.csv', 
@@ -236,6 +259,11 @@ all_countries <- ne_countries(scale = 10, returnclass = "sf") %>%
   st_make_valid()
 
 
+eurostat_polygons <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
+  st_make_valid() %>%
+  st_transform(st_crs(vector_net))
+
+
 ############################################## MAIN ################################################
 
 # Update previously maintained data with new FLI data
@@ -258,6 +286,7 @@ data <- ncbi_aug13 %>%
   rows_insert(ncbi_dec) %>%
   rows_insert(ncbi_feb %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
   rows_insert(ncbi_may %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
+  rows_insert(ncbi_june %>% mutate(Collection_Date = as.character(Collection_Date))) %>%
   
   # Allocate date format
   mutate(Collection_Date = gsub('[[:punct:]]', '-', Collection_Date)) %>%
@@ -277,6 +306,7 @@ data_formatted_date <- data %>%
   bind_rows(.,izsve) %>%
   bind_rows(., erasmus) %>%
   bind_rows(., greece) %>%
+
   #bind_rows(., portugal) %>%
   
   
