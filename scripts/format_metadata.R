@@ -597,7 +597,7 @@ data_formatted <- data_formatted_host %>%
 
 
 # Import alignment 
-alignment <- ape::read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned.fasta',
+alignment <- ape::read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned.fasta',
                            format = 'fasta',
                            as.matrix = T,
                            as.character = T) 
@@ -650,7 +650,10 @@ metadata <- data_formatted %>%
             by = join_by(sequence_accession == Accession,
                          sequence_isolate == Isolate)) %>%
   # Key to exclude FLI
-  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & dmy(Release_Date)  > as_date("2020-01-01") ~ TRUE,
+  mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & 
+                                dmy(Release_Date)  > as_date("2020-01-01") &  
+                                dmy(Release_Date)  < as_date("2025-01-01") &
+                                generegion_nflg == 1 ~ TRUE,
                               .default = FALSE)) %>% #ignore warnings - these are because some Release_Date are NA or not in the correct format
   dplyr::select(-Release_Date)  %>%
   
@@ -661,7 +664,7 @@ metadata <- data_formatted %>%
 ############################################## WRITE ###############################################
 
 # Write metadata to file #
-write_csv(metadata, './data/USUV_metadata_all_2025May22.csv')
+write_csv(metadata, './data/USUV_metadata_all_2025Jun24.csv')
 
 
 # Write alignment to file # 
@@ -669,28 +672,34 @@ alignment <-  alignment %>%
   as.DNAbin() %>%
   .[order(start),]
 
-write.FASTA(alignment, './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted.fasta')
+write.FASTA(alignment, './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted.fasta')
 
 
 # Alignment without FLI # 
 metadata_noFLI <- metadata %>%
   filter(!drop_fli)
 
-write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI.fasta')
+write.FASTA(alignment[rownames(alignment) %in% metadata_noFLI$tipnames,], './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI.fasta')
 
 
 # NFLG alignments only # 
 write.FASTA(alignment[rownames(alignment) %in% (metadata %>% 
                                                   filter(generegion_nflg == 1) %>% 
                                                   pull(tipnames)),],
-            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_NFLG.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_NFLG.fasta')
 
 write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
                                                 filter(generegion_nflg == 1) %>% 
                                                 pull(tipnames)),],
-          './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG.fasta')
+          './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG.fasta')
 
-
+#test
+write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                  filter(generegion_nflg == 1) %>% 
+                                                  filter(nuts0_id %in% c('NL', 'DE', 'BE')) %>%
+                                                  filter(date_y %in% c('2020', '2021', '2022', '2023', '2024')) %>%
+                                                  pull(tipnames)),],
+            './2025Jun24/alignments/test.fasta')
 ############################################## END #################################################
 ####################################################################################################
 ####################################################################################################

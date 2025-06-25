@@ -77,13 +77,13 @@ GroupSequences <- function(aln, snp_threshold = 0){
 }
 
 ############################################## DATA ################################################
-nflg_alignment <- read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG.fasta',
+nflg_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG.fasta',
                       as.matrix = T,
                       format = 'fasta')
 
 
 # import metadata
-metadata_nflg <- read_csv('./data/USUV_metadata_all_2025May22.csv') %>%
+metadata_nflg <- read_csv('./data/USUV_metadata_all_2025Jun24.csv') %>%
   filter(generegion_nflg == 1)
   
 
@@ -273,19 +273,19 @@ p10_subsample_aln <- nflg_alignment[rownames(nflg_alignment) %in% p10_subsample$
 
 ############################################## WRITE ###############################################
 write.FASTA(aln_subsampled,
-          './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta')
+          './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta')
 
 write.FASTA(p75_subsample_aln,
-            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p75.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p75.fasta')
 
 write.FASTA(p50_subsample_aln,
-            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta')
 
 write.FASTA(p25_subsample_aln,
-            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p25.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p25.fasta')
 
 write.FASTA(p10_subsample_aln,
-            './2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsample_p10.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p10.fasta')
 
 subsample_1 %>% 
   ungroup() %>%
@@ -293,7 +293,7 @@ subsample_1 %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                    .default = 'not_europe')) %>%
   write_delim(.,
-              './2025May22/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample1_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample1_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -304,7 +304,7 @@ p75_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025May22/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p75_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p75_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -315,7 +315,7 @@ p50_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025May22/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p50_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p50_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -326,7 +326,7 @@ p25_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025May22/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p25_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p25_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -336,7 +336,7 @@ p10_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025May22/global_analysis/USUV_2025Feb10_alldata_aligned_formatted_noFLI_NFLG_subsample_p10_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p10_traits.txt',
               delim = '\t',
               quote= 'needed')
 
