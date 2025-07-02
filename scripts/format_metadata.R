@@ -188,8 +188,9 @@ greece <- read_csv('./greece_data/greece_data.csv',
 fli_2024 <- read_csv('./fli_2024_data/fli_2024_data.csv', 
                     locale = readr::locale(encoding = "UTF-8")) %>%
   mutate(Collection_Date = dmy(Collection_Date) %>%
-           format(., '%Y-%m-%d') %>%
-           as.character()) %>%
+           format(., '%Y-%m-%d') ) %>%
+  mutate(across(ends_with('Date'), .fns = ~as.character(.x))) %>%
+  
   select(-c('Isolation_Source', 
             'complete_date', 
             'complete_location', 
@@ -694,12 +695,12 @@ write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>%
           './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG.fasta')
 
 #test
-write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
-                                                  filter(generegion_nflg == 1) %>% 
-                                                  filter(nuts0_id %in% c('NL', 'DE', 'BE')) %>%
-                                                  filter(date_y %in% c('2020', '2021', '2022', '2023', '2024')) %>%
-                                                  pull(tipnames)),],
-            './2025Jun24/alignments/test.fasta')
+#write.FASTA(alignment[rownames(alignment) %in% (metadata_noFLI %>% 
+                                                  #filter(generegion_nflg == 1) %>% 
+                                                  #filter(nuts0_id %in% c('NL', 'DE', 'BE')) %>%
+                                                  #filter(date_y %in% c('2020', '2021', '2022', '2023', '2024')) %>%
+                                                 # pull(tipnames)),],
+            #'./2025Jun24/alignments/test.fasta')
 ############################################## END #################################################
 ####################################################################################################
 ####################################################################################################
