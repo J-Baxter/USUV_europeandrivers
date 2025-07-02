@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-open_water_C	2.8462

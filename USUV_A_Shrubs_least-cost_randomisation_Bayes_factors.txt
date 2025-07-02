@@ -1,3 +1,0 @@
-BFs_deltaR2_randomisation_1
-null_raster	NA
-Shrubs_R	0.5152

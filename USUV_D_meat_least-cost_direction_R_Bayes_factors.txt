@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-meat_C	15.6667

@@ -1,3 +1,0 @@
-BFs_deltaR2_randomisation_1
-null_raster	NA
-wetland_new_C	8.0909

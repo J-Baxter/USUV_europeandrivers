@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-gpast_C	0.2048

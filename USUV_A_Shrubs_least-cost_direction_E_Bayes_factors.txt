@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-Shrubs_C	3.5455

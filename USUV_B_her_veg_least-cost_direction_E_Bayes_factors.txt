@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-her_veg_C	1.1739

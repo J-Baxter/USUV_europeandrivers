@@ -1,3 +1,0 @@
-BFs_deltaR2_randomisation_1
-null_raster	NA
-lake_river_reservoir_R	2.0303

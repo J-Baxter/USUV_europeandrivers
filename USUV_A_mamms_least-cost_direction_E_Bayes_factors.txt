@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-mamms_C	2.5714

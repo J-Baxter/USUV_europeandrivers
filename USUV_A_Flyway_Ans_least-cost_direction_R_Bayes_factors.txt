@@ -1,3 +1,0 @@
-BF
-null_raster	NA
-Flyway_Ans_C	0.6393
