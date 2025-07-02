@@ -16,7 +16,6 @@ memory.limit(30000000)
 # Packages
 library(tidyverse)
 library(ape)
-library(tidyverse)
 library(treeio)
 library(TreeTools)
 library(ggtree)
