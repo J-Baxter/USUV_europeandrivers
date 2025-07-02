@@ -37,7 +37,7 @@ NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09	europe
 NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09	europe
 NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08	europe
 ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016	europe
-PV523802|9731|homo_sapiens|HU|2024-10-12	europe
+PQ772639|USUV-HUN-SM2024|homo_sapiens|HU|2024-11-11	europe
 PV501205|204|culex_sp|HU|2024-07-21	europe
 PQ144553|NA|strix_nebulosa|DE|2022-09-06	europe
 PQ144554|M_7783|turdus_merula|DE|2022-08-30	europe
@@ -75,9 +75,9 @@ OP734249|NA|culex_pipiens|IT|2022-08-01	europe
 OP734255|NA|culex_pipiens|IT|2022-07-27	europe
 ON813236|305920/2021|culex_pipiens|IT|2021	europe
 MN813491|UG09615|culex_univittatus|UG|2012	not_europe
-MG461310|USUV_269m_Israel04_USUTU_|culex_perexiguus|IL|2004-08-24	not_europe
+MG461311|USUV_341m_Israel04_USUTU_|culex_pipiens|IL|2004-09-23	not_europe
 MN813492|SARR1776|culex_neavei|ZA|1959	not_europe
-ON813227|SN2005_ArD_171185|culex_neavei|SN|2005	not_europe
+ON813226|SN2005_173459|culex_neavei|SN|2005	not_europe
 KC754954|ArD19848|culex_perfuscus|SN|1974	not_europe
 MN813488|DakPM173701|culex_neavei|SN|2003	not_europe
 ON813229|SN2005_ArD_173133|culex_neavei|SN|2005	not_europe
