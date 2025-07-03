@@ -25,7 +25,7 @@ library(ggtreeExtra)
 
 ################################### DATA #######################################
 # Read and inspect data
-lineage_json <- treeio::read.nextstrain.json('./2025May22/nomenclature/usuv_lineages.json')
+lineage_json <- treeio::read.nextstrain.json('./2025Jun24/nomenclature/USUV_2025Jun24_lineages.json')
 
 
 ################################### MAIN #######################################
@@ -37,7 +37,7 @@ taxa_for_beast <- as_tibble(lineage_json) %>%
   drop_na(taxa) %>%
   filter(!grepl('^NODE', label)) %>%
   group_split(taxa) %>%
-  set_names(LETTERS[1:7]) %>%
+  set_names(LETTERS[1:length(.)]) %>%
   lapply(., function(x) x %>% select(label))
 
 
@@ -46,13 +46,13 @@ taxa_for_beast <- as_tibble(lineage_json) %>%
 write_delim(as_tibble(lineage_json) %>%
             select(label, starts_with('GRI')) %>% 
             filter(!grepl('^Node', label)) ,
-          './2025May22/nomenclature/wide_lineages.txt')
+          './2025Jun24/nomenclature/wide_lineages.txt')
 
 
 taxa_for_beast %>%
-  mapply(function(x,y) write_delim(x, paste0('./2025May22/nomenclature/lineage_level0_', y, '.txt'),col_names = FALSE,),
+  mapply(function(x,y) write_delim(x, paste0('./2025Jun24/nomenclature/lineage_level0_', y, '.txt'),col_names = FALSE,),
          .,
-         LETTERS[1:7],
+         LETTERS[1:length(.)],
          SIMPLIFY = FALSE)
 
 #################################### END #######################################

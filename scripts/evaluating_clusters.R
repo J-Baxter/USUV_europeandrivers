@@ -97,9 +97,9 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 
 ################################### DATA #######################################
 # Read and inspect data
-nflg_mcc <- read.beast('./2025May22/global_analysis/global_subsampled_plain/lineage_level_0_taxa/USUV_2025May22_noFLI_NFLG_subsampled_SRD06_RelaxLn_constant_lineage0taxa_mcc.tree')
+nflg_mcc <- read.beast('./2025Jun24/global_analysis/USUV_2025Jun24_NFLG_SRD06_HMC_constant_mcc.tree')
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')%>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
 
 ################################### MAIN #######################################
