@@ -652,10 +652,12 @@ metadata <- data_formatted %>%
                          sequence_isolate == Isolate)) %>%
   # Key to exclude FLI
   mutate(drop_fli = case_when(grepl('Friedrich-Loeffler-Institut', organization) & 
-                                dmy(Release_Date)  > as_date("2020-01-01") &  
-                                dmy(Release_Date)  < as_date("2025-01-01") &
-                                generegion_nflg == 1 ~ TRUE,
+                                ymd(Release_Date)  > as_date("2020-01-01")  ~ TRUE,
+                              grepl('Friedrich-Loeffler-Institut', organization) & 
+                                dmy(Release_Date)  > as_date("2020-01-01")  ~ TRUE,
                               .default = FALSE)) %>% #ignore warnings - these are because some Release_Date are NA or not in the correct format
+  #filter(grepl('PQ14', sequence_accession)) %>%
+  #dplyr::select(tipnames, drop_fli, Release_Date)
   dplyr::select(-Release_Date)  %>%
   
   #Europe
