@@ -1,20 +1,29 @@
+
+******************************************************
+CHECKPOINT: Resuming analysis from USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.ckp.gz
+
 IQ-TREE multicore version 2.4.0 for MacOS Intel 64-bit built Feb 12 2025
 Developed by Bui Quang Minh, Nguyen Lam Tung, Olga Chernomor, Heiko Schmidt,
 Dominik Schrempf, Michael Woodhams, Ly Trong Nhan, Thomas Wong
 
 Host:    S31-9YFL2JH7 (SSE4.2, 48 GB RAM)
-Command: iqtree2 --threads-max 1 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta -m GTR --ninit 2 -n 2 --epsilon 0.05 -T AUTO --redo
-Seed:    702061 (Using SPRNG - Scalable Parallel Random Number Generator)
-Time:    Wed Jul  2 14:21:03 2025
+Command: iqtree2 --threads-max 16 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta -m GTR -T AUTO -czb -B 1000
+Seed:    477581 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Fri Jul  4 11:02:55 2025
 Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
 
+WARNING: Command-line argument `16` differs from checkpoint `1`
+WARNING: Command-line argument `-czb` differs from checkpoint `--epsilon`
+WARNING: Command-line argument `-B` differs from checkpoint `0.05`
+WARNING: Command-line argument `1000` differs from checkpoint `-czb`
+WARNING: Command-line differs from checkpoint!
 Reading alignment file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta ... Fasta format detected
-Reading fasta file: done in 0.0532022 secs using 93.05% CPU
+Reading fasta file: done in 0.0509079 secs using 92.26% CPU
 Alignment most likely contains DNA/RNA sequences
 Alignment has 493 sequences with 10305 columns, 3193 distinct patterns
 2055 parsimony-informative, 1081 singleton sites, 7169 constant sites
                                                                                                                                                                                             Gap/Ambiguity  Composition  p-value
-Analyzing sequences: done in 0.00090003 secs using 883.1% CPU
+Analyzing sequences: done in 0.000796795 secs using 920.6% CPU
    1  NA_DELIM-0x7c_20VIR5077_DELIM-0x7c_turdus_merula_DELIM-0x7c_IT_DELIM-0x7c_2020-08-21                                                                                                          0.00%    passed     99.78%
    2  NA_DELIM-0x7c_23VIR9300_DELIM-0x7c_turdus_merula_DELIM-0x7c_IT_DELIM-0x7c_2023-10-01                                                                                                          0.00%    passed     99.44%
    3  NA_DELIM-0x7c_23pool2067_23RS1943-143_DELIM-0x7c_culex_pipiens_DELIM-0x7c_IT_DELIM-0x7c_2023-08-24                                                                                            0.00%    passed     99.55%
@@ -510,65 +519,108 @@ Analyzing sequences: done in 0.00090003 secs using 883.1% CPU
  493  PP104390_DELIM-0x7c_TE2518812_DELIM-0x7c_columbidae_sp_DELIM-0x7c_IT_DELIM-0x7c_2023-08-25                                                                                                    3.65%    passed     99.24%
 ****  TOTAL                                                                                                                                                                                         0.30%  0 sequences failed composition chi2 test (p-value<5%; df=3)
 
-Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.110 seconds
+CHECKPOINT: Initial tree restored
+Generating 1000 samples for ultrafast bootstrap (seed: 477581)...
+CHECKPOINT: 1000 UFBoot trees and 0 UFBootSplits restored
 
-NOTE: 51 MB RAM (0 GB) is required!
-Measuring multi-threading efficiency up to 1 CPU cores
+NOTE: 63 MB RAM (0 GB) is required!
+Measuring multi-threading efficiency up to 16 CPU cores
 Increase to 10 rounds for branch lengths
-3 trees examined
-Threads: 1 / Time: 1.244 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -393019
-BEST NUMBER OF THREADS: 1
+31 trees examined
+Threads: 1 / Time: 16.375 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -382943
+Threads: 2 / Time: 10.934 sec / Speedup: 1.498 / Efficiency: 75% / LogL: -382943
+Threads: 3 / Time: 7.829 sec / Speedup: 2.091 / Efficiency: 70% / LogL: -382943
+Threads: 4 / Time: 6.362 sec / Speedup: 2.574 / Efficiency: 64% / LogL: -382943
+Threads: 5 / Time: 6.067 sec / Speedup: 2.699 / Efficiency: 54% / LogL: -382943
+Threads: 6 / Time: 5.473 sec / Speedup: 2.992 / Efficiency: 50% / LogL: -382943
+BEST NUMBER OF THREADS: 4
 
-Estimate model parameters (epsilon = 0.500)
-1. Initial log-likelihood: -71059.494
-2. Current log-likelihood: -66531.484
-3. Current log-likelihood: -65282.073
-Optimal log-likelihood: -65282.004
-Rate parameters:  A-C: 0.93986  A-G: 9.01197  A-T: 1.21820  C-G: 0.23469  C-T: 28.73729  G-T: 1.00000
-Base frequencies:  A: 0.270  C: 0.228  G: 0.284  T: 0.218
-Parameters optimization took 3 rounds (3.398 sec)
+CHECKPOINT: Model parameters restored, LogL: -65243.413
 Wrote distance file to... 
-Computing ML distances based on estimated model parameters...
-Calculating distance matrix: done in 0.957574 secs using 99.86% CPU
-Computing ML distances took 0.962236 sec (of wall-clock time) 0.959831 sec (of CPU time)
-Setting up auxiliary I and S matrices: done in 0.00295305 secs using 88.59% CPU
-Computing RapidNJ tree took 0.008951 sec (of wall-clock time) 0.010661 sec (of CPU time)
-Log-likelihood of RapidNJ tree: -65635.731
 --------------------------------------------------------------------
 |             INITIALIZING CANDIDATE TREE SET                      |
 --------------------------------------------------------------------
-
-Do NNI search on 2 best initial trees
-Estimate model parameters (epsilon = 0.500)
-BETTER TREE FOUND at iteration 1: -65252.975
-Finish initializing candidate tree set (4)
-Current best tree score: -65252.975 / CPU time: 2.613
-Number of iterations: 2
-TREE SEARCH COMPLETED AFTER 2 ITERATIONS / Time: 0h:0m:8s
+CHECKPOINT: Candidate tree set restored, best LogL: -65243.413
+Finish initializing candidate tree set (20)
+Current best tree score: -65243.413 / CPU time: 0.000
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -65247.795 / Time: 0h:1m:0s (0h:2m:27s left)
+Iteration 40 / LogL: -65264.633 / Time: 0h:1m:6s (0h:1m:44s left)
+Iteration 50 / LogL: -65258.838 / Time: 0h:1m:13s (0h:1m:16s left)
+Log-likelihood cutoff on original alignment: -65311.121
+Iteration 60 / LogL: -65308.257 / Time: 0h:1m:21s (0h:0m:56s left)
+Iteration 70 / LogL: -65260.322 / Time: 0h:1m:28s (0h:0m:39s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 74: -65242.558
+Iteration 80 / LogL: -65251.049 / Time: 0h:1m:35s (0h:1m:53s left)
+Iteration 90 / LogL: -65255.009 / Time: 0h:1m:43s (0h:1m:37s left)
+Iteration 100 / LogL: -65248.664 / Time: 0h:1m:50s (0h:1m:22s left)
+Log-likelihood cutoff on original alignment: -65310.472
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.999
+Iteration 110 / LogL: -65250.163 / Time: 0h:1m:58s (0h:1m:37s left)
+Iteration 120 / LogL: -65247.481 / Time: 0h:2m:5s (0h:1m:24s left)
+Iteration 130 / LogL: -65267.264 / Time: 0h:2m:12s (0h:1m:11s left)
+Iteration 140 / LogL: -65252.033 / Time: 0h:2m:19s (0h:1m:0s left)
+Iteration 150 / LogL: -65297.056 / Time: 0h:2m:26s (0h:0m:49s left)
+Log-likelihood cutoff on original alignment: -65310.776
+Iteration 160 / LogL: -65242.938 / Time: 0h:2m:34s (0h:0m:38s left)
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 162: -65240.399
+Iteration 170 / LogL: -65240.865 / Time: 0h:2m:42s (0h:1m:28s left)
+Iteration 180 / LogL: -65258.575 / Time: 0h:2m:49s (0h:1m:17s left)
+Iteration 190 / LogL: -65248.693 / Time: 0h:2m:56s (0h:1m:7s left)
+Iteration 200 / LogL: -65267.105 / Time: 0h:3m:3s (0h:0m:57s left)
+Log-likelihood cutoff on original alignment: -65310.776
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.999
+Iteration 210 / LogL: -65241.116 / Time: 0h:3m:11s (0h:1m:22s left)
+Iteration 220 / LogL: -65261.647 / Time: 0h:3m:19s (0h:1m:12s left)
+Iteration 230 / LogL: -65276.563 / Time: 0h:3m:26s (0h:1m:3s left)
+Iteration 240 / LogL: -65240.747 / Time: 0h:3m:34s (0h:0m:53s left)
+Iteration 250 / LogL: -65240.781 / Time: 0h:3m:41s (0h:0m:44s left)
+Log-likelihood cutoff on original alignment: -65310.776
+Iteration 260 / LogL: -65272.479 / Time: 0h:3m:49s (0h:0m:35s left)
+TREE SEARCH COMPLETED AFTER 263 ITERATIONS / Time: 0h:3m:51s
 
 --------------------------------------------------------------------
 |                    FINALIZING TREE SEARCH                        |
 --------------------------------------------------------------------
 Performs final model parameters optimization
-Estimate model parameters (epsilon = 0.050)
-1. Initial log-likelihood: -65252.975
-Optimal log-likelihood: -65252.970
-Rate parameters:  A-C: 0.94493  A-G: 9.01050  A-T: 1.22407  C-G: 0.23965  C-T: 28.73731  G-T: 1.00000
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -65240.399
+Optimal log-likelihood: -65240.399
+Rate parameters:  A-C: 0.94023  A-G: 8.97004  A-T: 1.22328  C-G: 0.24131  C-T: 28.72552  G-T: 1.00000
 Base frequencies:  A: 0.270  C: 0.228  G: 0.284  T: 0.218
-Parameters optimization took 1 rounds (0.328 sec)
-BEST SCORE FOUND : -65252.970
-Total tree length: 0.643
+Parameters optimization took 1 rounds (0.101 sec)
+BEST SCORE FOUND : -65240.399
+Creating bootstrap support values...
+Split supports printed to NEXUS file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.splits.nex
+Collapsing near-zero internal branches... 174 collapsed
+Total tree length: 0.642
 
-Total number of iterations: 2
-CPU time used for tree search: 2.608 sec (0h:0m:2s)
-Wall-clock time used for tree search: 2.614 sec (0h:0m:2s)
-Total CPU time used: 11.896 sec (0h:0m:11s)
-Total wall-clock time used: 9.099 sec (0h:0m:9s)
+Total number of iterations: 263
+CPU time used for tree search: 702.451 sec (0h:11m:42s)
+Wall-clock time used for tree search: 178.299 sec (0h:2m:58s)
+Total CPU time used: 857.647 sec (0h:14m:17s)
+Total wall-clock time used: 232.309 sec (0h:3m:52s)
+
+Computing bootstrap consensus tree...
+Reading input file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.splits.nex...
+493 taxa and 4422 splits.
+Consensus tree written to USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.contree
+Reading input trees file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.contree
+Log-likelihood of consensus tree: -65242.128
 
 Analysis results written to: 
   IQ-TREE report:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.iqtree
   Maximum-likelihood tree:       USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.treefile
   Likelihood distances:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.splits.nex
+  Consensus tree:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.contree
   Screen log file:               USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled-delim.fasta.log
 
-Date and Time: Wed Jul  2 14:21:12 2025
+Date and Time: Fri Jul  4 11:06:48 2025
