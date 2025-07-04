@@ -97,7 +97,7 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 
 ################################### DATA #######################################
 # Read and inspect data
-nflg_mcc <- read.beast('./2025Jun24/global_analysis/USUV_2025Jun24_NFLG_SRD06_HMC_constant_mcc.tree')
+nflg_hipstr <- read.beast('./2025Jun24/global_analysis/USUV_2025Jun24_NFLG_SRD06_HMC_constant_hipstr.tree')
 
 metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')%>%
   filter(tipnames %in% nflg_mcc@phylo$tip.label) 
@@ -127,6 +127,9 @@ cluster_wide <- cluster_verylong %>%
               names_from = distance_threshold,
               names_prefix = 'dist_')
 
+
+write_csv(cluster_wide, './2025Jun24/europe_clusters/subsample_clusterings.csv')
+
 most_recent_date <- '2024-10-12'
 
 nflg_mcc %>% 
@@ -134,7 +137,7 @@ nflg_mcc %>%
   ggtree(mrsd = most_recent_date) + 
   scale_y_reverse() +
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = dist_30))
+  geom_tippoint(aes(colour = dist_35))
 
 # Example data
 # dist_matrix: symmetric matrix of pairwise distances
