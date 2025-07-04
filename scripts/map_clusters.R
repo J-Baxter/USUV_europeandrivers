@@ -67,7 +67,7 @@ mrca_nodes <- nflg_ml %>%
 
 
 # Find all descendants of common ancestor nodes
-all_seq_clusters <- mrca_nodes %>%
+all_seq_clusters <- mrca_nodes %>%  
   pull(root) %>%
   lapply(. , function(x) ml_tbl %>% 
                      filter(node %in% offspring(nflg_ml, x, type = 'tips')) %>%
