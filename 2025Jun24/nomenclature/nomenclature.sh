@@ -1,9 +1,10 @@
 #! /bin/bash
 # CLI to generate json for lineage assignment
 # Open Nextstrain shell
+nextstrain shell .
 
 # First generate tree and annotate using augur
-augur tree --alignment USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta --output plain_tree.nwk 
+augur tree --alignment USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta --output plain_tree.nwk --nthreads auto --method iqtree --tree-builder-args "-m GTR –ninit 2 –epsilon 0.05 -T AUTO -czb -B 1000" --override-default-args TRUE
 augur refine --tree plain_tree.nwk --root mid_point --output-tree plain_tree.nwk
 augur ancestral --tree plain_tree.nwk --alignment USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta --output-node-data nt_muts.json --inference joint
 augur export v2 --tree plain_tree.nwk --node-data plain_tree.node_data.json nt_muts.json --auspice-config auspice_config.json --output USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.json
