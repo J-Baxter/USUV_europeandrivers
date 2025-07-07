@@ -56,7 +56,7 @@ split_alignments <- lapply(split_metadata_by_cluster, function(x)
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_',
-                    LETTERS[1:length(split_alignments)],
+                    as.roman(1:length(split_alignments)),
                     '.fasta')
 
 mapply(write.dna,
