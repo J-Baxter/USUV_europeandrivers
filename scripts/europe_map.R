@@ -64,11 +64,11 @@ nuts3 <- gisco_get_nuts(
 
 all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
-vector_net <- read_sf('~/Downloads/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
+vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
   st_make_valid() %>%
   st_transform(st_crs(vector_net))
 
-metadata <- read_csv('./data/USUV_metadata_all_2025May22.csv')
+metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
 
 ################################### MAIN #######################################
 # Plot Maps of Europe stratified by selected lineage
