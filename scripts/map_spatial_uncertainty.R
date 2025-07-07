@@ -201,6 +201,7 @@ testnuts1 <- metadata %>%
   }))
 
   # join vectornet polygons with agregated mosquito probability. 
+# need a p = 1 incase length(geoms) = 1
   ##HERE## 
   # convert to matrix form
   left_join(vect_id, by = join_by('eurostat_polygon' == 'rowid')) %>%
@@ -215,14 +216,6 @@ testnuts1 <- metadata %>%
   # write KML file for each sequence
   lapply(., WriteNUTS3KML, prefix = './2025Jun24/kmls/')
   
-  
-  vect_id[c(30, 31, 32, 33, 54, 94, 95, 96, 102, 103, 104, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 148, 396, 397, 404, 755, 884, 886, 887, 888, 895, 937, 938, 939, 940, 942),] %>%
-    ggplot()+ 
-    geom_sf(data = nuts0 %>% filter(CNTR_CODE == 'DE')) +
-    geom_sf(colour = 'white') + 
-
-    #geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
-    coord_sf(ylim = c(40,55), xlim = c(0, 30), expand = FALSE) 
 
 map_metadata <- metadata %>%
   
