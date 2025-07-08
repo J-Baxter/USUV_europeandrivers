@@ -26,40 +26,53 @@ library(rnaturalearthhires)
 library(giscoR)
 
 # Function adpated from https://github.com/sdellicour/h5n1_mekong
-WriteNUTS3KML <- function(x, prefix = NULL){
+WriteKML <- function(x, prefix = NULL){
   seq_id <- x$tipnames
   sampling_probability = x$sampling_probability
-  coords <- x$coords[[1]]
+  coords <- x$coords
+  polygon_id <- x$eurostat_polygon
   
-  sink(file=paste(prefix, seq_id, ".kml", sep=""))
+  sink(file=paste(prefix, seq_id[[1]], ".kml", sep=""))
   cat("<?xml version=\"1.0\" encoding=\"UTF-8\"?>")
   cat("\n")
   cat("<kml xmlns=\"http://earth.google.com/kml/2.2\">")
   cat("\n")
-  cat(paste("\t<polygon id=\"", paste(seq_id,sep="_"), 
-            "\" samplingProbability=\"", 1, "\">", sep=""))
-  cat("\n")
-  cat("\t\t<coordinates>")
-  cat("\n")
   
-  for (j in 1:dim(coords)[1]) {
-    cat(paste("\t\t\t", coords[j, 2], ",", coords[j, 1], ",0", sep=""))
+  for (i in 1:length(seq_id)) {
+    cur_coords <- coords[[i]]
+    cur_seq_id <- seq_id[[i]]
+    cur_sampling_probability <- sampling_probability[[i]]
+    cur_polygon_id <- polygon_id[[i]]
+    
+    if(length(seq_id) == 1){
+      cat(paste("\t<polygon id=\"", paste(cur_seq_id, sep="_"), 
+                "\" samplingProbability=\"", cur_sampling_probability , 
+                "\">", sep=""))
+      
+    }else{
+      cat(paste("\t<polygon id=\"", paste(cur_seq_id, cur_polygon_id, sep="_"), 
+                "\" samplingProbability=\"", cur_sampling_probability, "\">",
+                sep=""))
+    }
     cat("\n")
+    cat("\t\t<coordinates>")
+    cat("\n")
+    
+    for (j in 1:dim(cur_coords)[1]) {
+      cat(paste("\t\t\t", cur_coords[j, 2], ",", cur_coords[j, 1], ",0", sep=""))
+      cat("\n")
+    }
+    cat("\t\t</coordinates>")
+    cat("\n")
+    cat("\t</polygon>")
+    cat("\n")
+  
+    
   }
-  cat("\t\t</coordinates>")
-  cat("\n")
-  cat("\t</polygon>")
-  cat("\n")
   cat("</kml>")
   cat("\n")
   sink(NULL)
   closeAllConnections()
-}
-
-
-# Function adpated from https://github.com/sdellicour/h5n1_mekong
-WriteHeteroKML <- function(x, prefix = NULL){
-
 }
 
 
@@ -199,21 +212,20 @@ metadata %>%
   left_join(vect_id, by = join_by('eurostat_polygon' == 'rowid')) %>%
   mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]]),
          sampling_probability = 1) %>%
-  dplyr::select(1,5,6) %>%
+  dplyr::select(1,2,5,6) %>%
   
   # splt dataframe by sequence
   rowid_to_column(var = 'id') %>%
   group_split(id) %>%
   
   # write KML file for each sequence
-  lapply(., WriteNUTS3KML, prefix = './2025Jun24/kmls/')
+  lapply(., WriteKML, prefix = './2025Jun24/kmls/')
 
 
 ##### NUTS0, NUTS1, and NUTS2 (sampling determined by culex abundance ) #####
-testnuts1 <- metadata %>% 
+metadata %>% 
   filter(is_europe == '1') %>%
   filter(location_precision %in% c('nuts0', 'nuts1', 'nuts2')) %>%
-  .[1:5,] %>%
   dplyr::select(tipnames, ends_with('_id')) %>%
   pivot_longer(cols = -1, names_to = 'nuts_level', values_to = 'nuts_id') %>%
   drop_na() %>%
@@ -242,13 +254,13 @@ testnuts1 <- metadata %>%
   mutate(sampling_probability = prediction / sum(prediction, na.rm = TRUE)) %>%
   ungroup() %>%
   
-  dplyr::select(1,7, 8) %>% 
+  dplyr::select(1, 4, 7, 8) %>% 
   
   # splt dataframe by sequence
   group_split(tipnames) %>%
   
   # write KML file for each sequence
-  lapply(., WriteHeteroKML, prefix = './2025Jun24/kmls/')
+  lapply(., WriteKML, prefix = './2025Jun24/kmls/')
 
 
 
