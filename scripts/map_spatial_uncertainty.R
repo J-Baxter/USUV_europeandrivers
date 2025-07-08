@@ -152,17 +152,44 @@ nuts_all <- bind_rows(nuts0,
                       nuts1,
                       nuts2)
 
+culex_abundance_files <- list.files('./culex_models/statistical_models/Abundace_model_predictions',
+                                    full.names = T)
+
 ################################### MAIN #######################################
 # Main analysis or transformation steps
-
-
 # Pre-format vectornet polygons
 vect_id <- as_tibble(vector_net[-1083,]) %>%
   rowid_to_column() %>%
   st_as_sf()
 
+# Prepare predictions from abundance data
+culex_abundance <- lapply(culex_abundance_files, read_csv) %>%
+  setNames(gsub('\\.\\/culex_models\\/statistical_models\\/Abundace_model_predictions\\/culex_|\\.csv', '', culex_abundance_files)) %>%
+  bind_rows(., .id = 'mm_yyyy') %>%
+  separate_wider_delim(., mm_yyyy, '_', names = c('month', 'year')) %>%
+  st_as_sf(coords = c('longitude', 'latitude'), crs = 4326) 
 
-# NUTS3 = homogeneous sampling within NUTS3
+# Simple average (mean) over all month-year combinations, aggregated by 
+# polygons
+culex_abundance_by_vectornet <- aggregate(culex_abundance %>% 
+                                         dplyr::select(prediction,geometry),
+                                         vect_id, 
+                                         mean) %>%
+  rowid_to_column() 
+
+#ggplot(culex_abundance_aggregate,
+      # aes(fill = prediction)) + 
+ # geom_sf() + 
+ # coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  #scale_fill_distiller(palette = 'RdYlGn', 
+                       #transform = 'log10', 
+                       #direction = -1, , 
+                       #na.value="lightgrey") +
+  #facet_grid(rows = vars(year), cols = vars(month)) + 
+  #theme_void() 
+
+
+##### NUTS3 (homogeneous sampling within NUTS3) #####
 metadata %>% 
   filter(is_europe == '1') %>%
   filter(location_precision == 'nuts3') %>%
@@ -182,10 +209,11 @@ metadata %>%
   lapply(., WriteNUTS3KML, prefix = './2025Jun24/kmls/')
 
 
-# NUTS0, NUTS1, and NUTS2 (sampling determined by culex abundance )
+##### NUTS0, NUTS1, and NUTS2 (sampling determined by culex abundance ) #####
 testnuts1 <- metadata %>% 
   filter(is_europe == '1') %>%
   filter(location_precision %in% c('nuts0', 'nuts1', 'nuts2')) %>%
+  .[1:5,] %>%
   dplyr::select(tipnames, ends_with('_id')) %>%
   pivot_longer(cols = -1, names_to = 'nuts_level', values_to = 'nuts_id') %>%
   drop_na() %>%
@@ -196,26 +224,33 @@ testnuts1 <- metadata %>%
             by = join_by('nuts_id' == 'NUTS_ID')) %>%
   
   # list all vectornet polygons within current polygon
-  mutate(within_geoms = map(geometry, ~ {
+  mutate(eurostat_polygon = map(geometry, ~ {
     which(st_overlaps(vect_id$geometry, .x, sparse = FALSE)[, 1] | st_within(vect_id$geometry, .x, sparse = FALSE)[, 1] )
-  }))
-
-  # join vectornet polygons with agregated mosquito probability. 
-# need a p = 1 incase length(geoms) = 1
-  ##HERE## 
-  # convert to matrix form
-  left_join(vect_id, by = join_by('eurostat_polygon' == 'rowid')) %>%
-  mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]]),
-         sampling_probability = 1) %>%
-  dplyr::select(1,5,6) %>% 
+  })) %>%
+  dplyr::select(-geometry) %>%
+  
+  # Expand dataframe so that there is 1 row per eurostate polygon
+  unnest(eurostat_polygon) %>%
+  
+  # join eurostat polygons, with aggregated culex abundance. Selecting best resolution by default
+  left_join(culex_abundance_by_vectornet,
+            by = join_by('eurostat_polygon' == 'rowid')) %>%
+  mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]])) %>%
+  
+  # Calculate sampling probabilities 
+  group_by(tipnames) %>%
+  mutate(sampling_probability = prediction / sum(prediction, na.rm = TRUE)) %>%
+  ungroup() %>%
+  
+  dplyr::select(1,7, 8) %>% 
   
   # splt dataframe by sequence
-  rowid_to_column(var = 'id') %>%
-  group_split(id) %>%
+  group_split(tipnames) %>%
   
   # write KML file for each sequence
-  lapply(., WriteNUTS3KML, prefix = './2025Jun24/kmls/')
-  
+  lapply(., WriteHeteroKML, prefix = './2025Jun24/kmls/')
+
+
 
 map_metadata <- metadata %>%
   
