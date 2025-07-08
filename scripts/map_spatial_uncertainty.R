@@ -280,7 +280,7 @@ metadata %>%
     which(st_overlaps(vect_id$geometry, .x, sparse = FALSE)[, 1] | st_within(vect_id$geometry, .x, sparse = FALSE)[, 1] )
   })) %>%
 
-  st_drop_geometry() %>%
+  dplyr::select(-geometry) %>%
   
   # Expand dataframe so that there is 1 row per eurostate polygon
   unnest(eurostat_polygon) %>%
