@@ -27,7 +27,7 @@ library(giscoR)
 
 # Function adpated from https://github.com/sdellicour/h5n1_mekong
 WriteKML <- function(x, prefix = NULL){
-  seq_id <- x$tipnames
+  seq_id <- x$seq_id
   sampling_probability = x$sampling_probability
   coords <- x$coords
   polygon_id <- x$eurostat_polygon
@@ -206,7 +206,11 @@ culex_abundance_by_vectornet <- aggregate(culex_abundance %>%
 metadata %>% 
   filter(is_europe == '1') %>%
   filter(location_precision == 'nuts3') %>%
-  dplyr::select(tipnames, eurostat_polygon, 'nuts3_name') %>%
+  
+  # format unique IDs
+  mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
+           gsub('\\/', '_', .)) %>%
+  dplyr::select(seq_id, eurostat_polygon, 'nuts3_name') %>%
   
   # Join polygons and convert to matrix form. Selecting best resolution by default
   left_join(vect_id, by = join_by('eurostat_polygon' == 'rowid')) %>%
@@ -226,7 +230,11 @@ metadata %>%
 metadata %>% 
   filter(is_europe == '1') %>%
   filter(location_precision %in% c('nuts0', 'nuts1', 'nuts2')) %>%
-  dplyr::select(tipnames, ends_with('_id')) %>%
+  
+  # format unique IDs
+  mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
+           gsub('\\/', '_', .)) %>%
+  dplyr::select(seq_id, ends_with('_id')) %>%
   pivot_longer(cols = -1, names_to = 'nuts_level', values_to = 'nuts_id') %>%
   drop_na() %>%
   mutate(nuts_level = gsub('_id', '', nuts_level)) %>%
@@ -250,83 +258,22 @@ metadata %>%
   mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]])) %>%
   
   # Calculate sampling probabilities 
-  group_by(tipnames) %>%
+  group_by(seq_id) %>%
   mutate(sampling_probability = prediction / sum(prediction, na.rm = TRUE)) %>%
   ungroup() %>%
   
   dplyr::select(1, 4, 7, 8) %>% 
   
   # splt dataframe by sequence
-  group_split(tipnames) %>%
+  group_split(seq_id) %>%
   
   # write KML file for each sequence
   lapply(., WriteKML, prefix = './2025Jun24/kmls/')
 
 
-
-map_metadata <- metadata %>%
-  
-  # format geo
-  mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%
-  separate(geocode_coords, into = c("lat", "lon"), sep = ", ", convert = TRUE) %>%
-  st_as_sf(coords = c('lat','lon'), crs = st_crs(vector_net), sf_column_name = 'coords') %>%
-  st_join(.,
-          vect_id, 
-          join = st_within, 
-          # left = FALSE,
-          # largest = TRUE
-  ) %>% 
-  drop_na(nuts2_id) %>%
-  
-  # format 
-  #left_join(lineage_tbl, by = join_by('tipnames' == 'label')) %>%
-  #drop_na(`GRI Lineage Level 1`) %>%
-  count( rowid) %>%
-  #rename(lineage = `GRI Lineage Level 1`) %>%
-  st_drop_geometry()
-
-
-map_data <- expand_grid(rowid = vect_id$rowid,
-                        n = NA_integer_) %>%
-  rows_patch(map_metadata,
-             unmatched = 'ignore',
-             by = c('rowid')) %>%
-  left_join(vect_id) #%>%
-  #filter(grepl('^A', lineage)) 
-# filter(CNTR_CODE != 'TR') 
-
-
-map_data %>%
-  st_as_sf() %>%
-  ggplot() +
-  geom_sf(aes(fill = n), colour = 'white') + 
-  #geom_sf(colour = 'white', data = nuts0, linewidth = 0.5, alpha = 0.01) + 
-  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
-  scale_fill_distiller(palette = 'RdPu', 
-                       #transform = 'log10', 
-                       direction = -1,  
-                       na.value="lightgrey") +
-  #facet_wrap(~lineage) +
-  theme_void() + 
-  theme(legend.position = 'none')
-
-
-# Exact = Exact
-
-
-
-
-
-
-WriteNUTS3KML(test_nuts3[[1]])
-
-
-
-
-
 ################################### OUTPUT #####################################
 
-# Update Beauti 
+
 
 
 
