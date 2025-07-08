@@ -190,16 +190,44 @@ culex_abundance_by_vectornet <- aggregate(culex_abundance %>%
                                          mean) %>%
   rowid_to_column() 
 
-#ggplot(culex_abundance_aggregate,
-      # aes(fill = prediction)) + 
- # geom_sf() + 
- # coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
-  #scale_fill_distiller(palette = 'RdYlGn', 
-                       #transform = 'log10', 
-                       #direction = -1, , 
-                       #na.value="lightgrey") +
-  #facet_grid(rows = vars(year), cols = vars(month)) + 
-  #theme_void() 
+
+# In some cases (e.g London), there is insufficient resolution to aggregate NUTS3
+# polygons. In these cases, we estimate the polygon value as the median of it's
+# non-NA neighbours
+interpolate_missing_polygons <- culex_abundance_by_vectornet %>% 
+  filter(is.na(prediction)) %>%
+  mutate(eurostat_polygon = map(geometry, ~ {
+    which(st_intersects(., culex_abundance_by_vectornet, sparse = FALSE)[1,])
+  })) %>%
+  st_drop_geometry() %>%
+  
+  # Expand dataframe so that there is 1 row per eurostate polygon
+  unnest(eurostat_polygon) %>%
+  filter(rowid != eurostat_polygon) %>%
+
+  # join eurostat polygons, with aggregated culex abundance. Selecting best resolution by default
+  left_join(culex_abundance_by_vectornet,
+            by = join_by('eurostat_polygon' == 'rowid')) %>%
+  st_drop_geometry() %>% 
+  summarise(prediction = median(prediction.y, na.rm = T), .by = rowid) %>%
+  drop_na()
+
+culex_abundance_by_vectornet %<>%
+  as_tibble() %>% 
+  rows_update(., interpolate_missing_polygons, by = 'rowid') %>%
+  st_as_sf() 
+
+
+ggplot(culex_abundance_by_vectornet,
+       aes(fill = prediction)) + 
+  geom_sf() + 
+  coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
+  scale_fill_distiller(palette = 'RdYlGn', 
+                       ##transform = 'log10', 
+                       direction = -1, , 
+                       na.value="lightgrey") +
+  ##facet_grid(rows = vars(year), cols = vars(month)) + 
+  theme_void() 
 
 
 ##### NUTS3 (homogeneous sampling within NUTS3) #####
@@ -236,21 +264,27 @@ metadata %>%
            gsub('\\/', '_', .)) %>%
   dplyr::select(seq_id, ends_with('_id')) %>%
   pivot_longer(cols = -1, names_to = 'nuts_level', values_to = 'nuts_id') %>%
-  drop_na() %>%
-  mutate(nuts_level = gsub('_id', '', nuts_level)) %>%
   
+  # filter out unnecessary levels
+  drop_na() %>%
+  mutate(nuts_level = gsub('nuts|_id', '', nuts_level) %>% as.integer(.)) %>%
+  slice_max(nuts_level, by = seq_id) %>%
+  #filter(seq_id =='Blackbird_London_2022_a') %>%
+
   # Join current polygon
   left_join(nuts_all %>% dplyr::select(NUTS_ID, geometry),
             by = join_by('nuts_id' == 'NUTS_ID')) %>%
-  
+
   # list all vectornet polygons within current polygon
   mutate(eurostat_polygon = map(geometry, ~ {
     which(st_overlaps(vect_id$geometry, .x, sparse = FALSE)[, 1] | st_within(vect_id$geometry, .x, sparse = FALSE)[, 1] )
   })) %>%
-  dplyr::select(-geometry) %>%
+
+  st_drop_geometry() %>%
   
   # Expand dataframe so that there is 1 row per eurostate polygon
   unnest(eurostat_polygon) %>%
+  #pull(eurostat_polygon)
   
   # join eurostat polygons, with aggregated culex abundance. Selecting best resolution by default
   left_join(culex_abundance_by_vectornet,
