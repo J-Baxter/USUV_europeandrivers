@@ -3,8 +3,6 @@
 ## Purpose:            Edit Beauti XMLs to incorporate location uncertainty 
 ## Author:             James Baxter
 ## Date Created:       2025-07-07
-## To-do: 1) VectorNet with aggregated mosquito probabilities
-##        2) connection between KML filenames and sequences - /
 ################################################################################
 
 ############################### SYSTEM OPTIONS #################################
@@ -137,7 +135,8 @@ UpdateBEAUti <- function(xml_filepath){
 
 ################################### DATA #######################################
 # Read and inspect data
-vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
+vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', 
+                      crs = st_crs(nuts0)) %>%
   st_make_valid() %>%
   st_transform(st_crs(vector_net))
 
@@ -177,7 +176,9 @@ vect_id <- as_tibble(vector_net[-1083,]) %>%
 
 # Prepare predictions from abundance data
 culex_abundance <- lapply(culex_abundance_files, read_csv) %>%
-  setNames(gsub('\\.\\/culex_models\\/statistical_models\\/Abundace_model_predictions\\/culex_|\\.csv', '', culex_abundance_files)) %>%
+  setNames(gsub('\\.\\/culex_models\\/statistical_models\\/Abundace_model_predictions\\/culex_|\\.csv', 
+                '',
+                culex_abundance_files)) %>%
   bind_rows(., .id = 'mm_yyyy') %>%
   separate_wider_delim(., mm_yyyy, '_', names = c('month', 'year')) %>%
   st_as_sf(coords = c('longitude', 'latitude'), crs = 4326) 
@@ -185,10 +186,11 @@ culex_abundance <- lapply(culex_abundance_files, read_csv) %>%
 # Simple average (mean) over all month-year combinations, aggregated by 
 # polygons
 culex_abundance_by_vectornet <- aggregate(culex_abundance %>% 
-                                         dplyr::select(prediction,geometry),
+                                         dplyr::select(prediction, geometry),
                                          vect_id, 
                                          mean) %>%
-  rowid_to_column() 
+  rowid_to_column() %>%
+  mutate(prediction = log10(prediction))
 
 
 # In some cases (e.g London), there is insufficient resolution to aggregate NUTS3
@@ -205,7 +207,8 @@ interpolate_missing_polygons <- culex_abundance_by_vectornet %>%
   unnest(eurostat_polygon) %>%
   filter(rowid != eurostat_polygon) %>%
 
-  # join eurostat polygons, with aggregated culex abundance. Selecting best resolution by default
+  # join eurostat polygons, with aggregated culex abundance. Selecting best
+  # resolution by default
   left_join(culex_abundance_by_vectornet,
             by = join_by('eurostat_polygon' == 'rowid')) %>%
   st_drop_geometry() %>% 
@@ -219,15 +222,19 @@ culex_abundance_by_vectornet %<>%
 
 
 ggplot(culex_abundance_by_vectornet,
-       aes(fill = prediction)) + 
-  geom_sf() + 
+       aes(fill = prediction)
+
+       ) + 
+  geom_sf(linewidth = 0) + 
   coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
-  scale_fill_distiller(palette = 'RdYlGn', 
-                       ##transform = 'log10', 
+  scale_fill_distiller(palette = 'RdYlGn',
+                       'Predicted Mosquito Count per Month',
+                       #transform = 'log10', 
                        direction = -1, , 
                        na.value="lightgrey") +
   ##facet_grid(rows = vars(year), cols = vars(month)) + 
-  theme_void() 
+  theme_void() +
+  theme(legend.position = 'bottom')
 
 
 ##### NUTS3 (homogeneous sampling within NUTS3) #####
