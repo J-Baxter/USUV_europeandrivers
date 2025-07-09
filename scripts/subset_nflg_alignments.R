@@ -31,7 +31,6 @@ nflg_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligne
                            format = 'fasta')
 
 metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
-
 clusters <- read_csv('./2025Jun24/europe_clusters/all_nflg_cluster.csv')
 
 metadata %<>%
@@ -59,9 +58,8 @@ filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_forma
                     as.roman(1:length(split_alignments)),
                     '.fasta')
 
-mapply(write.dna,
+mapply(write.FASTA,
        split_alignments,
-       filenames,
-       format = 'fasta')
+       filenames)
 #################################### END #######################################
 ################################################################################
