@@ -1,5 +1,5 @@
 ################################################################################
-## Script Name:        Downsample NFLGs for within-Europe analysis
+## Script Name:        Downsample alignments for within-Europe analysis
 ## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
 ## Author:             James Baxter
 ## Date Created:       2025-07-09
@@ -81,10 +81,73 @@ GroupSequences <- function(aln, snp_threshold = 0){
 }
 
 
+SubSampleClusterAlignments <- function(aln_list, data){
+  
+  cluster_tbl <- lapply(aln_list, rownames) %>%
+    set_names(1:length(.)) %>%
+    lapply(., as_tibble) %>%
+    bind_rows(., .id = 'cluster') %>%
+    mutate(cluster = as.numeric(cluster)) %>%
+    rename(tipnames = value)
+  
+  hd_groups <- lapply(aln_list,
+                      GroupSequences,
+                      snp_threshold = 20) %>%
+    
+    set_names(1:length(.)) %>%
+    bind_rows(., .id = 'cluster')%>%
+    mutate(cluster = as.numeric(cluster)) 
+  
+  
+  # Details stratified subsampling aiming to 'thin' the tree by selecting one 
+  # sequence per NUTS3, per year-month. 
+  # This is applied across each cluster alignment (clusters < 5 sequences excluded)
+  subsampled <- data %>%
+    mutate(date_quarter = quarter(as.Date(paste0(date_ym, '-01')))) %>%
+    left_join(cluster_tbl) %>%
+    arrange(cluster) %>%
+    left_join(hd_groups, by = c('cluster', 'tipnames')) %>%
+    drop_na(cluster) %>%
+    group_by(cluster) %>%
+    
+    # Only analyse clusters with five or more sequences
+    #filter(n() >= 5) %>%
+    
+    group_by(date_ym,
+             #date_quarter,
+             eurostat_polygon,
+             sequence_group,
+             .add = TRUE) %>%
+    
+    slice_sample(n = 1) %>%
+    
+    ungroup() %>%
+    group_split(cluster)
+  
+  # summarise(n_seqs = n(), n_eurostat = n_distinct(eurostat_polygon), .by = cluster)
+  
+  subsampled_clusters <- lapply(subsampled, function(x) x %>% 
+                                  pull(cluster) %>% 
+                                  unique()) %>%
+    unlist() %>%
+    as.numeric()
+  
+  out <- mapply(
+    function(aln, x) aln[rownames(aln) %in% x$tipnames,],
+    aln_list[names(aln_list) %in% subsampled_clusters],
+    subsampled)
+  
+  return(out)
+  
+}
 ################################### DATA #######################################
 # Read and inspect data
 nflg_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
                                            pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_[[A-Z]]*',
+                                           full.names = TRUE)
+
+partial_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
+                                           pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_[[A-Z]]*',
                                            full.names = TRUE)
 
 nflg_cluster_alignments <- lapply(nflg_cluster_alignment_files,
@@ -93,122 +156,52 @@ nflg_cluster_alignments <- lapply(nflg_cluster_alignment_files,
                                   format = 'fasta') %>%
   set_names(1:length(.))
 
-metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
+partial_cluster_alignments <- lapply(partial_cluster_alignment_files,
+                                  read.dna,
+                                  as.matrix = T,
+                                  format = 'fasta') %>%
+  set_names(1:length(.))
+
+metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
-clusters <- lapply(nflg_cluster_alignments, rownames) %>%
-  set_names(1:length(.)) %>%
-  lapply(., as_tibble) %>%
-  bind_rows(., .id = 'cluster') %>%
-  mutate(cluster = as.numeric(cluster)) %>%
-  rename(tipnames = value)
+# 1. Exclude unclocklike sequences
+#to_exclude <- 'MK230893|Grivegnee/2017|turdus_merula|BE|2017-08'
 
-hd_groups <- lapply(nflg_cluster_alignments,
-                 GroupSequences,
-                 snp_threshold = 20) %>%
-  
-  set_names(1:length(.)) %>%
-  bind_rows(., .id = 'cluster')%>%
-  mutate(cluster = as.numeric(cluster)) 
-  
+#nflg_subset_alignments %<>% 
+  #lapply(., function(x) x[!rownames(x) %in% to_exclude,])
 
-# Details stratified subsampling aiming to 'thin' the tree by selecting one 
-# sequence per NUTS3, per year-month. 
-# This is applied across each cluster alignment (clusters < 5 sequences excluded)
-subsampled <- metadata %>%
-  mutate(date_quarter = quarter(as.Date(paste0(date_ym, '-01')))) %>%
-  left_join(clusters) %>%
-  arrange(cluster) %>%
-  left_join(hd_groups, by = c('cluster', 'tipnames')) %>%
-  drop_na(cluster) %>%
-  group_by(cluster) %>%
-  
-  # Only analyse clusters with five or more sequences
-  filter(n() >= 5) %>%
-  
-  group_by(date_ym,
-           #date_quarter,
-           eurostat_polygon,
-           sequence_group,
-           .add = TRUE) %>%
-  
-  slice_sample(n = 1) %>%
-  
-  ungroup() %>%
-  group_split(cluster)
+# 2. Subsample
+nflg_cluster_subsampled <- SubSampleClusterAlignments(nflg_cluster_alignments,
+                                                      metadata_with_concat)
 
-  summarise(n_seqs = n(), n_eurostat = n_distinct(eurostat_polygon), .by = cluster)
+partial_cluster_subsampled <- SubSampleClusterAlignments(partial_cluster_alignments, 
+                                                         metadata_with_concat)
 
-subsampled_clusters <- lapply(subsampled, function(x) x %>% 
-                                pull(cluster) %>% 
-                                unique()) %>%
-  unlist() %>%
-  as.numeric()
-
-nflg_cluster_subsampled <- mapply(
-  function(aln, x) aln[rownames(aln) %in% x$tipnames,],
-  nflg_cluster_alignments[names(nflg_cluster_alignments) %in% subsampled_clusters],
-  subsampled)
-
-subsampled %>%
-  summarise(n_seqs = n(), .by = c(sequence_group, eurostat_polygon, cluster)) %>%
-  ggplot(aes(x = as.character(sequence_group), y = as.character(eurostat_polygon), fill = n_seqs)) +
-  geom_raster() +
-  facet_wrap(.~cluster, scales = 'free')
-
-metadata %>%
-  left_join(clusters) %>%
-  left_join(hd_groups, by = c('cluster', 'tipnames')) %>%
-  drop_na(cluster) %>%
-  summarise(n_seqs = n(), n_eurostat = n_distinct(eurostat_polygon), .by = cluster)
+# 3. Keep only alignments that are viable (i.e partial_sequences > 10)
+viable <-which(unlist(lapply(partial_cluster_subsampled, nrow) > 10))
 
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_',
-                    as.roman(names(nflg_cluster_subsampled)),
+                    as.roman(names(nflg_cluster_subsampled[[viable]])),
                     '_subsampled.fasta')
 
 mapply(write.FASTA,
-       nflg_cluster_subsampled,
+       nflg_cluster_subsampled[[viable]],
+       filenames)  
+
+partial_cluster_filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
+                                    as.roman(names(partial_cluster_subsampled[[viable]])),
+                                    '_subsampled.fasta')
+
+mapply(write.FASTA,
+       partial_cluster_subsampled[[viable]],
        filenames)  
 
   
 #################################### END #######################################
 ################################################################################
-
-
-####################################################################################################
-####################################################################################################
-## Script name: nflg downsampling
-##
-## Purpose of script:
-##
-## Date created: 2024-10-28
-##
-##
-########################################## SYSTEM OPTIONS ##########################################
-options(scipen = 6, digits = 4) 
-memory.limit(30000000) 
-
-
-########################################## DEPENDENCIES ############################################
-# Packages
-
-
-
-############################################## DATA ################################################
-############################################## MAIN ################################################
-
-# exclude Tempest outliers
-
-to_exclude <- 'MK230893|Grivegnee/2017|turdus_merula|BE|2017-08'
-
-nflg_subset_alignments %<>% 
-  lapply(., function(x) x[!rownames(x) %in% to_exclude,])
-
-############################################## END #################################################
-####################################################################################################
-####################################################################################################
