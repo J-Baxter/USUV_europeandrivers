@@ -140,7 +140,7 @@ vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp',
   st_make_valid() %>%
   st_transform(st_crs(vector_net))
 
-metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
+metadata <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
 nuts0 <- gisco_get_nuts(
   year = "2021",
