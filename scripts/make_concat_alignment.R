@@ -27,9 +27,13 @@ full_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligne
                            as.matrix = T,
                            format = 'fasta')
 
-subsampled_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta',
+nflg_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG.fasta',
                                  as.matrix = T,
                                  format = 'fasta')
+
+nflg_subsampled_alignment <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta',
+                                      as.matrix = T,
+                                      format = 'fasta')
 
 metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
 
@@ -92,12 +96,22 @@ concat_alignment <- duplicate_seqs %>%
 
 
 #### join all alignments #### 
-joint_align <- rbind(subsampled_alignment,
-                     fli_alignment,
-                     concat_alignment,
-                     partial_seq[!rownames(partial_seq) %in% concat_seqnames_tbl$old_seqnames,]) 
+joint_align <- rbind(
+  nflg_alignment,
+  fli_alignment,
+  concat_alignment,
+  partial_seq[!rownames(partial_seq) %in% concat_seqnames_tbl$old_seqnames,]) 
   
 joint_align <- joint_align[unique(rownames(joint_align)),]
+
+## subsampled alignment for phylogenetic placement
+joint_subsampled_align <- rbind(
+  nflg_subsampled_alignment,
+  fli_alignment,
+  concat_alignment,
+  partial_seq[!rownames(partial_seq) %in% concat_seqnames_tbl$old_seqnames,]) 
+
+joint_subsampled_align <- joint_subsampled_align[unique(rownames(joint_subsampled_align)),]
 
 
 #### Update metadata #### 
@@ -126,8 +140,12 @@ new_metadata <- metadata %>%
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 
-write.FASTA(joint_align,
+write.FASTA(joint_subsampled_align,
             './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_subsampled_incpartial.fasta')
+
+
+write.FASTA(joint_align,
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_incpartial.fasta')
 
 write_csv(new_metadata,
           './data/USUV_metadata_2025Jun24_withconcatenated.csv')
