@@ -92,7 +92,7 @@ all_partial_clusters <- MapClusters(partial_ml, subsample_clusterings)
 
 all_clusters <-  bind_rows(all_nflg_clusters,
                            all_partial_clusters) %>%
-  distinct(label)
+  slice_sample(n =1, by = label)
 
 # visual checks
 partial_ml %>%
