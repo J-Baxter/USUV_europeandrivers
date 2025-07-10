@@ -61,16 +61,6 @@ metadata_with_concat %<>%
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
-split_metadata_by_cluster <- metadata %>%
-  
-  # all europe NFLG allocated a cluster - exclude the rest for now
-  drop_na(cluster) %>%
-  group_split(cluster)
-
-# Sanity check - each sequence included only once (and all sequences are present)
-stopifnot(lapply(split_metadata_by_cluster, nrow) %>% unlist() %>% sum() == 
-            nrow( metadata %>% drop_na(cluster)))
-
 split_nflg_alignments <- SplitAlignmentByCluster(nflg_alignment, 
                                                  metadata_with_concat)
 
