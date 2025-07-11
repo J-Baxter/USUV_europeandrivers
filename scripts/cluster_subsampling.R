@@ -81,7 +81,7 @@ GroupSequences <- function(aln, snp_threshold = 0){
 }
 
 
-SubSampleClusterAlignments <- function(aln_list, data){
+SubSampleClusterAlignments <- function(aln_list, data, exclude_seqs = NULL){
   
   cluster_tbl <- lapply(aln_list, rownames) %>%
     set_names(1:length(.)) %>%
@@ -98,6 +98,10 @@ SubSampleClusterAlignments <- function(aln_list, data){
     bind_rows(., .id = 'cluster')%>%
     mutate(cluster = as.numeric(cluster)) 
   
+  if(!missing(exclude_seqs)){
+    old_nrow <- nrow(data)
+    data <- data %>% filter(!tipnames %in% exclude_seqs)
+  }
   
   # Details stratified subsampling aiming to 'thin' the tree by selecting one 
   # sequence per NUTS3, per year-month. 
@@ -124,6 +128,11 @@ SubSampleClusterAlignments <- function(aln_list, data){
     ungroup() %>%
     group_split(cluster)
   
+  test <- subsampled %>%
+    bind_rows() %>%
+    filter(tipnames %in% exclude_seqs)
+  
+  stopifnot(nrow(test) == 0)
   # summarise(n_seqs = n(), n_eurostat = n_distinct(eurostat_polygon), .by = cluster)
   
   subsampled_clusters <- lapply(subsampled, function(x) x %>% 
@@ -164,43 +173,49 @@ partial_cluster_alignments <- lapply(partial_cluster_alignment_files,
 
 metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
-
+tempest_check <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml/tempest_check.csv')
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 # 1. Exclude unclocklike sequences
-#to_exclude <- 'MK230893|Grivegnee/2017|turdus_merula|BE|2017-08'
+to_exclude <- tempest_check %>%
+  drop_na(notes) %>%
+  filter(grepl('\\|', notes)) %>%
+  pull(notes) %>%
+  # separate out multiple entries
+  str_split(., ', ') %>%
+  unlist()
 
-#nflg_subset_alignments %<>% 
-  #lapply(., function(x) x[!rownames(x) %in% to_exclude,])
 
 # 2. Subsample
 nflg_cluster_subsampled <- SubSampleClusterAlignments(nflg_cluster_alignments,
-                                                      metadata_with_concat)
+                                                      metadata_with_concat,
+                                                      exclude_seqs = to_exclude)
 
 partial_cluster_subsampled <- SubSampleClusterAlignments(partial_cluster_alignments, 
-                                                         metadata_with_concat)
+                                                         metadata_with_concat,
+                                                         exclude_seqs = to_exclude)
 
 # 3. Keep only alignments that are viable (i.e partial_sequences > 10)
-viable <-which(unlist(lapply(partial_cluster_subsampled, nrow) > 10))
+viable <-which(unlist(lapply(partial_cluster_subsampled, nrow) >= 10))
 
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_',
-                    as.roman(names(nflg_cluster_subsampled[[viable]])),
+                    as.roman(names(nflg_cluster_subsampled[viable])),
                     '_subsampled.fasta')
 
 mapply(write.FASTA,
-       nflg_cluster_subsampled[[viable]],
+       nflg_cluster_subsampled[viable],
        filenames)  
 
 partial_cluster_filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
-                                    as.roman(names(partial_cluster_subsampled[[viable]])),
+                                    as.roman(names(partial_cluster_subsampled[viable])),
                                     '_subsampled.fasta')
 
 mapply(write.FASTA,
-       partial_cluster_subsampled[[viable]],
-       filenames)  
+       partial_cluster_subsampled[viable],
+       partial_cluster_filenames)  
 
   
 #################################### END #######################################
