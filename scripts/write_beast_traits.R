@@ -1,76 +1,89 @@
-####################################################################################################
-####################################################################################################
-## Script name:
-##
-## Purpose of script:
-##
-## Date created: 2024-10-28
-##
-##
-########################################## SYSTEM OPTIONS ##########################################
-options(scipen = 6, digits = 4) 
-memory.limit(30000000) 
+################################################################################
+## Script Name:        Write Trait files and Edit XMLs
+## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
+## Author:             James Baxter
+## Date Created:       2025-07-11
+################################################################################
 
-  
-########################################## DEPENDENCIES ############################################
-# Packages
+############################### SYSTEM OPTIONS #################################
+options(
+  scipen = 6,     # Avoid scientific notation
+  digits = 7      # Set precision for numerical display
+)
+memory.limit(30000000)
+
+############################### DEPENDENCIES ###################################
+# Load required libraries
 library(tidyverse)
 library(magrittr)
+library(ape)
 
 
-# User functions
+################################### DATA #######################################
+# Read and inspect data
+metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
+
+nflg_cluster_subsampled_files <- list.files('./2025Jun24/alignments',
+                                            pattern = 'NFLG_[A-Z]+_subsampled',
+                                            full.names = T)
+
+nflg_cluster_subsampled <- lapply(nflg_cluster_subsampled_files,
+                                  read.dna,
+                                  format = 'fasta',
+                                  as.matrix = T)
 
 
-############################################## DATA ################################################
-nflg_mcc<- read.beast('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_SRD06_RelaxLn_constant_mcc.tree')
-metadata <- read_csv('./data/USUV_metadata_all_2024Oct20.csv')
-patristic_distance_clusters <- read_csv('./2024Oct20/nflg_patristic_distance_clusters.csv')
+partial_cluster_subsampled_files <- list.files('./2025Jun24/alignments',
+                                               pattern = 'partial_[A-Z]+_subsampled',
+                                               full.names = T)
+
+partial_cluster_subsampled <- lapply(partial_cluster_subsampled_files,
+                                     read.dna,
+                                     format = 'fasta',
+                                     as.matrix = T)
+
+################################### MAIN #######################################
+# Main analysis or transformation steps
+metadata_for_beast <- metadata_with_concat %>%
+  dplyr::select(tipnames, ends_with('id'), geocode_coords) %>%
+  mutate(geocode_coords = gsub('c\\(|\\,|\\)', '', geocode_coords)) %>%
+  separate_wider_delim(geocode_coords, delim = ' ', names = c('lat', 'long'))
 
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_noFLI_2024Oct20.csv') %>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
+metadata_for_beast_nflg <- nflg_cluster_subsampled %>%
+  lapply(., rownames) %>%
+  lapply(., function(x) metadata_for_beast %>% filter( tipnames %in% x))
 
-stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
-
-############################################## MAIN ################################################
-
-beast_data <- metadata_in_tree %>% 
-  # spread geocode coords to lat lon
-  mutate(geocode_coords = gsub('c|\\(|\\)|,', '', geocode_coords)) %>%
-  separate_wider_delim(geocode_coords, ' ', names =  c('lon', 'lat')) %>%
-  mutate(across(c(lat, lon), .fns = ~ as.numeric(.x))) %>%
-  
-  # format binary trait
-  mutate(is_europe = case_when(is_europe == 1 ~'europe',
-                               .default = 'not_europe')) %>%
-  
-  left_join(patristic_distance_clusters,
-            by = join_by(tipnames == label)) %>%
-  
-  # Select columns for BEAST
-  dplyr::select(
-    tipnames,
-    lat,
-    lon,
-    is_europe,
-    starts_with('dist_')) %>%
-  
-  mutate(across(starts_with('dist'), .fns = ~ case_when(grepl('KU760915', tipnames) ~ 'X',
-                                                       grepl('not_europe', is_europe) ~ 'source',
-                                                       .default = .x)))
+metadata_for_beast_partial <- partial_cluster_subsampled %>%
+  lapply(., rownames) %>%
+  lapply(., function(x) metadata_for_beast %>% filter( tipnames %in% x))
 
 
-############################################## WRITE ###############################################
-beast_filename <-paste('./2024Oct20/test_beast/USUV_2024Oct20_nflg_subsample1_traits.txt')
+################################### OUTPUT #####################################
+# Save output files, plots, or results
+nflg_filename <- gsub('noFLI_alldata_aligned_formatted', 
+                      '',
+                      nflg_cluster_subsampled_files) %>%
+  gsub('.fasta$', '_traits.txt', .) %>%
+  gsub('alignments', 'europe_clusters', .) 
 
-write_delim(beast_data,
-            beast_filename,
-            delim = '\t',
-            quote= 'needed')
+partial_filename <- gsub('noFLI_alldata_aligned_formatted',
+                         '', 
+                         partial_cluster_subsampled_files) %>%
+  gsub('.fasta$', '_traits.txt', .) %>%
+  gsub('alignments', 'europe_clusters', .) 
 
-  
+mapply(write_delim,
+       metadata_for_beast_nflg,
+       nflg_filename,
+       delim = '\t',
+       quote= 'needed')
 
+mapply(write_delim,
+       metadata_for_beast_partial,
+       partial_filename,
+       delim = '\t',
+       quote= 'needed')
 
-############################################## END #################################################
-####################################################################################################
-####################################################################################################
+#################################### END #######################################
+################################################################################
