@@ -140,7 +140,7 @@ vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp',
   st_make_valid() %>%
   st_transform(st_crs(vector_net))
 
-metadata <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
+metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
 nuts0 <- gisco_get_nuts(
   year = "2021",
@@ -238,7 +238,7 @@ ggplot(culex_abundance_by_vectornet,
 
 
 ##### NUTS3 (homogeneous sampling within NUTS3) #####
-metadata %>% 
+metadata_with_concat %>% 
   filter(is_europe == '1') %>%
   filter(location_precision == 'nuts3') %>%
   
@@ -262,7 +262,7 @@ metadata %>%
 
 
 ##### NUTS0, NUTS1, and NUTS2 (sampling determined by culex abundance ) #####
-metadata %>% 
+metadata_with_concat %>% 
   filter(is_europe == '1') %>%
   filter(location_precision %in% c('nuts0', 'nuts1', 'nuts2')) %>%
   
