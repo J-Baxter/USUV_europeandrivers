@@ -4,4 +4,11 @@ format_metadata.R -> nflg_subsampling.R -> Augur Pipeline& lineage assignment ->
 initial beast tree
 
 make_concat_alignment.R -> phylogenetic placement lineage assignment ->  map_clusters.R -> 
- subset_alignments_by_cluster.R -> ML trees -> cluster_subsampling.R -> Map_spatial_uncertainity.Rs
+ subset_alignments_by_cluster.R -> ML trees -> cluster_subsampling.R -> 
+write_beast_trait.R -> Map_spatial_uncertainity.R -> run beast
+
+post hoc
+visualise skygrid
+visualise markov jumps
+visualise continuous phylo
+seraphim
