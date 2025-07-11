@@ -1,6 +1,7 @@
 # USUV_europeandrivers
 
-format_metadata.R -> nflg_subsampling.R -> Augur Pipeline& lineage assignment -> nomenclature_may25 ->
+format_metadata.R -> nflg_subsampling.R -> Augur Pipeline& lineage assignment -> nomenclature_may25.R ->
 initial beast tree
 
- map_clusters -> make_concat_alignment -> europe_subsample_alignments -> map_spatial_uncertainty
+make_concat_alignment.R -> phylogenetic placement lineage assignment ->  map_clusters.R -> 
+ subset_alignments_by_cluster.R -> ML trees -> cluster_subsampling.R -> Map_spatial_uncertainity.Rs
