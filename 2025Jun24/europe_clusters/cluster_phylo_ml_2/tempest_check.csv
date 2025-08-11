@@ -1,0 +1,33 @@
+﻿file,clocklike,clock,mrca,n,exclude,notes
+partial_I,NA,NA,NA,,,
+partial_II,N,-0.0006,,,,
+partial_III,Y,0.00048544,2008.856,491,,
+partial_IV,Y,0.00042983,2003.845,20,,
+partial_V,Y,0.0002796,1996.6202,337,"KY113094|BNI-493|turdus_merula|DE|2016-09-26
+KY263622|NA|culex_sp|BE|2016-10
+MK230900|NA|anas_platyrhynchos|BE|2017-06
+MK230899|NA|asio_otus|BE|2015-09
+MK230917|NA|turdus_merula|BE|2018-08
+MK230921|NA|turdus_merula|BE|2017-08
+MK230897|NA|columba_livia|BE|2017-05
+MK230898|NA|columba_livia|BE|2017-06
+MK230893|Grivegnee/2017|turdus_merula|BE|2017-08
+MK230913|NA|turdus_merula|BE|2017-07
+NA|5442/France/57/2018|tetrao_urogallus|FR|2018-08-21
+MK230902|NA|alopochen_aegyptiaca|BE|2017-06
+MK230919|NA|turdus_merula|BE|2017-07",
+partial_VI,Y,0.0012019,1996.9405,588,"MW803140|UV780/Serbia/2019|culex_pipiens|RS|2019 
+MK591827|NA|homo_sapiens|IT|2018
+08PP496780|USU-OE1/2021|NA|CZ|2021-06-15
+MK230904|NA|fringilla_coelebs|BE|2018-09",evolutionary rate high
+partial_VII,Y,0.00028304,2007.26,29,,
+partial_VIII,Y,0.00023066,1994.9372,31,,Note missing date for MN395372 (2017)
+NFLG_I,NA,NA,NA,,,
+NFLG_II,Y,0.00073155,2006.5598,5,,
+NFLG_III,Y,0.00025033,2004.6853,246,,
+NFLG_IV,Y,0.00099502,2010.6098,4,,
+NFLG_V,Y,0.0002776,2002.4461,146,"KY501101|NA|homo_sapiens|DE|2016-09-26
+MK230893|Grivegnee/2017|turdus_merula|BE|2017-08",
+NFLG_VI,Y,0.00031139,2006.8613,227,,
+NFLG_VII,Y,0.00024353,2007.2682,28,,
+NFLG_VIII,Y,0.00024288,1999.3186,4,,

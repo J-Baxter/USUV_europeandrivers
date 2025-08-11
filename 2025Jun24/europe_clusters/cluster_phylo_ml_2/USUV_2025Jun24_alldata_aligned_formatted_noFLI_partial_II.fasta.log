@@ -4,11 +4,288 @@ Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
 Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
 
 Host:    S31-9YFL2JH7 (SSE4.2, 48 GB RAM)
-Command: iqtree3 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta -m HKY+G+F -czb -bb 1000 -nt AUTO
-Seed:    21718 (Using SPRNG - Scalable Parallel Random Number Generator)
-Time:    Mon Aug  4 16:14:16 2025
-Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
+Command: iqtree3 -redo -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta -m HKY
+Seed:    771566 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Aug 11 12:32:43 2025
+Kernel:  SSE2 - 1 threads (16 CPU cores detected)
+
+HINT: Use -nt option to specify number of threads because your CPU has 16 cores!
+HINT: -nt AUTO will automatically determine the best number of threads to use.
 
 Reading alignment file USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta ... Fasta format detected
-Reading fasta file: done in 0.00417399 secs using 81.94% CPU
-ERROR: Unknown sequence type.
+Reading fasta file: done in 0.00728488 secs using 86.77% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.00602198 secs using 58.47% CPU
+Alignment has 52 sequences with 10305 columns, 223 distinct patterns
+26 parsimony-informative, 133 singleton sites, 10146 constant sites
+                                                                 Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 3.40939e-05 secs using 41.06% CPU
+   1  LR989886|ED-I-79/18|bubo_scandiacus|DE|2018                       59.06%    failed      4.94%
+   2  LR989887|ED-I-107/18|bubo_scandiacus|DE|2018                      59.06%    passed      5.32%
+   3  KY426758|NA|turdus_merula|DE|2016-09-25                            0.00%    passed     27.83%
+   4  KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21                 0.00%    passed     26.83%
+   5  KY199556|NA|strix_nebulosa|DE|2016                                 0.00%    passed     32.42%
+   6  KF573410|NA|culex_pipiens|ES|2006-08-22                            0.00%    passed     27.83%
+   7  KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23    0.00%    passed     29.12%
+   8  MF621058|ME/USUV_38580/Fr_2015|culex_sp|FR|2015                   90.80%    passed     83.72%
+   9  KY084483|NA|strix_nebulosa|DE|2016                                90.77%    passed     71.66%
+  10  KY084489|NA|turdus_merula|DE|2016                                 90.77%    passed     73.84%
+  11  KY084487|NA|turdus_merula|DE|2016                                 90.77%    passed     75.68%
+  12  KY084488|NA|turdus_merula|DE|2016                                 90.68%    passed     73.18%
+  13  KY084497|NA|culex_sp|DE|2016                                      90.86%    passed     73.02%
+  14  MF621055|ME/USUV_2G9/Fr_2015|culex_sp|FR|2015                     90.74%    passed     55.07%
+  15  KY084494|NA|turdus_merula|DE|2016                                 91.18%    passed     58.29%
+  16  MK956028|USUV-M_664|turdus_merula|DE|2018                         92.95%    passed     66.45%
+  17  MK956050|USUV-V_9519|turdus_merula|DE|2017                        92.95%    passed     67.72%
+  18  MK956054|USUV-V_9958|turdus_merula|DE|2017                        92.95%    passed     67.72%
+  19  MK956052|USUV-V_9526|turdus_merula|DE|2017                        92.95%    passed     68.53%
+  20  MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015                    93.07%    passed     66.04%
+  21  MF621057|ME/USUV_1G10/Fr_2015|culex_sp|FR|2015                    95.98%    passed     97.50%
+  22  ON125263|Usutu/Camargue/Culex2015|culex_pipiens|FR|2015           93.37%    failed      0.49%
+  23  KU664609|Usutu_Berlin|strix_nebulosa|DE|2015-08-27                76.29%    failed      0.32%
+  24  KY113098|BNI-499|turdus_merula|DE|2016-09-04                      97.43%    passed      8.18%
+  25  AM909649|NA|culex_pipiens|ES|2006-08-22                           99.04%    passed     37.92%
+  26  NA|8640/France/69/2016|turdus_merula|FR|2016-08-16                91.46%    passed     63.33%
+  27  NA|8645/France/69/2016|turdus_merula|FR|2016-07-25                91.46%    passed     68.10%
+  28  NA|9615/France/69/2016|turdus_merula|FR|2016-08-03                91.46%    passed     68.10%
+  29  NA|9617/France/69/2016|turdus_merula|FR|2016-08-03                91.46%    passed     68.10%
+  30  PQ039624|21|fringilla_coelebs|PL|2023-09-28                       95.20%    passed     13.45%
+  31  PQ039625|128|turdus_merula|PL|2023-10-22                          95.20%    passed     13.45%
+  32  PQ039626|129|turdus_merula|PL|2023-10-26                          95.20%    passed     13.45%
+  33  PQ039627|1191|regulus_regulus|PL|2023-10                          95.20%    passed     13.45%
+  34  PQ039628|115|regulus_regulus|PL|2023-10-23                        95.20%    passed     13.45%
+  35  PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17                    95.20%    passed     13.45%
+  36  PQ039634|113|regulus_regulus|PL|2023-10-18                        95.20%    passed     13.45%
+  37  PQ039635|1091|regulus_regulus|PL|2023-10-17                       95.20%    passed     13.45%
+  38  PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25             95.20%    passed     13.45%
+  39  PQ039637|MB286-23_s3|anas_platyrhynchos|PL|2023-07-25             95.20%    passed     13.45%
+  40  PQ039639|MB282-23_s4|anas_platyrhynchos|PL|2023-07-21             95.20%    passed     13.45%
+  41  PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21             95.20%    passed     13.45%
+  42  PQ039645|1383|acanthis_flammea|PL|2023-11-09                      95.20%    passed     13.45%
+  43  PQ039629|1141|regulus_regulus|PL|2023-10-22                       95.21%    passed     14.76%
+  44  PQ039632|WW|motacilla_alba|PL|2023-08-12                          95.21%    passed     14.76%
+  45  PQ039630|1552|regulus_regulus|PL|2023-11-05                       95.20%    passed     13.84%
+  46  PQ039638|MB285-23|cygnus_olor|PL|2023-07-25                       95.20%    passed     13.84%
+  47  PQ039644|123|sylvia_atricapilla|PL|2023-09-10                     95.20%    passed     12.90%
+  48  PQ039631|EJ|garrulus_glandarius|PL|2023-11-21                     95.21%    passed     14.26%
+  49  PQ039646|1182|regulus_regulus|PL|2023-10-29                       95.21%    passed     14.26%
+  50  PQ039641|BHG-s1|anser_indicus|PL|2023-10                          95.43%    passed     12.59%
+  51  PQ039643|MB294-23|falco_subbuteo|PL|2023-10-12                    95.43%    passed     11.74%
+  52  PQ039642|BHG-s3|anser_indicus|PL|2023-10                          96.23%    passed     45.32%
+WARNING: 47 sequences contain more than 50% gaps/ambiguity
+****  TOTAL                                                             83.24%  3 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: MK956054|USUV-V_9958|turdus_merula|DE|2017 is identical to MK956050|USUV-V_9519|turdus_merula|DE|2017 but kept for subsequent analysis
+NOTE: NA|9617/France/69/2016|turdus_merula|FR|2016-08-03 is identical to NA|9615/France/69/2016|turdus_merula|FR|2016-08-03 but kept for subsequent analysis
+NOTE: PQ039625|128|turdus_merula|PL|2023-10-22 is identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28 but kept for subsequent analysis
+Checking for duplicate sequences: done in 0.000100851 secs using 61.48% CPU
+Identifying sites to remove: done in 0.00234294 secs using 98.55% CPU
+NOTE: 11 identical sequences (see below) will be ignored for subsequent analysis
+NOTE: PQ039626|129|turdus_merula|PL|2023-10-26 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039627|1191|regulus_regulus|PL|2023-10 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039628|115|regulus_regulus|PL|2023-10-23 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039634|113|regulus_regulus|PL|2023-10-18 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039635|1091|regulus_regulus|PL|2023-10-17 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039637|MB286-23_s3|anas_platyrhynchos|PL|2023-07-25 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039639|MB282-23_s4|anas_platyrhynchos|PL|2023-07-21 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+NOTE: PQ039645|1383|acanthis_flammea|PL|2023-11-09 (identical to PQ039624|21|fringilla_coelebs|PL|2023-09-28) is ignored but added at the end
+Alignment was printed to USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.uniqueseq.phy
+
+For your convenience alignment with unique sequences printed to USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.uniqueseq.phy
+Creating fast initial parsimony tree by random order stepwise addition...
+0.009 seconds, parsimony score: 163 (based on 159 sites)
+
+NOTE: 0 MB RAM (0 GB) is required!
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -15599.805
+2. Current log-likelihood: -15459.821
+3. Current log-likelihood: -15459.183
+Optimal log-likelihood: -15459.107
+Rate parameters:  A-C: 1.00000  A-G: 84.07168  A-T: 1.00000  C-G: 1.00000  C-T: 84.07168  G-T: 1.00000
+Base frequencies:  A: 0.270  C: 0.229  G: 0.277  T: 0.224
+Parameters optimization took 3 rounds (0.006 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.00107503 secs using 99.07% CPU
+Computing ML distances took 0.001266 sec (of wall-clock time) 0.001094 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 3.50475e-05 secs using 74.18% CPU
+Constructing RapidNJ tree: done in 9.29832e-05 secs using 91.41% CPU
+Computing RapidNJ tree took 0.000149 sec (of wall-clock time) 0.000119 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -15466.434
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.070 second
+Computing log-likelihood of 98 initial trees ... 0.040 seconds
+Current best score: -15444.282
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 1: -15437.340
+Estimate model parameters (epsilon = 0.100)
+BETTER TREE FOUND at iteration 7: -15437.267
+Iteration 10 / LogL: -15445.655 / Time: 0h:0m:0s
+BETTER TREE FOUND at iteration 19: -15437.263
+Iteration 20 / LogL: -15445.175 / Time: 0h:0m:0s
+Finish initializing candidate tree set (20)
+Current best tree score: -15437.263 / CPU time: 0.402
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -15437.267 / Time: 0h:0m:0s (0h:0m:1s left)
+Iteration 40 / LogL: -15437.269 / Time: 0h:0m:0s (0h:0m:1s left)
+Iteration 50 / LogL: -15437.273 / Time: 0h:0m:0s (0h:0m:1s left)
+BETTER TREE FOUND at iteration 58: -15437.263
+Iteration 60 / LogL: -15437.263 / Time: 0h:0m:0s (0h:0m:1s left)
+Iteration 70 / LogL: -15437.267 / Time: 0h:0m:0s (0h:0m:1s left)
+Iteration 80 / LogL: -15437.267 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 90 / LogL: -15437.268 / Time: 0h:0m:1s (0h:0m:0s left)
+BETTER TREE FOUND at iteration 99: -15437.262
+Iteration 100 / LogL: -15437.263 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 110 / LogL: -15438.393 / Time: 0h:0m:1s (0h:0m:1s left)
+BETTER TREE FOUND at iteration 114: -15437.262
+Iteration 120 / LogL: -15437.263 / Time: 0h:0m:1s (0h:0m:1s left)
+Iteration 130 / LogL: -15437.281 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 140 / LogL: -15437.267 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 150 / LogL: -15437.264 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 160 / LogL: -15437.269 / Time: 0h:0m:1s (0h:0m:0s left)
+BETTER TREE FOUND at iteration 163: -15437.262
+Iteration 170 / LogL: -15437.796 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 180 / LogL: -15437.267 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 190 / LogL: -15437.283 / Time: 0h:0m:1s (0h:0m:0s left)
+Iteration 200 / LogL: -15443.658 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 210 / LogL: -15437.283 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 220 / LogL: -15437.268 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 230 / LogL: -15437.270 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 240 / LogL: -15437.284 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 250 / LogL: -15437.269 / Time: 0h:0m:2s (0h:0m:0s left)
+Iteration 260 / LogL: -15437.262 / Time: 0h:0m:2s (0h:0m:0s left)
+TREE SEARCH COMPLETED AFTER 264 ITERATIONS / Time: 0h:0m:2s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -15437.262
+2. Current log-likelihood: -15437.202
+3. Current log-likelihood: -15437.143
+4. Current log-likelihood: -15437.083
+5. Current log-likelihood: -15437.023
+6. Current log-likelihood: -15436.962
+7. Current log-likelihood: -15436.902
+8. Current log-likelihood: -15436.841
+9. Current log-likelihood: -15436.779
+10. Current log-likelihood: -15436.718
+11. Current log-likelihood: -15436.656
+12. Current log-likelihood: -15436.594
+13. Current log-likelihood: -15436.531
+14. Current log-likelihood: -15436.468
+15. Current log-likelihood: -15436.405
+16. Current log-likelihood: -15436.341
+17. Current log-likelihood: -15436.278
+18. Current log-likelihood: -15436.213
+19. Current log-likelihood: -15436.149
+20. Current log-likelihood: -15436.084
+21. Current log-likelihood: -15436.019
+22. Current log-likelihood: -15435.953
+23. Current log-likelihood: -15435.888
+24. Current log-likelihood: -15435.821
+25. Current log-likelihood: -15435.755
+26. Current log-likelihood: -15435.688
+27. Current log-likelihood: -15435.621
+28. Current log-likelihood: -15435.553
+29. Current log-likelihood: -15435.485
+30. Current log-likelihood: -15435.416
+31. Current log-likelihood: -15435.348
+32. Current log-likelihood: -15435.279
+33. Current log-likelihood: -15435.209
+34. Current log-likelihood: -15435.139
+35. Current log-likelihood: -15435.069
+36. Current log-likelihood: -15434.998
+37. Current log-likelihood: -15434.927
+38. Current log-likelihood: -15434.855
+39. Current log-likelihood: -15434.783
+40. Current log-likelihood: -15434.711
+41. Current log-likelihood: -15434.638
+42. Current log-likelihood: -15434.565
+43. Current log-likelihood: -15434.491
+44. Current log-likelihood: -15434.417
+45. Current log-likelihood: -15434.343
+46. Current log-likelihood: -15434.268
+47. Current log-likelihood: -15434.192
+48. Current log-likelihood: -15434.116
+49. Current log-likelihood: -15434.040
+50. Current log-likelihood: -15433.963
+51. Current log-likelihood: -15433.886
+52. Current log-likelihood: -15433.808
+53. Current log-likelihood: -15433.730
+54. Current log-likelihood: -15433.651
+55. Current log-likelihood: -15433.572
+56. Current log-likelihood: -15433.492
+57. Current log-likelihood: -15433.412
+58. Current log-likelihood: -15433.331
+59. Current log-likelihood: -15433.250
+60. Current log-likelihood: -15433.168
+61. Current log-likelihood: -15433.085
+62. Current log-likelihood: -15433.002
+63. Current log-likelihood: -15432.919
+64. Current log-likelihood: -15432.835
+65. Current log-likelihood: -15432.750
+66. Current log-likelihood: -15432.665
+67. Current log-likelihood: -15432.579
+68. Current log-likelihood: -15432.493
+69. Current log-likelihood: -15432.406
+70. Current log-likelihood: -15432.319
+71. Current log-likelihood: -15432.231
+72. Current log-likelihood: -15432.142
+73. Current log-likelihood: -15432.052
+74. Current log-likelihood: -15431.962
+75. Current log-likelihood: -15431.872
+76. Current log-likelihood: -15431.780
+77. Current log-likelihood: -15431.689
+78. Current log-likelihood: -15431.596
+79. Current log-likelihood: -15431.503
+80. Current log-likelihood: -15431.409
+81. Current log-likelihood: -15431.314
+82. Current log-likelihood: -15431.218
+83. Current log-likelihood: -15431.122
+84. Current log-likelihood: -15431.025
+85. Current log-likelihood: -15430.928
+86. Current log-likelihood: -15430.829
+87. Current log-likelihood: -15430.730
+88. Current log-likelihood: -15430.630
+89. Current log-likelihood: -15430.530
+90. Current log-likelihood: -15430.428
+91. Current log-likelihood: -15430.326
+92. Current log-likelihood: -15430.223
+93. Current log-likelihood: -15430.119
+94. Current log-likelihood: -15430.014
+95. Current log-likelihood: -15429.909
+96. Current log-likelihood: -15429.802
+97. Current log-likelihood: -15429.695
+98. Current log-likelihood: -15429.586
+99. Current log-likelihood: -15429.477
+Optimal log-likelihood: -15429.477
+Rate parameters:  A-C: 1.00000  A-G: 56.09886  A-T: 1.00000  C-G: 1.00000  C-T: 56.09886  G-T: 1.00000
+Base frequencies:  A: 0.270  C: 0.229  G: 0.277  T: 0.224
+Parameters optimization took 99 rounds (0.097 sec)
+BEST SCORE FOUND : -15429.477
+Total tree length: 0.062
+
+Total number of iterations: 264
+CPU time used for tree search: 2.539 sec (0h:0m:2s)
+Wall-clock time used for tree search: 2.561 sec (0h:0m:2s)
+Total CPU time used: 2.648 sec (0h:0m:2s)
+Total wall-clock time used: 2.709 sec (0h:0m:2s)
+
+Analysis results written to: 
+  IQ-TREE report:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.iqtree
+  Maximum-likelihood tree:       USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.treefile
+  Likelihood distances:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.mldist
+  Screen log file:               USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II.fasta.log
+
+Date and Time: Mon Aug 11 12:32:46 2025
