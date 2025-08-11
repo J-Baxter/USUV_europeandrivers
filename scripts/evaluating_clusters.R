@@ -22,8 +22,13 @@ library(ape)
 library(ade4)
 library(adephylo)
 library(ggtree)
+library(ggsci)
 
-InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = TRUE, metadata){
+InferClusters <- function(phylo,
+                          n_threshold = 3, 
+                          dist_threshold =50,
+                          filter = TRUE,
+                          metadata){
   
   stopifnot(class(phylo) == 'phylo')
   
@@ -100,14 +105,14 @@ InferClusters <- function(phylo, n_threshold = 3, dist_threshold =50, filter = T
 nflg_hipstr <- read.beast('./2025Jun24/global_analysis/USUV_2025Jun24_NFLG_SRD06_HMC_constant_hipstr.tree')
 
 metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')%>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
+  filter(tipnames %in% nflg_hipstr@phylo$tip.label) 
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 
 cluster_verylong <- lapply(seq(5, 80, by = 5),
                            InferClusters, 
-                           phylo = nflg_mcc@phylo,
+                           phylo = nflg_hipstr@phylo,
                            n_threshold = 2, 
                            filter = TRUE,
                            metadata_in_tree) %>%
@@ -132,19 +137,19 @@ write_csv(cluster_wide, './2025Jun24/europe_clusters/subsample_clusterings.csv')
 
 most_recent_date <- '2024-10-12'
 
-nflg_mcc %>% 
+nflg_hipstr %>% 
   left_join(cluster_wide) %>%
   ggtree(mrsd = most_recent_date) + 
   scale_y_reverse() +
   # tip colour + shape = new sequences
-  geom_tippoint(aes(colour = dist_35))
+  geom_tippoint(aes(colour = dist_30))
 
 # Example data
 # dist_matrix: symmetric matrix of pairwise distances
 # clusters: vector of cluster assignments
 
 # Convert dist object to matrix if needed
-dist_matrix <- adephylo::distTips(nflg_mcc@phylo) %>% as.matrix()
+dist_matrix <- adephylo::distTips(nflg_hipstr@phylo) %>% as.matrix()
 
 CalcLikelihood <- function(dist_mat, clusters, ignore.na = TRUE){
   n <- nrow(dist_mat)
@@ -220,36 +225,23 @@ tibble(bic = bic,
 
 #################################### END #######################################
 ################################################################################
-
-
-
-
-
-
-
-
-pdist_clades <- lapply()
+europe_tips <- metadata_in_tree %>% filter(is_europe == T) %>%
+ pull(tipnames)
   
-  
-  test <- function(x, dist_mat){
-    
-  }
-  
-  
-tmp <- patristic_distances %>%
-  as.matrix() %>%
+tmp <- dist_matrix %>%
   .[europe_tips,europe_tips] %>%
   as_tibble(rownames = 'a') %>%
   pivot_longer(-a, names_to = 'b', values_to =  'distance') %>%
   filter(a != b) %>%
   rowid_to_column(var = 'pair_id') %>%
   pivot_longer(-c(distance, pair_id), values_to = 'label') %>%
-    
   left_join(cluster_wide) 
 
 
 tmp_2 <- tmp %>%
   group_by(pair_id) %>%
+  dplyr::select(pair_id ,distance, name , label,
+                dist_5,dist_15, dist_25, dist_35, dist_45, dist_55, dist_65, dist_75) %>%
   mutate(across(
     starts_with("dist_"),
     ~ case_when(
@@ -260,38 +252,52 @@ tmp_2 <- tmp %>%
   ))
 
 
-tmp_3 <- tmp_2 %>%
-  ungroup() %>%
-  pivot_wider(id_cols = c(pair_id, distance, starts_with('type')), names_from = 'name', values_from =  c(label, starts_with('dist_'))) %>%
-  filter(!duplicated(paste0(pmax(label_a, label_b), pmin(label_a, label_b))))
-  
+#tmp_3 <- tmp_2 %>%
+  #ungroup() %>%
+  #pivot_wider(id_cols = c(pair_id, distance, starts_with('type')), 
+              #names_from = 'name', 
+              #values_from =  c(label, starts_with('dist_'))) %>%
+  #filter(!duplicated(paste0(pmax(label_a, label_b), pmin(label_a, label_b))))
 
 
-dists <- tmp_3 %>%
-  dplyr::select(c(starts_with('type'), distance)) %>%
-  mutate(across(starts_with('type'), .fns = ~  gsub('within europe\\: ', '', str_to_lower(.x)))) %>%
-  pivot_longer(cols = starts_with('type'), names_to = 'threshold', values_to = 'group') %>%
-  drop_na(group, threshold) %>%
-  group_by(threshold, group) %>%
-  reframe(stats = glance(fitdistr(distance, 'normal')))
-  
+tmp_2 %>%
+  pivot_longer(c(starts_with('type') ),
+               names_to = 'cluster_threshold',
+               values_to = 'cluster_type') %>%
+  mutate(cluster_threshold = gsub('type_', '', cluster_threshold) %>%
+           as.numeric()) %>%
+  select(pair_id, distance, label, starts_with('cluster')) %>%
+  ggplot() +
+  geom_histogram(aes(x = distance, 
+                     fill = cluster_type, 
+                     colour = cluster_type),
+                 alpha = 0.5,
+                 binwidth = 2.5,
+                 position="identity" )+
+  scale_colour_d3(palette = 'category20',
+                  alpha = 0.99,
+                  name= NULL) + 
+  scale_fill_d3(palette = 'category20',
+                alpha = 0.99,
+                name= NULL) +
+  scale_x_continuous('Patristic Distance',
+                     expand = c(0,0))+
+  scale_y_continuous('Probability Density',
+                     expand = c(0.005,0))+
+  theme_classic()+
+  theme(legend.position = 'bottom') +
+  facet_wrap(~ cluster_threshold, 
+             ncol = 1,
+             strip.position = 'right',
+             scales = 'free_x')
 
-tmp_data <- tmp_3 %>%
-  dplyr::select(c(starts_with('type'), distance)) %>%
-  mutate(across(starts_with('type'), .fns = ~  gsub('within europe\\: ', '', str_to_lower(.x)))) %>%
-  pivot_longer(cols = starts_with('type'), names_to = 'threshold', values_to = 'group') %>%
-  filter(threshold == 'type_35') %>%
-  filter(group == 'between clade') %>%
-  pull(distance)
-
-fit <- fitdistr(tmp_data, 'normal')
-glance(fit)
 ggplot(tmp_3) +
   geom_histogram(aes(x = distance, 
                      #y = after_stat(ndensity),
-                     fill = type_35, colour = type_35),
+                     fill = type_40, 
+                     colour = type_40),
                  alpha = 0.5,
-                 binwidth = 5,
+                 binwidth = 2.5,
                  position="identity" )+
   scale_colour_d3(palette = 'category20',
                   alpha = 0.99,
@@ -309,3 +315,23 @@ ggplot(tmp_3) +
         legend.position.inside = c(0.75, 0.75))
 
 
+
+#dists <- tmp_3 %>%
+#  dplyr::select(c(starts_with('type'), distance)) %>%
+#  mutate(across(starts_with('type'), .fns = ~  gsub('within europe\\: ', '', str_to_lower(.x)))) %>%
+#  pivot_longer(cols = starts_with('type'), names_to = 'threshold', values_to = 'group') %>%
+#  drop_na(group, threshold) %>%
+ # group_by(threshold, group) %>%
+#  reframe(stats = glance(fitdistr(distance, 'normal')))
+  
+
+#tmp_data <- tmp_3 %>%
+#  dplyr::select(c(starts_with('type'), distance)) %>%
+#  mutate(across(starts_with('type'), .fns = ~  gsub('within europe\\: ', '', str_to_lower(.x)))) %>%
+#  pivot_longer(cols = starts_with('type'), names_to = 'threshold', values_to = 'group') %>%
+#  filter(threshold == 'type_35') %>%
+#  filter(group == 'between clade') %>%
+ # pull(distance)
+
+#fit <- fitdistr(tmp_data, 'normal')
+#glance(fit)
