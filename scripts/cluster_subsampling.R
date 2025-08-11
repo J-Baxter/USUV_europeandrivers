@@ -27,6 +27,7 @@ library(igraph)
 # Calculates pairwise hamming distance, then groups at a threshold difference
 GroupSequences <- function(aln, snp_threshold = 0){
   require(igraph)
+  require(phangorn)
   
   # Ensure alignment is correctly formatted
   if(class(aln) != 'PhyDat'){
@@ -36,7 +37,7 @@ GroupSequences <- function(aln, snp_threshold = 0){
   }
   
   # Calculate hamming distance
-  hd_normalised <- dist.hamming(aln) %>%
+  hd_normalised <- dist.hamming(aln_formatted) %>%
     as.matrix()
   hd_raw <- hd_normalised * ncol(aln)
   
@@ -173,16 +174,16 @@ partial_cluster_alignments <- lapply(partial_cluster_alignment_files,
 
 metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
-tempest_check <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml/tempest_check.csv')
+tempest_check <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml_2/tempest_check.csv')
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 # 1. Exclude unclocklike sequences
 to_exclude <- tempest_check %>%
-  drop_na(notes) %>%
-  filter(grepl('\\|', notes)) %>%
-  pull(notes) %>%
+  drop_na(exclude) %>%
+  #filter(grepl('\\|', exc)) %>%
+  pull(exclude) %>%
   # separate out multiple entries
-  str_split(., ', ') %>%
+  str_split(., '\n') %>%
   unlist()
 
 
