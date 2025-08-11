@@ -30,15 +30,15 @@ temp_tree <- read.tree('./2025May22/alignments/USUV_2025May22_alldata_aligned_fo
 
 #write.tree(temp_tree, './2024Oct20/alignments/USUV_2024Oct20_alldata_aligned_formatted_noFLI_nflg_subsample1_bifur.tree')
 
-aln_subsampled <- read.dna('./2025May22/alignments/USUV_2025May22_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta',
+aln_subsampled <- read.dna('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta',
                            format = 'fasta',
                            as.matrix = T)
 
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025May22.csv')%>%
-  filter(tipnames %in% nflg_mcc@phylo$tip.label) 
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')%>%
+  filter(tipnames %in% nflg_hipstr@phylo$tip.label) 
 
-stopifnot(nrow(metadata_in_tree) == Ntip(nflg_mcc@phylo)) #sanity check
+stopifnot(nrow(metadata_in_tree) == Ntip(nflg_hipstr@phylo)) #sanity check
 
 ############################################## MAIN ################################################
 
@@ -72,7 +72,7 @@ non_europe <- geneticdistance_noneurope %>%
   filter(a != b) %>%
   rowid_to_column(var = 'pair_id') %>%
   pivot_longer(-c(distance, pair_id), values_to = 'tipnames') %>%
-  left_join(metadata %>% dplyr::select(tipnames, nuts0_id)) %>%
+  left_join(metadata_in_tree %>% dplyr::select(tipnames, nuts0_id)) %>%
   group_by(pair_id) %>%
   mutate(type = case_when(n_distinct(nuts0_id) == 1 ~ 'Outside Europe: Within Country',
                           .default = 'Outside Europe: Between Country')) %>%
