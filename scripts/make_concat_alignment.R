@@ -54,7 +54,7 @@ fli_tipnames <- metadata %>%
 
 fli_alignment <- full_alignment[rownames(full_alignment) %in% fli_tipnames, ] 
 cols_to_keep <- c((976-97):(2475-97), (7684-97):(10398-79))
-cols_to_mask <- setdiff(seq_len(ncol(fli_env)), cols_to_keep)
+cols_to_mask <- setdiff(seq_len(ncol(fli_alignment)), cols_to_keep)
 fli_alignment[, cols_to_mask] <- as.raw(240)
 
 
