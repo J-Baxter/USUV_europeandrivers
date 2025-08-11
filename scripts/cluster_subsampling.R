@@ -1,5 +1,5 @@
 ################################################################################
-## Script Name:        Downsample alignments for within-Europe analysis
+## Script Name:        Downsample alignments for within-Europe analysis (main)
 ## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
 ## Author:             James Baxter
 ## Date Created:       2025-07-09
