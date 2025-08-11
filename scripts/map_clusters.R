@@ -34,14 +34,14 @@ MapClusters <- function(new_tree, cluster_tbl){
     
     # ML tree to tree-data object and add cluster/lineage assignments
     as_tibble() %>%
-    left_join(cluster_tbl %>% dplyr::select(label, dist_30)) %>%
+    left_join(cluster_tbl %>% dplyr::select(label, dist_35)) %>%
     
     # Exclude problematic cluster I
-    filter(dist_30 != 'I') %>%
+    #filter(dist_35 != 'I') %>%
     
     # Exclude all NAs and split by cluster
-    drop_na(dist_30) %>%
-    group_split(dist_30) %>%
+    drop_na(dist_35) %>%
+    group_split(dist_35) %>%
     setNames(LETTERS[1:length(.)]) %>%
     
     # Find common ancestor nodes of clusters/lineages 
@@ -102,7 +102,7 @@ partial_ml %>%
 
 
 # Cluster X lineage comparison
-subsample_clusterings %>% dplyr::select(label, dist_30) %>%
+subsample_clusterings %>% dplyr::select(label, dist_35) %>%
   left_join(subsample_nomenclature) %>%
   dplyr::select(-1) %>%
   distinct() %>%
