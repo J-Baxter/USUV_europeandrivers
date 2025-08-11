@@ -94,13 +94,13 @@ log_file <- beastio::readLog('./2025Jun24/global_analysis/USUV_2025Jun24_NFLG_SR
   mutate(lineage = gsub('age.lineage_level0_|\\.$', '', lineage))
 
 
-metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')%>%
+metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv') %>%
   filter(tipnames %in% nflg_hipstr@phylo$tip.label) 
 
 lineage_json <- read.nextstrain.json('./2025Jun24//nomenclature/subsample/USUV_2025Jun24_lineages.json')
 
-#lineage_tbl <- read_csv('./2025Jun24/nomenclature/wi') %>%
-  #mutate(across(starts_with('GRI'), .fns = ~ gsub('not assigned', NA_character_, .x)))
+#lineage_tbl <- read_delim('./2025Jun24/nomenclature/subsample/wide_lineages.txt') %>%
+  mutate(across(starts_with('GRI'), .fns = ~ gsub('not assigned', NA_character_, .x)))
 
 #root_lineage <- read_csv('./2025May22/nomenclature/mcc_lineage_root_nodes.csv')
 ################################### MAIN #######################################
