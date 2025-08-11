@@ -1,0 +1,1042 @@
+IQ-TREE 3.0.1 built Jun 30 2025
+
+Input file name: USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VI.fasta
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 660817
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 227 sequences with 10305 nucleotide sites
+Number of constant sites: 8874 (= 86.1135% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 8874 (= 86.1135% of all sites)
+Number of parsimony informative sites: 682
+Number of distinct site patterns: 1496
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 18.9336
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 18.9336
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2703
+  pi(C) = 0.2287
+  pi(G) = 0.2834
+  pi(T) = 0.2176
+
+Rate matrix Q:
+
+  A    -1.101   0.04331     1.016   0.04122
+  C    0.0512   -0.8853   0.05367    0.7805
+  G    0.9695   0.04331    -1.054   0.04122
+  T    0.0512    0.8201   0.05367    -0.925
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.1937
+
+ Category  Relative_rate  Proportion
+  1         0.0004247      0.25
+  2         0.03024        0.25
+  3         0.3671         0.25
+  4         3.602          0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -30055.6811 (s.e. 451.4109)
+Unconstrained log-likelihood (without tree): -41001.3687
+Number of free parameters (#branches + #model parameters): 367
+Akaike information criterion (AIC) score: 60845.3621
+Corrected Akaike information criterion (AICc) score: 60872.5445
+Bayesian information criterion (BIC) score: 63502.5832
+
+Total tree length (sum of branch lengths): 0.1932
+Sum of internal branch lengths: 0.0644 (33.3564% of tree length)
+
+WARNING: 2 near-zero internal branches (<0.0001) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'NA|20VIR5077|turdus_merula|IT|2020-08-21' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++--NA|20VIR5077|turdus_merula|IT|2020-08-21
+|
+|       +---NA|23VIR9300|turdus_merula|IT|2023-10-01
+|    +--| (77)
+|    |  +--NA|23pool2067_23RS1943-143|culex_pipiens|IT|2023-08-24
+|    |  |
+|    |  |  +--OR921100|2023TE1837011|culex_pipiens|IT|2023-09-08
+|    |  +--| (88)
+|    |     +-----OP734247|NA|culex_pipiens|IT|2022-07-29
+|    |     |
+|    |     +-----OR921096|2023TE1822511|turdus_merula|IT|2023-09-07
++----| (100)
+|    |  +----NA|23pool1901_23RS1909-300|culex_pipiens|IT|2023-08-16
+|    +--| (76)
+|       +--NA|23VIR8708|columbidae_sp|IT|2023-09-01
+|       |
+|       +--NA|22VIR7086-3|turdus_merula|IT|2022-07-18
+|       |
+|       |     +-----OR921101|2023TE1838411|culex_pipiens|IT|2023-09-08
+|       |  +--| (74)
+|       |  |  |     +--OR921106|2023TE1699411|culex_pipiens|IT|2023-08-24
+|       |  |  |  +--| (100)
+|       |  |  |  |  +--PP104389|TE2518712|culex_pipiens|IT|2023-09-22
+|       |  |  +--| (100)
+|       |  |     +-----OR757488|1572124|culex_pipiens|IT|2023-07-06
+|       +--| (70)
+|          +---PP104385|TE2518212|culex_pipiens|IT|2023-09-22
+|
+|              +--MW164662|13pool5744|culex_pipiens|IT|2013-08-13
+|           +--| (80)
+|           |  |  +--MW164683|14pool895|culex_pipiens|IT|2014-07-22
+|           |  +--| (100)
+|           |  |  +-----MW164687|15pool1419|culex_pipiens|IT|2015-08-05
+|           |  |  |
+|           |  |  |         +----NA|20VIR4951|serinus_canaria|IT|2020-08-19
+|           |  |  |      +--| (80)
+|           |  |  |      |  +--MW164769|18pool948|culex_pipiens|IT|2018-07-06
+|           |  |  +------| (100)
+|           |  |         |    +--MW164732|18pool108G|culex_pipiens|IT|2018-09-06
+|           |  |         +----| (100)
+|           |  |              +--MW164757|18pool1614|culex_pipiens|IT|2018-08-09
+|           |  |
+|           |  |     +--MW164681|14pool1703|culex_pipiens|IT|2014-09-23
+|           |  |  +--| (100)
+|           |  |  |  +--MW164693|15pool1939|culex_pipiens|IT|2015-09-21
+|           |  |  |  |
+|           |  |  |  +---MW164686|15pool1335|culex_pipiens|IT|2015-08-03
+|           |  |  |  |
+|           |  |  |  |  +--MW164691|15pool1751|culex_pipiens|IT|2015-09-02
+|           |  |  |  +--| (100)
+|           |  |  |  |  +--MW164694|15VIR4781-31|turdus_iliacus|IT|2015-09-15
+|           |  |  |  |
+|           |  |  |  +--------MW164743|18pool1267|culex_pipiens|IT|2018-07-19
+|           |  +--| (100)
+|           |  |  +**MW164690|15pool1564|culex_pipiens|IT|2015-08-17
+|           |  |  |
+|           |  |  +**MW164692|15pool1759|culex_pipiens|IT|2015-09-02
+|           |  |  |
+|           |  |  |  +--MW164697|16pool1634|culex_pipiens|IT|2016-07-20
+|           |  |  +--| (100)
+|           |  |  |  |  +**MW164701|16pool2021|culex_pipiens|IT|2016-08-08
+|           |  |  |  +--| (98)
+|           |  |  |  |  +--------MW164770|18VIR7808-6|ciconia_ciconia|IT|2018-09-07
+|           |  |  |  |
+|           |  |  |  |     +**MW164710|17pool1250|culex_pipiens|IT|2017-07-19
+|           |  |  |  |  +--| (100)
+|           |  |  |  |  |  +--MW164725|17pool1729|culex_pipiens|IT|2017-08-21
+|           |  |  |  +--| (100)
+|           |  |  |     |  +--MW164727|17VIR7761-4|sturnus_vulgaris|IT|2017-09-01
+|           |  |  |     +--| (100)
+|           |  |  |        +--MW164728|17VIR7838-4|turdus_merula|IT|2017-08-30
+|           |  |  |        |
+|           |  |  |        +--MW164722|17pool1671|culex_pipiens|IT|2017-08-16
+|           |  |  |
+|           |  |  |  +**MW164700|16pool1870|culex_pipiens|IT|2016-08-01
+|           |  |  +--| (100)
+|           |  |  |  +--MW164706|16pool2355|culex_pipiens|IT|2016-08-29
+|           |  |  |  |
+|           |  |  |  |  +--MW164731|18pool1018|culex_pipiens|IT|2018-07-10
+|           |  |  |  +--| (100)
+|           |  |  |     +--MW164749|18pool1506|culex_pipiens|IT|2018-07-31
+|           |  |  |     |
+|           |  |  |     |           +**NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05
+|           |  |  |     |        +--| (99)
+|           |  |  |     |        |  |  +--OR757489|1572126|culex_pipiens|IT|2023-07-07
+|           |  |  |     |        |  +--| (100)
+|           |  |  |     |        |     +--PP104390|TE2518812|columbidae_sp|IT|2023-08-25
+|           |  |  |     |     +--| (94)
+|           |  |  |     |     |  +---NA|23VIR8795|turdus_merula|IT|2023-08-23
+|           |  |  |     |     |  |
+|           |  |  |     |     |  +----NA|23pool2138_23RS2497-1|culex_pipiens|IT|2023-11-13
+|           |  |  |     +-----| (100)
+|           |  |  |           +----OP734256|NA|culex_pipiens|IT|2022-07-29
+|           |  |  |
+|           |  |  +--MW164704|16pool2311|culex_pipiens|IT|2016-08-24
+|           |  |  |
+|           |  |  |     +--MW164729|17VIR8655-3|larus_michahellis|IT|2017-09-18
+|           |  |  |  +--| (100)
+|           |  |  |  |  +--MW164748|18pool1442|culex_pipiens|IT|2018-07-31
+|           |  |  +--| (99)
+|           |  |  |  |  +--MW164703|16pool2117|culex_pipiens|IT|2016-08-16
+|           |  |  |  +--| (100)
+|           |  |  |     +--MW164734|18pool1141|culex_pipiens|IT|2018-07-17
+|           |  |  |     |
+|           |  |  |     |     +**MW164712|17pool1309|culex_pipiens|IT|2017-07-24
+|           |  |  |     |  +--| (100)
+|           |  |  |     |  |  +**MW164723|17pool1688|culex_pipiens|IT|2017-08-16
+|           |  |  |     |  |  |
+|           |  |  |     |  |  +--MW164716|17pool1544|culex_pipiens|IT|2017-08-07
+|           |  |  |     |  |  |
+|           |  |  |     |  |  |  +--MW164730|18pool1009|culex_pipiens|IT|2018-07-10
+|           |  |  |     |  |  +--| (100)
+|           |  |  |     |  |  |  +--MW164754|18pool1556|culex_pipiens|IT|2018-08-07
+|           |  |  |     |  |  |  |
+|           |  |  |     |  |  |  +--MW164759|18pool1649|culex_pipiens|IT|2018-08-14
+|           |  |  |     |  |  |
+|           |  |  |     |  |  |  +--MW164746|18pool1405|culex_pipiens|IT|2018-07-26
+|           |  |  |     |  |  +--| (100)
+|           |  |  |     |  |  |  +--MW164766|18pool1965|culex_pipiens|IT|2018-09-06
+|           |  |  |     |  |  |
+|           |  |  |     |  |  +----------------OP734248|NA|culex_pipiens|IT|2022-07-29
+|           |  |  |     +--| (100)
+|           |  |  |        +--MW164715|17pool1525|culex_pipiens|IT|2017-08-07
+|           |  |  |        |
+|           |  |  |        +--MW164747|18pool1430|culex_pipiens|IT|2018-07-31
+|           |  |  |
+|           |  |  |     +--MW164709|17pool1191|culex_pipiens|IT|2017-07-17
+|           |  |  |  +--| (99)
+|           |  |  |  |  |  +---MW164760|18pool1660|culex_pipiens|IT|2018-08-14
+|           |  |  |  |  +--| (100)
+|           |  |  |  |     +-------------OP734246|NA|culex_pipiens|IT|2022-07-29
+|           |  |  +--| (99)
+|           |  |     +--MW164761|18pool1662|culex_pipiens|IT|2018-08-14
+|           |  |
+|           |  +**MW164737|18pool1229|culex_pipiens|IT|2018-07-19
+|           |  |
+|           |  |                 +**MW164713|17pool1488|culex_pipiens|IT|2017-08-02
+|           |  |              +--| (83)
+|           |  |              |  +--MW164735|18pool1163|culex_pipiens|IT|2018-07-17
+|           |  |              |  |
+|           |  |              |  +**MW164750|18pool1509|culex_pipiens|IT|2018-07-31
+|           |  |        +-----| (95)
+|           |  |        |     +--ON032478|ITA2018_18638|turdus_merula|IT|2018-09-03
+|           |  +--------| (95)
+|           |  |        |  +--MW164726|17pool1923|culex_pipiens|IT|2017-09-11
+|           |  |        +--| (99)
+|           |  |        |  +**MW164717|17pool1609|culex_pipiens|IT|2017-08-16
+|           |  |        |  |
+|           |  |        |  +-------MT784898|NA|turdus_iliacus|IT|2017
+|           |  |        |
+|           |  |        +------MW164739|18pool1261|culex_pipiens|IT|2018-07-19
+|           |  |
+|           |  |                                   +----NA|20VIR4811|serinus_canaria|IT|2020-08-10
+|           |  |                          +--------| (100)
+|           |  |                          |        +--MW164762|18pool1712|culex_pipiens|IT|2018-08-17
+|           |  |                          |        |
+|           |  |                          |        +--MW164753|18pool1523|culex_pipiens|IT|2018-08-02
+|           |  |                       +--| (100)
+|           |  |                       |  +--MW164707|16pool2571|culex_pipiens|IT|2016-09-14
+|           |  |                       |  |
+|           |  |                       |  |     +**MW164719|17pool1647|culex_pipiens|IT|2017-08-16
+|           |  |                       |  +-----| (100)
+|           |  |                       |        +--MW164764|18pool1795|culex_pipiens|IT|2018-08-23
+|           |  |                       |        |
+|           |  |                       |        +-----MW164758|18pool1617|culex_pipiens|IT|2018-08-09
+|           |  |                       |        |
+|           |  |                       |        +-----MW164745|18pool1398|culex_pipiens|IT|2018-07-26
+|           |  |                    +--| (97)
+|           |  |                    |  |  +-----MW164708|17pool103G|culex_pipiens|IT|2017-08-30
+|           |  |                    |  +--| (91)
+|           |  |                    |     +-----MW164771|18VIR7859-4|turdus_merula|IT|2018-09-07
+|           |  |                 +--| (52)
+|           |  |                 |  +--MW164685|15pool1187|culex_pipiens|IT|2015-07-22
+|           |  |                 |  |
+|           |  |                 |  |    +--MW164711|17pool1252|culex_pipiens|IT|2017-07-19
+|           |  |                 |  +----| (100)
+|           |  |                 |  |    |     +--MW164740|18pool1262|culex_pipiens|IT|2018-07-19
+|           |  |                 |  |    |  +--| (100)
+|           |  |                 |  |    |  |  +**MW164751|18pool1519|culex_pipiens|IT|2018-08-02
+|           |  |                 |  |    |  |  |
+|           |  |                 |  |    |  |  +**MW164752|18pool1522|culex_pipiens|IT|2018-08-02
+|           |  |                 |  |    |  |  |
+|           |  |                 |  |    |  |  +--MW164768|18pool78G|culex_pipiens|IT|2018-08-09
+|           |  |                 |  |    |  |  |
+|           |  |                 |  |    |  |  +--MW164756|18pool1610|culex_pipiens|IT|2018-08-09
+|           |  |                 |  |    |  |  |
+|           |  |                 |  |    |  |  +--MW164767|18pool2042|culex_pipiens|IT|2018-09-13
+|           |  |                 |  |    +--| (99)
+|           |  |                 |  |       |  +--MW164755|18pool1575|culex_pipiens|IT|2018-08-07
+|           |  |                 |  |       +--| (99)
+|           |  |                 |  |       |  +--MW164744|18pool1347|culex_pipiens|IT|2018-07-24
+|           |  |                 |  |       |
+|           |  |                 |  |       +---MW164736|18pool1219|culex_pipiens|IT|2018-07-17
+|           |  |                 |  |       |
+|           |  |                 |  |       +--MW164733|18pool1124|culex_pipiens|IT|2018-07-12
+|           |  |                 |  |
+|           |  |                 |  |        +**MW164714|17pool1493|culex_pipiens|IT|2017-08-02
+|           |  |                 |  +--------| (100)
+|           |  |                 |           +**MW164720|17pool1653|culex_pipiens|IT|2017-08-16
+|           |  |              +--| (71)
+|           |  |              |  +--MW164676|14pool1478|culex_pipiens|IT|2014-09-02
+|           |  |              |  |
+|           |  |              |  |       +--MW164688|15pool1426|culex_pipiens|IT|2015-08-06
+|           |  |              |  +-------| (100)
+|           |  |              |  |       +-----------MW164741|18pool1263|culex_pipiens|IT|2018-07-19
+|           |  |              |  |
+|           |  |              |  +**MW164724|17pool1709|culex_pipiens|IT|2017-08-17
+|           |  |           +--| (99)
+|           |  |           |  +--MW164648|12pool2316|culex_pipiens|IT|2012-08-22
+|           |  |           |  |
+|           |  |           |  +--MW164654|12VIR6777-9|turdus_pilaris|IT|2012-09-05
+|           |  |           |  |
+|           |  |           |  +---MW164652|12pool2628|culex_pipiens|IT|2012-09-05
+|           |  |           |  |
+|           |  |           |  +**MW164672|14pool1388|culex_pipiens|IT|2014-08-22
+|           |  |        +--| (99)
+|           |  |        |  |  +--MW164634|11pool1743|culex_pipiens|IT|2011-08-09
+|           |  |        |  +--| (99)
+|           |  |        |  |  +--MW164635|11pool1805|culex_pipiens|IT|2011-08-09
+|           |  |        |  |
+|           |  |        |  |  +**MW164636|11pool1941|culex_pipiens|IT|2011-08-16
+|           |  |        |  +--| (76)
+|           |  |        |  |  |  +**KX816648|220921-2/2011|culex_pipiens|IT|2011-09
+|           |  |        |  |  +--| (100)
+|           |  |        |  |     +**KX816649|231247/2011|turdus_merula|IT|2011-09
+|           |  |        |  |
+|           |  |        |  +--MW164639|11pool2135|culex_pipiens|IT|2011-08-30
+|           |  |        |  |
+|           |  |        |  |  +**MW164641|12pool1898|culex_pipiens|IT|2012-07-24
+|           |  |        |  +--| (99)
+|           |  |        |  |  +**MW164642|12pool1948|culex_pipiens|IT|2012-07-24
+|           |  |        |  |  |
+|           |  |        |  |  |  +--MW164669|13pool6471|culex_pipiens|IT|2013-09-05
+|           |  |        |  |  +--| (100)
+|           |  |        |  |  |  +--MW164670|13pool6472|culex_pipiens|IT|2013-09-05
+|           |  |        |  |  |  |
+|           |  |        |  |  |  |  +--MW164678|14pool1494|culex_pipiens|IT|2014-09-02
+|           |  |        |  |  |  +--| (100)
+|           |  |        |  |  |     +**MW164679|14pool1511|culex_pipiens|IT|2014-09-03
+|           |  |        |  |  |
+|           |  |        |  |  +--MW164658|13pool5009|culex_pipiens|IT|2013-07-31
+|           |  |        |  |  |
+|           |  |        |  |  |  +--MW164663|13pool5778|culex_pipiens|IT|2013-08-13
+|           |  |        |  |  +--| (100)
+|           |  |        |  |     +--MW164668|13pool6465|culex_pipiens|IT|2013-09-05
+|           |  |        |  |
+|           |  |        |  +--MW164640|11pool2444|culex_pipiens|IT|2011-09-21
+|           |  |        |  |
+|           |  |        |  |  +--MW164671|14pool1366|culex_pipiens|IT|2014-08-20
+|           |  |        |  +--| (100)
+|           |  |        |  |  +--MW164682|14pool857|culex_pipiens|IT|2014-07-22
+|           |  |        |  |  |
+|           |  |        |  |  |   +--MW164673|14pool1394|culex_pipiens|IT|2014-08-26
+|           |  |        |  |  +---| (100)
+|           |  |        |  |      +--MW164684|14VIR5467-8|NA|IT|2014-09-02
+|           |  |        |  |
+|           |  |        |  +--KX268471|ITA-055|culex_modestus|IT|2011
+|           |  |     +--| (98)
+|           |  |     |  |                  +---------PP104383|TE2518012|culex_pipiens|IT|2023-08-02
+|           |  |     |  |               +--| (100)
+|           |  |     |  |               |  +---OP734260|NA|culex_pipiens|IT|2022-07-08
+|           |  |     |  |               |  |
+|           |  |     |  |               |  +----OR757491|17404212|laridae_sp|IT|2023-07-20
+|           |  |     |  |            +--| (100)
+|           |  |     |  |            |  +--ON032482|ITA2021_304421|larus_michahellis|IT|2021-09-08
+|           |  |     |  |        +---| (100)
+|           |  |     |  |        |   |     +--OR757492|17404213|culex_pipiens|IT|2023-07-24
+|           |  |     |  |        |   |  +--| (100)
+|           |  |     |  |        |   |  |  +---------OR921093|2023TE1639111|culex_pipiens|IT|2023-08-11
+|           |  |     |  |        |   +--| (100)
+|           |  |     |  |        |      +------OR757494|17404220|turdus_merula|IT|2023-07-24
+|           |  |     |  |     +--| (92)
+|           |  |     |  |     |  |                 +--PP104387|TE2518512|sturnus_vulgaris|IT|2023-09-13
+|           |  |     |  |     |  +-----------------| (100)
+|           |  |     |  |     |                    +---PP104388|TE2518612|turdus_merula|IT|2023-09-22
+|           |  |     |  |  +--| (90)
+|           |  |     |  |  |  +-----------MT784899|NA|turdus_merula|IT|2017
+|           |  |     |  |  |  |
+|           |  |     |  |  |  +--------------OP734249|NA|culex_pipiens|IT|2022-08-01
+|           |  |     |  +--| (100)
+|           |  |     |     +-------------------ON813236|305920/2021|culex_pipiens|IT|2021
+|           |  +-----| (100)
+|           |        |      +**KU573070|216606/2013|culex_pipiens|IT|2013
+|           |        |  +---| (100)
+|           |        |  |   +--------------------OR757493|17404216|culex_pipiens|IT|2023-07-15
+|           |        +--| (88)
+|           |        |  +--------------ON032477|ITA2018_17495|turdus_merula|IT|2018-08-17
+|           |        |
+|           |        |  +**KX816647|208576-8/2011|culex_pipiens|IT|2011-08
+|           |        +--| (100)
+|           |        |  |        +--MW164660|13pool5678|culex_pipiens|IT|2013-08-08
+|           |        |  |     +--| (100)
+|           |        |  |     |  |  +**MW164661|13pool5687|culex_pipiens|IT|2013-08-08
+|           |        |  |     |  +--| (100)
+|           |        |  |     |  |  +-----MW164664|13pool5827|culex_pipiens|IT|2013-08-13
+|           |        |  |     |  |  |
+|           |        |  |     |  |  +**KU573074|245735-8/2013|culex_pipiens|IT|2013
+|           |        |  |     |  |
+|           |        |  |     |  +--KX816651|211204-8/2012|culex_pipiens|IT|2012-08
+|           |        |  |  +--| (99)
+|           |        |  |  |  +--KX816650|211984-4/2012|culex_pipiens|IT|2012-08
+|           |        |  |  |  |
+|           |        |  |  |  |      +**KU573075|201602-24/2014|culex_pipiens|IT|2014
+|           |        |  |  |  +------| (100)
+|           |        |  |  |         +**KU573076|201602-25/2014|culex_pipiens|IT|2014
+|           |        |  +--| (100)
+|           |        |  |  +------KX816652|211204-7/2012|culex_pipiens|IT|2012-08
+|           |        |  |
+|           |        |  |        +--ON032479|ITA2010_12543|turdus_merula|IT|2010
+|           |        |  |     +--| (100)
+|           |        |  |     |  +**KX555624|NA|turdus_merula|IT|2010
+|           |        |  |  +--| (99)
+|           |        |  |  |  |     +--KX555626|NA|turdus_merula|IT|2010
+|           |        |  |  |  |  +--| (100)
+|           |        |  |  |  |  |  +**KX555625|NA|turdus_merula|IT|2010
+|           |        |  |  |  +--| (100)
+|           |        |  |  |     |   +--KX555627|NA|turdus_merula|IT|2010
+|           |        |  |  |     +---| (100)
+|           |        |  |  |         +--KX555628|NA|turdus_merula|IT|2010
+|           |        |  +--| (100)
+|           |        |  |  |           +--KU573071|218200/2013|culex_pipiens|IT|2013
+|           |        |  |  |  +--------| (100)
+|           |        |  |  |  |        +--KU573072|221034-3/2013|culex_pipiens|IT|2013
+|           |        |  |  +**| (97)
+|           |        |  |     +-------------------MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|IT|2018-08-20
+|           |        |  |
+|           |        |  +---HM569263|NA|homo_sapiens|IT|2009-09-24
+|           |        |
+|           |        |  +--------MF991886|BD1/17-AT|homo_sapiens|AT|2017-07-24
+|           |        +--| (78)
+|           |        |  +---------MF063042|AT-N211/16|turdus_merula|AT|2016-09-29
+|           |        |  |
+|           |        |  |  +--------MF063043|HU-47540/16|turdus_merula|HU|2016-09-26
+|           |        |  +--| (97)
+|           |        |  |  |  +----------------------------NA|USUV-GR1439/2024|homo_sapiens|EL|2024-09-16
+|           |        |  |  +--| (99)
+|           |        |  |  |  |                     +**PV523801|9460|homo_sapiens|HU|2024-10-04
+|           |        |  |  |  +---------------------| (100)
+|           |        |  |  |                        +**PV523802|9731|homo_sapiens|HU|2024-10-12
+|           |        |  |  |                        |
+|           |        |  |  |                        +--PQ772639|USUV-HUN-SM2024|homo_sapiens|HU|2024-11-11
+|           |        |  |  |
+|           |        |  |  |  +--------------------------PV541149|7096_2024|homo_sapiens|HU|2024-08-07
+|           |        |  |  +--| (98)
+|           |        |  |     |              +-----------PV501208|296|culex_sp|HU|2024-08-02
+|           |        |  |     |  +-----------| (100)
+|           |        |  |     |  |           +-----------PV501211|412|culex_sp|HU|2024-08-07
+|           |        |  |     +--| (100)
+|           |        |  |        |  +------------------PV501210|406|culex_sp|HU|2024-08-24
+|           |        |  |        +--| (99)
+|           |        |  |           +---------PV501212|416|culex_sp|HU|2024-07-31
+|           |        |  |
+|           |        |  |  +----------------------NA|22VIR8404-2|turdus_merula|IT|2022-09-01
+|           |        |  +--| (91)
+|           |        |  |  |                      +--PV501205|204|culex_sp|HU|2024-07-21
+|           |        |  |  +----------------------| (100)
+|           |        |  |                         +**PV501206|205|culex_sp|HU|2024-07-21
+|           |        |  |                         |
+|           |        |  |                         +**PV501207|265|culex_sp|HU|2024-07-21
+|           |        |  |                         |
+|           |        |  |                         +--PV501209|373|culex_sp|HU|2024-08-16
+|           |        |  |
+|           |        |  +----------OQ414983|TV193/2019|culex_pipiens|RO|2019-07
+|           |        |
+|           |        |  +------------------MW164721|17pool1664|culex_pipiens|IT|2017-08-16
+|           |        +--| (90)
+|           |        |  |               +----------NA|23VIR9292|turdus_merula|IT|2023-10-01
+|           |        |  |      +--------| (100)
+|           |        |  |      |        +----------OR757496|1740423|NA|IT|2023-07-15
+|           |        |  +------| (100)
+|           |        |         |                       +--PP104391|TE2518912|turdus_merula|IT|2023-09-07
+|           |        |         |                 +-----| (100)
+|           |        |         |                 |     +**OR921105|2023TE1839111|phoenicurus_phoenicurus|IT|2023-09-08
+|           |        |         |              +--| (100)
+|           |        |         |              |  +--OR921102|2023TE1908911|culex_pipiens|IT|2023-09-15
+|           |        |         |      +-------| (100)
+|           |        |         |      |       |              +--OP734250|NA|culex_pipiens|IT|2022-07-29
+|           |        |         |      |       |           +--| (74)
+|           |        |         |      |       |           |  +--OP734253|NA|culex_pipiens|IT|2022-08-05
+|           |        |         |      |       |           |  |
+|           |        |         |      |       |           |  +---OP734261|NA|culex_pipiens|IT|2022-07-08
+|           |        |         |      |       |        +--| (97)
+|           |        |         |      |       |        |  |  +-----OR921103|2023TE1683411|culex_pipiens|IT|2023-08-11
+|           |        |         |      |       |        |  +--| (98)
+|           |        |         |      |       |        |  |  +------PP104384|TE2518112|culex_pipiens|IT|2023-09-22
+|           |        |         |      |       |        |  |
+|           |        |         |      |       |        |  +**OP734257|NA|culex_pipiens|IT|2022-07-22
+|           |        |         |      |       |        |  |
+|           |        |         |      |       |        |  +-----OR921095|2023TE1639211|culex_pipiens|IT|2023-08-11
+|           |        |         |      |       |     +--| (95)
+|           |        |         |      |       |     |  |  +--ON032480|ITA2021_305818|turdus_merula|IT|2021-09-30
+|           |        |         |      |       |     |  +--| (100)
+|           |        |         |      |       |     |  |  +--ON813235|ITA2021_300240|turdus_merula|IT|2021
+|           |        |         |      |       |     |  |
+|           |        |         |      |       |     |  +--------ON032486|ITA2021_310782|turdus_merula|IT|2021
+|           |        |         |      |       |  +--| (59)
+|           |        |         |      |       |  |  |  +**ON032481|ITA2021_302715|turdus_merula|IT|2021-09-02
+|           |        |         |      |       |  |  +--| (87)
+|           |        |         |      |       |  |  |  |  +--ON032483|ITA2021_301597|turdus_merula|IT|2021-08-19
+|           |        |         |      |       |  |  |  +--| (99)
+|           |        |         |      |       |  |  |  |  +------ON032484|ITA2021_305812|columba_palumbus|IT|2021-09-10
+|           |        |         |      |       |  |  |  |
+|           |        |         |      |       |  |  |  |        +**ON032474|ITA2020_115108|culex_pipiens|IT|2020
+|           |        |         |      |       |  |  |  |     +--| (100)
+|           |        |         |      |       |  |  |  |     |  +**ON032475|ITA2020_123828|muscicapa_striata|IT|2020
+|           |        |         |      |       |  |  |  |  +--| (99)
+|           |        |         |      |       |  |  |  |  |  +--ON032476|ITA2020_155885|turdus_merula|IT|2020
+|           |        |         |      |       |  |  |  +--| (96)
+|           |        |         |      |       |  |  |     +-----OP734259|NA|culex_pipiens|IT|2022-07-25
+|           |        |         |      |       |  |  |
+|           |        |         |      |       |  |  +--ON032485|ITA2021_302331|turdus_merula|IT|2021
+|           |        |         |      |       +--| (79)
+|           |        |         |      |       |  |  +**ON813234|ITA2021_299815|turdus_merula|IT|2021
+|           |        |         |      |       |  +--| (100)
+|           |        |         |      |       |  |  +**ON032487|ITA2021_299813|turdus_merula|IT|2021
+|           |        |         |      |       |  |
+|           |        |         |      |       |  |  +--OR921099|2023TE1908111|turdus_merula|IT|2023-09-15
+|           |        |         |      |       |  +--| (94)
+|           |        |         |      |       |  |  +------------PP104386|TE2518312|culex_pipiens|IT|2023-09-08
+|           |        |         |      |       |  |
+|           |        |         |      |       |  +--------OP734245|NA|culex_pipiens|IT|2022-07-01
+|           |        |         |      |       |
+|           |        |         |      |       |           +--OR921098|2023TE1683511|columba_palumbus|IT|2023-08-23
+|           |        |         |      |       +-----------| (100)
+|           |        |         |      |                   |  +--OR921097|2023TE1640411|culex_pipiens|IT|2023-08-11
+|           |        |         |      |                   +--| (98)
+|           |        |         |      |                      +--OR921094|2023TE1640011|culex_pipiens|IT|2023-08-11
+|           |        |         |   +**| (84)
+|           |        |         |   |  +--MW164738|18pool1258|culex_pipiens|IT|2018-07-19
+|           |        |         +---| (100)
+|           |        |         |   +------------------OP734255|NA|culex_pipiens|IT|2022-07-27
+|           |        |         |
+|           |        |         |     +-------OP734254|NA|NA|IT|2022-08-08
+|           |        |         +-----| (100)
+|           |        |               |        +**OR757495|1740422|culex_pipiens|IT|2023-07-18
+|           |        |               +--------| (100)
+|           |        |                        +--OR921104|2023TE1838911|culex_pipiens|IT|2023-09-08
+|           |        |
+|           |        |                                +--OR757497|1740425|culex_pipiens|IT|2023-07-16
+|           |        |          +---------------------| (100)
+|           |        |          |                     +**OR757490|17404210|culex_pipiens|IT|2023-07-11
+|           |        +----------| (100)
+|           |                   |  +-----OP734251|NA|culex_pipiens|IT|2022-08-01
+|           |                   +--| (100)
+|           |                      |  +--OP734252|NA|culex_pipiens|IT|2022-08-01
+|           |                      +--| (100)
+|           |                         +-----OP734258|NA|culex_pipiens|IT|2022-07-27
+|        +--| (99)
+|        |  +--------MW164742|18pool1264|culex_pipiens|IT|2018-07-19
+|     +--| (100)
+|     |  +--MW164699|16pool1839|culex_pipiens|IT|2016-08-01
++-----| (100)
+      +-----------MW164765|18pool1832|culex_pipiens|IT|2018-08-28
+
+Tree in newick format:
+
+(NA|20VIR5077|turdus_merula|IT|2020-08-21:0.0002986136,((NA|23VIR9300|turdus_merula|IT|2023-10-01:0.0005989693,NA|23pool2067_23RS1943-143|culex_pipiens|IT|2023-08-24:0.0001987011,(OR921100|2023TE1837011|culex_pipiens|IT|2023-09-08:0.0003022947,OP734247|NA|culex_pipiens|IT|2022-07-29:0.0008837224,OR921096|2023TE1822511|turdus_merula|IT|2023-09-07:0.0009234847)88:0.0004989261)77:0.0003996138,(NA|23pool1901_23RS1909-300|culex_pipiens|IT|2023-08-16:0.0006991898,NA|23VIR8708|columbidae_sp|IT|2023-09-01:0.0003992522,NA|22VIR7086-3|turdus_merula|IT|2022-07-18:0.0004989940,((OR921101|2023TE1838411|culex_pipiens|IT|2023-09-08:0.0008048563,((OR921106|2023TE1699411|culex_pipiens|IT|2023-08-24:0.0001012030,PP104389|TE2518712|culex_pipiens|IT|2023-09-22:0.0002036719)100:0.0005023393,OR757488|1572124|culex_pipiens|IT|2023-07-06:0.0008191155)100:0.0002005055)74:0.0000970528,PP104385|TE2518212|culex_pipiens|IT|2023-09-22:0.0006137901)70:0.0005030764)76:0.0002993102)100:0.0007018553,((((MW164662|13pool5744|culex_pipiens|IT|2013-08-13:0.0000992960,(MW164683|14pool895|culex_pipiens|IT|2014-07-22:0.0001987623,MW164687|15pool1419|culex_pipiens|IT|2015-08-05:0.0008990308,((NA|20VIR4951|serinus_canaria|IT|2020-08-19:0.0007819278,MW164769|18pool948|culex_pipiens|IT|2018-07-06:0.0002171702)80:0.0000977207,(MW164732|18pool108G|culex_pipiens|IT|2018-09-06:0.0001989502,MW164757|18pool1614|culex_pipiens|IT|2018-08-09:0.0000991229)100:0.0007192685)100:0.0009834718)100:0.0000992715,((MW164681|14pool1703|culex_pipiens|IT|2014-09-23:0.0000993861,MW164693|15pool1939|culex_pipiens|IT|2015-09-21:0.0002994013,MW164686|15pool1335|culex_pipiens|IT|2015-08-03:0.0005990483,(MW164691|15pool1751|culex_pipiens|IT|2015-09-02:0.0004997116,MW164694|15VIR4781-31|turdus_iliacus|IT|2015-09-15:0.0003990674)100:0.0004999864,MW164743|18pool1267|culex_pipiens|IT|2018-07-19:0.0011996415)100:0.0000993643,MW164690|15pool1564|culex_pipiens|IT|2015-08-17:0.0000010000,MW164692|15pool1759|culex_pipiens|IT|2015-09-02:0.0000010000,(MW164697|16pool1634|culex_pipiens|IT|2016-07-20:0.0001988456,(MW164701|16pool2021|culex_pipiens|IT|2016-08-08:0.0000010000,MW164770|18VIR7808-6|ciconia_ciconia|IT|2018-09-07:0.0013003424)98:0.0000993921,((MW164710|17pool1250|culex_pipiens|IT|2017-07-19:0.0000010000,MW164725|17pool1729|culex_pipiens|IT|2017-08-21:0.0000994027)100:0.0000993672,(MW164727|17VIR7761-4|sturnus_vulgaris|IT|2017-09-01:0.0002994968,MW164728|17VIR7838-4|turdus_merula|IT|2017-08-30:0.0003990428,MW164722|17pool1671|culex_pipiens|IT|2017-08-16:0.0003991451)100:0.0001990131)100:0.0002996171)100:0.0000993950,(MW164700|16pool1870|culex_pipiens|IT|2016-08-01:0.0000010000,MW164706|16pool2355|culex_pipiens|IT|2016-08-29:0.0000994286,(MW164731|18pool1018|culex_pipiens|IT|2018-07-10:0.0000994109,MW164749|18pool1506|culex_pipiens|IT|2018-07-31:0.0001988744,(((NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05:0.0000010000,(OR757489|1572126|culex_pipiens|IT|2023-07-07:0.0001219382,PP104390|TE2518812|columbidae_sp|IT|2023-08-25:0.0004137607)100:0.0004898425)99:0.0004990918,NA|23VIR8795|turdus_merula|IT|2023-08-23:0.0005989139,NA|23pool2138_23RS2497-1|culex_pipiens|IT|2023-11-13:0.0006991256)94:0.0000980634,OP734256|NA|culex_pipiens|IT|2022-07-29:0.0007011724)100:0.0009009187)100:0.0003991479)100:0.0003990372,MW164704|16pool2311|culex_pipiens|IT|2016-08-24:0.0004989166,((MW164729|17VIR8655-3|larus_michahellis|IT|2017-09-18:0.0000992080,MW164748|18pool1442|culex_pipiens|IT|2018-07-31:0.0004995115)100:0.0003997314,(MW164703|16pool2117|culex_pipiens|IT|2016-08-16:0.0002986603,MW164734|18pool1141|culex_pipiens|IT|2018-07-17:0.0004990013,((MW164712|17pool1309|culex_pipiens|IT|2017-07-24:0.0000010000,MW164723|17pool1688|culex_pipiens|IT|2017-08-16:0.0000010000,MW164716|17pool1544|culex_pipiens|IT|2017-08-07:0.0002986528,(MW164730|18pool1009|culex_pipiens|IT|2018-07-10:0.0001989990,MW164754|18pool1556|culex_pipiens|IT|2018-08-07:0.0000994712,MW164759|18pool1649|culex_pipiens|IT|2018-08-14:0.0000994728)100:0.0003993426,(MW164746|18pool1405|culex_pipiens|IT|2018-07-26:0.0001993018,MW164766|18pool1965|culex_pipiens|IT|2018-09-06:0.0000993200)100:0.0004994539,OP734248|NA|culex_pipiens|IT|2022-07-29:0.0023602126)100:0.0002985090,MW164715|17pool1525|culex_pipiens|IT|2017-08-07:0.0003992334,MW164747|18pool1430|culex_pipiens|IT|2018-07-31:0.0004991390)100:0.0002985040)100:0.0001991877)99:0.0000993677,((MW164709|17pool1191|culex_pipiens|IT|2017-07-17:0.0001989270,(MW164760|18pool1660|culex_pipiens|IT|2018-08-14:0.0006007025,OP734246|NA|culex_pipiens|IT|2022-07-29:0.0019108532)100:0.0002977184)99:0.0001988622,MW164761|18pool1662|culex_pipiens|IT|2018-08-14:0.0004992046)99:0.0001991088)100:0.0003991534,MW164737|18pool1229|culex_pipiens|IT|2018-07-19:0.0000010000,(((MW164713|17pool1488|culex_pipiens|IT|2017-08-02:0.0000010000,MW164735|18pool1163|culex_pipiens|IT|2018-07-17:0.0000973684,MW164750|18pool1509|culex_pipiens|IT|2018-07-31:0.0000010000)83:0.0000983795,ON032478|ITA2018_18638|turdus_merula|IT|2018-09-03:0.0003996206)95:0.0007997557,(MW164726|17pool1923|culex_pipiens|IT|2017-09-11:0.0003859700,MW164717|17pool1609|culex_pipiens|IT|2017-08-16:0.0000010000,MT784898|NA|turdus_iliacus|IT|2017:0.0011140314)99:0.0003978026,MW164739|18pool1261|culex_pipiens|IT|2018-07-19:0.0009993902)95:0.0013008304,(((((((((NA|20VIR4811|serinus_canaria|IT|2020-08-10:0.0006990408,MW164762|18pool1712|culex_pipiens|IT|2018-08-17:0.0000997176,MW164753|18pool1523|culex_pipiens|IT|2018-08-02:0.0002999172)100:0.0012999315,MW164707|16pool2571|culex_pipiens|IT|2016-09-14:0.0003986049,(MW164719|17pool1647|culex_pipiens|IT|2017-08-16:0.0000010000,MW164764|18pool1795|culex_pipiens|IT|2018-08-23:0.0004993025,MW164758|18pool1617|culex_pipiens|IT|2018-08-09:0.0007988821,MW164745|18pool1398|culex_pipiens|IT|2018-07-26:0.0007991305)100:0.0008992569)100:0.0003582191,(MW164708|17pool103G|culex_pipiens|IT|2017-08-30:0.0008426589,MW164771|18VIR7859-4|turdus_merula|IT|2018-09-07:0.0008601992)91:0.0002983982)97:0.0002406292,MW164685|15pool1187|culex_pipiens|IT|2015-07-22:0.0003988805,(MW164711|17pool1252|culex_pipiens|IT|2017-07-19:0.0001995230,((MW164740|18pool1262|culex_pipiens|IT|2018-07-19:0.0001990782,MW164751|18pool1519|culex_pipiens|IT|2018-08-02:0.0000010000,MW164752|18pool1522|culex_pipiens|IT|2018-08-02:0.0000010000,MW164768|18pool78G|culex_pipiens|IT|2018-08-09:0.0002987119,MW164756|18pool1610|culex_pipiens|IT|2018-08-09:0.0002987797,MW164767|18pool2042|culex_pipiens|IT|2018-09-13:0.0004991655)100:0.0000996626,(MW164755|18pool1575|culex_pipiens|IT|2018-08-07:0.0000996773,MW164744|18pool1347|culex_pipiens|IT|2018-07-24:0.0001992960)99:0.0000997048,MW164736|18pool1219|culex_pipiens|IT|2018-07-17:0.0005988895,MW164733|18pool1124|culex_pipiens|IT|2018-07-12:0.0004001450)99:0.0000995102)100:0.0006995944,(MW164714|17pool1493|culex_pipiens|IT|2017-08-02:0.0000010000,MW164720|17pool1653|culex_pipiens|IT|2017-08-16:0.0000010000)100:0.0012000907)52:0.0003986708,MW164676|14pool1478|culex_pipiens|IT|2014-09-02:0.0002989608,(MW164688|15pool1426|culex_pipiens|IT|2015-08-06:0.0003966023,MW164741|18pool1263|culex_pipiens|IT|2018-07-19:0.0016080836)100:0.0011038256,MW164724|17pool1709|culex_pipiens|IT|2017-08-17:0.0000010000)71:0.0002988279,MW164648|12pool2316|culex_pipiens|IT|2012-08-22:0.0002988198,MW164654|12VIR6777-9|turdus_pilaris|IT|2012-09-05:0.0002987332,MW164652|12pool2628|culex_pipiens|IT|2012-09-05:0.0005989425,MW164672|14pool1388|culex_pipiens|IT|2014-08-22:0.0000010000)99:0.0002988423,(MW164634|11pool1743|culex_pipiens|IT|2011-08-09:0.0001993447,MW164635|11pool1805|culex_pipiens|IT|2011-08-09:0.0000997618)99:0.0000997699,(MW164636|11pool1941|culex_pipiens|IT|2011-08-16:0.0000010000,(KX816648|220921-2/2011|culex_pipiens|IT|2011-09:0.0000010000,KX816649|231247/2011|turdus_merula|IT|2011-09:0.0000010000)100:0.0002989741)76:0.0000997362,MW164639|11pool2135|culex_pipiens|IT|2011-08-30:0.0001992597,(MW164641|12pool1898|culex_pipiens|IT|2012-07-24:0.0000010000,MW164642|12pool1948|culex_pipiens|IT|2012-07-24:0.0000010000,(MW164669|13pool6471|culex_pipiens|IT|2013-09-05:0.0001991267,MW164670|13pool6472|culex_pipiens|IT|2013-09-05:0.0001991318,(MW164678|14pool1494|culex_pipiens|IT|2014-09-02:0.0002989849,MW164679|14pool1511|culex_pipiens|IT|2014-09-03:0.0000010000)100:0.0004993125)100:0.0001991294,MW164658|13pool5009|culex_pipiens|IT|2013-07-31:0.0004996022,(MW164663|13pool5778|culex_pipiens|IT|2013-08-13:0.0002992016,MW164668|13pool6465|culex_pipiens|IT|2013-09-05:0.0003992216)100:0.0002993552)99:0.0001991771,MW164640|11pool2444|culex_pipiens|IT|2011-09-21:0.0004995091,(MW164671|14pool1366|culex_pipiens|IT|2014-08-20:0.0003984566,MW164682|14pool857|culex_pipiens|IT|2014-07-22:0.0003986760,(MW164673|14pool1394|culex_pipiens|IT|2014-08-26:0.0001994292,MW164684|14VIR5467-8|NA|IT|2014-09-02:0.0001993685)100:0.0005996136)100:0.0003985610,KX268471|ITA-055|culex_modestus|IT|2011:0.0001991651)99:0.0001989905,((((((PP104383|TE2518012|culex_pipiens|IT|2023-08-02:0.0014018040,OP734260|NA|culex_pipiens|IT|2022-07-08:0.0005990058,OR757491|17404212|laridae_sp|IT|2023-07-20:0.0007144480)100:0.0001991702,ON032482|ITA2021_304421|larus_michahellis|IT|2021-09-08:0.0004993280)100:0.0004993761,((OR757492|17404213|culex_pipiens|IT|2023-07-24:0.0004998624,OR921093|2023TE1639111|culex_pipiens|IT|2023-08-11:0.0014371361)100:0.0003996792,OR757494|17404220|turdus_merula|IT|2023-07-24:0.0010023427)100:0.0001990198)100:0.0005774722,(PP104387|TE2518512|sturnus_vulgaris|IT|2023-09-13:0.0004980775,PP104388|TE2518612|turdus_merula|IT|2023-09-22:0.0006004927)100:0.0024480890)92:0.0003964424,MT784899|NA|turdus_merula|IT|2017:0.0016298270,OP734249|NA|culex_pipiens|IT|2022-08-01:0.0020994772)90:0.0004476491,ON813236|305920/2021|culex_pipiens|IT|2021:0.0027285855)100:0.0004779171)98:0.0003990065,((KU573070|216606/2013|culex_pipiens|IT|2013:0.0000010000,OR757493|17404216|culex_pipiens|IT|2023-07-15:0.0028157012)100:0.0006013549,ON032477|ITA2018_17495|turdus_merula|IT|2018-08-17:0.0020104188)88:0.0000970528,(KX816647|208576-8/2011|culex_pipiens|IT|2011-08:0.0000010000,(((MW164660|13pool5678|culex_pipiens|IT|2013-08-08:0.0003987405,(MW164661|13pool5687|culex_pipiens|IT|2013-08-08:0.0000010000,MW164664|13pool5827|culex_pipiens|IT|2013-08-13:0.0008994724,KU573074|245735-8/2013|culex_pipiens|IT|2013:0.0000010000)100:0.0001991206,KX816651|211204-8/2012|culex_pipiens|IT|2012-08:0.0001991176)100:0.0001991218,KX816650|211984-4/2012|culex_pipiens|IT|2012-08:0.0003984623,(KU573075|201602-24/2014|culex_pipiens|IT|2014:0.0000010000,KU573076|201602-25/2014|culex_pipiens|IT|2014:0.0000010000)100:0.0009999264)99:0.0000983749,KX816652|211204-7/2012|culex_pipiens|IT|2012-08:0.0010011483)100:0.0003002453,(((ON032479|ITA2010_12543|turdus_merula|IT|2010:0.0001993187,KX555624|NA|turdus_merula|IT|2010:0.0000010000)100:0.0002991791,((KX555626|NA|turdus_merula|IT|2010:0.0000990056,KX555625|NA|turdus_merula|IT|2010:0.0000010000)100:0.0004997155,(KX555627|NA|turdus_merula|IT|2010:0.0003994585,KX555628|NA|turdus_merula|IT|2010:0.0002991289)100:0.0006001562)100:0.0000986120)99:0.0000990623,((KU573071|218200/2013|culex_pipiens|IT|2013:0.0001045958,KU573072|221034-3/2013|culex_pipiens|IT|2013:0.0002139254)100:0.0012958453,MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|IT|2018-08-20:0.0027217153)97:0.0000918829)100:0.0000990135,HM569263|NA|homo_sapiens|IT|2009-09-24:0.0005994765)100:0.0002987656,(MF991886|BD1/17-AT|homo_sapiens|AT|2017-07-24:0.0012010214,MF063042|AT-N211/16|turdus_merula|AT|2016-09-29:0.0014005795,(MF063043|HU-47540/16|turdus_merula|HU|2016-09-26:0.0013008980,(NA|USUV-GR1439/2024|homo_sapiens|EL|2024-09-16:0.0039693119,(PV523801|9460|homo_sapiens|HU|2024-10-04:0.0000010000,PV523802|9731|homo_sapiens|HU|2024-10-12:0.0000010000,PQ772639|USUV-HUN-SM2024|homo_sapiens|HU|2024-11-11:0.0001999417)100:0.0029699826)99:0.0001642500,(PV541149|7096_2024|homo_sapiens|HU|2024-08-07:0.0036513144,((PV501208|296|culex_sp|HU|2024-08-02:0.0016115479,PV501211|412|culex_sp|HU|2024-08-07:0.0016271029)100:0.0016004930,(PV501210|406|culex_sp|HU|2024-08-24:0.0026188767,PV501212|416|culex_sp|HU|2024-07-31:0.0014324794)99:0.0003346288)100:0.0004800347)98:0.0001950231)97:0.0002987588,(NA|22VIR8404-2|turdus_merula|IT|2022-09-01:0.0030467054,(PV501205|204|culex_sp|HU|2024-07-21:0.0004012141,PV501206|205|culex_sp|HU|2024-07-21:0.0000010000,PV501207|265|culex_sp|HU|2024-07-21:0.0000010000,PV501209|373|culex_sp|HU|2024-08-16:0.0000992693)100:0.0031596227)91:0.0002746523,OQ414983|TV193/2019|culex_pipiens|RO|2019-07:0.0014947630)78:0.0000987937,(MW164721|17pool1664|culex_pipiens|IT|2017-08-16:0.0026238369,((NA|23VIR9292|turdus_merula|IT|2023-10-01:0.0014951443,OR757496|1740423|NA|IT|2023-07-15:0.0015266155)100:0.0012030394,(((((PP104391|TE2518912|turdus_merula|IT|2023-09-07:0.0002991126,OR921105|2023TE1839111|phoenicurus_phoenicurus|IT|2023-09-08:0.0000010000)100:0.0008003962,OR921102|2023TE1908911|culex_pipiens|IT|2023-09-15:0.0004991981)100:0.0005001825,(((((OP734250|NA|culex_pipiens|IT|2022-07-29:0.0001995266,OP734253|NA|culex_pipiens|IT|2022-08-05:0.0002991735,OP734261|NA|culex_pipiens|IT|2022-07-08:0.0006261516)74:0.0000992303,(OR921103|2023TE1683411|culex_pipiens|IT|2023-08-11:0.0009081617,PP104384|TE2518112|culex_pipiens|IT|2023-09-22:0.0009317096)98:0.0001985101,OP734257|NA|culex_pipiens|IT|2022-07-22:0.0000010000,OR921095|2023TE1639211|culex_pipiens|IT|2023-08-11:0.0008169775)97:0.0001995252,(ON032480|ITA2021_305818|turdus_merula|IT|2021-09-30:0.0000991900,ON813235|ITA2021_300240|turdus_merula|IT|2021:0.0000993609)100:0.0003987353,ON032486|ITA2021_310782|turdus_merula|IT|2021:0.0012007930)95:0.0002992238,(ON032481|ITA2021_302715|turdus_merula|IT|2021-09-02:0.0000010000,(ON032483|ITA2021_301597|turdus_merula|IT|2021-08-19:0.0002001870,ON032484|ITA2021_305812|columba_palumbus|IT|2021-09-10:0.0010022529)99:0.0000988645,(((ON032474|ITA2020_115108|culex_pipiens|IT|2020:0.0000010000,ON032475|ITA2020_123828|muscicapa_striata|IT|2020:0.0000010000)100:0.0001996775,ON032476|ITA2020_155885|turdus_merula|IT|2020:0.0004994288)99:0.0001996518,OP734259|NA|culex_pipiens|IT|2022-07-25:0.0008167843)96:0.0001996328)87:0.0000991861,ON032485|ITA2021_302331|turdus_merula|IT|2021:0.0004993592)59:0.0000991869,(ON813234|ITA2021_299815|turdus_merula|IT|2021:0.0000010000,ON032487|ITA2021_299813|turdus_merula|IT|2021:0.0000010000)100:0.0000991744,(OR921099|2023TE1908111|turdus_merula|IT|2023-09-15:0.0005016286,PP104386|TE2518312|culex_pipiens|IT|2023-09-08:0.0017414253)94:0.0001001868,OP734245|NA|culex_pipiens|IT|2022-07-01:0.0012289528)79:0.0000991516,(OR921098|2023TE1683511|columba_palumbus|IT|2023-08-23:0.0001003106,(OR921097|2023TE1640411|culex_pipiens|IT|2023-08-11:0.0002039148,OR921094|2023TE1640011|culex_pipiens|IT|2023-08-11:0.0001013625)98:0.0001013544)100:0.0016220452)100:0.0010852869,MW164738|18pool1258|culex_pipiens|IT|2018-07-19:0.0004164611)84:0.0000949429,OP734255|NA|culex_pipiens|IT|2022-07-27:0.0025573605)100:0.0006113112,(OP734254|NA|NA|IT|2022-08-08:0.0011124294,(OR757495|1740422|culex_pipiens|IT|2023-07-18:0.0000010000,OR921104|2023TE1838911|culex_pipiens|IT|2023-09-08:0.0005143922)100:0.0013180845)100:0.0009031279)100:0.0010142108)90:0.0003945391,((OR757497|1740425|culex_pipiens|IT|2023-07-16:0.0001994099,OR757490|17404210|culex_pipiens|IT|2023-07-11:0.0000010000)100:0.0029288660,(OP734251|NA|culex_pipiens|IT|2022-08-01:0.0008023760,(OP734252|NA|culex_pipiens|IT|2022-08-01:0.0004025223,OP734258|NA|culex_pipiens|IT|2022-07-27:0.0008259455)100:0.0004999127)100:0.0004939439)100:0.0015112344)100:0.0007991835)80:0.0004992465,MW164742|18pool1264|culex_pipiens|IT|2018-07-19:0.0012023989)99:0.0003995975,MW164699|16pool1839|culex_pipiens|IT|2016-08-01:0.0003993958)100:0.0002989111,MW164765|18pool1832|culex_pipiens|IT|2018-08-28:0.0016062009)100:0.0008030945);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -30057.519118
+Robinson-Foulds distance between ML tree and consensus tree: 178
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--NA|20VIR5077|turdus_merula|IT|2020-08-21
+|
+|       +---NA|23VIR9300|turdus_merula|IT|2023-10-01
+|    +--| (77)
+|    |  |  +--NA|23pool2067_23RS1943-143|culex_pipiens|IT|2023-08-24
+|    |  +--| (72)
+|    |     |     +--OR921100|2023TE1837011|culex_pipiens|IT|2023-09-08
+|    |     |  +--| (67)
+|    |     |  |  +-----OP734247|NA|culex_pipiens|IT|2022-07-29
+|    |     +--| (88)
+|    |        +-----OR921096|2023TE1822511|turdus_merula|IT|2023-09-07
++----| (100)
+|    |     +----NA|23pool1901_23RS1909-300|culex_pipiens|IT|2023-08-16
+|    |  +--| (41)
+|    |  |  +--NA|22VIR7086-3|turdus_merula|IT|2022-07-18
+|    +--| (76)
+|       |  +--NA|23VIR8708|columbidae_sp|IT|2023-09-01
+|       +--| (50)
+|          |     +-----OR921101|2023TE1838411|culex_pipiens|IT|2023-09-08
+|          |  +--| (74)
+|          |  |  |     +--OR921106|2023TE1699411|culex_pipiens|IT|2023-08-24
+|          |  |  |  +--| (100)
+|          |  |  |  |  +--PP104389|TE2518712|culex_pipiens|IT|2023-09-22
+|          |  |  +--| (100)
+|          |  |     +-----OR757488|1572124|culex_pipiens|IT|2023-07-06
+|          +--| (70)
+|             +---PP104385|TE2518212|culex_pipiens|IT|2023-09-22
+|
+|                       +--MW164662|13pool5744|culex_pipiens|IT|2013-08-13
+|                    +--| (29)
+|                    |  |                                                                 +----NA|20VIR4811|serinus_canaria|IT|2020-08-10
+|                    |  |                                                              +--| (88)
+|                    |  |                                                              |  +--MW164762|18pool1712|culex_pipiens|IT|2018-08-17
+|                    |  |                                                     +--------| (100)
+|                    |  |                                                     |        +--MW164753|18pool1523|culex_pipiens|IT|2018-08-02
+|                    |  |                                                  +--| (100)
+|                    |  |                                                  |  |  +--MW164707|16pool2571|culex_pipiens|IT|2016-09-14
+|                    |  |                                                  |  +--| (50)
+|                    |  |                                                  |     |        +--MW164719|17pool1647|culex_pipiens|IT|2017-08-16
+|                    |  |                                                  |     |     +--| (26)
+|                    |  |                                                  |     |     |  |  +--MW164764|18pool1795|culex_pipiens|IT|2018-08-23
+|                    |  |                                                  |     |     |  +--| (28)
+|                    |  |                                                  |     |     |     +-----MW164745|18pool1398|culex_pipiens|IT|2018-07-26
+|                    |  |                                                  |     +-----| (100)
+|                    |  |                                                  |           +-----MW164758|18pool1617|culex_pipiens|IT|2018-08-09
+|                    |  |                                               +--| (97)
+|                    |  |                                               |  |  +-----MW164708|17pool103G|culex_pipiens|IT|2017-08-30
+|                    |  |                                               |  +--| (91)
+|                    |  |                                               |     +-----MW164771|18VIR7859-4|turdus_merula|IT|2018-09-07
+|                    |  |                                            +--| (28)
+|                    |  |                                            |  |        +--MW164714|17pool1493|culex_pipiens|IT|2017-08-02
+|                    |  |                                            |  +--------| (100)
+|                    |  |                                            |           +--MW164720|17pool1653|culex_pipiens|IT|2017-08-16
+|                    |  |                                         +--| (52)
+|                    |  |                                         |  |  +--MW164685|15pool1187|culex_pipiens|IT|2015-07-22
+|                    |  |                                         |  +--| (22)
+|                    |  |                                         |     |    +--MW164711|17pool1252|culex_pipiens|IT|2017-07-19
+|                    |  |                                         |     +----| (100)
+|                    |  |                                         |          |                 +--MW164740|18pool1262|culex_pipiens|IT|2018-07-19
+|                    |  |                                         |          |              +--| (48)
+|                    |  |                                         |          |              |  +--MW164768|18pool78G|culex_pipiens|IT|2018-08-09
+|                    |  |                                         |          |           +--| (25)
+|                    |  |                                         |          |           |  +--MW164752|18pool1522|culex_pipiens|IT|2018-08-02
+|                    |  |                                         |          |        +--| (29)
+|                    |  |                                         |          |        |  +--MW164751|18pool1519|culex_pipiens|IT|2018-08-02
+|                    |  |                                         |          |     +--| (100)
+|                    |  |                                         |          |     |  |  +--MW164756|18pool1610|culex_pipiens|IT|2018-08-09
+|                    |  |                                         |          |     |  +--| (33)
+|                    |  |                                         |          |     |     +--MW164767|18pool2042|culex_pipiens|IT|2018-09-13
+|                    |  |                                         |          |  +--| (43)
+|                    |  |                                         |          |  |  |     +--MW164755|18pool1575|culex_pipiens|IT|2018-08-07
+|                    |  |                                         |          |  |  |  +--| (99)
+|                    |  |                                         |          |  |  |  |  +--MW164744|18pool1347|culex_pipiens|IT|2018-07-24
+|                    |  |                                         |          |  |  +--| (33)
+|                    |  |                                         |          |  |     +---MW164736|18pool1219|culex_pipiens|IT|2018-07-17
+|                    |  |                                         |          +--| (99)
+|                    |  |                                         |             +--MW164733|18pool1124|culex_pipiens|IT|2018-07-12
+|                    |  |                                      +--| (69)
+|                    |  |                                      |  +--MW164724|17pool1709|culex_pipiens|IT|2017-08-17
+|                    |  |                                   +--| (71)
+|                    |  |                                   |  |  +--MW164676|14pool1478|culex_pipiens|IT|2014-09-02
+|                    |  |                                   |  +--| (62)
+|                    |  |                                   |     |       +--MW164688|15pool1426|culex_pipiens|IT|2015-08-06
+|                    |  |                                   |     +-------| (100)
+|                    |  |                                   |             +-----------MW164741|18pool1263|culex_pipiens|IT|2018-07-19
+|                    |  |                                +--| (81)
+|                    |  |                                |  +--MW164672|14pool1388|culex_pipiens|IT|2014-08-22
+|                    |  |                             +--| (34)
+|                    |  |                             |  +--MW164648|12pool2316|culex_pipiens|IT|2012-08-22
+|                    |  |                          +--| (99)
+|                    |  |                          |  |  +--MW164654|12VIR6777-9|turdus_pilaris|IT|2012-09-05
+|                    |  |                          |  +--| (42)
+|                    |  |                          |     +---MW164652|12pool2628|culex_pipiens|IT|2012-09-05
+|                    |  |                       +--| (21)
+|                    |  |                       |  |  +--MW164634|11pool1743|culex_pipiens|IT|2011-08-09
+|                    |  |                       |  +--| (99)
+|                    |  |                       |     +--MW164635|11pool1805|culex_pipiens|IT|2011-08-09
+|                    |  |                    +--| (14)
+|                    |  |                    |  |  +--MW164641|12pool1898|culex_pipiens|IT|2012-07-24
+|                    |  |                    |  +--| (99)
+|                    |  |                    |     |  +--MW164642|12pool1948|culex_pipiens|IT|2012-07-24
+|                    |  |                    |     +--| (31)
+|                    |  |                    |        |           +--MW164669|13pool6471|culex_pipiens|IT|2013-09-05
+|                    |  |                    |        |        +--| (72)
+|                    |  |                    |        |        |  +--MW164670|13pool6472|culex_pipiens|IT|2013-09-05
+|                    |  |                    |        |     +--| (100)
+|                    |  |                    |        |     |  |  +--MW164678|14pool1494|culex_pipiens|IT|2014-09-02
+|                    |  |                    |        |     |  +--| (100)
+|                    |  |                    |        |     |     +--MW164679|14pool1511|culex_pipiens|IT|2014-09-03
+|                    |  |                    |        |  +--| (48)
+|                    |  |                    |        |  |  +--MW164658|13pool5009|culex_pipiens|IT|2013-07-31
+|                    |  |                    |        +--| (25)
+|                    |  |                    |           |  +--MW164663|13pool5778|culex_pipiens|IT|2013-08-13
+|                    |  |                    |           +--| (100)
+|                    |  |                    |              +--MW164668|13pool6465|culex_pipiens|IT|2013-09-05
+|                    |  |                 +--| (22)
+|                    |  |                 |  |        +--MW164636|11pool1941|culex_pipiens|IT|2011-08-16
+|                    |  |                 |  |     +--| (76)
+|                    |  |                 |  |     |  |  +--KX816648|220921-2/2011|culex_pipiens|IT|2011-09
+|                    |  |                 |  |     |  +--| (100)
+|                    |  |                 |  |     |     +--KX816649|231247/2011|turdus_merula|IT|2011-09
+|                    |  |                 |  |  +--| (26)
+|                    |  |                 |  |  |  +--MW164640|11pool2444|culex_pipiens|IT|2011-09-21
+|                    |  |                 |  +--| (6)
+|                    |  |                 |     |        +--MW164671|14pool1366|culex_pipiens|IT|2014-08-20
+|                    |  |                 |     |     +--| (60)
+|                    |  |                 |     |     |  |   +--MW164673|14pool1394|culex_pipiens|IT|2014-08-26
+|                    |  |                 |     |     |  +---| (100)
+|                    |  |                 |     |     |      +--MW164684|14VIR5467-8|NA|IT|2014-09-02
+|                    |  |                 |     |  +--| (100)
+|                    |  |                 |     |  |  +--MW164682|14pool857|culex_pipiens|IT|2014-07-22
+|                    |  |                 |     +--| (17)
+|                    |  |                 |        +--KX268471|ITA-055|culex_modestus|IT|2011
+|                    |  |              +--| (99)
+|                    |  |              |  +--MW164639|11pool2135|culex_pipiens|IT|2011-08-30
+|                    |  |           +--| (98)
+|                    |  |           |  |                     +---------PP104383|TE2518012|culex_pipiens|IT|2023-08-02
+|                    |  |           |  |                  +--| (100)
+|                    |  |           |  |                  |  |  +---OP734260|NA|culex_pipiens|IT|2022-07-08
+|                    |  |           |  |                  |  +--| (92)
+|                    |  |           |  |                  |     +----OR757491|17404212|laridae_sp|IT|2023-07-20
+|                    |  |           |  |               +--| (100)
+|                    |  |           |  |               |  +--ON032482|ITA2021_304421|larus_michahellis|IT|2021-09-08
+|                    |  |           |  |           +---| (100)
+|                    |  |           |  |           |   |     +--OR757492|17404213|culex_pipiens|IT|2023-07-24
+|                    |  |           |  |           |   |  +--| (100)
+|                    |  |           |  |           |   |  |  +---------OR921093|2023TE1639111|culex_pipiens|IT|2023-08-11
+|                    |  |           |  |           |   +--| (100)
+|                    |  |           |  |           |      +------OR757494|17404220|turdus_merula|IT|2023-07-24
+|                    |  |           |  |        +--| (92)
+|                    |  |           |  |        |  |                 +--PP104387|TE2518512|sturnus_vulgaris|IT|2023-09-13
+|                    |  |           |  |        |  +-----------------| (100)
+|                    |  |           |  |        |                    +---PP104388|TE2518612|turdus_merula|IT|2023-09-22
+|                    |  |           |  |     +--| (90)
+|                    |  |           |  |     |  +--------------OP734249|NA|culex_pipiens|IT|2022-08-01
+|                    |  |           |  |  +--| (90)
+|                    |  |           |  |  |  +-----------MT784899|NA|turdus_merula|IT|2017
+|                    |  |           |  +--| (100)
+|                    |  |           |     +-------------------ON813236|305920/2021|culex_pipiens|IT|2021
+|                    |  |        +--| (39)
+|                    |  |        |  |     +------------------MW164721|17pool1664|culex_pipiens|IT|2017-08-16
+|                    |  |        |  |  +--| (90)
+|                    |  |        |  |  |  |                  +----------NA|23VIR9292|turdus_merula|IT|2023-10-01
+|                    |  |        |  |  |  |         +--------| (100)
+|                    |  |        |  |  |  |         |        +----------OR757496|1740423|NA|IT|2023-07-15
+|                    |  |        |  |  |  |      +--| (82)
+|                    |  |        |  |  |  |      |  |     +-------OP734254|NA|NA|IT|2022-08-08
+|                    |  |        |  |  |  |      |  +-----| (100)
+|                    |  |        |  |  |  |      |        |        +--OR757495|1740422|culex_pipiens|IT|2023-07-18
+|                    |  |        |  |  |  |      |        +--------| (100)
+|                    |  |        |  |  |  |      |                 +--OR921104|2023TE1838911|culex_pipiens|IT|2023-09-08
+|                    |  |        |  |  |  +------| (100)
+|                    |  |        |  |  |         |                       +--PP104391|TE2518912|turdus_merula|IT|2023-09-07
+|                    |  |        |  |  |         |                 +-----| (100)
+|                    |  |        |  |  |         |                 |     +--OR921105|2023TE1839111|phoenicurus_phoenicurus|IT|2023-09-08
+|                    |  |        |  |  |         |              +--| (100)
+|                    |  |        |  |  |         |              |  +--OR921102|2023TE1908911|culex_pipiens|IT|2023-09-15
+|                    |  |        |  |  |         |      +-------| (100)
+|                    |  |        |  |  |         |      |       |                          +--OP734250|NA|culex_pipiens|IT|2022-07-29
+|                    |  |        |  |  |         |      |       |                       +--| (74)
+|                    |  |        |  |  |         |      |       |                       |  |  +--OP734253|NA|culex_pipiens|IT|2022-08-05
+|                    |  |        |  |  |         |      |       |                       |  +--| (81)
+|                    |  |        |  |  |         |      |       |                       |     +---OP734261|NA|culex_pipiens|IT|2022-07-08
+|                    |  |        |  |  |         |      |       |                    +--| (37)
+|                    |  |        |  |  |         |      |       |                    |  |  +-----OR921103|2023TE1683411|culex_pipiens|IT|2023-08-11
+|                    |  |        |  |  |         |      |       |                    |  +--| (98)
+|                    |  |        |  |  |         |      |       |                    |     +------PP104384|TE2518112|culex_pipiens|IT|2023-09-22
+|                    |  |        |  |  |         |      |       |                 +--| (97)
+|                    |  |        |  |  |         |      |       |                 |  |  +--OP734257|NA|culex_pipiens|IT|2022-07-22
+|                    |  |        |  |  |         |      |       |                 |  +--| (77)
+|                    |  |        |  |  |         |      |       |                 |     +-----OR921095|2023TE1639211|culex_pipiens|IT|2023-08-11
+|                    |  |        |  |  |         |      |       |              +--| (47)
+|                    |  |        |  |  |         |      |       |              |  +--------ON032486|ITA2021_310782|turdus_merula|IT|2021
+|                    |  |        |  |  |         |      |       |           +--| (95)
+|                    |  |        |  |  |         |      |       |           |  |  +--ON032480|ITA2021_305818|turdus_merula|IT|2021-09-30
+|                    |  |        |  |  |         |      |       |           |  +--| (100)
+|                    |  |        |  |  |         |      |       |           |     +--ON813235|ITA2021_300240|turdus_merula|IT|2021
+|                    |  |        |  |  |         |      |       |        +--| (59)
+|                    |  |        |  |  |         |      |       |        |  |     +--ON032481|ITA2021_302715|turdus_merula|IT|2021-09-02
+|                    |  |        |  |  |         |      |       |        |  |  +--| (87)
+|                    |  |        |  |  |         |      |       |        |  |  |  |     +--ON032483|ITA2021_301597|turdus_merula|IT|2021-08-19
+|                    |  |        |  |  |         |      |       |        |  |  |  |  +--| (99)
+|                    |  |        |  |  |         |      |       |        |  |  |  |  |  +------ON032484|ITA2021_305812|columba_palumbus|IT|2021-09-10
+|                    |  |        |  |  |         |      |       |        |  |  |  +--| (66)
+|                    |  |        |  |  |         |      |       |        |  |  |     |        +--ON032474|ITA2020_115108|culex_pipiens|IT|2020
+|                    |  |        |  |  |         |      |       |        |  |  |     |     +--| (100)
+|                    |  |        |  |  |         |      |       |        |  |  |     |     |  +--ON032475|ITA2020_123828|muscicapa_striata|IT|2020
+|                    |  |        |  |  |         |      |       |        |  |  |     |  +--| (99)
+|                    |  |        |  |  |         |      |       |        |  |  |     |  |  +--ON032476|ITA2020_155885|turdus_merula|IT|2020
+|                    |  |        |  |  |         |      |       |        |  |  |     +--| (96)
+|                    |  |        |  |  |         |      |       |        |  |  |        +-----OP734259|NA|culex_pipiens|IT|2022-07-25
+|                    |  |        |  |  |         |      |       |        |  +--| (29)
+|                    |  |        |  |  |         |      |       |        |     +--ON032485|ITA2021_302331|turdus_merula|IT|2021
+|                    |  |        |  |  |         |      |       |     +--| (55)
+|                    |  |        |  |  |         |      |       |     |  +--------OP734245|NA|culex_pipiens|IT|2022-07-01
+|                    |  |        |  |  |         |      |       |  +--| (79)
+|                    |  |        |  |  |         |      |       |  |  |     +--ON813234|ITA2021_299815|turdus_merula|IT|2021
+|                    |  |        |  |  |         |      |       |  |  |  +--| (100)
+|                    |  |        |  |  |         |      |       |  |  |  |  +--ON032487|ITA2021_299813|turdus_merula|IT|2021
+|                    |  |        |  |  |         |      |       |  |  +--| (45)
+|                    |  |        |  |  |         |      |       |  |     |  +--OR921099|2023TE1908111|turdus_merula|IT|2023-09-15
+|                    |  |        |  |  |         |      |       |  |     +--| (94)
+|                    |  |        |  |  |         |      |       |  |        +------------PP104386|TE2518312|culex_pipiens|IT|2023-09-08
+|                    |  |        |  |  |         |      |       +--| (65)
+|                    |  |        |  |  |         |      |          |           +--OR921098|2023TE1683511|columba_palumbus|IT|2023-08-23
+|                    |  |        |  |  |         |      |          +-----------| (100)
+|                    |  |        |  |  |         |      |                      |  +--OR921097|2023TE1640411|culex_pipiens|IT|2023-08-11
+|                    |  |        |  |  |         |      |                      +--| (98)
+|                    |  |        |  |  |         |      |                         +--OR921094|2023TE1640011|culex_pipiens|IT|2023-08-11
+|                    |  |        |  |  |         |   +--| (84)
+|                    |  |        |  |  |         |   |  +--MW164738|18pool1258|culex_pipiens|IT|2018-07-19
+|                    |  |        |  |  |         +---| (100)
+|                    |  |        |  |  |             +------------------OP734255|NA|culex_pipiens|IT|2022-07-27
+|                    |  |        |  +--| (70)
+|                    |  |        |     |                                +--OR757497|1740425|culex_pipiens|IT|2023-07-16
+|                    |  |        |     |          +---------------------| (100)
+|                    |  |        |     |          |                     +--OR757490|17404210|culex_pipiens|IT|2023-07-11
+|                    |  |        |     +----------| (100)
+|                    |  |        |                |  +-----OP734251|NA|culex_pipiens|IT|2022-08-01
+|                    |  |        |                +--| (100)
+|                    |  |        |                   |  +--OP734252|NA|culex_pipiens|IT|2022-08-01
+|                    |  |        |                   +--| (100)
+|                    |  |        |                      +-----OP734258|NA|culex_pipiens|IT|2022-07-27
+|                    |  |     +--| (30)
+|                    |  |     |  |         +--KU573070|216606/2013|culex_pipiens|IT|2013
+|                    |  |     |  |     +---| (100)
+|                    |  |     |  |     |   +--------------------OR757493|17404216|culex_pipiens|IT|2023-07-15
+|                    |  |     |  |  +--| (88)
+|                    |  |     |  |  |  +--------------ON032477|ITA2018_17495|turdus_merula|IT|2018-08-17
+|                    |  |     |  +--| (20)
+|                    |  |     |     |     +--------MF991886|BD1/17-AT|homo_sapiens|AT|2017-07-24
+|                    |  |     |     |  +--| (49)
+|                    |  |     |     |  |  |  +---------------------NA|22VIR8404-2|turdus_merula|IT|2022-09-01
+|                    |  |     |     |  |  +--| (91)
+|                    |  |     |     |  |     |                      +--PV501205|204|culex_sp|HU|2024-07-21
+|                    |  |     |     |  |     +----------------------| (100)
+|                    |  |     |     |  |                            |     +--PV501206|205|culex_sp|HU|2024-07-21
+|                    |  |     |     |  |                            |  +--| (64)
+|                    |  |     |     |  |                            |  |  +--PV501207|265|culex_sp|HU|2024-07-21
+|                    |  |     |     |  |                            +--| (68)
+|                    |  |     |     |  |                               +--PV501209|373|culex_sp|HU|2024-08-16
+|                    |  |     |     +--| (78)
+|                    |  |     |        |     +---------MF063042|AT-N211/16|turdus_merula|AT|2016-09-29
+|                    |  |     |        |  +--| (48)
+|                    |  |     |        |  |  +----------OQ414983|TV193/2019|culex_pipiens|RO|2019-07
+|                    |  |     |        +--| (24)
+|                    |  |     |           |     +--------MF063043|HU-47540/16|turdus_merula|HU|2016-09-26
+|                    |  |     |           |  +--| (75)
+|                    |  |     |           |  |  |  +----------------------------NA|USUV-GR1439/2024|homo_sapiens|EL|2024-09-16
+|                    |  |     |           |  |  +--| (99)
+|                    |  |     |           |  |     |                        +--PV523801|9460|homo_sapiens|HU|2024-10-04
+|                    |  |     |           |  |     |                     +--| (84)
+|                    |  |     |           |  |     |                     |  +--PV523802|9731|homo_sapiens|HU|2024-10-12
+|                    |  |     |           |  |     +---------------------| (100)
+|                    |  |     |           |  |                           +--PQ772639|USUV-HUN-SM2024|homo_sapiens|HU|2024-11-11
+|                    |  |     |           +--| (97)
+|                    |  |     |              |  +--------------------------PV541149|7096_2024|homo_sapiens|HU|2024-08-07
+|                    |  |     |              +--| (98)
+|                    |  |     |                 |              +-----------PV501208|296|culex_sp|HU|2024-08-02
+|                    |  |     |                 |  +-----------| (100)
+|                    |  |     |                 |  |           +-----------PV501211|412|culex_sp|HU|2024-08-07
+|                    |  |     |                 +--| (100)
+|                    |  |     |                    |  +------------------PV501210|406|culex_sp|HU|2024-08-24
+|                    |  |     |                    +--| (99)
+|                    |  |     |                       +---------PV501212|416|culex_sp|HU|2024-07-31
+|                    |  +-----| (100)
+|                    |        |  +--KX816647|208576-8/2011|culex_pipiens|IT|2011-08
+|                    |        +--| (100)
+|                    |           |                 +--MW164660|13pool5678|culex_pipiens|IT|2013-08-08
+|                    |           |              +--| (77)
+|                    |           |              |  +--KX816651|211204-8/2012|culex_pipiens|IT|2012-08
+|                    |           |           +--| (100)
+|                    |           |           |  |     +--MW164661|13pool5687|culex_pipiens|IT|2013-08-08
+|                    |           |           |  |  +--| (79)
+|                    |           |           |  |  |  +--KU573074|245735-8/2013|culex_pipiens|IT|2013
+|                    |           |           |  +--| (100)
+|                    |           |           |     +-----MW164664|13pool5827|culex_pipiens|IT|2013-08-13
+|                    |           |        +--| (76)
+|                    |           |        |  +--KX816650|211984-4/2012|culex_pipiens|IT|2012-08
+|                    |           |     +--| (99)
+|                    |           |     |  |      +--KU573075|201602-24/2014|culex_pipiens|IT|2014
+|                    |           |     |  +------| (100)
+|                    |           |     |         +--KU573076|201602-25/2014|culex_pipiens|IT|2014
+|                    |           |  +--| (100)
+|                    |           |  |  +------KX816652|211204-7/2012|culex_pipiens|IT|2012-08
+|                    |           +--| (83)
+|                    |              |           +--ON032479|ITA2010_12543|turdus_merula|IT|2010
+|                    |              |        +--| (100)
+|                    |              |        |  +--KX555624|NA|turdus_merula|IT|2010
+|                    |              |     +--| (99)
+|                    |              |     |  |     +--KX555626|NA|turdus_merula|IT|2010
+|                    |              |     |  |  +--| (100)
+|                    |              |     |  |  |  +--KX555625|NA|turdus_merula|IT|2010
+|                    |              |     |  +--| (100)
+|                    |              |     |     |   +--KX555627|NA|turdus_merula|IT|2010
+|                    |              |     |     +---| (100)
+|                    |              |     |         +--KX555628|NA|turdus_merula|IT|2010
+|                    |              |  +--| (100)
+|                    |              |  |  |           +--KU573071|218200/2013|culex_pipiens|IT|2013
+|                    |              |  |  |  +--------| (100)
+|                    |              |  |  |  |        +--KU573072|221034-3/2013|culex_pipiens|IT|2013
+|                    |              |  |  +--| (97)
+|                    |              |  |     +-------------------MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|IT|2018-08-20
+|                    |              +--| (60)
+|                    |                 +---HM569263|NA|homo_sapiens|IT|2009-09-24
+|                 +--| (11)
+|                 |  |     +--MW164683|14pool895|culex_pipiens|IT|2014-07-22
+|                 |  |  +--| (100)
+|                 |  |  |  |  +-----MW164687|15pool1419|culex_pipiens|IT|2015-08-05
+|                 |  |  |  +--| (69)
+|                 |  |  |     |         +----NA|20VIR4951|serinus_canaria|IT|2020-08-19
+|                 |  |  |     |      +--| (80)
+|                 |  |  |     |      |  +--MW164769|18pool948|culex_pipiens|IT|2018-07-06
+|                 |  |  |     +------| (100)
+|                 |  |  |            |    +--MW164732|18pool108G|culex_pipiens|IT|2018-09-06
+|                 |  |  |            +----| (100)
+|                 |  |  |                 +--MW164757|18pool1614|culex_pipiens|IT|2018-08-09
+|                 |  +--| (19)
+|                 |     |                    +--MW164713|17pool1488|culex_pipiens|IT|2017-08-02
+|                 |     |                 +--| (83)
+|                 |     |                 |  |  +--MW164735|18pool1163|culex_pipiens|IT|2018-07-17
+|                 |     |                 |  +--| (69)
+|                 |     |                 |     +--MW164750|18pool1509|culex_pipiens|IT|2018-07-31
+|                 |     |           +-----| (95)
+|                 |     |           |     +--ON032478|ITA2018_18638|turdus_merula|IT|2018-09-03
+|                 |     |        +--| (71)
+|                 |     |        |  +------MW164739|18pool1261|culex_pipiens|IT|2018-07-19
+|                 |     +--------| (95)
+|                 |              |     +--MW164726|17pool1923|culex_pipiens|IT|2017-09-11
+|                 |              |  +--| (89)
+|                 |              |  |  +--MW164717|17pool1609|culex_pipiens|IT|2017-08-16
+|                 |              +--| (99)
+|                 |                 +-------MT784898|NA|turdus_iliacus|IT|2017
+|              +--| (51)
+|              |  |              +--MW164681|14pool1703|culex_pipiens|IT|2014-09-23
+|              |  |           +--| (28)
+|              |  |           |  +--------MW164743|18pool1267|culex_pipiens|IT|2018-07-19
+|              |  |        +--| (24)
+|              |  |        |  |  +---MW164686|15pool1335|culex_pipiens|IT|2015-08-03
+|              |  |        |  +--| (27)
+|              |  |        |     |  +--MW164691|15pool1751|culex_pipiens|IT|2015-09-02
+|              |  |        |     +--| (100)
+|              |  |        |        +--MW164694|15VIR4781-31|turdus_iliacus|IT|2015-09-15
+|              |  |     +--| (100)
+|              |  |     |  +--MW164693|15pool1939|culex_pipiens|IT|2015-09-21
+|              |  |  +--| (49)
+|              |  |  |  |     +--MW164690|15pool1564|culex_pipiens|IT|2015-08-17
+|              |  |  |  |  +--| (31)
+|              |  |  |  |  |  +--MW164692|15pool1759|culex_pipiens|IT|2015-09-02
+|              |  |  |  +--| (20)
+|              |  |  |     |           +--MW164697|16pool1634|culex_pipiens|IT|2016-07-20
+|              |  |  |     |        +--| (77)
+|              |  |  |     |        |  |     +--MW164710|17pool1250|culex_pipiens|IT|2017-07-19
+|              |  |  |     |        |  |  +--| (100)
+|              |  |  |     |        |  |  |  +--MW164725|17pool1729|culex_pipiens|IT|2017-08-21
+|              |  |  |     |        |  +--| (100)
+|              |  |  |     |        |     |  +--MW164727|17VIR7761-4|sturnus_vulgaris|IT|2017-09-01
+|              |  |  |     |        |     +--| (100)
+|              |  |  |     |        |        |  +--MW164728|17VIR7838-4|turdus_merula|IT|2017-08-30
+|              |  |  |     |        |        +--| (82)
+|              |  |  |     |        |           +--MW164722|17pool1671|culex_pipiens|IT|2017-08-16
+|              |  |  |     |     +--| (100)
+|              |  |  |     |     |  |  +--MW164701|16pool2021|culex_pipiens|IT|2016-08-08
+|              |  |  |     |     |  +--| (98)
+|              |  |  |     |     |     +--------MW164770|18VIR7808-6|ciconia_ciconia|IT|2018-09-07
+|              |  |  |     |  +--| (30)
+|              |  |  |     |  |  |     +--MW164709|17pool1191|culex_pipiens|IT|2017-07-17
+|              |  |  |     |  |  |  +--| (99)
+|              |  |  |     |  |  |  |  |  +---MW164760|18pool1660|culex_pipiens|IT|2018-08-14
+|              |  |  |     |  |  |  |  +--| (100)
+|              |  |  |     |  |  |  |     +-------------OP734246|NA|culex_pipiens|IT|2022-07-29
+|              |  |  |     |  |  +--| (99)
+|              |  |  |     |  |     +--MW164761|18pool1662|culex_pipiens|IT|2018-08-14
+|              |  |  |     +--| (10)
+|              |  |  |        |        +--MW164700|16pool1870|culex_pipiens|IT|2016-08-01
+|              |  |  |        |     +--| (81)
+|              |  |  |        |     |  +--MW164706|16pool2355|culex_pipiens|IT|2016-08-29
+|              |  |  |        |  +--| (100)
+|              |  |  |        |  |  |  +--MW164731|18pool1018|culex_pipiens|IT|2018-07-10
+|              |  |  |        |  |  +--| (100)
+|              |  |  |        |  |     |  +--MW164749|18pool1506|culex_pipiens|IT|2018-07-31
+|              |  |  |        |  |     +--| (78)
+|              |  |  |        |  |        |           +--NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05
+|              |  |  |        |  |        |        +--| (99)
+|              |  |  |        |  |        |        |  |  +--OR757489|1572126|culex_pipiens|IT|2023-07-07
+|              |  |  |        |  |        |        |  +--| (100)
+|              |  |  |        |  |        |        |     +--PP104390|TE2518812|columbidae_sp|IT|2023-08-25
+|              |  |  |        |  |        |     +--| (94)
+|              |  |  |        |  |        |     |  |  +---NA|23VIR8795|turdus_merula|IT|2023-08-23
+|              |  |  |        |  |        |     |  +--| (69)
+|              |  |  |        |  |        |     |     +----NA|23pool2138_23RS2497-1|culex_pipiens|IT|2023-11-13
+|              |  |  |        |  |        +-----| (100)
+|              |  |  |        |  |              +----OP734256|NA|culex_pipiens|IT|2022-07-29
+|              |  |  |        +--| (22)
+|              |  |  |           |     +--MW164729|17VIR8655-3|larus_michahellis|IT|2017-09-18
+|              |  |  |           |  +--| (100)
+|              |  |  |           |  |  +--MW164748|18pool1442|culex_pipiens|IT|2018-07-31
+|              |  |  |           +--| (99)
+|              |  |  |              |  +--MW164703|16pool2117|culex_pipiens|IT|2016-08-16
+|              |  |  |              +--| (100)
+|              |  |  |                 |  +--MW164734|18pool1141|culex_pipiens|IT|2018-07-17
+|              |  |  |                 +--| (90)
+|              |  |  |                    |                 +--MW164712|17pool1309|culex_pipiens|IT|2017-07-24
+|              |  |  |                    |              +--| (22)
+|              |  |  |                    |              |  |        +--MW164730|18pool1009|culex_pipiens|IT|2018-07-10
+|              |  |  |                    |              |  |     +--| (88)
+|              |  |  |                    |              |  |     |  +--MW164759|18pool1649|culex_pipiens|IT|2018-08-14
+|              |  |  |                    |              |  |  +--| (100)
+|              |  |  |                    |              |  |  |  +--MW164754|18pool1556|culex_pipiens|IT|2018-08-07
+|              |  |  |                    |              |  +--| (62)
+|              |  |  |                    |              |     |  +--MW164746|18pool1405|culex_pipiens|IT|2018-07-26
+|              |  |  |                    |              |     +--| (100)
+|              |  |  |                    |              |        +--MW164766|18pool1965|culex_pipiens|IT|2018-09-06
+|              |  |  |                    |           +--| (36)
+|              |  |  |                    |           |  +--MW164723|17pool1688|culex_pipiens|IT|2017-08-16
+|              |  |  |                    |        +--| (56)
+|              |  |  |                    |        |  +--MW164716|17pool1544|culex_pipiens|IT|2017-08-07
+|              |  |  |                    |     +--| (100)
+|              |  |  |                    |     |  +----------------OP734248|NA|culex_pipiens|IT|2022-07-29
+|              |  |  |                    |  +--| (92)
+|              |  |  |                    |  |  +--MW164715|17pool1525|culex_pipiens|IT|2017-08-07
+|              |  |  |                    +--| (100)
+|              |  |  |                       +--MW164747|18pool1430|culex_pipiens|IT|2018-07-31
+|              |  +--| (100)
+|              |     +--MW164704|16pool2311|culex_pipiens|IT|2016-08-24
+|           +--| (80)
+|           |  +--MW164737|18pool1229|culex_pipiens|IT|2018-07-19
+|        +--| (99)
+|        |  +--------MW164742|18pool1264|culex_pipiens|IT|2018-07-19
+|     +--| (100)
+|     |  +--MW164699|16pool1839|culex_pipiens|IT|2016-08-01
++-----| (100)
+      +-----------MW164765|18pool1832|culex_pipiens|IT|2018-08-28
+
+
+Consensus tree in newick format: 
+
+(NA|20VIR5077|turdus_merula|IT|2020-08-21:0.0002991810,((NA|23VIR9300|turdus_merula|IT|2023-10-01:0.0006001146,(NA|23pool2067_23RS1943-143|culex_pipiens|IT|2023-08-24:0.0001997453,((OR921100|2023TE1837011|culex_pipiens|IT|2023-09-08:0.0003021468,OP734247|NA|culex_pipiens|IT|2022-07-29:0.0008854306)67:0.0000025097,OR921096|2023TE1822511|turdus_merula|IT|2023-09-07:0.0009252875)88:0.0005001273)72:0.0000025012)77:0.0004003698,((NA|23pool1901_23RS1909-300|culex_pipiens|IT|2023-08-16:0.0007005229,NA|22VIR7086-3|turdus_merula|IT|2022-07-18:0.0004999490)41:0.0000025012,(NA|23VIR8708|columbidae_sp|IT|2023-09-01:0.0004006040,((OR921101|2023TE1838411|culex_pipiens|IT|2023-09-08:0.0008063709,((OR921106|2023TE1699411|culex_pipiens|IT|2023-08-24:0.0001020547,PP104389|TE2518712|culex_pipiens|IT|2023-09-22:0.0002044709)100:0.0005032865,OR757488|1572124|culex_pipiens|IT|2023-07-06:0.0008206378)100:0.0002023346)74:0.0000988677,PP104385|TE2518212|culex_pipiens|IT|2023-09-22:0.0006146634)70:0.0005036566)50:0.0000021347)76:0.0002998895)100:0.0007031857,(((((((MW164662|13pool5744|culex_pipiens|IT|2013-08-13:0.0001003986,(((((((((((((((((((NA|20VIR4811|serinus_canaria|IT|2020-08-10:0.0007002289,MW164762|18pool1712|culex_pipiens|IT|2018-08-17:0.0001000958)88:0.0000025148,MW164753|18pool1523|culex_pipiens|IT|2018-08-02:0.0003015390)100:0.0013016972,(MW164707|16pool2571|culex_pipiens|IT|2016-09-14:0.0004007376,((MW164719|17pool1647|culex_pipiens|IT|2017-08-16:0.0000025012,(MW164764|18pool1795|culex_pipiens|IT|2018-08-23:0.0004998184,MW164745|18pool1398|culex_pipiens|IT|2018-07-26:0.0008004781)28:0.0000025012)26:0.0000025012,MW164758|18pool1617|culex_pipiens|IT|2018-08-09:0.0008002279)100:0.0009007998)50:0.0000025012)100:0.0003599942,(MW164708|17pool103G|culex_pipiens|IT|2017-08-30:0.0008443067,MW164771|18VIR7859-4|turdus_merula|IT|2018-09-07:0.0008617325)91:0.0002996860)97:0.0002406562,(MW164714|17pool1493|culex_pipiens|IT|2017-08-02:0.0000025012,MW164720|17pool1653|culex_pipiens|IT|2017-08-16:0.0000025012)100:0.0012020359)28:0.0000025012,(MW164685|15pool1187|culex_pipiens|IT|2015-07-22:0.0004007366,(MW164711|17pool1252|culex_pipiens|IT|2017-07-19:0.0002004659,((((((MW164740|18pool1262|culex_pipiens|IT|2018-07-19:0.0002001533,MW164768|18pool78G|culex_pipiens|IT|2018-08-09:0.0003003206)48:0.0000025012,MW164752|18pool1522|culex_pipiens|IT|2018-08-02:0.0000025012)25:0.0000025012,MW164751|18pool1519|culex_pipiens|IT|2018-08-02:0.0000025012)29:0.0000025012,(MW164756|18pool1610|culex_pipiens|IT|2018-08-09:0.0003003926,MW164767|18pool2042|culex_pipiens|IT|2018-09-13:0.0004996842)33:0.0000025012)100:0.0001000489,((MW164755|18pool1575|culex_pipiens|IT|2018-08-07:0.0001000587,MW164744|18pool1347|culex_pipiens|IT|2018-07-24:0.0002002399)99:0.0001000834,MW164736|18pool1219|culex_pipiens|IT|2018-07-17:0.0005998872)33:0.0000025012)43:0.0000025012,MW164733|18pool1124|culex_pipiens|IT|2018-07-12:0.0004022921)99:0.0000998742)100:0.0007008010)22:0.0000025012)52:0.0000110711,MW164724|17pool1709|culex_pipiens|IT|2017-08-17:0.0000025012)69:0.0003887833,(MW164676|14pool1478|culex_pipiens|IT|2014-09-02:0.0003003298,(MW164688|15pool1426|culex_pipiens|IT|2015-08-06:0.0003983118,MW164741|18pool1263|culex_pipiens|IT|2018-07-19:0.0016106998)100:0.0011056770)62:0.0000025012)71:0.0000084857,MW164672|14pool1388|culex_pipiens|IT|2014-08-22:0.0000025012)81:0.0002914707,MW164648|12pool2316|culex_pipiens|IT|2012-08-22:0.0003003760)34:0.0000025012,(MW164654|12VIR6777-9|turdus_pilaris|IT|2012-09-05:0.0003002876,MW164652|12pool2628|culex_pipiens|IT|2012-09-05:0.0005999204)42:0.0000025012)99:0.0003003933,(MW164634|11pool1743|culex_pipiens|IT|2011-08-09:0.0002002322,MW164635|11pool1805|culex_pipiens|IT|2011-08-09:0.0001000715)99:0.0001000788)21:0.0000025012,(MW164641|12pool1898|culex_pipiens|IT|2012-07-24:0.0000025012,(MW164642|12pool1948|culex_pipiens|IT|2012-07-24:0.0000025012,((((MW164669|13pool6471|culex_pipiens|IT|2013-09-05:0.0002001541,MW164670|13pool6472|culex_pipiens|IT|2013-09-05:0.0002001555)72:0.0000025012,(MW164678|14pool1494|culex_pipiens|IT|2014-09-02:0.0003003118,MW164679|14pool1511|culex_pipiens|IT|2014-09-03:0.0000025012)100:0.0005007988)100:0.0002001548,MW164658|13pool5009|culex_pipiens|IT|2013-07-31:0.0005011009)48:0.0000025012,(MW164663|13pool5778|culex_pipiens|IT|2013-08-13:0.0003005372,MW164668|13pool6465|culex_pipiens|IT|2013-09-05:0.0004010036)100:0.0003006896)25:0.0000025012)31:0.0000025012)99:0.0002002103)14:0.0000025012,(((MW164636|11pool1941|culex_pipiens|IT|2011-08-16:0.0000025012,(KX816648|220921-2/2011|culex_pipiens|IT|2011-09:0.0000025012,KX816649|231247/2011|turdus_merula|IT|2011-09:0.0000025012)100:0.0003002945)76:0.0001000404,MW164640|11pool2444|culex_pipiens|IT|2011-09-21:0.0005009934)26:0.0000025012,(((MW164671|14pool1366|culex_pipiens|IT|2014-08-20:0.0004004939,(MW164673|14pool1394|culex_pipiens|IT|2014-08-26:0.0002002944,MW164684|14VIR5467-8|NA|IT|2014-09-02:0.0002002427)100:0.0006005845)60:0.0000025012,MW164682|14pool857|culex_pipiens|IT|2014-07-22:0.0004007186)100:0.0004006084,KX268471|ITA-055|culex_modestus|IT|2011:0.0002001904)17:0.0000025012)6:0.0000025012)22:0.0000025012,MW164639|11pool2135|culex_pipiens|IT|2011-08-30:0.0002001338)99:0.0002000025,(((((((PP104383|TE2518012|culex_pipiens|IT|2023-08-02:0.0014033593,(OP734260|NA|culex_pipiens|IT|2022-07-08:0.0006005959,OR757491|17404212|laridae_sp|IT|2023-07-20:0.0007156292)92:0.0000025012)100:0.0002001128,ON032482|ITA2021_304421|larus_michahellis|IT|2021-09-08:0.0005012546)100:0.0005013101,((OR757492|17404213|culex_pipiens|IT|2023-07-24:0.0005017965,OR921093|2023TE1639111|culex_pipiens|IT|2023-08-11:0.0014394806)100:0.0004011944,OR757494|17404220|turdus_merula|IT|2023-07-24:0.0010034603)100:0.0001997612)100:0.0005788360,(PP104387|TE2518512|sturnus_vulgaris|IT|2023-09-13:0.0005000042,PP104388|TE2518612|turdus_merula|IT|2023-09-22:0.0006018684)100:0.0024507840)92:0.0003978720,OP734249|NA|culex_pipiens|IT|2022-08-01:0.0021018601)90:0.0000025097,MT784899|NA|turdus_merula|IT|2017:0.0016324180)90:0.0004496690,ON813236|305920/2021|culex_pipiens|IT|2021:0.0027317325)100:0.0004782899)98:0.0004008947,((MW164721|17pool1664|culex_pipiens|IT|2017-08-16:0.0026267760,(((NA|23VIR9292|turdus_merula|IT|2023-10-01:0.0014965002,OR757496|1740423|NA|IT|2023-07-15:0.0015283387)100:0.0012050053,(OP734254|NA|NA|IT|2022-08-08:0.0011148101,(OR757495|1740422|culex_pipiens|IT|2023-07-18:0.0000025012,OR921104|2023TE1838911|culex_pipiens|IT|2023-09-08:0.0005152480)100:0.0013193463)100:0.0009043817)82:0.0000025097,(((((PP104391|TE2518912|turdus_merula|IT|2023-09-07:0.0002999873,OR921105|2023TE1839111|phoenicurus_phoenicurus|IT|2023-09-08:0.0000025012)100:0.0008027075,OR921102|2023TE1908911|culex_pipiens|IT|2023-09-15:0.0005006551)100:0.0005012153,(((((((((OP734250|NA|culex_pipiens|IT|2022-07-29:0.0001998895,(OP734253|NA|culex_pipiens|IT|2022-08-05:0.0002999680,OP734261|NA|culex_pipiens|IT|2022-07-08:0.0006276550)81:0.0000025012)74:0.0000998252,(OR921103|2023TE1683411|culex_pipiens|IT|2023-08-11:0.0009105976,PP104384|TE2518112|culex_pipiens|IT|2023-09-22:0.0009341834)98:0.0001996320)37:0.0000025012,(OP734257|NA|culex_pipiens|IT|2022-07-22:0.0000025012,OR921095|2023TE1639211|culex_pipiens|IT|2023-08-11:0.0008191705)77:0.0000025012)97:0.0001999032,ON032486|ITA2021_310782|turdus_merula|IT|2021:0.0012019323)47:0.0000025012,(ON032480|ITA2021_305818|turdus_merula|IT|2021-09-30:0.0000998016,ON813235|ITA2021_300240|turdus_merula|IT|2021:0.0000999858)100:0.0004003779)95:0.0003000501,((ON032481|ITA2021_302715|turdus_merula|IT|2021-09-02:0.0000025012,((ON032483|ITA2021_301597|turdus_merula|IT|2021-08-19:0.0002007048,ON032484|ITA2021_305812|columba_palumbus|IT|2021-09-10:0.0010049920)99:0.0000995388,(((ON032474|ITA2020_115108|culex_pipiens|IT|2020:0.0000025012,ON032475|ITA2020_123828|muscicapa_striata|IT|2020:0.0000025012)100:0.0002000655,ON032476|ITA2020_155885|turdus_merula|IT|2020:0.0005007887)99:0.0002000325,OP734259|NA|culex_pipiens|IT|2022-07-25:0.0008190090)96:0.0002000137)66:0.0000025012)87:0.0000998193,ON032485|ITA2021_302331|turdus_merula|IT|2021:0.0005003462)29:0.0000025012)59:0.0000970791,OP734245|NA|culex_pipiens|IT|2022-07-01:0.0012301660)55:0.0000030765,((ON813234|ITA2021_299815|turdus_merula|IT|2021:0.0000025012,ON032487|ITA2021_299813|turdus_merula|IT|2021:0.0000025012)100:0.0000998249,(OR921099|2023TE1908111|turdus_merula|IT|2023-09-15:0.0005030433,PP104386|TE2518312|culex_pipiens|IT|2023-09-08:0.0017431516)94:0.0001008979)45:0.0000025012)79:0.0000999232,(OR921098|2023TE1683511|columba_palumbus|IT|2023-08-23:0.0001009936,(OR921097|2023TE1640411|culex_pipiens|IT|2023-08-11:0.0002045254,OR921094|2023TE1640011|culex_pipiens|IT|2023-08-11:0.0001031101)98:0.0001031049)100:0.0016236745)65:0.0000025012)100:0.0010873010,MW164738|18pool1258|culex_pipiens|IT|2018-07-19:0.0004165935)84:0.0000960040,OP734255|NA|culex_pipiens|IT|2022-07-27:0.0025599022)100:0.0006128172)100:0.0010150027)90:0.0003957788,((OR757497|1740425|culex_pipiens|IT|2023-07-16:0.0002000788,OR757490|17404210|culex_pipiens|IT|2023-07-11:0.0000025012)100:0.0029319559,(OP734251|NA|culex_pipiens|IT|2022-08-01:0.0008039114,(OP734252|NA|culex_pipiens|IT|2022-08-01:0.0004038416,OP734258|NA|culex_pipiens|IT|2022-07-27:0.0008275249)100:0.0005015273)100:0.0004955692)100:0.0015126288)70:0.0000025097)39:0.0000025012,(((KU573070|216606/2013|culex_pipiens|IT|2013:0.0000025012,OR757493|17404216|culex_pipiens|IT|2023-07-15:0.0028184229)100:0.0006028669,ON032477|ITA2018_17495|turdus_merula|IT|2018-08-17:0.0020123571)88:0.0000976671,((MF991886|BD1/17-AT|homo_sapiens|AT|2017-07-24:0.0012031204,(NA|22VIR8404-2|turdus_merula|IT|2022-09-01:0.0030499284,(PV501205|204|culex_sp|HU|2024-07-21:0.0004023207,((PV501206|205|culex_sp|HU|2024-07-21:0.0000025012,PV501207|265|culex_sp|HU|2024-07-21:0.0000025012)64:0.0000025012,PV501209|373|culex_sp|HU|2024-08-16:0.0001002508)68:0.0000025012)100:0.0031628798)91:0.0002744974)49:0.0000025012,((MF063042|AT-N211/16|turdus_merula|AT|2016-09-29:0.0014020661,OQ414983|TV193/2019|culex_pipiens|RO|2019-07:0.0014972320)48:0.0000020461,((MF063043|HU-47540/16|turdus_merula|HU|2016-09-26:0.0013027281,(NA|USUV-GR1439/2024|homo_sapiens|EL|2024-09-16:0.0039734625,((PV523801|9460|homo_sapiens|HU|2024-10-04:0.0000025012,PV523802|9731|homo_sapiens|HU|2024-10-12:0.0000025012)84:0.0000025012,PQ772639|USUV-HUN-SM2024|homo_sapiens|HU|2024-11-11:0.0002005778)100:0.0029740727)99:0.0001634301)75:0.0000025012,(PV541149|7096_2024|homo_sapiens|HU|2024-08-07:0.0036549894,((PV501208|296|culex_sp|HU|2024-08-02:0.0016131129,PV501211|412|culex_sp|HU|2024-08-07:0.0016289651)100:0.0016028718,(PV501210|406|culex_sp|HU|2024-08-24:0.0026214843,PV501212|416|culex_sp|HU|2024-07-31:0.0014345431)99:0.0003351618)100:0.0004808524)98:0.0001963947)97:0.0002998962)24:0.0000025012)78:0.0000998424)20:0.0000025012)30:0.0000025012,(KX816647|208576-8/2011|culex_pipiens|IT|2011-08:0.0000025012,((((((MW164660|13pool5678|culex_pipiens|IT|2013-08-08:0.0004001494,KX816651|211204-8/2012|culex_pipiens|IT|2012-08:0.0001998203)77:0.0000025012,((MW164661|13pool5687|culex_pipiens|IT|2013-08-08:0.0000025012,KU573074|245735-8/2013|culex_pipiens|IT|2013:0.0000025012)79:0.0000025012,MW164664|13pool5827|culex_pipiens|IT|2013-08-13:0.0009011500)100:0.0001998211)100:0.0001998259,KX816650|211984-4/2012|culex_pipiens|IT|2012-08:0.0003998734)76:0.0000025012,(KU573075|201602-24/2014|culex_pipiens|IT|2014:0.0000025012,KU573076|201602-25/2014|culex_pipiens|IT|2014:0.0000025012)100:0.0010012877)99:0.0000996806,KX816652|211204-7/2012|culex_pipiens|IT|2012-08:0.0010025197)100:0.0003006668,((((ON032479|ITA2010_12543|turdus_merula|IT|2010:0.0001998401,KX555624|NA|turdus_merula|IT|2010:0.0000025012)100:0.0002999612,((KX555626|NA|turdus_merula|IT|2010:0.0001004977,KX555625|NA|turdus_merula|IT|2010:0.0000025012)100:0.0005010092,(KX555627|NA|turdus_merula|IT|2010:0.0004004785,KX555628|NA|turdus_merula|IT|2010:0.0002999014)100:0.0006016840)100:0.0001002432)99:0.0001006806,((KU573071|218200/2013|culex_pipiens|IT|2013:0.0001047192,KU573072|221034-3/2013|culex_pipiens|IT|2013:0.0002144717)100:0.0012976022,MN989418|Usutu/Goose/Italy/17917/2018|anatidae__duck_sp_|IT|2018-08-20:0.0027244728)97:0.0000924427)100:0.0001006355,HM569263|NA|homo_sapiens|IT|2009-09-24:0.0006003812)60:0.0000025012)83:0.0000025097)100:0.0002981728)100:0.0008007911)29:0.0000025012,((MW164683|14pool895|culex_pipiens|IT|2014-07-22:0.0001999848,(MW164687|15pool1419|culex_pipiens|IT|2015-08-05:0.0009008134,((NA|20VIR4951|serinus_canaria|IT|2020-08-19:0.0007834375,MW164769|18pool948|culex_pipiens|IT|2018-07-06:0.0002176226)80:0.0000989753,(MW164732|18pool108G|culex_pipiens|IT|2018-09-06:0.0002001128,MW164757|18pool1614|culex_pipiens|IT|2018-08-09:0.0001003604)100:0.0007206245)100:0.0009850637)69:0.0000025012)100:0.0001004817,((((MW164713|17pool1488|culex_pipiens|IT|2017-08-02:0.0000025012,(MW164735|18pool1163|culex_pipiens|IT|2018-07-17:0.0000970791,MW164750|18pool1509|culex_pipiens|IT|2018-07-31:0.0000025012)69:0.0000027358)83:0.0000997401,ON032478|ITA2018_18638|turdus_merula|IT|2018-09-03:0.0004008287)95:0.0008014470,MW164739|18pool1261|culex_pipiens|IT|2018-07-19:0.0010013196)71:0.0000025012,((MW164726|17pool1923|culex_pipiens|IT|2017-09-11:0.0003853887,MW164717|17pool1609|culex_pipiens|IT|2017-08-16:0.0000025012)89:0.0000025012,MT784898|NA|turdus_iliacus|IT|2017:0.0011169412)99:0.0003976251)95:0.0013033759)19:0.0000025012)11:0.0000025012,(((((MW164681|14pool1703|culex_pipiens|IT|2014-09-23:0.0001002518,MW164743|18pool1267|culex_pipiens|IT|2018-07-19:0.0012018526)28:0.0000025012,(MW164686|15pool1335|culex_pipiens|IT|2015-08-03:0.0006001610,(MW164691|15pool1751|culex_pipiens|IT|2015-09-02:0.0005006265,MW164694|15VIR4781-31|turdus_iliacus|IT|2015-09-15:0.0003998035)100:0.0005009001)27:0.0000025012)24:0.0000025012,MW164693|15pool1939|culex_pipiens|IT|2015-09-21:0.0002997466)100:0.0001002327,((MW164690|15pool1564|culex_pipiens|IT|2015-08-17:0.0000025012,MW164692|15pool1759|culex_pipiens|IT|2015-09-02:0.0000025012)31:0.0000025012,((((MW164697|16pool1634|culex_pipiens|IT|2016-07-20:0.0002003815,((MW164710|17pool1250|culex_pipiens|IT|2017-07-19:0.0000025012,MW164725|17pool1729|culex_pipiens|IT|2017-08-21:0.0001001512)100:0.0001001331,(MW164727|17VIR7761-4|sturnus_vulgaris|IT|2017-09-01:0.0003007455,(MW164728|17VIR7838-4|turdus_merula|IT|2017-08-30:0.0003997609,MW164722|17pool1671|culex_pipiens|IT|2017-08-16:0.0003998616)82:0.0000025012)100:0.0002004777)100:0.0003008571)77:0.0000025012,(MW164701|16pool2021|culex_pipiens|IT|2016-08-08:0.0000025012,MW164770|18VIR7808-6|ciconia_ciconia|IT|2018-09-07:0.0013026630)98:0.0000999290)100:0.0001001843,((MW164709|17pool1191|culex_pipiens|IT|2017-07-17:0.0002005021,(MW164760|18pool1660|culex_pipiens|IT|2018-08-14:0.0006017914,OP734246|NA|culex_pipiens|IT|2022-07-29:0.0019129541)100:0.0002989394)99:0.0002004396,MW164761|18pool1662|culex_pipiens|IT|2018-08-14:0.0005001213)99:0.0002006823)30:0.0000025012,(((MW164700|16pool1870|culex_pipiens|IT|2016-08-01:0.0000025012,MW164706|16pool2355|culex_pipiens|IT|2016-08-29:0.0001001238)81:0.0000025012,(MW164731|18pool1018|culex_pipiens|IT|2018-07-10:0.0001000386,(MW164749|18pool1506|culex_pipiens|IT|2018-07-31:0.0002002388,(((NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05:0.0000025012,(OR757489|1572126|culex_pipiens|IT|2023-07-07:0.0001234483,PP104390|TE2518812|columbidae_sp|IT|2023-08-25:0.0004142089)100:0.0004904566)99:0.0004999737,(NA|23VIR8795|turdus_merula|IT|2023-08-23:0.0005999733,NA|23pool2138_23RS2497-1|culex_pipiens|IT|2023-11-13:0.0007003614)69:0.0000025012)94:0.0000985985,OP734256|NA|culex_pipiens|IT|2022-07-29:0.0007024046)100:0.0009025160)78:0.0000025012)100:0.0003998635)100:0.0003997536,((MW164729|17VIR8655-3|larus_michahellis|IT|2017-09-18:0.0000998570,MW164748|18pool1442|culex_pipiens|IT|2018-07-31:0.0005003920)100:0.0004012852,(MW164703|16pool2117|culex_pipiens|IT|2016-08-16:0.0003005908,(MW164734|18pool1141|culex_pipiens|IT|2018-07-17:0.0004998847,((((((MW164712|17pool1309|culex_pipiens|IT|2017-07-24:0.0000025012,(((MW164730|18pool1009|culex_pipiens|IT|2018-07-10:0.0002000509,MW164759|18pool1649|culex_pipiens|IT|2018-08-14:0.0000999969)88:0.0000025012,MW164754|18pool1556|culex_pipiens|IT|2018-08-07:0.0000999289)100:0.0004004501,(MW164746|18pool1405|culex_pipiens|IT|2018-07-26:0.0002003801,MW164766|18pool1965|culex_pipiens|IT|2018-09-06:0.0000998580)100:0.0005010342)62:0.0000025012)22:0.0000025012,MW164723|17pool1688|culex_pipiens|IT|2017-08-16:0.0000025012)36:0.0000025012,MW164716|17pool1544|culex_pipiens|IT|2017-08-07:0.0003004766)56:0.0000025012,OP734248|NA|culex_pipiens|IT|2022-07-29:0.0023627288)100:0.0002999005,MW164715|17pool1525|culex_pipiens|IT|2017-08-07:0.0004007208)92:0.0000025012,MW164747|18pool1430|culex_pipiens|IT|2018-07-31:0.0005000197)100:0.0003003420)90:0.0000025012)100:0.0002004872)99:0.0001000124)22:0.0000025012)10:0.0000025012)20:0.0000025012)49:0.0000025012,MW164704|16pool2311|culex_pipiens|IT|2016-08-24:0.0004998508)100:0.0003999038)51:0.0000095143,MW164737|18pool1229|culex_pipiens|IT|2018-07-19:0.0000025012)80:0.0004912744,MW164742|18pool1264|culex_pipiens|IT|2018-07-19:0.0012047602)99:0.0004003649,MW164699|16pool1839|culex_pipiens|IT|2016-08-01:0.0004001830)100:0.0002994133,MW164765|18pool1832|culex_pipiens|IT|2018-08-28:0.0016080849)100:0.0008046023);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VI.fasta.treefile -m "HKY{18.9336}+F{0.270334,0.228674,0.283368,0.217624}+G4{0.193726}" --length 10305
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VI.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VI.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug  4 16:11:37 2025
+Total CPU time used: 191.500371 seconds (0h:3m:11s)
+Total wall-clock time used: 159.358958 seconds (0h:2m:39s)
+

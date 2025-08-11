@@ -1,0 +1,16 @@
+IQ-TREE version 3.0.1 for MacOS ARM 64-bit built Jun 30 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    S31-9YFL2JH7 (SSE4.2, 48 GB RAM)
+Command: iqtree3 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_I.fasta -m HKY+G+F -czb -bb 1000 -nt AUTO
+Seed:    35547 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Aug  4 16:00:25 2025
+Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
+
+Reading alignment file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_I.fasta ... Fasta format detected
+Reading fasta file: done in 0.000386953 secs using 71.33% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.00610399 secs using 30.32% CPU
+ERROR: Alignment must have at least 3 sequences

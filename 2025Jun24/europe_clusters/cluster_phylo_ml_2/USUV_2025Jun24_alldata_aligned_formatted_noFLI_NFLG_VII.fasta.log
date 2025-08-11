@@ -1,0 +1,191 @@
+IQ-TREE version 3.0.1 for MacOS ARM 64-bit built Jun 30 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    S31-9YFL2JH7 (SSE4.2, 48 GB RAM)
+Command: iqtree3 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta -m HKY+G+F -czb -bb 1000 -nt AUTO
+Seed:    99117 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Aug  4 16:11:37 2025
+Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
+
+Reading alignment file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta ... Fasta format detected
+Reading fasta file: done in 0.0024929 secs using 73.57% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.00454211 secs using 38.31% CPU
+Alignment has 28 sequences with 10305 columns, 120 distinct patterns
+60 parsimony-informative, 108 singleton sites, 10137 constant sites
+                                                     Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 4.72069e-05 secs using 65.67% CPU
+   1  MW164637|11pool1989|culex_pipiens|IT|2011-08-23        0.04%    passed    100.00%
+   2  MW164638|11pool2109|culex_pipiens|IT|2011-08-24        0.00%    passed    100.00%
+   3  MW164643|12pool2046|culex_pipiens|IT|2012-07-24        0.00%    passed     99.88%
+   4  MW164644|12pool2194|culex_pipiens|IT|2012-08-09        0.00%    passed     99.99%
+   5  MW164645|12pool2214|culex_pipiens|IT|2012-08-07        0.04%    passed     99.98%
+   6  MW164665|13pool5873|culex_pipiens|IT|2013-08-13        0.00%    passed    100.00%
+   7  MW164650|12pool2586|culex_pipiens|IT|2012-08-23        0.01%    passed    100.00%
+   8  MW164667|13pool6009|culex_pipiens|IT|2013-08-21        0.00%    passed     99.98%
+   9  MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03    0.00%    passed    100.00%
+  10  MW164655|12VIR6787-10|alauda_arvensis|IT|2012-09-03    0.00%    passed     99.97%
+  11  MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03     0.00%    passed     99.99%
+  12  MW164646|12pool2249|culex_pipiens|IT|2012-08-07        0.00%    passed    100.00%
+  13  MW164659|13pool5600|culex_pipiens|IT|2013-08-07        0.02%    passed     99.98%
+  14  MW164649|12pool2412|culex_pipiens|IT|2012-08-22        0.00%    passed     99.99%
+  15  MW164674|14pool1419|culex_pipiens|IT|2014-08-26        0.00%    passed    100.00%
+  16  MW164680|14pool1698|culex_pipiens|IT|2014-09-23        0.00%    passed     99.98%
+  17  MW164698|16pool1777|culex_pipiens|IT|2016-07-25        0.00%    passed     99.98%
+  18  MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15      0.00%    passed     99.97%
+  19  MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15      0.00%    passed     99.97%
+  20  MW164705|16pool2336|culex_pipiens|IT|2016-08-29        0.01%    passed     99.97%
+  21  MW164689|15pool1503|culex_pipiens|IT|2015-08-10        0.00%    passed    100.00%
+  22  MW164702|16pool2106|culex_pipiens|IT|2016-08-16        0.00%    passed     99.82%
+  23  MW164647|12pool2262|culex_pipiens|IT|2012-08-07        0.06%    passed     99.99%
+  24  MW164653|12pool2653|culex_pipiens|IT|2012-09-05        0.00%    passed     99.98%
+  25  MW164677|14pool1489|culex_pipiens|IT|2014-09-02        0.00%    passed     99.96%
+  26  MW164651|12pool2626|culex_pipiens|IT|2012-09-05        0.00%    passed    100.00%
+  27  MW164666|13pool5999|culex_pipiens|IT|2013-08-21        0.02%    passed     99.96%
+  28  JF266698|NA|turdus_merula|IT|2009                      0.00%    passed    100.00%
+****  TOTAL                                                  0.01%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+NOTE: MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15 is identical to MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15 but kept for subsequent analysis
+Checking for duplicate sequences: done in 6.00815e-05 secs using 78.23% CPU
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+Generating 1000 samples for ultrafast bootstrap (seed: 99117)...
+
+NOTE: 0 MB RAM (0 GB) is required!
+Measuring multi-threading efficiency up to 16 CPU cores
+Increase to 10 rounds for branch lengths
+13097 trees examined
+Threads: 1 / Time: 16.001 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -17318
+Threads: 2 / Time: 41.476 sec / Speedup: 0.386 / Efficiency: 19% / LogL: -17318
+Determining AUTO threadcount: done in 57.4774 secs using 76.86% CPU
+BEST NUMBER OF THREADS: 1
+
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -15901.995
+2. Current log-likelihood: -15765.224
+Optimal log-likelihood: -15765.215
+Rate parameters:  A-C: 1.00000  A-G: 99.85096  A-T: 1.00000  C-G: 1.00000  C-T: 99.85096  G-T: 1.00000
+Base frequencies:  A: 0.270  C: 0.229  G: 0.283  T: 0.217
+Gamma shape alpha: 0.020
+Parameters optimization took 2 rounds (0.005 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 0.00164199 secs using 99.27% CPU
+Computing ML distances took 0.001672 sec (of wall-clock time) 0.001643 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 3.00407e-05 secs using 63.25% CPU
+Constructing RapidNJ tree: done in 3.79086e-05 secs using 84.41% CPU
+Computing RapidNJ tree took 0.000093 sec (of wall-clock time) 0.000060 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -15765.419
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 98 parsimony trees... 0.026 second
+Computing log-likelihood of 98 initial trees ... 0.035 seconds
+Current best score: -15765.215
+
+Do NNI search on 20 best initial trees
+Estimate model parameters (epsilon = 0.100)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BETTER TREE FOUND at iteration 1: -15765.208
+BETTER TREE FOUND at iteration 8: -15765.208
+Iteration 10 / LogL: -15765.208 / Time: 0h:0m:57s
+BETTER TREE FOUND at iteration 12: -15765.207
+BETTER TREE FOUND at iteration 18: -15765.207
+Iteration 20 / LogL: -15765.208 / Time: 0h:0m:57s
+Finish initializing candidate tree set (20)
+Current best tree score: -15765.207 / CPU time: 0.160
+Number of iterations: 20
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 30 / LogL: -15765.278 / Time: 0h:0m:57s (0h:2m:55s left)
+Iteration 40 / LogL: -15765.265 / Time: 0h:0m:57s (0h:1m:55s left)
+Iteration 50 / LogL: -15765.218 / Time: 0h:0m:57s (0h:1m:20s left)
+Log-likelihood cutoff on original alignment: -15806.175
+Iteration 60 / LogL: -15796.342 / Time: 0h:0m:58s (0h:0m:57s left)
+Iteration 70 / LogL: -15765.251 / Time: 0h:0m:58s (0h:0m:40s left)
+Iteration 80 / LogL: -15765.240 / Time: 0h:0m:58s (0h:0m:27s left)
+Iteration 90 / LogL: -15765.218 / Time: 0h:0m:58s (0h:0m:18s left)
+Iteration 100 / LogL: -15765.223 / Time: 0h:0m:58s (0h:0m:10s left)
+Log-likelihood cutoff on original alignment: -15807.111
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.971
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 110 / LogL: -15765.251 / Time: 0h:0m:58s (0h:0m:48s left)
+Iteration 120 / LogL: -15765.254 / Time: 0h:0m:58s (0h:0m:39s left)
+Iteration 130 / LogL: -15765.283 / Time: 0h:0m:58s (0h:0m:31s left)
+Iteration 140 / LogL: -15765.238 / Time: 0h:0m:58s (0h:0m:25s left)
+Iteration 150 / LogL: -15765.247 / Time: 0h:0m:58s (0h:0m:19s left)
+Log-likelihood cutoff on original alignment: -15807.090
+Iteration 160 / LogL: -15765.225 / Time: 0h:0m:58s (0h:0m:14s left)
+Iteration 170 / LogL: -15765.253 / Time: 0h:0m:58s (0h:0m:10s left)
+Iteration 180 / LogL: -15765.237 / Time: 0h:0m:58s (0h:0m:6s left)
+Iteration 190 / LogL: -15765.270 / Time: 0h:0m:59s (0h:0m:3s left)
+Iteration 200 / LogL: -15765.227 / Time: 0h:0m:59s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -15807.090
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.987
+NOTE: UFBoot does not converge, continue at least 100 more iterations
+Iteration 210 / LogL: -15765.298 / Time: 0h:0m:59s (0h:0m:25s left)
+Iteration 220 / LogL: -15765.252 / Time: 0h:0m:59s (0h:0m:21s left)
+Iteration 230 / LogL: -15765.240 / Time: 0h:0m:59s (0h:0m:18s left)
+Iteration 240 / LogL: -15765.237 / Time: 0h:0m:59s (0h:0m:14s left)
+Iteration 250 / LogL: -15765.247 / Time: 0h:0m:59s (0h:0m:11s left)
+Log-likelihood cutoff on original alignment: -15807.235
+Iteration 260 / LogL: -15765.266 / Time: 0h:0m:59s (0h:0m:9s left)
+Iteration 270 / LogL: -15765.223 / Time: 0h:0m:59s (0h:0m:6s left)
+Iteration 280 / LogL: -15768.312 / Time: 0h:0m:59s (0h:0m:4s left)
+Iteration 290 / LogL: -15765.239 / Time: 0h:0m:59s (0h:0m:2s left)
+Iteration 300 / LogL: -15765.258 / Time: 0h:1m:0s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -15807.235
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 0.991
+TREE SEARCH COMPLETED AFTER 300 ITERATIONS / Time: 0h:1m:0s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -15765.207
+Optimal log-likelihood: -15765.201
+Rate parameters:  A-C: 1.00000  A-G: 99.69819  A-T: 1.00000  C-G: 1.00000  C-T: 99.69819  G-T: 1.00000
+Base frequencies:  A: 0.270  C: 0.229  G: 0.283  T: 0.217
+Gamma shape alpha: 0.020
+Parameters optimization took 1 rounds (0.002 sec)
+
+WARNING: Estimated model parameters are at boundary that can cause numerical instability!
+
+BEST SCORE FOUND : -15765.201
+Creating bootstrap support values...
+Split supports printed to NEXUS file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.splits.nex
+Collapsing near-zero internal branches... 11 collapsed
+Total tree length: 0.017
+
+Total number of iterations: 300
+CPU time used for tree search: 2.511 sec (0h:0m:2s)
+Wall-clock time used for tree search: 2.538 sec (0h:0m:2s)
+Total CPU time used: 46.725 sec (0h:0m:46s)
+Total wall-clock time used: 60.068 sec (0h:1m:0s)
+
+Computing bootstrap consensus tree...
+Reading input file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.splits.nex...
+28 taxa and 236 splits.
+Consensus tree written to USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.contree
+Reading input trees file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.contree
+Log-likelihood of consensus tree: -15765.430
+
+Analysis results written to: 
+  IQ-TREE report:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.iqtree
+  Maximum-likelihood tree:       USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.treefile
+  Likelihood distances:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.splits.nex
+  Consensus tree:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.contree
+  Screen log file:               USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.log
+
+Date and Time: Mon Aug  4 16:12:37 2025

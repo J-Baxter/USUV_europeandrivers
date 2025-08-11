@@ -1,0 +1,718 @@
+IQ-TREE 3.0.1 built Jun 30 2025
+
+Input file name: USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_V.fasta
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 674392
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 146 sequences with 10305 nucleotide sites
+Number of constant sites: 9442 (= 91.6254% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 9442 (= 91.6254% of all sites)
+Number of parsimony informative sites: 301
+Number of distinct site patterns: 764
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 14.0273
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 14.0273
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2712
+  pi(C) = 0.2292
+  pi(G) = 0.2826
+  pi(T) = 0.2171
+
+Rate matrix Q:
+
+  A    -1.092   0.05673    0.9812   0.05373
+  C   0.06714   -0.8908   0.06995    0.7537
+  G    0.9417   0.05673    -1.052   0.05373
+  T   0.06714    0.7957   0.06995   -0.9328
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.02004
+
+ Category  Relative_rate  Proportion
+  1         5.001e-31      0.25
+  2         1.058e-15      0.25
+  3         9.755e-07      0.25
+  4         4              0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -23213.4739 (s.e. 293.3388)
+Unconstrained log-likelihood (without tree): -35858.3246
+Number of free parameters (#branches + #model parameters): 226
+Akaike information criterion (AIC) score: 46878.9479
+Corrected Akaike information criterion (AICc) score: 46889.1289
+Bayesian information criterion (BIC) score: 48515.2748
+
+Total tree length (sum of branch lengths): 0.1101
+Sum of internal branch lengths: 0.0228 (20.6844% of tree length)
+
+WARNING: 2 near-zero internal branches (<0.0001) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'OR573992|AS201700144|branta_ruficollis|NL|2017-08-15' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++**OR573992|AS201700144|branta_ruficollis|NL|2017-08-15
+|
++**NA|AS201700144|branta_ruficollis|NL|2017-08-14
+|
+|     +**OR573993|AS201700147|branta_ruficollis|NL|2017-08-15
+|  +--| (100)
+|  |  +**NA|AS201700147|branta_ruficollis|NL|2017-08-14
++--| (100)
+   |               +---NA|AS20190530|turdus_merula|NL|2019-08-19
+   |            +--| (86)
+   |            |  +--MK796168|AS201600070|strix_nebulosa|NL|2016-09-13
+   |            |  |
+   |            |  +-------NA|AS20221798|turdus_merula|NL|2022-08-30
+   |         +**| (75)
+   |         |  +--MN122190|AS201700080|turdus_merula|NL|2017-07-05
+   |         |  |
+   |         |  |  +--MN122213|AS201700248|turdus_merula|NL|2017-09-20
+   |         |  +--| (99)
+   |         |  |  +--KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|BE|2016-10-03
+   |         |  |
+   |         |  +--MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|SE|2019-08-01
+   |      +--| (100)
+   |      |  +--------------------------------------------------MK230893|Grivegnee/2017|turdus_merula|BE|2017-08
+   |   +--| (92)
+   |   |  |                                       +--KX977447|NA|turdus_merula|BE|2016-09
+   |   |  |                                    +--| (100)
+   |   |  |                                    |  +**KY263626|NA|turdus_merula|BE|2016-09
+   |   |  |                                 +--| (99)
+   |   |  |                                 |  +--MN122192|AS201700086|turdus_merula|NL|2017-07-11
+   |   |  |                              +--| (95)
+   |   |  |                              |  |  +--MN122174|AS201600241|turdus_merula|NL|2016-09-27
+   |   |  |                              |  +--| (94)
+   |   |  |                              |     +--MN122188|AS201700024|turdus_merula|NL|2017-04-11
+   |   |  |                              |     |
+   |   |  |                              |     +--MN122189|AS201700077|turdus_merula|NL|2017-07-03
+   |   |  |                           +--| (100)
+   |   |  |                           |  |  +--MN122152|AS201600060|turdus_merula|NL|2016-09-12
+   |   |  |                           |  +--| (100)
+   |   |  |                           |  |  +--MN122196|AS201700103|turdus_merula|NL|2017-07-19
+   |   |  |                           |  |  |
+   |   |  |                           |  |  +--MN122203|AS201700127|turdus_merula|NL|2017-07-30
+   |   |  |                           |  |
+   |   |  |                           |  |           +--MN122158|AS201600104|turdus_merula|NL|2016-09-22
+   |   |  |                           |  |        +--| (88)
+   |   |  |                           |  |        |  +--OP555958|NA|turdus_merula|BE|2017-08-07
+   |   |  |                           |  |     +--| (70)
+   |   |  |                           |  |     |  +--MK230890|Villers/2017|turdus_merula|BE|2017-08
+   |   |  |                           |  |     |  |
+   |   |  |                           |  |     |  |  +--NA|17TV1446|turdus_merula|NL|2017-09-07
+   |   |  |                           |  |     |  +--| (97)
+   |   |  |                           |  |     |     +--NA|18TV0937|turdus_merula|NL|2018-09-10
+   |   |  |                           |  |  +--| (64)
+   |   |  |                           |  |  |  +---MN122235|AS201800112|turdus_merula|NL|2018-08-14
+   |   |  |                           |  +--| (100)
+   |   |  |                           |  |  +---MN122177|AS201600253|turdus_merula|NL|2016-09-27
+   |   |  |                           |  |
+   |   |  |                           |  +--KY426755|NA|turdus_merula|DE|2016-09-19
+   |   |  |                           |  |
+   |   |  |                           |  +--KY426756|NA|turdus_merula|DE|2016-09-23
+   |   |  |                        +--| (44)
+   |   |  |                        |  +-----MN122215|AS201800038|turdus_merula|NL|2017-09-11
+   |   |  |                        |  |
+   |   |  |                        |  +--KY426759|NA|turdus_merula|DE|2016-09-12
+   |   |  |                     +--| (62)
+   |   |  |                     |  |        +--MN122198|AS201700109|turdus_merula|NL|2017-07-25
+   |   |  |                     |  |     +--| (100)
+   |   |  |                     |  |     |  |  +--NA|20TV2299|turdus_merula|NL|2020-08-29
+   |   |  |                     |  |     |  +--| (100)
+   |   |  |                     |  |     |  |  |  +--MT580899|NA|strix_nebulosa|DE|2018
+   |   |  |                     |  |     |  |  +--| (99)
+   |   |  |                     |  |     |  |     +--MN122229|AS201800097|turdus_merula|NL|2018-08-03
+   |   |  |                     |  |     |  |
+   |   |  |                     |  |     |  |  +--OP555957|NA|turdus_merula|BE|2017-07-24
+   |   |  |                     |  |     |  +--| (100)
+   |   |  |                     |  |     |     +----KY263624|NA|turdus_merula|BE|2016-10
+   |   |  |                     |  |  +--| (99)
+   |   |  |                     |  |  |  +--KJ438754|NA|turdus_merula|DE|2012-09-18
+   |   |  |                     |  +--| (29)
+   |   |  |                     |  |  +--KJ438733|NA|turdus_merula|DE|2012-09-13
+   |   |  |                     |  |  |
+   |   |  |                     |  |  +--KJ438737|NA|culex_sp|DE|2011-08-21
+   |   |  |                     |  |  |
+   |   |  |                     |  |  +--KJ438738|NA|turdus_merula|DE|2011-09-16
+   |   |  |                     |  |  |
+   |   |  |                     |  |  +-----KJ438763|NA|turdus_merula|DE|2012-07-17
+   |   |  |                     |  |  |
+   |   |  |                     |  |  |    +--KY426767|NA|turdus_merula|DE|2016-10-14
+   |   |  |                     |  |  +----| (100)
+   |   |  |                     |  |       +--KY426768|NA|turdus_merula|DE|2016-10-12
+   |   |  |                     |  |
+   |   |  |                     |  |     +--KJ438764|NA|turdus_merula|DE|2012-07-17
+   |   |  |                     |  |  +--| (69)
+   |   |  |                     |  |  |  |  +--KJ438728|NA|turdus_merula|DE|2011-09-26
+   |   |  |                     |  |  |  +--| (100)
+   |   |  |                     |  |  |  |  +---KJ438766|NA|turdus_merula|DE|2012-09-19
+   |   |  |                     |  |  |  |
+   |   |  |                     |  |  |  |  +--KJ438729|NA|turdus_merula|DE|2012-07-18
+   |   |  |                     |  |  |  +--| (69)
+   |   |  |                     |  |  |     +--KX601691|USUV-HautRhin7316/France/2015|turdus_merula|FR|2015-08-05
+   |   |  |                     |  +--| (68)
+   |   |  |                     |  |  +--KJ438742|NA|turdus_merula|DE|2013-09-23
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KY426753|NA|turdus_merula|DE|2015-08-18
+   |   |  |                     |  +--| (98)
+   |   |  |                     |  |  +--KJ438746|NA|turdus_merula|DE|2011-09-27
+   |   |  |                     |  |
+   |   |  |                     |  +--KY426750|NA|turdus_merula|DE|2015-10-07
+   |   |  |                     |  |
+   |   |  |                     |  +--KY426752|NA|turdus_merula|DE|2015-08-18
+   |   |  |                     |  |
+   |   |  |                     |  +--HE599647|BH65/11-02-03|turdus_merula|DE|2011-09-10
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438705|NA|culex_pipiens|DE|2010-07-14
+   |   |  |                     |  |
+   |   |  |                     |  +**KJ438706|NA|culex_pipiens|DE|2011-07-05
+   |   |  |                     |  |
+   |   |  |                     |  |  +**KJ438707|NA|culex_pipiens|DE|2011-07-07
+   |   |  |                     |  +--| (99)
+   |   |  |                     |  |  +--KJ438718|NA|culex_sp|DE|2011-06-11
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438708|NA|culex_pipiens|DE|2011-08-08
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438709|NA|culex_pipiens|DE|2012-08-15
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438710|NA|turdus_merula|DE|2011-09-11
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438711|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438712|NA|turdus_merula|DE|2011-09-19
+   |   |  |                     |  +--| (39)
+   |   |  |                     |  |  +--KJ438755|NA|turdidae_sp|DE|2011-09-15
+   |   |  |                     |  |  |
+   |   |  |                     |  |  +--KJ438756|NA|turdus_merula|DE|2011-09-26
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438713|NA|turdus_merula|DE|2011-08-30
+   |   |  |                     |  +--| (98)
+   |   |  |                     |  |  +--KY426766|NA|turdus_merula|DE|2016-10-11
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438714|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438715|NA|passer_domesticus|DE|2011-09-19
+   |   |  |                     |  +--| (72)
+   |   |  |                     |  |  +---------MK230892|Richelle/2017|turdus_merula|BE|2017-08
+   |   |  |                     |  |
+   |   |  |                     |  |     +--KJ438731|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |  +--| (98)
+   |   |  |                     |  |  |  +**KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|DE|2013-10-05
+   |   |  |                     |  +--| (99)
+   |   |  |                     |  |  +--KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|DE|2013-09-21
+   |   |  |                     |  |
+   |   |  |                     |  |     +**KJ438716|NA|culex_pipiens|DE|2012-07-09
+   |   |  |                     |  |  +--| (100)
+   |   |  |                     |  |  |  +**KJ438717|NA|turdus_merula|DE|2012-08-23
+   |   |  |                     |  +--| (76)
+   |   |  |                     |  |  |       +--MN122172|AS201600221|turdus_merula|NL|2016-09-22
+   |   |  |                     |  |  +-------| (100)
+   |   |  |                     |  |          +--MN122181|AS201600277|turdus_merula|NL|2016-09-27
+   |   |  |                     |  |          |
+   |   |  |                     |  |          +--MK796169|AS201600083|strix_nebulosa|NL|2016-09-20
+   |   |  |                     |  |          |
+   |   |  |                     |  |          +--MN122179|AS201600268|turdus_merula|NL|2016-09-30
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438719|NA|turdus_merula|DE|2011-09-02
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438720|NA|turdus_merula|DE|2011-09-29
+   |   |  |                     |  +--| (90)
+   |   |  |                     |  |  +--KJ438750|NA|turdus_merula|DE|2011-09-14
+   |   |  |                     |  |
+   |   |  |                     |  |        +**KJ438723|NA|turdus_merula|DE|2011-09-11
+   |   |  |                     |  |     +--| (78)
+   |   |  |                     |  |     |  |     +**KJ438725|NA|turdus_merula|DE|2011-09-14
+   |   |  |                     |  |     |  |  +--| (100)
+   |   |  |                     |  |     |  |  |  +**KJ438726|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |     |  +--| (97)
+   |   |  |                     |  |     |     +--KJ438727|NA|turdus_merula|DE|2011-09-21
+   |   |  |                     |  |  +--| (100)
+   |   |  |                     |  |  |  +**KJ438724|NA|turdus_merula|DE|2011-09-19
+   |   |  |                     |  +--| (90)
+   |   |  |                     |  |  +--KJ438751|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438721|NA|culex_sp|DE|2011-08-08
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438722|NA|turdus_merula|DE|2012-08-23
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438734|NA|sturnus_vulgaris|DE|2011-09-29
+   |   |  |                     |  +--| (79)
+   |   |  |                     |  |  +--KJ438741|NA|turdus_merula|DE|2013-08-26
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438735|NA|turdus_merula|DE|2012-07-24
+   |   |  |                     |  +--| (62)
+   |   |  |                     |  |  +--KJ438749|NA|turdus_merula|DE|2012-07-18
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438732|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  +**| (93)
+   |   |  |                     |  |  +--KJ438757|NA|turdus_merula|DE|2013-08-26
+   |   |  |                     |  |  |
+   |   |  |                     |  |  |  +--KJ438758|NA|turdus_merula|DE|2013-08-13
+   |   |  |                     |  |  +--| (100)
+   |   |  |                     |  |     +---KX601690|USUV-HautRhin7315/France/2015|turdus_merula|FR|2015-08-10
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438730|NA|turdus_merula|DE|2011-09-14
+   |   |  |                     |  +--| (77)
+   |   |  |                     |  |  +---KJ438761|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438736|NA|culex_sp|DE|2012-09-01
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438739|NA|turdus_merula|DE|2013-09-10
+   |   |  |                     |  |
+   |   |  |                     |  |  +--KJ438740|NA|turdus_merula|DE|2011-09-16
+   |   |  |                     |  +--| (94)
+   |   |  |                     |  |  |        +--MN122154|AS201600089|turdus_merula|NL|2016-09-20
+   |   |  |                     |  |  |     +--| (99)
+   |   |  |                     |  |  |     |  +--MN122170|AS201600197|turdus_merula|NL|2016-10-11
+   |   |  |                     |  |  |     |  |
+   |   |  |                     |  |  |     |  +**MN122176|AS201600247|turdus_merula|NL|2016-09-30
+   |   |  |                     |  |  +-----| (100)
+   |   |  |                     |  |        +--MN122171|AS201600203|turdus_merula|NL|2016-10-05
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438744|NA|turdus_merula|DE|2012-06-23
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438747|NA|turdus_merula|DE|2012-07-17
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438748|NA|turdus_merula|DE|2012-07-23
+   |   |  |                     |  |
+   |   |  |                     |  +--KJ438752|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  +----KJ438762|NA|turdus_merula|DE|2011-09-18
+   |   |  |                     |  |
+   |   |  |                     |  +---KJ438765|NA|turdus_merula|DE|2011-09-15
+   |   |  |                     |  |
+   |   |  |                     |  +-----------------------------------KY501101|NA|homo_sapiens|DE|2016-09-26
+   |   |  |                  +--| (100)
+   |   |  |                  |  |        +--KJ438759|NA|turdus_merula|DE|2011-09-28
+   |   |  |                  |  |     +--| (67)
+   |   |  |                  |  |     |  +--KJ438753|NA|turdus_merula|DE|2011-09-16
+   |   |  |                  |  |  +--| (57)
+   |   |  |                  |  |  |  +--KJ438745|NA|turdus_merula|DE|2011-09-16
+   |   |  |                  |  +--| (67)
+   |   |  |                  |  |  +--KJ438743|NA|turdus_merula|DE|2011-09-13
+   |   |  |                  |  |
+   |   |  |                  |  +--KJ438760|NA|turdus_merula|DE|2011-09-16
+   |   |  |               +--| (100)
+   |   |  |               |  |     +--KY426760|NA|turdus_merula|DE|2016-09-29
+   |   |  |               |  |  +--| (100)
+   |   |  |               |  |  |  +--------KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|FR|2016-09-22
+   |   |  |               |  +--| (100)
+   |   |  |               |     |  +----KJ438780|NA|turdus_merula|DE|2011-09-14
+   |   |  |               |     +--| (100)
+   |   |  |               |        +--KJ438781|NA|turdus_merula|DE|2011-09-26
+   |   |  |            +--| (91)
+   |   |  |            |  +--KY426751|NA|turdus_pilaris|DE|2015-09-01
+   |   |  |         +--| (88)
+   |   |  |         |  +--KJ438770|NA|turdus_merula|DE|2011-09-15
+   |   |  |      +--| (48)
+   |   |  |      |  |  +--KY426770|NA|turdus_merula|DE|2016-09-20
+   |   |  |      |  +--| (100)
+   |   |  |      |  |  +--KY426769|NA|turdus_merula|DE|2016-09-20
+   |   |  |      |  |
+   |   |  |      |  |  +---KY199558|NA|turdus_merula|DE|2016
+   |   |  |      |  +--| (100)
+   |   |  |      |  |  +-----OP555956|NA|strix_nebulosa|BE|2017-07-10
+   |   |  |      |  |
+   |   |  |      |  |  +--KJ438769|NA|turdus_merula|DE|2011-09-15
+   |   |  |      |  +--| (88)
+   |   |  |      |  |  +--KJ438779|NA|turdus_merula|DE|2012-07-12
+   |   |  |      |  |
+   |   |  |      |  +--KJ438771|NA|turdus_merula|DE|2013-05-05
+   |   |  |      |  |
+   |   |  |      |  +--KJ438773|NA|turdus_merula|DE|2011-09-29
+   |   |  |      |  |
+   |   |  |      |  +--KJ438774|NA|turdus_merula|DE|2012-09-04
+   |   |  |      |  |
+   |   |  |      |  |  +--KJ438776|NA|turdus_merula|DE|2011-09-14
+   |   |  |      |  +--| (75)
+   |   |  |      |  |  +--KJ438777|NA|turdus_merula|DE|2011-09-14
+   |   |  |      |  |
+   |   |  |      |  |  +--KJ438778|NA|turdus_merula|DE|2011-09-19
+   |   |  |      |  +--| (100)
+   |   |  |      |  |  +----KJ438767|NA|culex_sp|DE|2011-09-08
+   |   |  |      |  |
+   |   |  |      |  |   +--KY426762|NA|turdus_merula|DE|2016-09-26
+   |   |  |      |  +---| (100)
+   |   |  |      |      +--KY426763|NA|turdus_merula|DE|2016-09-24
+   |   |  |   +--| (100)
+   |   |  |   |  +--KJ438772|NA|turdus_merula|DE|2011-09-18
+   |   |  +---| (100)
+   |   |      +--KJ438775|NA|turdus_merula|DE|2011-09-16
+   |   |      |
+   |   |      +---KJ438768|NA|culex_sp|DE|2013-08-22
+   +---| (100)
+       +---MN122166|AS201600133|turdus_merula|NL|2016-09-23
+
+Tree in newick format:
+
+(OR573992|AS201700144|branta_ruficollis|NL|2017-08-15:0.0000010000,NA|AS201700144|branta_ruficollis|NL|2017-08-14:0.0000010000,((OR573993|AS201700147|branta_ruficollis|NL|2017-08-15:0.0000010000,NA|AS201700147|branta_ruficollis|NL|2017-08-14:0.0000010000)100:0.0002988463,(((((NA|AS20190530|turdus_merula|NL|2019-08-19:0.0009951489,MK796168|AS201600070|strix_nebulosa|NL|2016-09-13:0.0002977978,NA|AS20221798|turdus_merula|NL|2022-08-30:0.0017963309)86:0.0000992275,MN122190|AS201700080|turdus_merula|NL|2017-07-05:0.0003975129,(MN122213|AS201700248|turdus_merula|NL|2017-09-20:0.0007968112,KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|BE|2016-10-03:0.0001991318)99:0.0000999375,MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|SE|2019-08-01:0.0007959854)75:0.0000849975,MK230893|Grivegnee/2017|turdus_merula|BE|2017-08:0.0103773748)100:0.0005500029,(((((((((((((KX977447|NA|turdus_merula|BE|2016-09:0.0001004319,KY263626|NA|turdus_merula|BE|2016-09:0.0000010000)100:0.0004977494,MN122192|AS201700086|turdus_merula|NL|2017-07-11:0.0002983163)99:0.0001990648,(MN122174|AS201600241|turdus_merula|NL|2016-09-27:0.0004972790,MN122188|AS201700024|turdus_merula|NL|2017-04-11:0.0003976740,MN122189|AS201700077|turdus_merula|NL|2017-07-03:0.0003975442)94:0.0000983305)95:0.0002989268,(MN122152|AS201600060|turdus_merula|NL|2016-09-12:0.0002981406,MN122196|AS201700103|turdus_merula|NL|2017-07-19:0.0005968627,MN122203|AS201700127|turdus_merula|NL|2017-07-30:0.0006965177)100:0.0004972258,((((MN122158|AS201600104|turdus_merula|NL|2016-09-22:0.0001008266,OP555958|NA|turdus_merula|BE|2017-08-07:0.0001971019)88:0.0001993135,MK230890|Villers/2017|turdus_merula|BE|2017-08:0.0006967825,(NA|17TV1446|turdus_merula|NL|2017-09-07:0.0004681086,NA|18TV0937|turdus_merula|NL|2018-09-10:0.0005929917)97:0.0006277482)70:0.0001027162,MN122235|AS201800112|turdus_merula|NL|2018-08-14:0.0009916808)64:0.0000987027,MN122177|AS201600253|turdus_merula|NL|2016-09-27:0.0008927184)100:0.0004031915,KY426755|NA|turdus_merula|DE|2016-09-19:0.0007949544,KY426756|NA|turdus_merula|DE|2016-09-23:0.0001986932)100:0.0003975133,MN122215|AS201800038|turdus_merula|NL|2017-09-11:0.0012953541,KY426759|NA|turdus_merula|DE|2016-09-12:0.0005968188)44:0.0000997917,(((MN122198|AS201700109|turdus_merula|NL|2017-07-25:0.0002980167,(NA|20TV2299|turdus_merula|NL|2020-08-29:0.0004979406,(MT580899|NA|strix_nebulosa|DE|2018:0.0006981441,MN122229|AS201800097|turdus_merula|NL|2018-08-03:0.0006042637)99:0.0001978026)100:0.0003978012,(OP555957|NA|turdus_merula|BE|2017-07-24:0.0000996069,KY263624|NA|turdus_merula|BE|2016-10:0.0010974007)100:0.0000993040)100:0.0003980000,KJ438754|NA|turdus_merula|DE|2012-09-18:0.0004981927)99:0.0002980484,KJ438733|NA|turdus_merula|DE|2012-09-13:0.0001986257,KJ438737|NA|culex_sp|DE|2011-08-21:0.0005968444,KJ438738|NA|turdus_merula|DE|2011-09-16:0.0004970364,KJ438763|NA|turdus_merula|DE|2012-07-17:0.0012946659,(KY426767|NA|turdus_merula|DE|2016-10-14:0.0001001485,KY426768|NA|turdus_merula|DE|2016-10-12:0.0000995415)100:0.0011956172)29:0.0000987113,((KJ438764|NA|turdus_merula|DE|2012-07-17:0.0006967228,(KJ438728|NA|turdus_merula|DE|2011-09-26:0.0000995196,KJ438766|NA|turdus_merula|DE|2012-09-19:0.0009962686)100:0.0000993846,(KJ438729|NA|turdus_merula|DE|2012-07-18:0.0003981926,KX601691|USUV-HautRhin7316/France/2015|turdus_merula|FR|2015-08-05:0.0007971323)69:0.0000989049)69:0.0001988799,KJ438742|NA|turdus_merula|DE|2013-09-23:0.0005968915)68:0.0000990518,(KY426753|NA|turdus_merula|DE|2015-08-18:0.0000998892,KJ438746|NA|turdus_merula|DE|2011-09-27:0.0007959561)98:0.0000994129,KY426750|NA|turdus_merula|DE|2015-10-07:0.0000993051,KY426752|NA|turdus_merula|DE|2015-08-18:0.0000996036,HE599647|BH65/11-02-03|turdus_merula|DE|2011-09-10:0.0003975100,KJ438705|NA|culex_pipiens|DE|2010-07-14:0.0003977584,KJ438706|NA|culex_pipiens|DE|2011-07-05:0.0000010000,(KJ438707|NA|culex_pipiens|DE|2011-07-07:0.0000025299,KJ438718|NA|culex_sp|DE|2011-06-11:0.0003973444)99:0.0001986249,KJ438708|NA|culex_pipiens|DE|2011-08-08:0.0001986268,KJ438709|NA|culex_pipiens|DE|2012-08-15:0.0002980314,KJ438710|NA|turdus_merula|DE|2011-09-11:0.0000996363,KJ438711|NA|turdus_merula|DE|2011-09-15:0.0000996065,(KJ438712|NA|turdus_merula|DE|2011-09-19:0.0002980309,KJ438755|NA|turdidae_sp|DE|2011-09-15:0.0002981175,KJ438756|NA|turdus_merula|DE|2011-09-26:0.0007965240)39:0.0000992672,(KJ438713|NA|turdus_merula|DE|2011-08-30:0.0001987933,KY426766|NA|turdus_merula|DE|2016-10-11:0.0003977654)98:0.0000994957,KJ438714|NA|turdus_merula|DE|2011-09-15:0.0000992231,(KJ438715|NA|passer_domesticus|DE|2011-09-19:0.0000992297,MK230892|Richelle/2017|turdus_merula|BE|2017-08:0.0021978359)72:0.0000993230,((KJ438731|NA|turdus_merula|DE|2011-09-15:0.0000992215,KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|DE|2013-10-05:0.0000010000)98:0.0001985665,KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|DE|2013-09-21:0.0003982573)99:0.0001985608,((KJ438716|NA|culex_pipiens|DE|2012-07-09:0.0000010000,KJ438717|NA|turdus_merula|DE|2012-08-23:0.0000010000)100:0.0002990019,(MN122172|AS201600221|turdus_merula|NL|2016-09-22:0.0002978808,MN122181|AS201600277|turdus_merula|NL|2016-09-27:0.0001985954,MK796169|AS201600083|strix_nebulosa|NL|2016-09-20:0.0000992538,MN122179|AS201600268|turdus_merula|NL|2016-09-30:0.0004967898)100:0.0016977295)76:0.0000983618,KJ438719|NA|turdus_merula|DE|2011-09-02:0.0003975016,(KJ438720|NA|turdus_merula|DE|2011-09-29:0.0001996113,KJ438750|NA|turdus_merula|DE|2011-09-14:0.0005972325)90:0.0000990436,(((KJ438723|NA|turdus_merula|DE|2011-09-11:0.0000023335,((KJ438725|NA|turdus_merula|DE|2011-09-14:0.0000010000,KJ438726|NA|turdus_merula|DE|2011-09-15:0.0000010000)100:0.0002985377,KJ438727|NA|turdus_merula|DE|2011-09-21:0.0001986772)97:0.0000995042)78:0.0000996936,KJ438724|NA|turdus_merula|DE|2011-09-19:0.0000028965)100:0.0003980936,KJ438751|NA|turdus_merula|DE|2011-09-15:0.0005978494)90:0.0000987857,KJ438721|NA|culex_sp|DE|2011-08-08:0.0004968190,KJ438722|NA|turdus_merula|DE|2012-08-23:0.0003976260,(KJ438734|NA|sturnus_vulgaris|DE|2011-09-29:0.0002983569,KJ438741|NA|turdus_merula|DE|2013-08-26:0.0004974271)79:0.0000993956,(KJ438735|NA|turdus_merula|DE|2012-07-24:0.0003981804,KJ438749|NA|turdus_merula|DE|2012-07-18:0.0007968832)62:0.0000990563,(KJ438732|NA|turdus_merula|DE|2011-09-15:0.0000992685,KJ438757|NA|turdus_merula|DE|2013-08-26:0.0005972616,(KJ438758|NA|turdus_merula|DE|2013-08-13:0.0002976387,KX601690|USUV-HautRhin7315/France/2015|turdus_merula|FR|2015-08-10:0.0008969884)100:0.0003985293)93:0.0000968632,(KJ438730|NA|turdus_merula|DE|2011-09-14:0.0003985201,KJ438761|NA|turdus_merula|DE|2011-09-15:0.0009971975)77:0.0001979761,KJ438736|NA|culex_sp|DE|2012-09-01:0.0004972013,KJ438739|NA|turdus_merula|DE|2013-09-10:0.0006962811,(KJ438740|NA|turdus_merula|DE|2011-09-16:0.0003996265,((MN122154|AS201600089|turdus_merula|NL|2016-09-20:0.0004968303,MN122170|AS201600197|turdus_merula|NL|2016-10-11:0.0001000311,MN122176|AS201600247|turdus_merula|NL|2016-09-30:0.0000010000)99:0.0001355507,MN122171|AS201600203|turdus_merula|NL|2016-10-05:0.0002272302)100:0.0013625625)94:0.0000976508,KJ438744|NA|turdus_merula|DE|2012-06-23:0.0006955168,KJ438747|NA|turdus_merula|DE|2012-07-17:0.0006965300,KJ438748|NA|turdus_merula|DE|2012-07-23:0.0006962818,KJ438752|NA|turdus_merula|DE|2011-09-15:0.0006967192,KJ438762|NA|turdus_merula|DE|2011-09-18:0.0011960605,KJ438765|NA|turdus_merula|DE|2011-09-15:0.0009955616,KY501101|NA|homo_sapiens|DE|2016-09-26:0.0074270317)62:0.0000992740,(((KJ438759|NA|turdus_merula|DE|2011-09-28:0.0007962988,KJ438753|NA|turdus_merula|DE|2011-09-16:0.0003971802)67:0.0000997649,KJ438745|NA|turdus_merula|DE|2011-09-16:0.0005967147)57:0.0000992272,KJ438743|NA|turdus_merula|DE|2011-09-13:0.0001985860)67:0.0000993875,KJ438760|NA|turdus_merula|DE|2011-09-16:0.0006962790)100:0.0005983884,((KY426760|NA|turdus_merula|DE|2016-09-29:0.0007973018,KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|FR|2016-09-22:0.0019078438)100:0.0006985881,(KJ438780|NA|turdus_merula|DE|2011-09-14:0.0011989687,KJ438781|NA|turdus_merula|DE|2011-09-26:0.0005980867)100:0.0007990127)100:0.0002975219)100:0.0005981814,KY426751|NA|turdus_pilaris|DE|2015-09-01:0.0004977560)91:0.0000989069,KJ438770|NA|turdus_merula|DE|2011-09-15:0.0002980378)88:0.0000995021,(KY426770|NA|turdus_merula|DE|2016-09-20:0.0006970588,KY426769|NA|turdus_merula|DE|2016-09-20:0.0002981039)100:0.0006951743,(KY199558|NA|turdus_merula|DE|2016:0.0009998287,OP555956|NA|strix_nebulosa|BE|2017-07-10:0.0013998384)100:0.0003954809,(KJ438769|NA|turdus_merula|DE|2011-09-15:0.0001992342,KJ438779|NA|turdus_merula|DE|2012-07-12:0.0003972447)88:0.0001986040,KJ438771|NA|turdus_merula|DE|2013-05-05:0.0003972955,KJ438773|NA|turdus_merula|DE|2011-09-29:0.0001989729,KJ438774|NA|turdus_merula|DE|2012-09-04:0.0005960565,(KJ438776|NA|turdus_merula|DE|2011-09-14:0.0003973367,KJ438777|NA|turdus_merula|DE|2011-09-14:0.0006961857)75:0.0000995752,(KJ438778|NA|turdus_merula|DE|2011-09-19:0.0003973109,KJ438767|NA|culex_sp|DE|2011-09-08:0.0011991641)100:0.0006965467,(KY426762|NA|turdus_merula|DE|2016-09-26:0.0003008374,KY426763|NA|turdus_merula|DE|2016-09-24:0.0000973974)100:0.0008964637)48:0.0000994878,KJ438772|NA|turdus_merula|DE|2011-09-18:0.0001985618)100:0.0004986056,KJ438775|NA|turdus_merula|DE|2011-09-16:0.0001990060,KJ438768|NA|culex_sp|DE|2013-08-22:0.0008961917)100:0.0008597462)92:0.0001963092,MN122166|AS201600133|turdus_merula|NL|2016-09-23:0.0009614707)100:0.0008359082)100:0.0000987702);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -31013.297295
+Robinson-Foulds distance between ML tree and consensus tree: 131
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++--OR573992|AS201700144|branta_ruficollis|NL|2017-08-15
+|
++--NA|AS201700144|branta_ruficollis|NL|2017-08-14
+|
+|     +--OR573993|AS201700147|branta_ruficollis|NL|2017-08-15
+|  +--| (100)
+|  |  +--NA|AS201700147|branta_ruficollis|NL|2017-08-14
++--| (100)
+   |                    +--NA|AS20190530|turdus_merula|NL|2019-08-19
+   |                 +--| (95)
+   |                 |  +--NA|AS20221798|turdus_merula|NL|2022-08-30
+   |              +--| (86)
+   |              |  +--MK796168|AS201600070|strix_nebulosa|NL|2016-09-13
+   |           +--| (33)
+   |           |  |     +--MN122213|AS201700248|turdus_merula|NL|2017-09-20
+   |           |  |  +--| (99)
+   |           |  |  |  +--KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|BE|2016-10-03
+   |           |  +--| (32)
+   |           |     +--MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|SE|2019-08-01
+   |        +--| (75)
+   |        |  +--MN122190|AS201700080|turdus_merula|NL|2017-07-05
+   |     +--| (100)
+   |     |  +--MK230893|Grivegnee/2017|turdus_merula|BE|2017-08
+   |  +--| (92)
+   |  |  |                                                                                   +--KX977447|NA|turdus_merula|BE|2016-09
+   |  |  |                                                                                +--| (100)
+   |  |  |                                                                                |  +--KY263626|NA|turdus_merula|BE|2016-09
+   |  |  |                                                                             +--| (99)
+   |  |  |                                                                             |  +--MN122192|AS201700086|turdus_merula|NL|2017-07-11
+   |  |  |                                                                          +--| (95)
+   |  |  |                                                                          |  |     +--MN122174|AS201600241|turdus_merula|NL|2016-09-27
+   |  |  |                                                                          |  |  +--| (77)
+   |  |  |                                                                          |  |  |  +--MN122189|AS201700077|turdus_merula|NL|2017-07-03
+   |  |  |                                                                          |  +--| (94)
+   |  |  |                                                                          |     +--MN122188|AS201700024|turdus_merula|NL|2017-04-11
+   |  |  |                                                                       +--| (60)
+   |  |  |                                                                       |  +--KY426755|NA|turdus_merula|DE|2016-09-19
+   |  |  |                                                                    +--| (27)
+   |  |  |                                                                    |  |     +--MN122152|AS201600060|turdus_merula|NL|2016-09-12
+   |  |  |                                                                    |  |  +--| (100)
+   |  |  |                                                                    |  |  |  |  +--MN122196|AS201700103|turdus_merula|NL|2017-07-19
+   |  |  |                                                                    |  |  |  +--| (76)
+   |  |  |                                                                    |  |  |     +--MN122203|AS201700127|turdus_merula|NL|2017-07-30
+   |  |  |                                                                    |  +--| (43)
+   |  |  |                                                                    |     |           +--MN122158|AS201600104|turdus_merula|NL|2016-09-22
+   |  |  |                                                                    |     |        +--| (88)
+   |  |  |                                                                    |     |        |  +--OP555958|NA|turdus_merula|BE|2017-08-07
+   |  |  |                                                                    |     |     +--| (70)
+   |  |  |                                                                    |     |     |  |  +--MK230890|Villers/2017|turdus_merula|BE|2017-08
+   |  |  |                                                                    |     |     |  +--| (57)
+   |  |  |                                                                    |     |     |     |  +--NA|17TV1446|turdus_merula|NL|2017-09-07
+   |  |  |                                                                    |     |     |     +--| (97)
+   |  |  |                                                                    |     |     |        +--NA|18TV0937|turdus_merula|NL|2018-09-10
+   |  |  |                                                                    |     |  +--| (64)
+   |  |  |                                                                    |     |  |  +--MN122235|AS201800112|turdus_merula|NL|2018-08-14
+   |  |  |                                                                    |     +--| (100)
+   |  |  |                                                                    |        +--MN122177|AS201600253|turdus_merula|NL|2016-09-27
+   |  |  |                                                                 +--| (100)
+   |  |  |                                                                 |  +--KY426756|NA|turdus_merula|DE|2016-09-23
+   |  |  |                                                              +--| (59)
+   |  |  |                                                              |  +--MN122215|AS201800038|turdus_merula|NL|2017-09-11
+   |  |  |                                                           +--| (44)
+   |  |  |                                                           |  +--KY426759|NA|turdus_merula|DE|2016-09-12
+   |  |  |                                                        +--| (17)
+   |  |  |                                                        |  |                 +--MN122198|AS201700109|turdus_merula|NL|2017-07-25
+   |  |  |                                                        |  |              +--| (83)
+   |  |  |                                                        |  |              |  |  +--NA|20TV2299|turdus_merula|NL|2020-08-29
+   |  |  |                                                        |  |              |  +--| (100)
+   |  |  |                                                        |  |              |     |  +--MT580899|NA|strix_nebulosa|DE|2018
+   |  |  |                                                        |  |              |     +--| (99)
+   |  |  |                                                        |  |              |        +--MN122229|AS201800097|turdus_merula|NL|2018-08-03
+   |  |  |                                                        |  |           +--| (100)
+   |  |  |                                                        |  |           |  |  +--OP555957|NA|turdus_merula|BE|2017-07-24
+   |  |  |                                                        |  |           |  +--| (100)
+   |  |  |                                                        |  |           |     +--KY263624|NA|turdus_merula|BE|2016-10
+   |  |  |                                                        |  |        +--| (99)
+   |  |  |                                                        |  |        |  +--KJ438754|NA|turdus_merula|DE|2012-09-18
+   |  |  |                                                        |  |     +--| (14)
+   |  |  |                                                        |  |     |  |  +--KJ438737|NA|culex_sp|DE|2011-08-21
+   |  |  |                                                        |  |     |  +--| (22)
+   |  |  |                                                        |  |     |     |  +--KY426767|NA|turdus_merula|DE|2016-10-14
+   |  |  |                                                        |  |     |     +--| (100)
+   |  |  |                                                        |  |     |        +--KY426768|NA|turdus_merula|DE|2016-10-12
+   |  |  |                                                        |  |  +--| (13)
+   |  |  |                                                        |  |  |  |  +--KJ438733|NA|turdus_merula|DE|2012-09-13
+   |  |  |                                                        |  |  |  +--| (24)
+   |  |  |                                                        |  |  |     +--KJ438738|NA|turdus_merula|DE|2011-09-16
+   |  |  |                                                        |  +--| (29)
+   |  |  |                                                        |     +--KJ438763|NA|turdus_merula|DE|2012-07-17
+   |  |  |                                                     +--| (11)
+   |  |  |                                                     |  +--KY426752|NA|turdus_merula|DE|2015-08-18
+   |  |  |                                                  +--| (1)
+   |  |  |                                                  |  |  +--KY426753|NA|turdus_merula|DE|2015-08-18
+   |  |  |                                                  |  +--| (98)
+   |  |  |                                                  |  |  +--KJ438746|NA|turdus_merula|DE|2011-09-27
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |  +--KJ438709|NA|culex_pipiens|DE|2012-08-15
+   |  |  |                                                  |  +--| (7)
+   |  |  |                                                  |  |  +--KJ438710|NA|turdus_merula|DE|2011-09-11
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |     +--KJ438711|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                                  |  |  +--| (8)
+   |  |  |                                                  |  |  |  +--KJ438752|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                                  |  +--| (5)
+   |  |  |                                                  |  |  |     +--KJ438720|NA|turdus_merula|DE|2011-09-29
+   |  |  |                                                  |  |  |  +--| (90)
+   |  |  |                                                  |  |  |  |  +--KJ438750|NA|turdus_merula|DE|2011-09-14
+   |  |  |                                                  |  |  +--| (18)
+   |  |  |                                                  |  |     +--KJ438762|NA|turdus_merula|DE|2011-09-18
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |        +--KJ438712|NA|turdus_merula|DE|2011-09-19
+   |  |  |                                                  |  |     +--| (90)
+   |  |  |                                                  |  |     |  +--KJ438755|NA|turdidae_sp|DE|2011-09-15
+   |  |  |                                                  |  |  +--| (39)
+   |  |  |                                                  |  |  |  +--KJ438756|NA|turdus_merula|DE|2011-09-26
+   |  |  |                                                  |  +--| (1)
+   |  |  |                                                  |  |  |  +--KJ438739|NA|turdus_merula|DE|2013-09-10
+   |  |  |                                                  |  |  +--| (19)
+   |  |  |                                                  |  |     +--KJ438748|NA|turdus_merula|DE|2012-07-23
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |     +--KJ438713|NA|turdus_merula|DE|2011-08-30
+   |  |  |                                                  |  |  +--| (98)
+   |  |  |                                                  |  |  |  +--KY426766|NA|turdus_merula|DE|2016-10-11
+   |  |  |                                                  |  +--| (9)
+   |  |  |                                                  |  |  |  +--KJ438715|NA|passer_domesticus|DE|2011-09-19
+   |  |  |                                                  |  |  +--| (72)
+   |  |  |                                                  |  |     +--MK230892|Richelle/2017|turdus_merula|BE|2017-08
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |        +--KJ438716|NA|culex_pipiens|DE|2012-07-09
+   |  |  |                                                  |  |     +--| (100)
+   |  |  |                                                  |  |     |  +--KJ438717|NA|turdus_merula|DE|2012-08-23
+   |  |  |                                                  |  |  +--| (76)
+   |  |  |                                                  |  |  |  |        +--MN122172|AS201600221|turdus_merula|NL|2016-09-22
+   |  |  |                                                  |  |  |  |     +--| (53)
+   |  |  |                                                  |  |  |  |     |  +--MN122181|AS201600277|turdus_merula|NL|2016-09-27
+   |  |  |                                                  |  |  |  |  +--| (44)
+   |  |  |                                                  |  |  |  |  |  +--MK796169|AS201600083|strix_nebulosa|NL|2016-09-20
+   |  |  |                                                  |  |  |  +--| (100)
+   |  |  |                                                  |  |  |     +--MN122179|AS201600268|turdus_merula|NL|2016-09-30
+   |  |  |                                                  |  +--| (11)
+   |  |  |                                                  |  |  +--KJ438765|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |           +--KJ438723|NA|turdus_merula|DE|2011-09-11
+   |  |  |                                                  |  |        +--| (78)
+   |  |  |                                                  |  |        |  |     +--KJ438725|NA|turdus_merula|DE|2011-09-14
+   |  |  |                                                  |  |        |  |  +--| (100)
+   |  |  |                                                  |  |        |  |  |  +--KJ438726|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                                  |  |        |  +--| (97)
+   |  |  |                                                  |  |        |     +--KJ438727|NA|turdus_merula|DE|2011-09-21
+   |  |  |                                                  |  |     +--| (100)
+   |  |  |                                                  |  |     |  +--KJ438724|NA|turdus_merula|DE|2011-09-19
+   |  |  |                                                  |  |  +--| (90)
+   |  |  |                                                  |  |  |  +--KJ438751|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                                  |  +--| (6)
+   |  |  |                                                  |  |  |  +--KJ438734|NA|sturnus_vulgaris|DE|2011-09-29
+   |  |  |                                                  |  |  +--| (79)
+   |  |  |                                                  |  |     +--KJ438741|NA|turdus_merula|DE|2013-08-26
+   |  |  |                                                  |  |
+   |  |  |                                                  |  |     +--KJ438735|NA|turdus_merula|DE|2012-07-24
+   |  |  |                                                  |  |  +--| (62)
+   |  |  |                                                  |  |  |  +--KJ438749|NA|turdus_merula|DE|2012-07-18
+   |  |  |                                                  |  +--| (8)
+   |  |  |                                                  |     +--KJ438744|NA|turdus_merula|DE|2012-06-23
+   |  |  |                                               +--| (3)
+   |  |  |                                               |  |     +--KJ438707|NA|culex_pipiens|DE|2011-07-07
+   |  |  |                                               |  |  +--| (99)
+   |  |  |                                               |  |  |  +--KJ438718|NA|culex_sp|DE|2011-06-11
+   |  |  |                                               |  +--| (11)
+   |  |  |                                               |     +--KJ438708|NA|culex_pipiens|DE|2011-08-08
+   |  |  |                                            +--| (1)
+   |  |  |                                            |  |                       +--KJ438764|NA|turdus_merula|DE|2012-07-17
+   |  |  |                                            |  |                    +--| (83)
+   |  |  |                                            |  |                    |  |  +--KJ438728|NA|turdus_merula|DE|2011-09-26
+   |  |  |                                            |  |                    |  +--| (100)
+   |  |  |                                            |  |                    |     +--KJ438766|NA|turdus_merula|DE|2012-09-19
+   |  |  |                                            |  |                 +--| (69)
+   |  |  |                                            |  |                 |  |  +--KJ438729|NA|turdus_merula|DE|2012-07-18
+   |  |  |                                            |  |                 |  +--| (69)
+   |  |  |                                            |  |                 |     +--KX601691|USUV-HautRhin7316/France/2015|turdus_merula|FR|2015-08-05
+   |  |  |                                            |  |              +--| (68)
+   |  |  |                                            |  |              |  +--KJ438742|NA|turdus_merula|DE|2013-09-23
+   |  |  |                                            |  |           +--| (46)
+   |  |  |                                            |  |           |  +--KY501101|NA|homo_sapiens|DE|2016-09-26
+   |  |  |                                            |  |        +--| (6)
+   |  |  |                                            |  |        |  |  +--KJ438730|NA|turdus_merula|DE|2011-09-14
+   |  |  |                                            |  |        |  +--| (77)
+   |  |  |                                            |  |        |     +--KJ438761|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                            |  |     +--| (2)
+   |  |  |                                            |  |     |  |     +--KJ438732|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                            |  |     |  |  +--| (77)
+   |  |  |                                            |  |     |  |  |  +--KJ438757|NA|turdus_merula|DE|2013-08-26
+   |  |  |                                            |  |     |  +--| (93)
+   |  |  |                                            |  |     |     |  +--KJ438758|NA|turdus_merula|DE|2013-08-13
+   |  |  |                                            |  |     |     +--| (100)
+   |  |  |                                            |  |     |        +--KX601690|USUV-HautRhin7315/France/2015|turdus_merula|FR|2015-08-10
+   |  |  |                                            |  |  +--| (1)
+   |  |  |                                            |  |  |  |  +--KJ438721|NA|culex_sp|DE|2011-08-08
+   |  |  |                                            |  |  |  +--| (12)
+   |  |  |                                            |  |  |     |  +--KJ438740|NA|turdus_merula|DE|2011-09-16
+   |  |  |                                            |  |  |     +--| (94)
+   |  |  |                                            |  |  |        |        +--MN122154|AS201600089|turdus_merula|NL|2016-09-20
+   |  |  |                                            |  |  |        |     +--| (87)
+   |  |  |                                            |  |  |        |     |  +--MN122176|AS201600247|turdus_merula|NL|2016-09-30
+   |  |  |                                            |  |  |        |  +--| (99)
+   |  |  |                                            |  |  |        |  |  +--MN122170|AS201600197|turdus_merula|NL|2016-10-11
+   |  |  |                                            |  |  |        +--| (100)
+   |  |  |                                            |  |  |           +--MN122171|AS201600203|turdus_merula|NL|2016-10-05
+   |  |  |                                            |  +--| (6)
+   |  |  |                                            |     |     +--HE599647|BH65/11-02-03|turdus_merula|DE|2011-09-10
+   |  |  |                                            |     |  +--| (10)
+   |  |  |                                            |     |  |  +--KJ438719|NA|turdus_merula|DE|2011-09-02
+   |  |  |                                            |     +--| (1)
+   |  |  |                                            |        |     +--KJ438705|NA|culex_pipiens|DE|2010-07-14
+   |  |  |                                            |        |  +--| (8)
+   |  |  |                                            |        |  |  +--KJ438736|NA|culex_sp|DE|2012-09-01
+   |  |  |                                            |        +--| (1)
+   |  |  |                                            |           |  +--KJ438722|NA|turdus_merula|DE|2012-08-23
+   |  |  |                                            |           +--| (13)
+   |  |  |                                            |              +--KJ438747|NA|turdus_merula|DE|2012-07-17
+   |  |  |                                         +--| (8)
+   |  |  |                                         |  +--KJ438706|NA|culex_pipiens|DE|2011-07-05
+   |  |  |                                      +--| (11)
+   |  |  |                                      |  |  +--KJ438714|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                      |  +--| (13)
+   |  |  |                                      |     |     +--KJ438731|NA|turdus_merula|DE|2011-09-15
+   |  |  |                                      |     |  +--| (98)
+   |  |  |                                      |     |  |  +--KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|DE|2013-10-05
+   |  |  |                                      |     +--| (99)
+   |  |  |                                      |        +--KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|DE|2013-09-21
+   |  |  |                                   +--| (62)
+   |  |  |                                   |  +--KY426750|NA|turdus_merula|DE|2015-10-07
+   |  |  |                                +--| (76)
+   |  |  |                                |  |        +--KJ438759|NA|turdus_merula|DE|2011-09-28
+   |  |  |                                |  |     +--| (67)
+   |  |  |                                |  |     |  +--KJ438753|NA|turdus_merula|DE|2011-09-16
+   |  |  |                                |  |  +--| (57)
+   |  |  |                                |  |  |  +--KJ438745|NA|turdus_merula|DE|2011-09-16
+   |  |  |                                |  +--| (67)
+   |  |  |                                |     +--KJ438743|NA|turdus_merula|DE|2011-09-13
+   |  |  |                             +--| (100)
+   |  |  |                             |  +--KJ438760|NA|turdus_merula|DE|2011-09-16
+   |  |  |                          +--| (100)
+   |  |  |                          |  |     +--KY426760|NA|turdus_merula|DE|2016-09-29
+   |  |  |                          |  |  +--| (100)
+   |  |  |                          |  |  |  +--KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|FR|2016-09-22
+   |  |  |                          |  +--| (100)
+   |  |  |                          |     |  +--KJ438780|NA|turdus_merula|DE|2011-09-14
+   |  |  |                          |     +--| (100)
+   |  |  |                          |        +--KJ438781|NA|turdus_merula|DE|2011-09-26
+   |  |  |                       +--| (91)
+   |  |  |                       |  +--KY426751|NA|turdus_pilaris|DE|2015-09-01
+   |  |  |                    +--| (88)
+   |  |  |                    |  +--KJ438770|NA|turdus_merula|DE|2011-09-15
+   |  |  |                 +--| (15)
+   |  |  |                 |  |        +--KY426770|NA|turdus_merula|DE|2016-09-20
+   |  |  |                 |  |     +--| (100)
+   |  |  |                 |  |     |  +--KY426769|NA|turdus_merula|DE|2016-09-20
+   |  |  |                 |  |  +--| (57)
+   |  |  |                 |  |  |  |  +--KY426762|NA|turdus_merula|DE|2016-09-26
+   |  |  |                 |  |  |  +--| (100)
+   |  |  |                 |  |  |     +--KY426763|NA|turdus_merula|DE|2016-09-24
+   |  |  |                 |  +--| (39)
+   |  |  |                 |     |  +--KJ438769|NA|turdus_merula|DE|2011-09-15
+   |  |  |                 |     +--| (88)
+   |  |  |                 |        +--KJ438779|NA|turdus_merula|DE|2012-07-12
+   |  |  |              +--| (8)
+   |  |  |              |  |  +--KJ438774|NA|turdus_merula|DE|2012-09-04
+   |  |  |              |  +--| (41)
+   |  |  |              |     |  +--KJ438776|NA|turdus_merula|DE|2011-09-14
+   |  |  |              |     +--| (75)
+   |  |  |              |        +--KJ438777|NA|turdus_merula|DE|2011-09-14
+   |  |  |           +--| (5)
+   |  |  |           |  |     +--KY199558|NA|turdus_merula|DE|2016
+   |  |  |           |  |  +--| (100)
+   |  |  |           |  |  |  +--OP555956|NA|strix_nebulosa|BE|2017-07-10
+   |  |  |           |  +--| (22)
+   |  |  |           |     +--KJ438771|NA|turdus_merula|DE|2013-05-05
+   |  |  |        +--| (52)
+   |  |  |        |  +--KJ438773|NA|turdus_merula|DE|2011-09-29
+   |  |  |     +--| (100)
+   |  |  |     |  |  +--KJ438772|NA|turdus_merula|DE|2011-09-18
+   |  |  |     |  +--| (51)
+   |  |  |     |     |  +--KJ438778|NA|turdus_merula|DE|2011-09-19
+   |  |  |     |     +--| (100)
+   |  |  |     |        +--KJ438767|NA|culex_sp|DE|2011-09-08
+   |  |  |  +--| (83)
+   |  |  |  |  +--KJ438775|NA|turdus_merula|DE|2011-09-16
+   |  |  +--| (100)
+   |  |     +--KJ438768|NA|culex_sp|DE|2013-08-22
+   +--| (100)
+      +--MN122166|AS201600133|turdus_merula|NL|2016-09-23
+
+
+Consensus tree in newick format: 
+
+(OR573992|AS201700144|branta_ruficollis|NL|2017-08-15:0.0000025259,NA|AS201700144|branta_ruficollis|NL|2017-08-14:0.0000025259,((OR573993|AS201700147|branta_ruficollis|NL|2017-08-15:0.0000025259,NA|AS201700147|branta_ruficollis|NL|2017-08-14:0.0000025259)100:9.9999982713,(((((((NA|AS20190530|turdus_merula|NL|2019-08-19:9.9999982797,NA|AS20221798|turdus_merula|NL|2022-08-30:9.9999982813)95:0.0000025259,MK796168|AS201600070|strix_nebulosa|NL|2016-09-13:9.9999982710)86:9.9999982463,((MN122213|AS201700248|turdus_merula|NL|2017-09-20:9.9999982790,KY315178|Gracula_religiosa/U1609393/Belgium/2016|gracula_religiosa|BE|2016-10-03:9.9999982676)99:9.9999982464,MT133690|UV/BlackBird/Sweden/SVA190801SZ0368/VLT001567/2019|turdus_merula|SE|2019-08-01:9.9999982787)32:0.0000025259)33:0.0000025259,MN122190|AS201700080|turdus_merula|NL|2017-07-05:9.9999982741)75:9.9999989977,MK230893|Grivegnee/2017|turdus_merula|BE|2017-08:9.9999982957)100:9.9999984194,((((((((((((((((((((((((((((KX977447|NA|turdus_merula|BE|2016-09:9.9999980185,KY263626|NA|turdus_merula|BE|2016-09:0.0000025259)100:9.9999982778,MN122192|AS201700086|turdus_merula|NL|2017-07-11:9.9999984380)99:9.9999989884,((MN122174|AS201600241|turdus_merula|NL|2016-09-27:9.9999983910,MN122189|AS201700077|turdus_merula|NL|2017-07-03:9.9999982741)77:0.0000025259,MN122188|AS201700024|turdus_merula|NL|2017-04-11:9.9999983921)94:9.9999986954)95:9.9999982726,KY426755|NA|turdus_merula|DE|2016-09-19:9.9999984354)60:9.9999984331,((MN122152|AS201600060|turdus_merula|NL|2016-09-12:9.9999984399,(MN122196|AS201700103|turdus_merula|NL|2017-07-19:9.9999983721,MN122203|AS201700127|turdus_merula|NL|2017-07-30:9.9999982781)76:0.0000025259)100:9.9999983274,((((MN122158|AS201600104|turdus_merula|NL|2016-09-22:9.9999987162,OP555958|NA|turdus_merula|BE|2017-08-07:9.9999982590)88:9.9999985272,(MK230890|Villers/2017|turdus_merula|BE|2017-08:9.9999983476,(NA|17TV1446|turdus_merula|NL|2017-09-07:9.9999980602,NA|18TV0937|turdus_merula|NL|2018-09-10:9.9999988220)97:9.9999980061)57:9.9999982807)70:9.9999980559,MN122235|AS201800112|turdus_merula|NL|2018-08-14:9.9999984062)64:9.9999982491,MN122177|AS201600253|turdus_merula|NL|2016-09-27:9.9999984698)100:9.9999984414)43:0.0000025259)27:0.0000025259,KY426756|NA|turdus_merula|DE|2016-09-23:9.9999984620)100:9.9999982741,MN122215|AS201800038|turdus_merula|NL|2017-09-11:9.9999982870)59:9.9999982611,KY426759|NA|turdus_merula|DE|2016-09-12:9.9999985200)44:9.9999982486,((((((MN122198|AS201700109|turdus_merula|NL|2017-07-25:9.9999983406,(NA|20TV2299|turdus_merula|NL|2020-08-29:9.9999983196,(MT580899|NA|strix_nebulosa|DE|2018:9.9999983168,MN122229|AS201800097|turdus_merula|NL|2018-08-03:9.9999982793)99:9.9999982674)100:9.9999982741)83:0.0000025259,(OP555957|NA|turdus_merula|BE|2017-07-24:9.9999986050,KY263624|NA|turdus_merula|BE|2016-10:9.9999982818)100:9.9999984472)100:9.9999982764,KJ438754|NA|turdus_merula|DE|2012-09-18:9.9999983130)99:9.9999982710,(KJ438737|NA|culex_sp|DE|2011-08-21:9.9999983428,(KY426767|NA|turdus_merula|DE|2016-10-14:9.9999986189,KY426768|NA|turdus_merula|DE|2016-10-12:9.9999982492)100:9.9999982938)22:0.0000025259)14:0.0000025259,(KJ438733|NA|turdus_merula|DE|2012-09-13:9.9999985741,KJ438738|NA|turdus_merula|DE|2011-09-16:9.9999983203)24:0.0000025259)13:0.0000025259,KJ438763|NA|turdus_merula|DE|2012-07-17:9.9999982701)29:9.9999985504)17:9.9999988198,KY426752|NA|turdus_merula|DE|2015-08-18:9.9999985887)11:0.0000025259,(KY426753|NA|turdus_merula|DE|2015-08-18:9.9999986013,KJ438746|NA|turdus_merula|DE|2011-09-27:9.9999982811)98:9.9999987608,(KJ438709|NA|culex_pipiens|DE|2012-08-15:9.9999984369,KJ438710|NA|turdus_merula|DE|2011-09-11:9.9999989234)7:0.0000025259,((KJ438711|NA|turdus_merula|DE|2011-09-15:9.9999989005,KJ438752|NA|turdus_merula|DE|2011-09-15:9.9999983366)8:0.0000025259,((KJ438720|NA|turdus_merula|DE|2011-09-29:9.9999984098,KJ438750|NA|turdus_merula|DE|2011-09-14:9.9999982792)90:9.9999986343,KJ438762|NA|turdus_merula|DE|2011-09-18:9.9999983140)18:0.0000025259)5:0.0000025259,(((KJ438712|NA|turdus_merula|DE|2011-09-19:9.9999983643,KJ438755|NA|turdidae_sp|DE|2011-09-15:9.9999982710)90:0.0000025259,KJ438756|NA|turdus_merula|DE|2011-09-26:9.9999983053)39:9.9999986719,(KJ438739|NA|turdus_merula|DE|2013-09-10:9.9999983430,KJ438748|NA|turdus_merula|DE|2012-07-23:9.9999983402)19:0.0000025259)1:0.0000025259,((KJ438713|NA|turdus_merula|DE|2011-08-30:9.9999984133,KY426766|NA|turdus_merula|DE|2016-10-11:9.9999982763)98:9.9999987676,(KJ438715|NA|passer_domesticus|DE|2011-09-19:9.9999986168,MK230892|Richelle/2017|turdus_merula|BE|2017-08:9.9999982842)72:9.9999987413)9:0.0000025259,(((KJ438716|NA|culex_pipiens|DE|2012-07-09:0.0000025259,KJ438717|NA|turdus_merula|DE|2012-08-23:0.0000025259)100:9.9999986769,(((MN122172|AS201600221|turdus_merula|NL|2016-09-22:9.9999983239,MN122181|AS201600277|turdus_merula|NL|2016-09-27:9.9999982648)53:0.0000025259,MK796169|AS201600083|strix_nebulosa|NL|2016-09-20:9.9999984234)44:0.0000025259,MN122179|AS201600268|turdus_merula|NL|2016-09-30:9.9999983101)100:9.9999983235)76:9.9999982488,KJ438765|NA|turdus_merula|DE|2011-09-15:9.9999983706)11:9.9999988069,((((KJ438723|NA|turdus_merula|DE|2011-09-11:9.9999982746,((KJ438725|NA|turdus_merula|DE|2011-09-14:0.0000025259,KJ438726|NA|turdus_merula|DE|2011-09-15:0.0000025259)100:9.9999982712,KJ438727|NA|turdus_merula|DE|2011-09-21:9.9999982664)97:9.9999989170)78:9.9999982486,KJ438724|NA|turdus_merula|DE|2011-09-19:9.9999988198)100:9.9999986270,KJ438751|NA|turdus_merula|DE|2011-09-15:9.9999982805)90:9.9999982636,(KJ438734|NA|sturnus_vulgaris|DE|2011-09-29:9.9999982963,KJ438741|NA|turdus_merula|DE|2013-08-26:9.9999982784)79:9.9999983529)6:0.0000025259,((KJ438735|NA|turdus_merula|DE|2012-07-24:9.9999986356,KJ438749|NA|turdus_merula|DE|2012-07-18:9.9999983806)62:9.9999982487,KJ438744|NA|turdus_merula|DE|2012-06-23:9.9999983525)8:9.9999981281)1:0.0000025259,((KJ438707|NA|culex_pipiens|DE|2011-07-07:0.0000025259,KJ438718|NA|culex_sp|DE|2011-06-11:9.9999982746)99:9.9999982652,KJ438708|NA|culex_pipiens|DE|2011-08-08:9.9999982669)11:0.0000025259)3:0.0000025259,((((((((KJ438764|NA|turdus_merula|DE|2012-07-17:9.9999982781,(KJ438728|NA|turdus_merula|DE|2011-09-26:9.9999982531,KJ438766|NA|turdus_merula|DE|2012-09-19:9.9999982818)100:9.9999982464)83:0.0000025259,(KJ438729|NA|turdus_merula|DE|2012-07-18:9.9999982755,KX601691|USUV-HautRhin7316/France/2015|turdus_merula|FR|2015-08-05:9.9999982809)69:9.9999982464)69:9.9999982682,KJ438742|NA|turdus_merula|DE|2013-09-23:9.9999982776)68:9.9999985162,KY501101|NA|homo_sapiens|DE|2016-09-26:9.9999982829)46:9.9999981994,(KJ438730|NA|turdus_merula|DE|2011-09-14:9.9999982759,KJ438761|NA|turdus_merula|DE|2011-09-15:9.9999982819)77:9.9999982648)6:0.0000025259,((KJ438732|NA|turdus_merula|DE|2011-09-15:9.9999982463,KJ438757|NA|turdus_merula|DE|2013-08-26:9.9999982772)77:0.0000025259,(KJ438758|NA|turdus_merula|DE|2013-08-13:9.9999982730,KX601690|USUV-HautRhin7315/France/2015|turdus_merula|FR|2015-08-10:9.9999982814)100:9.9999982741)93:9.9999982463)2:0.0000025259,(KJ438721|NA|culex_sp|DE|2011-08-08:9.9999982759,(KJ438740|NA|turdus_merula|DE|2011-09-16:9.9999982763,(((MN122154|AS201600089|turdus_merula|NL|2016-09-20:9.9999982759,MN122176|AS201600247|turdus_merula|NL|2016-09-30:0.0000025259)87:0.0000025259,MN122170|AS201600197|turdus_merula|NL|2016-10-11:9.9999982463)99:9.9999988667,MN122171|AS201600203|turdus_merula|NL|2016-10-05:9.9999982675)100:9.9999987037)94:9.9999982464)12:0.0000025259)1:0.0000025259,((HE599647|BH65/11-02-03|turdus_merula|DE|2011-09-10:9.9999982744,KJ438719|NA|turdus_merula|DE|2011-09-02:9.9999982742)10:0.0000025259,((KJ438705|NA|culex_pipiens|DE|2010-07-14:9.9999982742,KJ438736|NA|culex_sp|DE|2012-09-01:9.9999982759)8:0.0000025259,(KJ438722|NA|turdus_merula|DE|2012-08-23:9.9999982741,KJ438747|NA|turdus_merula|DE|2012-07-17:9.9999982781)13:0.0000025259)1:0.0000025259)1:0.0000025259)6:0.0000025259)1:0.0000025259,KJ438706|NA|culex_pipiens|DE|2011-07-05:0.0000025259)8:0.0000025259,(KJ438714|NA|turdus_merula|DE|2011-09-15:9.9999982463,((KJ438731|NA|turdus_merula|DE|2011-09-15:9.9999982463,KJ859683|BAT2USUTU-BNI|pipistrellus_pipistrellus|DE|2013-10-05:0.0000025259)98:9.9999982673,KJ859682|BAT1USUTU-BNI|pipistrellus_pipistrellus|DE|2013-09-21:9.9999982745)99:9.9999982648)13:0.0000025259)11:0.0000025259,KY426750|NA|turdus_merula|DE|2015-10-07:9.9999982463)62:9.9999982463,(((KJ438759|NA|turdus_merula|DE|2011-09-28:9.9999982791,KJ438753|NA|turdus_merula|DE|2011-09-16:9.9999982765)67:9.9999982466,KJ438745|NA|turdus_merula|DE|2011-09-16:9.9999982772)57:9.9999982491,KJ438743|NA|turdus_merula|DE|2011-09-13:9.9999982652)67:9.9999982463)76:0.0000025259,KJ438760|NA|turdus_merula|DE|2011-09-16:9.9999982781)100:9.9999982772,((KY426760|NA|turdus_merula|DE|2016-09-29:9.9999982801,KY128481|Snebulosa-7890/Fra/2016|strix_nebulosa|FR|2016-09-22:9.9999982832)100:9.9999982805,(KJ438780|NA|turdus_merula|DE|2011-09-14:9.9999982806,KJ438781|NA|turdus_merula|DE|2011-09-26:9.9999982791)100:9.9999982794)100:9.9999982726)100:9.9999982797,KY426751|NA|turdus_pilaris|DE|2015-09-01:9.9999982761)91:9.9999982487,KJ438770|NA|turdus_merula|DE|2011-09-15:9.9999982712)88:9.9999982485,(((KY426770|NA|turdus_merula|DE|2016-09-20:9.9999982783,KY426769|NA|turdus_merula|DE|2016-09-20:9.9999982728)100:9.9999983414,(KY426762|NA|turdus_merula|DE|2016-09-26:9.9999985083,KY426763|NA|turdus_merula|DE|2016-09-24:9.9999988198)100:9.9999982817)57:9.9999988198,(KJ438769|NA|turdus_merula|DE|2011-09-15:9.9999982899,KJ438779|NA|turdus_merula|DE|2012-07-12:9.9999982786)88:9.9999982648)39:9.9999989249)15:0.0000025259,(KJ438774|NA|turdus_merula|DE|2012-09-04:9.9999984167,(KJ438776|NA|turdus_merula|DE|2011-09-14:9.9999986247,KJ438777|NA|turdus_merula|DE|2011-09-14:9.9999983735)75:9.9999982466)41:9.9999982796)8:0.0000025259,((KY199558|NA|turdus_merula|DE|2016:9.9999982819,OP555956|NA|strix_nebulosa|BE|2017-07-10:9.9999982812)100:9.9999982741,KJ438771|NA|turdus_merula|DE|2013-05-05:9.9999982741)22:0.0000025259)5:0.0000025259,KJ438773|NA|turdus_merula|DE|2011-09-29:9.9999982648)52:9.9999982796,(KJ438772|NA|turdus_merula|DE|2011-09-18:9.9999989992,(KJ438778|NA|turdus_merula|DE|2011-09-19:9.9999982761,KJ438767|NA|culex_sp|DE|2011-09-08:9.9999982805)100:9.9999984769)51:9.9999982493)100:9.9999984186,KJ438775|NA|turdus_merula|DE|2011-09-16:9.9999982648)83:0.0000025259,KJ438768|NA|culex_sp|DE|2013-08-22:9.9999982792)100:9.9999986007)92:9.9999986271,MN122166|AS201600133|turdus_merula|NL|2016-09-23:9.9999982835)100:9.9999982828)100:9.9999982492);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_V.fasta.treefile -m "HKY{14.0273}+F{0.27121,0.229157,0.282579,0.217054}+G4{0.0200361}" --length 10305
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_V.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_V.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug  4 16:08:57 2025
+Total CPU time used: 145.764678 seconds (0h:2m:25s)
+Total wall-clock time used: 145.925365 seconds (0h:2m:25s)
+

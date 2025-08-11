@@ -1,0 +1,26 @@
+#nexus
+
+BEGIN Taxa;
+DIMENSIONS ntax=4;
+TAXLABELS
+[1] 'JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29'
+[2] 'EF206350|Budapest|turdus_merula|HU|2005'
+[3] 'AY453411|NA|NA|AT|2001'
+[4] 'MG888044|NA|culex_pipiens|RS|2014-08'
+;
+END; [Taxa]
+
+BEGIN Splits;
+DIMENSIONS ntax=4 nsplits=7;
+FORMAT labels=no weights=yes confidences=no intervals=no;
+MATRIX
+	100	 2,
+	100	 4,
+	89	 1 3,
+	100	 3,
+	100	 1,
+	5	 1 4,
+	7	 1 2,
+;
+END; [Splits]
+

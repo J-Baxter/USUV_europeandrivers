@@ -1,0 +1,125 @@
+IQ-TREE version 3.0.1 for MacOS ARM 64-bit built Jun 30 2025
+Developed by Bui Quang Minh, Thomas Wong, Nhan Ly-Trong, Huaiyan Ren
+Contributed by Lam-Tung Nguyen, Dominik Schrempf, Chris Bielow,
+Olga Chernomor, Michael Woodhams, Diep Thi Hoang, Heiko Schmidt
+
+Host:    S31-9YFL2JH7 (SSE4.2, 48 GB RAM)
+Command: iqtree3 -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta -m HKY+G+F -czb -bb 1000 -nt AUTO
+Seed:    239398 (Using SPRNG - Scalable Parallel Random Number Generator)
+Time:    Mon Aug  4 16:12:37 2025
+Kernel:  SSE2 - auto-detect threads (16 CPU cores detected)
+
+Reading alignment file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta ... Fasta format detected
+Reading fasta file: done in 0.000366926 secs using 76.85% CPU
+Alignment most likely contains DNA/RNA sequences
+Constructing alignment: done in 0.00430393 secs using 30.88% CPU
+Alignment has 4 sequences with 10305 columns, 23 distinct patterns
+2 parsimony-informative, 56 singleton sites, 10247 constant sites
+                                               Gap/Ambiguity  Composition  p-value
+Analyzing sequences: done in 3.88622e-05 secs using 61.76% CPU
+   1  JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29    0.01%    passed     99.97%
+   2  EF206350|Budapest|turdus_merula|HU|2005          0.00%    passed     99.99%
+   3  AY453411|NA|NA|AT|2001                           0.00%    passed     99.96%
+   4  MG888044|NA|culex_pipiens|RS|2014-08             0.00%    passed     99.93%
+****  TOTAL                                            0.00%  0 sequences failed composition chi2 test (p-value<5%; df=3)
+Checking for duplicate sequences: done in 5.38826e-05 secs using 55.68% CPU
+
+Create initial parsimony tree by phylogenetic likelihood library (PLL)... 0.000 seconds
+Generating 1000 samples for ultrafast bootstrap (seed: 239398)...
+
+NOTE: 0 MB RAM (0 GB) is required!
+Measuring multi-threading efficiency up to 16 CPU cores
+Increase to 10 rounds for branch lengths
+526331 trees examined
+Threads: 1 / Time: 16.000 sec / Speedup: 1.000 / Efficiency: 100% / LogL: -14724
+Threads: 2 / Time: 82.575 sec / Speedup: 0.194 / Efficiency: 10% / LogL: -14724
+Determining AUTO threadcount: done in 98.5752 secs using 53.88% CPU
+BEST NUMBER OF THREADS: 1
+
+Estimate model parameters (epsilon = 0.100)
+1. Initial log-likelihood: -14716.975
+2. Current log-likelihood: -14671.416
+Optimal log-likelihood: -14671.415
+Rate parameters:  A-C: 1.00000  A-G: 35.27451  A-T: 1.00000  C-G: 1.00000  C-T: 35.27451  G-T: 1.00000
+Base frequencies:  A: 0.271  C: 0.229  G: 0.283  T: 0.217
+Gamma shape alpha: 998.448
+Parameters optimization took 2 rounds (0.000 sec)
+Wrote distance file to... 
+Computing ML distances based on estimated model parameters...
+Calculating distance matrix: done in 4.19617e-05 secs using 95.33% CPU
+Computing ML distances took 0.000063 sec (of wall-clock time) 0.000048 sec (of CPU time)
+Setting up auxiliary I and S matrices: done in 1.40667e-05 secs using 56.87% CPU
+Constructing RapidNJ tree: done in 6.91414e-06 secs using 72.32% CPU
+Computing RapidNJ tree took 0.000050 sec (of wall-clock time) 0.000022 sec (of CPU time)
+Log-likelihood of RapidNJ tree: -14671.415
+--------------------------------------------------------------------
+|             INITIALIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Generating 99 parsimony trees... 0.002 second
+Computing log-likelihood of 2 initial trees ... 0.000 seconds
+Current best score: -14671.415
+
+Do NNI search on 3 best initial trees
+Finish initializing candidate tree set (3)
+Current best tree score: -14671.415 / CPU time: 0.007
+Number of iterations: 3
+--------------------------------------------------------------------
+|               OPTIMIZING CANDIDATE TREE SET                      |
+--------------------------------------------------------------------
+Iteration 10 / LogL: -14671.415 / Time: 0h:1m:38s
+UPDATE BEST LOG-LIKELIHOOD: -14671.415
+Iteration 20 / LogL: -14677.285 / Time: 0h:1m:38s
+Iteration 30 / LogL: -14671.415 / Time: 0h:1m:38s (0h:3m:58s left)
+Iteration 40 / LogL: -14671.415 / Time: 0h:1m:38s (0h:2m:31s left)
+Iteration 50 / LogL: -14671.415 / Time: 0h:1m:38s (0h:1m:40s left)
+Log-likelihood cutoff on original alignment: -14677.832
+Iteration 60 / LogL: -14671.415 / Time: 0h:1m:38s (0h:1m:6s left)
+Iteration 70 / LogL: -14671.415 / Time: 0h:1m:38s (0h:0m:42s left)
+Iteration 80 / LogL: -14671.415 / Time: 0h:1m:38s (0h:0m:24s left)
+Iteration 90 / LogL: -14671.415 / Time: 0h:1m:38s (0h:0m:11s left)
+Iteration 100 / LogL: -14671.415 / Time: 0h:1m:38s (0h:0m:0s left)
+Log-likelihood cutoff on original alignment: -14677.832
+NOTE: Bootstrap correlation coefficient of split occurrence frequencies: 1.000
+TREE SEARCH COMPLETED AFTER 101 ITERATIONS / Time: 0h:1m:38s
+
+--------------------------------------------------------------------
+|                    FINALIZING TREE SEARCH                        |
+--------------------------------------------------------------------
+Performs final model parameters optimization
+Estimate model parameters (epsilon = 0.010)
+1. Initial log-likelihood: -14671.415
+Optimal log-likelihood: -14671.414
+Rate parameters:  A-C: 1.00000  A-G: 35.24771  A-T: 1.00000  C-G: 1.00000  C-T: 35.24771  G-T: 1.00000
+Base frequencies:  A: 0.271  C: 0.229  G: 0.283  T: 0.217
+Gamma shape alpha: 998.448
+Parameters optimization took 1 rounds (0.000 sec)
+BEST SCORE FOUND : -14671.414
+Creating bootstrap support values...
+Split supports printed to NEXUS file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.splits.nex
+Collapsing near-zero internal branches... 0 collapsed
+Total tree length: 0.006
+
+Total number of iterations: 101
+CPU time used for tree search: 0.081 sec (0h:0m:0s)
+Wall-clock time used for tree search: 0.090 sec (0h:0m:0s)
+Total CPU time used: 53.208 sec (0h:0m:53s)
+Total wall-clock time used: 98.694 sec (0h:1m:38s)
+
+Computing bootstrap consensus tree...
+Reading input file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.splits.nex...
+4 taxa and 7 splits.
+Consensus tree written to USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.contree
+Reading input trees file USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.contree
+Log-likelihood of consensus tree: -14671.414
+
+Analysis results written to: 
+  IQ-TREE report:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.iqtree
+  Maximum-likelihood tree:       USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.treefile
+  Likelihood distances:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.mldist
+
+Ultrafast bootstrap approximation results written to:
+  Split support values:          USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.splits.nex
+  Consensus tree:                USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.contree
+  Screen log file:               USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VIII.fasta.log
+
+Date and Time: Mon Aug  4 16:14:15 2025

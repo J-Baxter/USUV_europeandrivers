@@ -1,0 +1,246 @@
+IQ-TREE 3.0.1 built Jun 30 2025
+
+Input file name: USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 99117
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 28 sequences with 10305 nucleotide sites
+Number of constant sites: 10137 (= 98.3697% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 10137 (= 98.3697% of all sites)
+Number of parsimony informative sites: 60
+Number of distinct site patterns: 120
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 99.6982
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 99.6982
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2703
+  pi(C) = 0.229
+  pi(G) = 0.2833
+  pi(T) = 0.2173
+
+Rate matrix Q:
+
+  A    -1.117  0.008915     1.099  0.008459
+  C   0.01052   -0.8649   0.01103    0.8434
+  G     1.049  0.008915    -1.066  0.008459
+  T   0.01052    0.8888   0.01103   -0.9104
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.02002
+
+ Category  Relative_rate  Proportion
+  1         4.786e-31      0.25
+  2         1.035e-15      0.25
+  3         9.667e-07      0.25
+  4         4              0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -15765.2014 (s.e. 109.0543)
+Unconstrained log-likelihood (without tree): -15746.2839
+Number of free parameters (#branches + #model parameters): 47
+Akaike information criterion (AIC) score: 31624.4029
+Corrected Akaike information criterion (AICc) score: 31624.8428
+Bayesian information criterion (BIC) score: 31964.7010
+
+Total tree length (sum of branch lengths): 0.0170
+Sum of internal branch lengths: 0.0053 (31.0228% of tree length)
+
+WARNING: 1 near-zero internal branches (<0.0001) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'MW164637|11pool1989|culex_pipiens|IT|2011-08-23' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++-------------------------MW164637|11pool1989|culex_pipiens|IT|2011-08-23
+|
+|       +---------------MW164638|11pool2109|culex_pipiens|IT|2011-08-24
++-------| (93)
+|       |                   +-----MW164643|12pool2046|culex_pipiens|IT|2012-07-24
+|       |           +-------| (99)
+|       |           |       +--MW164644|12pool2194|culex_pipiens|IT|2012-08-09
+|       |           |       |
+|       |           |       +**MW164645|12pool2214|culex_pipiens|IT|2012-08-07
+|       |           |       |
+|       |           |       +---MW164665|13pool5873|culex_pipiens|IT|2013-08-13
+|       |           |       |
+|       |           |       |  +--MW164650|12pool2586|culex_pipiens|IT|2012-08-23
+|       |           |       +--| (84)
+|       |           |          +-------MW164667|13pool6009|culex_pipiens|IT|2013-08-21
+|       +-----------| (100)
+|                   +---------MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03
+|                   |
+|                   |           +---MW164655|12VIR6787-10|alauda_arvensis|IT|2012-09-03
+|                   +-----------| (100)
+|                   |           +--MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03
+|                   |
+|                   |  +---------MW164646|12pool2249|culex_pipiens|IT|2012-08-07
+|                   +**| (77)
+|                   |  +-----------------MW164659|13pool5600|culex_pipiens|IT|2013-08-07
+|                   |
+|                   |     +---------------MW164649|12pool2412|culex_pipiens|IT|2012-08-22
+|                   +-----| (95)
+|                         |             +--MW164674|14pool1419|culex_pipiens|IT|2014-08-26
+|                         |   +---------| (97)
+|                         |   |         +-----MW164680|14pool1698|culex_pipiens|IT|2014-09-23
+|                         |   |         |
+|                         |   |         +---------MW164698|16pool1777|culex_pipiens|IT|2016-07-25
+|                         |   |         |
+|                         |   |         |               +**MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15
+|                         |   |         +---------------| (100)
+|                         |   |         |               +**MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15
+|                         |   |         |
+|                         |   |         +-----------------MW164705|16pool2336|culex_pipiens|IT|2016-08-29
+|                         +---| (89)
+|                             |     +-------MW164689|15pool1503|culex_pipiens|IT|2015-08-10
+|                             +-----| (95)
+|                                   +---------------MW164702|16pool2106|culex_pipiens|IT|2016-08-16
+|
+|                       +**MW164647|12pool2262|culex_pipiens|IT|2012-08-07
+|               +-------| (98)
+|               |       +--MW164653|12pool2653|culex_pipiens|IT|2012-09-05
+|               |       |
+|               |       +-----------MW164677|14pool1489|culex_pipiens|IT|2014-09-02
++---------------| (100)
+|               |             +-----MW164651|12pool2626|culex_pipiens|IT|2012-09-05
+|               +-------------| (100)
+|                             +---------MW164666|13pool5999|culex_pipiens|IT|2013-08-21
+|
++---------JF266698|NA|turdus_merula|IT|2009
+
+Tree in newick format:
+
+(MW164637|11pool1989|culex_pipiens|IT|2011-08-23:0.0012728069,(MW164638|11pool2109|culex_pipiens|IT|2011-08-24:0.0007837192,((MW164643|12pool2046|culex_pipiens|IT|2012-07-24:0.0002925625,MW164644|12pool2194|culex_pipiens|IT|2012-08-09:0.0000973621,MW164645|12pool2214|culex_pipiens|IT|2012-08-07:0.0000010000,MW164665|13pool5873|culex_pipiens|IT|2013-08-13:0.0001953707,(MW164650|12pool2586|culex_pipiens|IT|2012-08-23:0.0000973621,MW164667|13pool6009|culex_pipiens|IT|2013-08-21:0.0003906097)84:0.0000973621)99:0.0003901937,MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03:0.0004879243,(MW164655|12VIR6787-10|alauda_arvensis|IT|2012-09-03:0.0001953707,MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03:0.0000973621)100:0.0005861329,(MW164646|12pool2249|culex_pipiens|IT|2012-08-07:0.0004898238,MW164659|13pool5600|culex_pipiens|IT|2013-08-07:0.0008814955)77:0.0000961911,(MW164649|12pool2412|culex_pipiens|IT|2012-08-22:0.0007829013,((MW164674|14pool1419|culex_pipiens|IT|2014-08-26:0.0000973621,MW164680|14pool1698|culex_pipiens|IT|2014-09-23:0.0002926336,MW164698|16pool1777|culex_pipiens|IT|2016-07-25:0.0004880143,(MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15:0.0000010000,MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15:0.0000010000)100:0.0007815896,MW164705|16pool2336|culex_pipiens|IT|2016-08-29:0.0008794915)97:0.0004888518,(MW164689|15pool1503|culex_pipiens|IT|2015-08-10:0.0003909404,MW164702|16pool2106|culex_pipiens|IT|2016-08-16:0.0007830587)95:0.0002928331)89:0.0001953707)95:0.0002930293)100:0.0005874540)93:0.0003900089,((MW164647|12pool2262|culex_pipiens|IT|2012-08-07:0.0000010000,MW164653|12pool2653|culex_pipiens|IT|2012-09-05:0.0000973621,MW164677|14pool1489|culex_pipiens|IT|2014-09-02:0.0005853777)98:0.0003903083,(MW164651|12pool2626|culex_pipiens|IT|2012-09-05:0.0002925906,MW164666|13pool5999|culex_pipiens|IT|2013-08-21:0.0004886516)100:0.0006862928)100:0.0007832433,JF266698|NA|turdus_merula|IT|2009:0.0004879346);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -15765.430345
+Robinson-Foulds distance between ML tree and consensus tree: 22
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++-------------------------MW164637|11pool1989|culex_pipiens|IT|2011-08-23
+|
+|          +---------------MW164638|11pool2109|culex_pipiens|IT|2011-08-24
+|  +-------| (93)
+|  |       |                         +-----MW164643|12pool2046|culex_pipiens|IT|2012-07-24
+|  |       |                 +-------| (99)
+|  |       |                 |       |  +--MW164644|12pool2194|culex_pipiens|IT|2012-08-09
+|  |       |                 |       +--| (42)
+|  |       |                 |          |  +--MW164645|12pool2214|culex_pipiens|IT|2012-08-07
+|  |       |                 |          +--| (17)
+|  |       |                 |             |  +---MW164665|13pool5873|culex_pipiens|IT|2013-08-13
+|  |       |                 |             +--| (23)
+|  |       |                 |                |  +--MW164650|12pool2586|culex_pipiens|IT|2012-08-23
+|  |       |                 |                +--| (84)
+|  |       |                 |                   +-------MW164667|13pool6009|culex_pipiens|IT|2013-08-21
+|  |       |              +--| (36)
+|  |       |              |  +---------MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03
+|  |       |           +--| (27)
+|  |       |           |  |     +---------MW164646|12pool2249|culex_pipiens|IT|2012-08-07
+|  |       |           |  |  +--| (77)
+|  |       |           |  |  |  +-----------------MW164659|13pool5600|culex_pipiens|IT|2013-08-07
+|  |       |           |  +--| (17)
+|  |       |           |     |     +---------------MW164649|12pool2412|culex_pipiens|IT|2012-08-22
+|  |       |           |     +-----| (95)
+|  |       |           |           |                   +--MW164674|14pool1419|culex_pipiens|IT|2014-08-26
+|  |       |           |           |                +--| (37)
+|  |       |           |           |                |  +---------MW164698|16pool1777|culex_pipiens|IT|2016-07-25
+|  |       |           |           |             +--| (76)
+|  |       |           |           |             |  |  +-----MW164680|14pool1698|culex_pipiens|IT|2014-09-23
+|  |       |           |           |             |  +--| (41)
+|  |       |           |           |             |     |               +--MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15
+|  |       |           |           |             |     +---------------| (100)
+|  |       |           |           |             |                     +--MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15
+|  |       |           |           |   +---------| (97)
+|  |       |           |           |   |         +-----------------MW164705|16pool2336|culex_pipiens|IT|2016-08-29
+|  |       |           |           +---| (89)
+|  |       |           |               |     +-------MW164689|15pool1503|culex_pipiens|IT|2015-08-10
+|  |       |           |               +-----| (95)
+|  |       |           |                     +---------------MW164702|16pool2106|culex_pipiens|IT|2016-08-16
+|  |       +-----------| (100)
+|  |                   |           +---MW164655|12VIR6787-10|alauda_arvensis|IT|2012-09-03
+|  |                   +-----------| (100)
+|  |                               +--MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03
++--| (82)
+|  |                          +--MW164647|12pool2262|culex_pipiens|IT|2012-08-07
+|  |                       +--| (88)
+|  |                       |  +--MW164653|12pool2653|culex_pipiens|IT|2012-09-05
+|  |               +-------| (98)
+|  |               |       +-----------MW164677|14pool1489|culex_pipiens|IT|2014-09-02
+|  +---------------| (100)
+|                  |             +-----MW164651|12pool2626|culex_pipiens|IT|2012-09-05
+|                  +-------------| (100)
+|                                +---------MW164666|13pool5999|culex_pipiens|IT|2013-08-21
+|
++---------JF266698|NA|turdus_merula|IT|2009
+
+
+Consensus tree in newick format: 
+
+(MW164637|11pool1989|culex_pipiens|IT|2011-08-23:0.0012737150,((MW164638|11pool2109|culex_pipiens|IT|2011-08-24:0.0007835107,((((MW164643|12pool2046|culex_pipiens|IT|2012-07-24:0.0002924836,(MW164644|12pool2194|culex_pipiens|IT|2012-08-09:0.0000973621,(MW164645|12pool2214|culex_pipiens|IT|2012-08-07:0.0000025057,(MW164665|13pool5873|culex_pipiens|IT|2013-08-13:0.0001953707,(MW164650|12pool2586|culex_pipiens|IT|2012-08-23:0.0000973621,MW164667|13pool6009|culex_pipiens|IT|2013-08-21:0.0003912293)84:0.0000973621)23:0.0000025057)17:0.0000025057)42:0.0000025057)99:0.0003901109,MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03:0.0004878137)36:0.0000025057,((MW164646|12pool2249|culex_pipiens|IT|2012-08-07:0.0004896690,MW164659|13pool5600|culex_pipiens|IT|2013-08-07:0.0008816200)77:0.0000961925,(MW164649|12pool2412|culex_pipiens|IT|2012-08-22:0.0007828699,((((MW164674|14pool1419|culex_pipiens|IT|2014-08-26:0.0000973621,MW164698|16pool1777|culex_pipiens|IT|2016-07-25:0.0004878614)37:0.0000025057,(MW164680|14pool1698|culex_pipiens|IT|2014-09-23:0.0002924863,(MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15:0.0000025057,MW164696|15VIR4781-43|turdus_merula|IT|2015-09-15:0.0000025057)100:0.0007814959)41:0.0000025057)76:0.0000025057,MW164705|16pool2336|culex_pipiens|IT|2016-08-29:0.0008793714)97:0.0004886769,(MW164689|15pool1503|culex_pipiens|IT|2015-08-10:0.0003907920,MW164702|16pool2106|culex_pipiens|IT|2016-08-16:0.0007829934)95:0.0002927573)89:0.0001949599)95:0.0002929289)17:0.0000025057)27:0.0000025057,(MW164655|12VIR6787-10|alauda_arvensis|IT|2012-09-03:0.0001953707,MW164657|12VIR6787-9|alauda_arvensis|IT|2012-09-03:0.0000973621)100:0.0005868319)100:0.0005875016)93:0.0003902271,(((MW164647|12pool2262|culex_pipiens|IT|2012-08-07:0.0000025057,MW164653|12pool2653|culex_pipiens|IT|2012-09-05:0.0000973621)88:0.0000025057,MW164677|14pool1489|culex_pipiens|IT|2014-09-02:0.0005858649)98:0.0003905286,(MW164651|12pool2626|culex_pipiens|IT|2012-09-05:0.0002928103,MW164666|13pool5999|culex_pipiens|IT|2013-08-21:0.0004890013)100:0.0006867959)100:0.0007835834)82:0.0000025057,JF266698|NA|turdus_merula|IT|2009:0.0004882850);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta.treefile -m "HKY{99.6982}+F{0.270332,0.229038,0.283311,0.217319}+G4{0.0200234}" --length 10305
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_VII.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug  4 16:12:37 2025
+Total CPU time used: 46.725232 seconds (0h:0m:46s)
+Total wall-clock time used: 60.09497213 seconds (0h:1m:0s)
+

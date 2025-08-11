@@ -1,0 +1,1116 @@
+IQ-TREE 3.0.1 built Jun 30 2025
+
+Input file name: USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_III.fasta
+Type of analysis: tree reconstruction + ultrafast bootstrap (1000 replicates)
+Random seed number: 966529
+
+REFERENCES
+----------
+
+To cite IQ-TREE 3 please use:
+
+Thomas K.F. Wong, Nhan Ly-Trong, Huaiyan Ren, Hector Banos, Andrew J. Roger,
+Edward Susko, Chris Bielow, Nicola De Maio, Nick Goldman, Matthew W. Hahn,
+Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
+IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
+Submitted.
+
+Since you used ultrafast bootstrap (UFBoot) please also cite: 
+
+Diep Thi Hoang, Olga Chernomor, Arndt von Haeseler, Bui Quang Minh,
+and Le Sy Vinh (2018) UFBoot2: Improving the ultrafast bootstrap
+approximation. Mol. Biol. Evol., 35:518–522.
+https://doi.org/10.1093/molbev/msx281
+
+SEQUENCE ALIGNMENT
+------------------
+
+NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
+Input data: 246 sequences with 10305 nucleotide sites
+Number of constant sites: 9007 (= 87.4042% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 9007 (= 87.4042% of all sites)
+Number of parsimony informative sites: 553
+Number of distinct site patterns: 1457
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 24.0221
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 24.0221
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2692
+  pi(C) = 0.2276
+  pi(G) = 0.2845
+  pi(T) = 0.2187
+
+Rate matrix Q:
+
+  A    -1.109   0.03467     1.041   0.03331
+  C     0.041   -0.8845   0.04333    0.8002
+  G     0.985   0.03467    -1.053   0.03331
+  T     0.041    0.8328   0.04333   -0.9171
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 0.08235
+
+ Category  Relative_rate  Proportion
+  1         2.705e-08      0.25
+  2         0.0002447      0.25
+  3         0.05069        0.25
+  4         3.949          0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -29428.2250 (s.e. 420.6174)
+Unconstrained log-likelihood (without tree): -51996.9046
+Number of free parameters (#branches + #model parameters): 393
+Akaike information criterion (AIC) score: 59642.4499
+Corrected Akaike information criterion (AICc) score: 59673.6964
+Bayesian information criterion (BIC) score: 62487.9210
+
+Total tree length (sum of branch lengths): 0.1866
+Sum of internal branch lengths: 0.0408 (21.8588% of tree length)
+
+WARNING: 2 near-zero internal branches (<0.0001) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'PP482816|Cx1-batch2_Zen-Pets-Res_2023-08-03|culex_pipiens|FR|2023-08-03' is drawn at root
+Numbers in parentheses are  ultrafast bootstrap support (%)
+
++------------------------------PP482816|Cx1-batch2_Zen-Pets-Res_2023-08-03|culex_pipiens|FR|2023-08-03
+|
+|     +------------------------------PQ677887|Ar2|alectoris_rufa|PT|2023-11-05
+|  +**| (94)
+|  |  |                   +**ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|NL|2016
+|  |  +-------------------| (100)
+|  |                      +**ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016
++--| (100)
+|  |                 +----KY294723|S-1238|turdus_merula|DE|2016
+|  |          +------| (100)
+|  |          |      |  +**KY294722|S-1232|turdus_merula|DE|2016
+|  |          |      +--| (100)
+|  |          |      |  +----KY199557|NA|turdus_merula|DE|2016
+|  |          |      |
+|  |          |      +---------MN122238|AS201800115|turdus_merula|NL|2018-08-15
+|  |     +----| (100)
+|  |     |    +---------------MK419834|USU-BE-Scoter/2018|melanitta_nigra|BE|2018-08
+|  |  +--| (88)
+|  |  |  +----------------------OU674388|NA|turdus_merula|LU|2020-09
+|  +--| (92)
+|     |                                      +--PQ041659|USUV_TM_Netherlands_2016|NA|NL|2020
+|     |                                   +--| (98)
+|     |                                   |  +**MT188658|NA|turdus_merula|NL|2016
+|     |                                   |  |
+|     |                                   |  +**MH891847|AS201600045|turdus_merula|NL|2016-09-07
+|     |                                   |  |
+|     |                                   |  +--MN813490|TMNetherlands|turdus_merula|NL|2016
+|     |                                   |  |
+|     |                                   |  +--MN122148|AS201600045|turdus_merula|NL|2016-09-07
+|     |                                +--| (100)
+|     |                                |  |     +--------NA|AS20190490|turdus_merula|NL|2019-08-27
+|     |                                |  |  +--| (98)
+|     |                                |  |  |  +---NA|18TV0475|turdus_merula|NL|2018-08-18
+|     |                                |  +--| (96)
+|     |                                |  |  +------NA|AS20190438|gracula_religiosa|NL|2019-09-12
+|     |                                |  |  |
+|     |                                |  |  +**MT795154|NA|turdus_merula|DE|2016-09-30
+|     |                                |  |  |
+|     |                                |  |  +--MN122156|AS201600098|turdus_merula|NL|2016-09-21
+|     |                                |  |  |
+|     |                                |  |  |  +--MN122185|AS201600284|turdus_merula|NL|2016-10-03
+|     |                                |  |  +--| (85)
+|     |                                |  |  |  +--MN122236|AS201800113|turdus_merula|NL|2018-08-14
+|     |                                |  |  |  |
+|     |                                |  |  |  |  +--MN122164|AS201600124|turdus_merula|NL|2016-09-23
+|     |                                |  |  |  +--| (53)
+|     |                                |  |  |  |  +--MN122162|AS201600118|turdus_merula|NL|2016-09-22
+|     |                                |  |  |  |  |
+|     |                                |  |  |  |  +----MN122175|AS201600244|turdus_merula|NL|2016-09-27
+|     |                                |  |  |  |  |
+|     |                                |  |  |  |  +----------MN122163|AS201600121|turdus_merula|NL|2016-09-22
+|     |                                |  |  |  |
+|     |                                |  |  |  +--MN122187|AS201600287|turdus_merula|NL|2016-09-27
+|     |                                |  |  |  |
+|     |                                |  |  |  +--MN122211|AS201700186|turdus_merula|NL|2017-09-13
+|     |                                |  |  |  |
+|     |                                |  |  |  +---MN122249|AS201800129|turdus_merula|NL|2018-08-23
+|     |                                |  |  |  |
+|     |                                |  |  |  +-------MN122224|AS201800091|turdus_merula|NL|2018-08-02
+|     |                                |  |  |  |
+|     |                                |  |  |  +-------MN122227|AS201800094|turdus_merula|NL|2018-08-03
+|     |                                |  |  |  |
+|     |                                |  |  |  +--MN122207|AS201700167|turdus_merula|NL|2017-09-01
+|     |                                |  |  |
+|     |                                |  |  |  +----MN122254|AS201800155|turdus_merula|NL|2018-08-31
+|     |                                |  |  +--| (99)
+|     |                                |  |     +------MN122240|AS201800118|turdus_merula|NL|2018-08-16
+|     |                                |  |
+|     |                                |  |  +--MN122145|AS201600034|turdus_merula|NL|2016-09-01
+|     |                                |  +--| (99)
+|     |                                |  |  +-----MN122230|AS201800099|turdus_merula|NL|2018-08-07
+|     |                                |  |
+|     |                                |  +---------MN122214|AS201700254|turdus_merula|NL|2017-09-22
+|     |                                |  |
+|     |                                |  |  +-------NA|AS20221923|turdus_merula|NL|2022-09-04
+|     |                                |  +--| (100)
+|     |                                |  |  |  +--------------NA|AS20221952|streptopelia_decaocto|NL|2022-09-27
+|     |                                |  |  +**| (100)
+|     |                                |  |     +-------------PV235996|USUV/NL/2022/CMV3394|culex_sp|NL|2022-07-26
+|     |                                |  |
+|     |                                |  |   +**OP921076|16TV1039_Turdusmerula|turdus_merula|NL|2016-10-07
+|     |                                |  +---| (100)
+|     |                                |      +**OP921077|16TV1039_Ixodesfrontalis|ixodes_frontalis|NL|2016-10-07
+|     |                             +--| (100)
+|     |                             |  |  +----MN122186|AS201600286|turdus_merula|NL|2016-09-28
+|     |                             |  +--| (98)
+|     |                             |  |  +----MN122201|AS201700121|turdus_merula|NL|2017-08-01
+|     |                             |  |
+|     |                             |  |       +------MN122169|AS201600173|turdus_merula|NL|2016-10-07
+|     |                             |  |    +--| (91)
+|     |                             |  |    |  +--MN122206|AS201700155|turdus_merula|NL|2017-08-10
+|     |                             |  |    |  |
+|     |                             |  |    |  +-----NA|AS20221842|turdus_merula|NL|2022-09-04
+|     |                             |  |    |  |
+|     |                             |  |    |  |              +--NA|AS20221670|turdus_merula|NL|2022-07-24
+|     |                             |  |    |  |           +--| (99)
+|     |                             |  |    |  |           |  +--NA|AS20221964|columba_palumbus|NL|2022-09-26
+|     |                             |  |    |  |           |  |
+|     |                             |  |    |  |           |  +-----NA|AS20221860|turdus_merula|NL|2022-09-14
+|     |                             |  |    |  |        +--| (95)
+|     |                             |  |    |  |        |  +----NA|AS20221760|turdus_merula|NL|2022-08-24
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  |        +**NA|22B00207|turdus_merula|NL|2022-11-12
+|     |                             |  |    |  |        |  |     +--| (100)
+|     |                             |  |    |  |        |  |     |  +--NA|21TV8157|turdus_merula|NL|2022-10-02
+|     |                             |  |    |  |        |  |  +--| (100)
+|     |                             |  |    |  |        |  |  |  +--PV235995|USUV/NL/2022/CMV3308|culex_sp|NL|2022-07-13
+|     |                             |  |    |  |        |  +--| (99)
+|     |                             |  |    |  |        |  |  +----NA|AS20221918|cyanistes_caeruleus|NL|2022-09-15
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  |  +---NA|AS20221627|turdus_merula|NL|2022-07-28
+|     |                             |  |    |  |        |  +--| (97)
+|     |                             |  |    |  |        |  |  +--NA|22TV3632|turdus_merula|NL|2022-10-08
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  +------NA|AS20221838|turdus_merula|NL|2022-08-22
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  +-------NA|AS20221803|turdus_merula|NL|2022-09-02
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  +--NA|AS20200689|turdus_merula|NL|2020-09-30
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  +--NA|AS20210914|turdus_merula|NL|2021-08-30
+|     |                             |  |    |  |        |  |
+|     |                             |  |    |  |        |  |  +--NA|22TV3658|turdus_merula|NL|2022-08-27
+|     |                             |  |    |  |        |  +--| (99)
+|     |                             |  |    |  |        |     +------PQ633267|USUV/NL/2022/SCBC7P30|NA|NL|2022-11-18
+|     |                             |  |    |  |     +--| (100)
+|     |                             |  |    |  |     |  +----NA|AS20221637|turdus_merula|NL|2022-08-04
+|     |                             |  |    |  |  +--| (100)
+|     |                             |  |    |  |  |  |              +**NA|AS20221617|turdus_merula|NL|2022-08-08
+|     |                             |  |    |  |  |  |           +--| (100)
+|     |                             |  |    |  |  |  |           |  +**NA|AS20221657|turdus_merula|NL|2022-08-04
+|     |                             |  |    |  |  |  |        +--| (100)
+|     |                             |  |    |  |  |  |        |  +--NA|AS20221784|turdus_merula|NL|2022-08-11
+|     |                             |  |    |  |  |  |     +--| (100)
+|     |                             |  |    |  |  |  |     |  +--NA|AS20221775|turdus_merula|NL|2022-08-28
+|     |                             |  |    |  |  |  |  +--| (57)
+|     |                             |  |    |  |  |  |  |  |  +**NA|22B00462|turdus_merula|NL|2022-09-09
+|     |                             |  |    |  |  |  |  |  +--| (100)
+|     |                             |  |    |  |  |  |  |  |  +-----NA|22TV2724|turdidae_sp|NL|2022-08-28
+|     |                             |  |    |  |  |  |  |  |
+|     |                             |  |    |  |  |  |  |  |     +**NA|22TV2828|turdus_merula|NL|2022-09-03
+|     |                             |  |    |  |  |  |  |  |  +--| (100)
+|     |                             |  |    |  |  |  |  |  |  |  +**NA|22TV2684|turdus_merula|NL|2022-09-04
+|     |                             |  |    |  |  |  |  |  |  |  |
+|     |                             |  |    |  |  |  |  |  |  |  +**NA|22B00237|turdus_merula|NL|2022-11-12
+|     |                             |  |    |  |  |  |  |  +--| (57)
+|     |                             |  |    |  |  |  |  |  |  |  +--NA|AS20221908|turdus_merula|NL|2022-09-12
+|     |                             |  |    |  |  |  |  |  |  +--| (99)
+|     |                             |  |    |  |  |  |  |  |     +**NA|AS20221903|turdus_merula|NL|2022-09-13
+|     |                             |  |    |  |  |  |  |  |
+|     |                             |  |    |  |  |  |  |  +---NA|AS20221846|turdus_merula|NL|2022-09-03
+|     |                             |  |    |  |  |  |  |  |
+|     |                             |  |    |  |  |  |  |  +-----NA|AS20221755|strix_nebulosa|NL|2022-07-21
+|     |                             |  |    |  |  |  |  |  |
+|     |                             |  |    |  |  |  |  |  +--NA|22TV3602|turdus_merula|NL|2022-10-02
+|     |                             |  |    |  |  |  +--| (99)
+|     |                             |  |    |  |  |  |  |  +-------NA|22B00186|turdus_merula|NL|2022-11-12
+|     |                             |  |    |  |  |  |  +--| (99)
+|     |                             |  |    |  |  |  |     +----NA|21TV9171|turdus_merula|NL|2022-09-08
+|     |                             |  |    |  |  |  |
+|     |                             |  |    |  |  |  |   +--NA|AS20221818|turdus_merula|NL|2022-08-31
+|     |                             |  |    |  |  |  +---| (100)
+|     |                             |  |    |  |  |      +---NA|AS20221889|turdus_merula|NL|2022-09-18
+|     |                             |  |    |  +--| (72)
+|     |                             |  |    |  |  |        +-----NA|AS20221913|turdus_merula|NL|2022-09-11
+|     |                             |  |    |  |  |     +--| (100)
+|     |                             |  |    |  |  |     |  |  +--NA|AS20221884|turdus_merula|NL|2022-09-14
+|     |                             |  |    |  |  |     |  +--| (100)
+|     |                             |  |    |  |  |     |     +-----NA|22TV2538|turdus_merula|NL|2022-08-24
+|     |                             |  |    |  |  |  +--| (98)
+|     |                             |  |    |  |  |  |  |      +**NA|AS20221994|passer_domesticus|NL|2022-09-19
+|     |                             |  |    |  |  |  |  +------| (100)
+|     |                             |  |    |  |  |  |         +--NA|AS20221999|turdidae_sp|NL|2022-09-22
+|     |                             |  |    |  |  |  |         |
+|     |                             |  |    |  |  |  |         +**NA|AS20221957|turdus_merula|NL|2022-09-25
+|     |                             |  |    |  |  +--| (97)
+|     |                             |  |    |  |  |  |            +--NA|AS20221898|turdus_merula|NL|2022-09-11
+|     |                             |  |    |  |  |  |       +----| (100)
+|     |                             |  |    |  |  |  |       |    +**NA|22TV3780|turdus_merula|NL|2022-09-11
+|     |                             |  |    |  |  |  +-------| (100)
+|     |                             |  |    |  |  |          |     +**NA|AS20221928|turdus_merula|NL|2022-09-25
+|     |                             |  |    |  |  |          +-----| (100)
+|     |                             |  |    |  |  |                +--NA|AS20221979|turdidae_sp|NL|2022-10-03
+|     |                             |  |    |  |  |
+|     |                             |  |    |  |  |        +--NA|AS20221875|turdus_merula|NL|2022-09-11
+|     |                             |  |    |  |  |    +---| (99)
+|     |                             |  |    |  |  |    |   +----NA|AS20221880|turdus_merula|NL|2022-09-12
+|     |                             |  |    |  |  +----| (100)
+|     |                             |  |    |  |  |    +-----NA|22B00483|turdus_merula|NL|2022-09-16
+|     |                             |  |    |  |  |
+|     |                             |  |    |  |  |               +--NA|AS20221813|turdus_merula|NL|2022-08-24
+|     |                             |  |    |  |  +---------------| (100)
+|     |                             |  |    |  |                  |  +**NA|AS20221974|turdus_merula|NL|2022-09-20
+|     |                             |  |    |  |                  +--| (100)
+|     |                             |  |    |  |                     +**NA|AS20221958|turdus_merula|NL|2022-09-25
+|     |                             |  |    |  |
+|     |                             |  |    |  |         +--NA|AS20190643|passer_domesticus|NL|2019-09-18
+|     |                             |  |    |  |  +------| (100)
+|     |                             |  |    |  |  |      +--NA|AS20190579|prunella_modularis|NL|2019-09-19
+|     |                             |  |    |  +--| (96)
+|     |                             |  |    |  |  +-----NA|AS20200605|turdus_merula|NL|2020-08-22
+|     |                             |  |    |  |  |
+|     |                             |  |    |  |  +-----PV235993|USUV/NL/2019/CMV442|culex_sp|NL|2019-08-22
+|     |                             |  |    |  |
+|     |                             |  |    |  +--------NA|AS20200367|turdus_merula|NL|2020-08-16
+|     |                             |  +----| (100)
+|     |                             |       |           +--NA|AS20221942|turdus_merula|NL|2022-09-20
+|     |                             |       |  +--------| (100)
+|     |                             |       |  |        +-----NA|22B00749|turdidae_sp|NL|2022-09-21
+|     |                             |       +--| (100)
+|     |                             |          |  +---OM202464|Greater_London_2021|turdus_merula|UK|2021-09
+|     |                             |          +--| (95)
+|     |                             |          |  +------MW001216|NA|turdus_merula|UK|2020-07
+|     |                             |          |  |
+|     |                             |          |  +------NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09
+|     |                             |          |  |
+|     |                             |          |  +-----NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09
+|     |                             |          |  |
+|     |                             |          |  +------NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08
+|     |                             |          |
+|     |                             |          |      +**ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|NL|2016
+|     |                             |          +------| (100)
+|     |                             |          |      +**ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                             |          |
+|     |                             |          +----------------NA|22B04271|turdus_merula|NL|2022-12-03
+|     |                          +--| (100)
+|     |                          |  |  +---NA|AS201800175|turdus_merula|NL|2018-08-22
+|     |                          |  +--| (100)
+|     |                          |     |  +---NA|16TV1045|turdus_merula|NL|2017-08-02
+|     |                          |     +--| (100)
+|     |                          |     |  |  +**ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|NL|2016
+|     |                          |     |  +--| (100)
+|     |                          |     |     +**ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                          |     |     |
+|     |                          |     |     +--ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                          |     |
+|     |                          |     |  +----MN122220|AS201800087|turdus_merula|NL|2018-08-01
+|     |                          |     +--| (94)
+|     |                          |        +--MN122245|AS201800125|turdus_merula|NL|2018-08-22
+|     |                       +--| (100)
+|     |                       |  |     +------NA|AS201700148|strix_nebulosa|NL|2017-07-31
+|     |                       |  |  +--| (100)
+|     |                       |  |  |  +---------MN122233|AS201800102|turdus_merula|NL|2018-08-09
+|     |                       |  |  |  |
+|     |                       |  |  |  |     +--MN122244|AS201800123|turdus_merula|NL|2018-08-21
+|     |                       |  |  |  |  +--| (91)
+|     |                       |  |  |  |  |  +-----NA|18TV1221|turdus_merula|NL|2018-10-13
+|     |                       |  |  |  +--| (99)
+|     |                       |  |  |     +---MN122246|AS201800126|turdus_merula|NL|2018-08-22
+|     |                       |  +--| (100)
+|     |                       |  |  +----KY426761|NA|turdus_merula|DE|2016-09-04
+|     |                       |  |
+|     |                       |  +--KM659877|NA|turdus_merula|DE|2014-09-11
+|     |                    +--| (100)
+|     |                    |  +----KY426765|NA|turdus_merula|DE|2016-09-30
+|     |             +------| (100)
+|     |             |      |       +--MN122182|AS201600280|turdus_merula|NL|2016-09-26
+|     |             |      |    +--| (96)
+|     |             |      |    |  +--------------NA|AS20221660|turdus_merula|NL|2022-08-08
+|     |             |      |    |  |
+|     |             |      |    |  +--ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|NL|2016
+|     |             |      +----| (100)
+|     |             |      |    |  +------MN122231|AS201800100|turdus_merula|NL|2018-08-07
+|     |             |      |    +--| (100)
+|     |             |      |       +-----MN122232|AS201800101|turdus_merula|NL|2018-08-07
+|     |             |      |
+|     |             |      +--------MN122151|AS201600057|turdus_merula|NL|2016-09-08
+|     +-------------| (100)
+|                   |                      +--NA|AS201800085|chloris_chloris|NL|2018-07-30
+|                   |                  +---| (100)
+|                   |                  |   +--MN122219|AS201800086|turdus_merula|NL|2018-08-01
+|                   |                  |   |
+|                   |                  |   +--MN122228|AS201800095|turdus_merula|NL|2018-08-06
+|                   |               +--| (100)
+|                   |               |  +--MN122247|AS201800127|turdus_merula|NL|2018-08-22
+|                   |               |  |
+|                   |               |  +------------NA|AS20222401|turdus_merula|NL|2022-11-10
+|                   |            +--| (100)
+|                   |            |  |     +**NA|AS201600064|strix_nebulosa|NL|2016-08-13
+|                   |            |  |  +--| (100)
+|                   |            |  |  |  +**NA|AS201600073|bubo_scandiacus|NL|2016-09-01
+|                   |            |  +--| (100)
+|                   |            |  |  |  +------------MN122251|AS201800151|turdus_merula|NL|2018-08-30
+|                   |            |  |  +--| (100)
+|                   |            |  |     +--MN122184|AS201600283|turdus_merula|NL|2016-09-27
+|                   |            |  |
+|                   |            |  |  +--NA|AS201600082|strix_nebulosa|NL|2016-09-20
+|                   |            |  +--| (66)
+|                   |            |  |  +-----------------NA|AS20210829|turdus_merula|NL|2021-09-19
+|                   |            |  |
+|                   |            |  |   +-----NA|AS20190450|turdus_merula|NL|2019-09-03
+|                   |            |  +---| (100)
+|                   |            |  |   |  +--MN122161|AS201600115|turdus_merula|NL|2016-09-22
+|                   |            |  |   +--| (84)
+|                   |            |  |      +--------NA|AS20221828|turdus_merula|NL|2022-08-26
+|                   |            |  |
+|                   |            |  |  +--MN122153|AS201600062|turdus_merula|NL|2016-09-13
+|                   |            |  +--| (99)
+|                   |            |  |  +**MN122193|AS201700087|turdus_merula|NL|2017-07-11
+|                   |            |  |
+|                   |            |  +----MN122195|AS201700096|turdus_merula|NL|2017-07-14
+|                   |            |  |
+|                   |            |  +--MN122147|AS201600042|turdus_merula|NL|2016-09-07
+|                   |         +--| (79)
+|                   |         |  |     +--NA|AS201700173|strix_nebulosa|NL|2017-08-25
+|                   |         |  |  +--| (100)
+|                   |         |  |  |  +----MN122252|AS201800152|turdus_merula|NL|2018-08-30
+|                   |         |  +--| (100)
+|                   |         |  |  +--MN122149|AS201600048|turdus_merula|NL|2016-09-07
+|                   |         |  |
+|                   |         |  |           +--NA|AS201700198|strix_nebulosa|NL|2017-09-05
+|                   |         |  |        +--| (100)
+|                   |         |  |        |  +**MN122173|AS201600227|turdus_merula|NL|2016-09-30
+|                   |         |  |     +--| (55)
+|                   |         |  |     |  |  +--NA|AS201800080|strix_nebulosa|NL|2018-07-24
+|                   |         |  |     |  +--| (98)
+|                   |         |  |     |  |  +------------NA|AS20200561|turdus_merula|NL|2020-09-27
+|                   |         |  |     |  |
+|                   |         |  |     |  |  +-----NA|17TV1510|turdus_merula|NL|2018-10-06
+|                   |         |  |     |  +--| (99)
+|                   |         |  |     |  |  +--MN122205|AS201700152|turdus_merula|NL|2017-07-19
+|                   |         |  |     |  |  |
+|                   |         |  |     |  |  |  +--MN122197|AS201700106|turdus_merula|NL|2017-07-25
+|                   |         |  |     |  |  +--| (100)
+|                   |         |  |     |  |     +---MN122222|AS201800089|turdus_merula|NL|2018-08-02
+|                   |         |  |     |  |
+|                   |         |  |     |  +--MN122226|AS201800093|turdus_merula|NL|2018-08-03
+|                   |         |  |     |  |
+|                   |         |  |     |  |  +----MN122217|AS201800082|turdus_merula|NL|2018-07-27
+|                   |         |  |     |  +--| (55)
+|                   |         |  |     |  |  +--------------MN122223|AS201800090|turdus_merula|NL|2018-08-02
+|                   |         |  |     |  |
+|                   |         |  |     |  |  +----------MN122225|AS201800092|turdus_merula|NL|2018-08-02
+|                   |         |  |     |  +--| (100)
+|                   |         |  |     |  |  +--NA|18TV0825|turdus_merula|NL|2018-08-18
+|                   |         |  |     |  |
+|                   |         |  |     |  |  +**OP921082|16TV1131_Ixodesricinus_8|ixodes_ricinus|NL|2016-10-16
+|                   |         |  |     |  +--| (100)
+|                   |         |  |     |  |  +**OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|NL|2016-10-16
+|                   |         |  |     |  |  |
+|                   |         |  |     |  |  +**OP921083|16TV1131_Turdusmerula|turdus_merula|NL|2016-10-16
+|                   |         |  |     |  |  |
+|                   |         |  |     |  |  +--OP921080|16TV1131_Ixodesricinus_5|ixodes_ricinus|NL|2016-10-16
+|                   |         |  |     |  |
+|                   |         |  |     |  +--NA|17TV1199|turdus_merula|NL|2017-07-21
+|                   |         |  |  +--| (72)
+|                   |         |  |  |  +-------------MN122216|AS201800081|turdus_merula|NL|2018-07-27
+|                   |         |  +--| (72)
+|                   |         |  |  +-----MN122160|AS201600110|turdus_merula|NL|2016-09-22
+|                   |         |  |
+|                   |         |  |           +-------NA|AS20190494|turdus_merula|NL|2019-08-28
+|                   |         |  |        +--| (87)
+|                   |         |  |        |  |        +**NA|19TV0329|turdus_merula|NL|2019-04-12
+|                   |         |  |        |  |  +-----| (100)
+|                   |         |  |        |  |  |     +--NA|19TV0102|passer_domesticus|NL|2019-04-24
+|                   |         |  |        |  +--| (87)
+|                   |         |  |        |  |  +---------MN122256|AS201800157|turdus_merula|NL|2018-09-04
+|                   |         |  |        |  |
+|                   |         |  |        |  |  +---NA|18TV0252|turdus_merula|NL|2018-10-31
+|                   |         |  |        |  +--| (99)
+|                   |         |  |        |  |  +---MN122202|AS201700124|turdus_merula|NL|2017-08-01
+|                   |         |  |        |  |
+|                   |         |  |        |  |     +**ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|NL|2016
+|                   |         |  |        |  |  +--| (100)
+|                   |         |  |        |  |  |  +**ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|NL|2016
+|                   |         |  |        |  +--| (100)
+|                   |         |  |        |  |  +----ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|NL|2016
+|                   |         |  |        |  |
+|                   |         |  |        |  +--MN122165|AS201600127|turdus_merula|NL|2016-09-23
+|                   |         |  |        |  |
+|                   |         |  |        |  +--MN122150|AS201600051|turdus_merula|NL|2016-09-07
+|                   |         |  |        |  |
+|                   |         |  |        |  +--MN122208|AS201700170|turdus_merula|NL|2017-08-25
+|                   |         |  |        |  |
+|                   |         |  |        |  |  +---MN122241|AS201800120|turdus_merula|NL|2018-08-17
+|                   |         |  |        |  +--| (88)
+|                   |         |  |        |  |  +------MN122221|AS201800088|turdus_merula|NL|2018-08-01
+|                   |         |  |        |  |
+|                   |         |  |        |  +-----MN122239|AS201800116|turdus_merula|NL|2018-08-16
+|                   |         |  |     +--| (96)
+|                   |         |  |     |  |   +--MN122199|AS201700112|turdus_merula|NL|2017-07-27
+|                   |         |  |     |  +---| (100)
+|                   |         |  |     |  |   +--MN122209|AS201700174|turdus_merula|NL|2017-08-29
+|                   |         |  |     |  |   |
+|                   |         |  |     |  |   +-----MN122242|AS201800121|turdus_merula|NL|2018-08-17
+|                   |         |  |     |  |
+|                   |         |  |     |  +--------MN122253|AS201800154|turdus_merula|NL|2018-08-31
+|                   |         |  |  +--| (100)
+|                   |         |  |  |  |           +**NA|AS20190715|copsychus_malabaricus|NL|2019-10-07
+|                   |         |  |  |  |  +--------| (100)
+|                   |         |  |  |  |  |        +**NA|AS20190716|copsychus_malabaricus|NL|2019-10-07
+|                   |         |  |  |  +--| (99)
+|                   |         |  |  |  |  +-----MK230891|Seraing/2017|turdus_merula|BE|2017-08
+|                   |         |  |  |  |
+|                   |         |  |  |  |       +--MN122159|AS201600107|turdus_merula|NL|2016-09-22
+|                   |         |  |  |  |  +----| (100)
+|                   |         |  |  |  |  |    |  +--MN122255|AS201800156|turdus_merula|NL|2018-08-31
+|                   |         |  |  |  |  |    +--| (100)
+|                   |         |  |  |  |  |    |  |   +----NA|AS20221789|turdus_merula|NL|2022-08-24
+|                   |         |  |  |  |  |    |  +---| (100)
+|                   |         |  |  |  |  |    |      +--NA|AS20221833|turdus_merula|NL|2022-08-28
+|                   |         |  |  |  |  |    |      |
+|                   |         |  |  |  |  |    |      +--NA|22TV2594|cyanistes_caeruleus|NL|2022-08-24
+|                   |         |  |  |  |  |    |
+|                   |         |  |  |  |  |    +--MN122191|AS201700084|turdus_merula|NL|2017-07-05
+|                   |         |  |  |  |  |    |
+|                   |         |  |  |  |  |    +-----MN122168|AS201600148|turdus_merula|NL|2016-09-23
+|                   |         |  |  |  |  |    |
+|                   |         |  |  |  |  |    |   +--OP921078|18TV0973_Turdusphilomelos|turdidae_sp|NL|2018-08-18
+|                   |         |  |  |  |  |    +---| (100)
+|                   |         |  |  |  |  |        +--OP921079|18TV0973_Ixodida|NA|NL|2018-08-18
+|                   |         |  |  |  +--| (99)
+|                   |         |  |  |     |      +**ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|NL|2016
+|                   |         |  |  |     +------| (100)
+|                   |         |  |  |            +**ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|NL|2016
+|                   |         |  |  |            |
+|                   |         |  |  |            +**ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|NL|2016
+|                   |         |  +--| (99)
+|                   |         |     +-----OP007489|WBVR_bird-X-2016|strix_nebulosa|NL|2016-09-09
+|                   |      +--| (91)
+|                   |      |  |        +--NA|AS201600067|strix_nebulosa|NL|2016-09-09
+|                   |      |  |     +--| (100)
+|                   |      |  |     |  +---NA|AS201600269|strix_nebulosa|NL|2016-09-25
+|                   |      |  |  +--| (100)
+|                   |      |  |  |  |           +--NA|AS201800117|strix_nebulosa|NL|2018-08-16
+|                   |      |  |  |  |        +--| (100)
+|                   |      |  |  |  |        |  +**NA|18TV1517|turdus_merula|NL|2018-10-11
+|                   |      |  |  |  |        |  |
+|                   |      |  |  |  |        |  +**MN122243|AS201800122|turdus_merula|NL|2018-08-21
+|                   |      |  |  |  |     +--| (98)
+|                   |      |  |  |  |     |  |  +--MN122155|AS201600095|turdus_merula|NL|2016-09-21
+|                   |      |  |  |  |     |  +--| (100)
+|                   |      |  |  |  |     |  |  +--MN122180|AS201600274|turdus_merula|NL|2016-09-27
+|                   |      |  |  |  |     |  |
+|                   |      |  |  |  |     |  +--MN122194|AS201700090|turdus_merula|NL|2017-07-13
+|                   |      |  |  |  |     |  |
+|                   |      |  |  |  |     |  +-----MN122234|AS201800103|turdus_merula|NL|2018-08-10
+|                   |      |  |  |  |     |  |
+|                   |      |  |  |  |     |  +------MN122237|AS201800114|turdus_merula|NL|2018-08-15
+|                   |      |  |  |  |     |  |
+|                   |      |  |  |  |     |  +-------MN122218|AS201800084|turdus_merula|NL|2018-07-31
+|                   |      |  |  |  |     |  |
+|                   |      |  |  |  |     |  +------------PV235994|USUV/NL/2021/CMV2045|culex_sp|NL|2021-07-26
+|                   |      |  |  |  |  +--| (100)
+|                   |      |  |  |  |  |  +---NA|AS201600289_BEC009|strix_nebulosa|NL|2016
+|                   |      |  |  |  +--| (100)
+|                   |      |  |  |     |     +--MN122183|AS201600281|turdus_merula|NL|2016-09-25
+|                   |      |  |  |     |  +--| (100)
+|                   |      |  |  |     |  |  +----MN122204|AS201700130|turdus_merula|NL|2017-08-16
+|                   |      |  |  |     +--| (100)
+|                   |      |  |  |        +---MN122200|AS201700118|turdus_merula|NL|2017-08-03
+|                   |      |  +--| (100)
+|                   |      |  |  +---------KY426754|NA|turdus_merula|DE|2015-09-09
+|                   |      |  |
+|                   |      |  |      +---KY426764|NA|turdus_merula|DE|2016-10-04
+|                   |      |  |  +---| (100)
+|                   |      |  |  |   |       +--MN122146|AS201600036|turdus_merula|NL|2016-09-06
+|                   |      |  |  |   |    +--| (100)
+|                   |      |  |  |   |    |  +--NA|AS201700142|strix_nebulosa|NL|2017-08-09
+|                   |      |  |  |   +----| (100)
+|                   |      |  |  |        +------MN122248|AS201800128|turdus_merula|NL|2018-08-22
+|                   |      |  +--| (100)
+|                   |      |     |     +----------MN122167|AS201600136|turdus_merula|NL|2016-09-23
+|                   |      |     |  +--| (99)
+|                   |      |     |  |  +------MN122210|AS201700177|turdus_merula|NL|2017-09-15
+|                   |      |     |  |  |
+|                   |      |     |  |  +-----------MN122250|AS201800150|turdus_merula|NL|2018-08-30
+|                   |      |     |  |  |
+|                   |      |     |  |  +----------NA|18TV1196|turdidae_sp|NL|2018-09-16
+|                   |      |     +--| (99)
+|                   |      |     |  +----------------NA|AS20221780|turdus_merula|NL|2022-08-26
+|                   |      |     |
+|                   |      |     +--------KY426757|NA|turdus_merula|DE|2016-09-23
+|                   +------| (97)
+|                          |     +--MN122157|AS201600101|turdus_merula|NL|2016-09-22
+|                          |  +--| (100)
+|                          |  |  +----MN122212|AS201700189|turdus_merula|NL|2017-09-14
+|                          +--| (100)
+|                          |  |  +----------NA|AS20221851|turdus_merula|NL|2022-09-03
+|                          |  +--| (99)
+|                          |     +------------NA|21TV5071|turdus_merula|NL|2022-07-29
+|                          |
+|                          |  +------MN122178|AS201600265|turdus_merula|NL|2016-09-30
+|                          +--| (100)
+|                             +------KY263625|NA|turdus_merula|BE|2016-10
+|
+|  +---------------------PP482815|AeDet2-batch3_Nansouty_2023-08-18|culex_sp|FR|2023-08-18
++--| (86)
+   +----------------MT863562|HauteVienne4997/France/2018|turdus_merula|FR|2018-07-24
+
+Tree in newick format:
+
+(PP482816|Cx1-batch2_Zen-Pets-Res_2023-08-03|culex_pipiens|FR|2023-08-03:0.0036153719,((PQ677887|Ar2|alectoris_rufa|PT|2023-11-05:0.0036022097,(ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|NL|2016:0.0000010000,ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016:0.0000010000)100:0.0023959894)94:0.0000779858,((((KY294723|S-1238|turdus_merula|DE|2016:0.0006077041,(KY294722|S-1232|turdus_merula|DE|2016:0.0000010000,KY199557|NA|turdus_merula|DE|2016:0.0006076677)100:0.0001019722,MN122238|AS201800115|turdus_merula|NL|2018-08-15:0.0012169913)100:0.0008147387,MK419834|USU-BE-Scoter/2018|melanitta_nigra|BE|2018-08:0.0018339770)100:0.0006162550,OU674388|NA|turdus_merula|LU|2020-09:0.0026520525)88:0.0000981789,((((((((PQ041659|USUV_TM_Netherlands_2016|NA|NL|2020:0.0001011390,MT188658|NA|turdus_merula|NL|2016:0.0000010000,MH891847|AS201600045|turdus_merula|NL|2016-09-07:0.0000010000,MN813490|TMNetherlands|turdus_merula|NL|2016:0.0002028124,MN122148|AS201600045|turdus_merula|NL|2016-09-07:0.0003037425)98:0.0003037700,((NA|AS20190490|turdus_merula|NL|2019-08-27:0.0011186571,NA|18TV0475|turdus_merula|NL|2018-08-18:0.0005075741)98:0.0000999362,NA|AS20190438|gracula_religiosa|NL|2019-09-12:0.0008108837,MT795154|NA|turdus_merula|DE|2016-09-30:0.0000010000,MN122156|AS201600098|turdus_merula|NL|2016-09-21:0.0002020984,(MN122185|AS201600284|turdus_merula|NL|2016-10-03:0.0001011312,MN122236|AS201800113|turdus_merula|NL|2018-08-14:0.0002026858,(MN122164|AS201600124|turdus_merula|NL|2016-09-23:0.0002026678,MN122162|AS201600118|turdus_merula|NL|2016-09-22:0.0002027570,MN122175|AS201600244|turdus_merula|NL|2016-09-27:0.0006075466,MN122163|AS201600121|turdus_merula|NL|2016-09-22:0.0013188445)53:0.0001011258,MN122187|AS201600287|turdus_merula|NL|2016-09-27:0.0004046023,MN122211|AS201700186|turdus_merula|NL|2017-09-13:0.0003041191,MN122249|AS201800129|turdus_merula|NL|2018-08-23:0.0005063145,MN122224|AS201800091|turdus_merula|NL|2018-08-02:0.0010132152,MN122227|AS201800094|turdus_merula|NL|2018-08-03:0.0010130850,MN122207|AS201700167|turdus_merula|NL|2017-09-01:0.0004159307)85:0.0001011512,(MN122254|AS201800155|turdus_merula|NL|2018-08-31:0.0006093322,MN122240|AS201800118|turdus_merula|NL|2018-08-16:0.0008121714)99:0.0003038442)96:0.0002029972,(MN122145|AS201600034|turdus_merula|NL|2016-09-01:0.0002031244,MN122230|AS201800099|turdus_merula|NL|2018-08-07:0.0007103734)99:0.0001011140,MN122214|AS201700254|turdus_merula|NL|2017-09-22:0.0012179575,(NA|AS20221923|turdus_merula|NL|2022-09-04:0.0010144305,(NA|AS20221952|streptopelia_decaocto|NL|2022-09-27:0.0017851064,PV235996|USUV/NL/2022/CMV3394|culex_sp|NL|2022-07-26:0.0016422915)100:0.0000930128)100:0.0002030916,(OP921076|16TV1039_Turdusmerula|turdus_merula|NL|2016-10-07:0.0000010000,OP921077|16TV1039_Ixodesfrontalis|ixodes_frontalis|NL|2016-10-07:0.0000010000)100:0.0005258963)100:0.0003032816,(MN122186|AS201600286|turdus_merula|NL|2016-09-28:0.0006085032,MN122201|AS201700121|turdus_merula|NL|2017-08-01:0.0006102686)98:0.0003028945,((MN122169|AS201600173|turdus_merula|NL|2016-10-07:0.0009119487,MN122206|AS201700155|turdus_merula|NL|2017-08-10:0.0002023376,NA|AS20221842|turdus_merula|NL|2022-09-04:0.0007084876,(((((NA|AS20221670|turdus_merula|NL|2022-07-24:0.0001013619,NA|AS20221964|columba_palumbus|NL|2022-09-26:0.0003032872,NA|AS20221860|turdus_merula|NL|2022-09-14:0.0007083876)99:0.0002028249,NA|AS20221760|turdus_merula|NL|2022-08-24:0.0006078611,(((NA|22B00207|turdus_merula|NL|2022-11-12:0.0000010000,NA|21TV8157|turdus_merula|NL|2022-10-02:0.0002608791)100:0.0002030200,PV235995|USUV/NL/2022/CMV3308|culex_sp|NL|2022-07-13:0.0004067026)100:0.0001007688,NA|AS20221918|cyanistes_caeruleus|NL|2022-09-15:0.0006087555)99:0.0003040652,(NA|AS20221627|turdus_merula|NL|2022-07-28:0.0004869238,NA|22TV3632|turdus_merula|NL|2022-10-08:0.0004561051)97:0.0001208632,NA|AS20221838|turdus_merula|NL|2022-08-22:0.0008098503,NA|AS20221803|turdus_merula|NL|2022-09-02:0.0010133717,NA|AS20200689|turdus_merula|NL|2020-09-30:0.0004049681,NA|AS20210914|turdus_merula|NL|2021-08-30:0.0003035986,(NA|22TV3658|turdus_merula|NL|2022-08-27:0.0001004482,PQ633267|USUV/NL/2022/SCBC7P30|NA|NL|2022-11-18:0.0008339486)99:0.0004059181)95:0.0001013334,NA|AS20221637|turdus_merula|NL|2022-08-04:0.0006254450)100:0.0002025833,(((((NA|AS20221617|turdus_merula|NL|2022-08-08:0.0000010000,NA|AS20221657|turdus_merula|NL|2022-08-04:0.0000010000)100:0.0001011501,NA|AS20221784|turdus_merula|NL|2022-08-11:0.0002028874)100:0.0001012070,NA|AS20221775|turdus_merula|NL|2022-08-28:0.0004050064)100:0.0001011174,(NA|22B00462|turdus_merula|NL|2022-09-09:0.0000010000,NA|22TV2724|turdidae_sp|NL|2022-08-28:0.0007649470)100:0.0000992768,((NA|22TV2828|turdus_merula|NL|2022-09-03:0.0000010000,NA|22TV2684|turdus_merula|NL|2022-09-04:0.0000010000,NA|22B00237|turdus_merula|NL|2022-11-12:0.0000010000)100:0.0004045325,(NA|AS20221908|turdus_merula|NL|2022-09-12:0.0004047933,NA|AS20221903|turdus_merula|NL|2022-09-13:0.0000010000)99:0.0001016356)57:0.0001013601,NA|AS20221846|turdus_merula|NL|2022-09-03:0.0005063314,NA|AS20221755|strix_nebulosa|NL|2022-07-21:0.0007085303,NA|22TV3602|turdus_merula|NL|2022-10-02:0.0003229962)57:0.0001003579,(NA|22B00186|turdus_merula|NL|2022-11-12:0.0009902771,NA|21TV9171|turdus_merula|NL|2022-09-08:0.0006439362)99:0.0004016057)99:0.0002022712,(NA|AS20221818|turdus_merula|NL|2022-08-31:0.0002026607,NA|AS20221889|turdus_merula|NL|2022-09-18:0.0005071881)100:0.0005071895)100:0.0003037529,(((NA|AS20221913|turdus_merula|NL|2022-09-11:0.0007091426,(NA|AS20221884|turdus_merula|NL|2022-09-14:0.0001007525,NA|22TV2538|turdus_merula|NL|2022-08-24:0.0006928999)100:0.0003046193)100:0.0001010954,(NA|AS20221994|passer_domesticus|NL|2022-09-19:0.0000010000,NA|AS20221999|turdidae_sp|NL|2022-09-22:0.0001155436,NA|AS20221957|turdus_merula|NL|2022-09-25:0.0000010000)100:0.0008194435)98:0.0001011997,((NA|AS20221898|turdus_merula|NL|2022-09-11:0.0004046954,NA|22TV3780|turdus_merula|NL|2022-09-11:0.0000010000)100:0.0006496764,(NA|AS20221928|turdus_merula|NL|2022-09-25:0.0000024700,NA|AS20221979|turdidae_sp|NL|2022-10-03:0.0004564134)100:0.0007328099)100:0.0009755796)97:0.0001011409,((NA|AS20221875|turdus_merula|NL|2022-09-11:0.0002374353,NA|AS20221880|turdus_merula|NL|2022-09-12:0.0005798338)99:0.0005079965,NA|22B00483|turdus_merula|NL|2022-09-16:0.0007081816)100:0.0005740017,(NA|AS20221813|turdus_merula|NL|2022-08-24:0.0002037157,(NA|AS20221974|turdus_merula|NL|2022-09-20:0.0000010000,NA|AS20221958|turdus_merula|NL|2022-09-25:0.0000010000)100:0.0001003231)100:0.0019341816)72:0.0001015798,((NA|AS20190643|passer_domesticus|NL|2019-09-18:0.0002026846,NA|AS20190579|prunella_modularis|NL|2019-09-19:0.0002032821)100:0.0008111604,NA|AS20200605|turdus_merula|NL|2020-08-22:0.0007085602,PV235993|USUV/NL/2019/CMV442|culex_sp|NL|2019-08-22:0.0007436158)96:0.0002024647,NA|AS20200367|turdus_merula|NL|2020-08-16:0.0011168531)91:0.0003036190,((NA|AS20221942|turdus_merula|NL|2022-09-20:0.0002010727,NA|22B00749|turdidae_sp|NL|2022-09-21:0.0007344383)100:0.0011184088,(OM202464|Greater_London_2021|turdus_merula|UK|2021-09:0.0005063603,MW001216|NA|turdus_merula|UK|2020-07:0.0008099337,NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09:0.0008105127,NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09:0.0007090155,NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08:0.0008105355)95:0.0003022812,(ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|NL|2016:0.0000010000,ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|NL|2016:0.0000010000)100:0.0008198637,NA|22B04271|turdus_merula|NL|2022-12-03:0.0019673369)100:0.0002024203)100:0.0006081579)100:0.0002023418,(NA|AS201800175|turdus_merula|NL|2018-08-22:0.0005061980,(NA|16TV1045|turdus_merula|NL|2017-08-02:0.0005068495,(ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|NL|2016:0.0000010000,ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|NL|2016:0.0000010000,ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|NL|2016:0.0001054843)100:0.0003036910)100:0.0002011960,(MN122220|AS201800087|turdus_merula|NL|2018-08-01:0.0006077481,MN122245|AS201800125|turdus_merula|NL|2018-08-22:0.0004062443)94:0.0004050944)100:0.0002026564)100:0.0001017454,((NA|AS201700148|strix_nebulosa|NL|2017-07-31:0.0009117102,MN122233|AS201800102|turdus_merula|NL|2018-08-09:0.0012163709,((MN122244|AS201800123|turdus_merula|NL|2018-08-21:0.0003227072,NA|18TV1221|turdus_merula|NL|2018-10-13:0.0006986034)91:0.0002027089,MN122246|AS201800126|turdus_merula|NL|2018-08-22:0.0004882073)99:0.0002206220)100:0.0001007407,KY426761|NA|turdus_merula|DE|2016-09-04:0.0006084118)100:0.0002021198,KM659877|NA|turdus_merula|DE|2014-09-11:0.0003038794)100:0.0001010215,KY426765|NA|turdus_merula|DE|2016-09-30:0.0006084590)100:0.0002028868,((MN122182|AS201600280|turdus_merula|NL|2016-09-26:0.0002017850,NA|AS20221660|turdus_merula|NL|2022-08-08:0.0017748692,ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|NL|2016:0.0004095804)96:0.0003041053,(MN122231|AS201800100|turdus_merula|NL|2018-08-07:0.0009127719,MN122232|AS201800101|turdus_merula|NL|2018-08-07:0.0007102536)100:0.0002036579)100:0.0006069961,MN122151|AS201600057|turdus_merula|NL|2016-09-08:0.0011157141)100:0.0009145409,((((((NA|AS201800085|chloris_chloris|NL|2018-07-30:0.0003036515,MN122219|AS201800086|turdus_merula|NL|2018-08-01:0.0002023633,MN122228|AS201800095|turdus_merula|NL|2018-08-06:0.0002023646)100:0.0005066428,MN122247|AS201800127|turdus_merula|NL|2018-08-22:0.0004050459,NA|AS20222401|turdus_merula|NL|2022-11-10:0.0015220171)100:0.0002023902,((NA|AS201600064|strix_nebulosa|NL|2016-08-13:0.0000010000,NA|AS201600073|bubo_scandiacus|NL|2016-09-01:0.0000010000)100:0.0002025350,(MN122251|AS201800151|turdus_merula|NL|2018-08-30:0.0015238665,MN122184|AS201600283|turdus_merula|NL|2016-09-27:0.0003047719)100:0.0001002119)100:0.0003036118,(NA|AS201600082|strix_nebulosa|NL|2016-09-20:0.0002030830,NA|AS20210829|turdus_merula|NL|2021-09-19:0.0021384607)66:0.0001010906,(NA|AS20190450|turdus_merula|NL|2019-09-03:0.0007999986,(MN122161|AS201600115|turdus_merula|NL|2016-09-22:0.0002145478,NA|AS20221828|turdus_merula|NL|2022-08-26:0.0011046908)84:0.0001001476)100:0.0005197196,(MN122153|AS201600062|turdus_merula|NL|2016-09-13:0.0002022340,MN122193|AS201700087|turdus_merula|NL|2017-07-11:0.0000010000)99:0.0001016220,MN122195|AS201700096|turdus_merula|NL|2017-07-14:0.0006071541,MN122147|AS201600042|turdus_merula|NL|2016-09-07:0.0001016990)100:0.0001013936,((NA|AS201700173|strix_nebulosa|NL|2017-08-25:0.0001010283,MN122252|AS201800152|turdus_merula|NL|2018-08-30:0.0006081294)100:0.0004067436,MN122149|AS201600048|turdus_merula|NL|2016-09-07:0.0003039024)100:0.0003039305,((((NA|AS201700198|strix_nebulosa|NL|2017-09-05:0.0002024826,MN122173|AS201600227|turdus_merula|NL|2016-09-30:0.0000010000)100:0.0001017186,(NA|AS201800080|strix_nebulosa|NL|2018-07-24:0.0003050903,NA|AS20200561|turdus_merula|NL|2020-09-27:0.0015237213)98:0.0001006285,(NA|17TV1510|turdus_merula|NL|2018-10-06:0.0007162431,MN122205|AS201700152|turdus_merula|NL|2017-07-19:0.0003037156,(MN122197|AS201700106|turdus_merula|NL|2017-07-25:0.0003041047,MN122222|AS201800089|turdus_merula|NL|2018-08-02:0.0005070722)100:0.0001009607)99:0.0001015963,MN122226|AS201800093|turdus_merula|NL|2018-08-03:0.0004051049,(MN122217|AS201800082|turdus_merula|NL|2018-07-27:0.0006079991,MN122223|AS201800090|turdus_merula|NL|2018-08-02:0.0017316768)55:0.0004057449,(MN122225|AS201800092|turdus_merula|NL|2018-08-02:0.0013048476,NA|18TV0825|turdus_merula|NL|2018-08-18:0.0003256751)100:0.0002174080,(OP921082|16TV1131_Ixodesricinus_8|ixodes_ricinus|NL|2016-10-16:0.0000010000,OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|NL|2016-10-16:0.0000010000,OP921083|16TV1131_Turdusmerula|turdus_merula|NL|2016-10-16:0.0000010000,OP921080|16TV1131_Ixodesricinus_5|ixodes_ricinus|NL|2016-10-16:0.0001276971)100:0.0004045716,NA|17TV1199|turdus_merula|NL|2017-07-21:0.0001076522)55:0.0003032295,MN122216|AS201800081|turdus_merula|NL|2018-07-27:0.0016292174)72:0.0004072840,MN122160|AS201600110|turdus_merula|NL|2016-09-22:0.0007099516)72:0.0001007735,((((NA|AS20190494|turdus_merula|NL|2019-08-28:0.0010134053,((NA|19TV0329|turdus_merula|NL|2019-04-12:0.0000010000,NA|19TV0102|passer_domesticus|NL|2019-04-24:0.0001015850)100:0.0007111030,MN122256|AS201800157|turdus_merula|NL|2018-09-04:0.0012202255)87:0.0000989105,(NA|18TV0252|turdus_merula|NL|2018-10-31:0.0005074976,MN122202|AS201700124|turdus_merula|NL|2017-08-01:0.0005071488)99:0.0002020688,((ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|NL|2016:0.0000010000,ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|NL|2016:0.0000010000)100:0.0001014582,ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|NL|2016:0.0006158065)100:0.0002024937,MN122165|AS201600127|turdus_merula|NL|2016-09-23:0.0002022354,MN122150|AS201600051|turdus_merula|NL|2016-09-07:0.0003036509,MN122208|AS201700170|turdus_merula|NL|2017-08-25:0.0004049930,(MN122241|AS201800120|turdus_merula|NL|2018-08-17:0.0005077160,MN122221|AS201800088|turdus_merula|NL|2018-08-01:0.0009133936)88:0.0001005628,MN122239|AS201800116|turdus_merula|NL|2018-08-16:0.0007086812)87:0.0002022385,(MN122199|AS201700112|turdus_merula|NL|2017-07-27:0.0004050136,MN122209|AS201700174|turdus_merula|NL|2017-08-29:0.0003036540,MN122242|AS201800121|turdus_merula|NL|2018-08-17:0.0007084212)100:0.0005064441,MN122253|AS201800154|turdus_merula|NL|2018-08-31:0.0011158685)96:0.0001007349,((NA|AS20190715|copsychus_malabaricus|NL|2019-10-07:0.0000010000,NA|AS20190716|copsychus_malabaricus|NL|2019-10-07:0.0000010000)100:0.0011182733,MK230891|Seraing/2017|turdus_merula|BE|2017-08:0.0007109237)99:0.0002006216,((MN122159|AS201600107|turdus_merula|NL|2016-09-22:0.0001015874,(MN122255|AS201800156|turdus_merula|NL|2018-08-31:0.0001007739,(NA|AS20221789|turdus_merula|NL|2022-08-24:0.0006071696,NA|AS20221833|turdus_merula|NL|2022-08-28:0.0003037015,NA|22TV2594|cyanistes_caeruleus|NL|2022-08-24:0.0002024025)100:0.0005074418)100:0.0004057019,MN122191|AS201700084|turdus_merula|NL|2017-07-05:0.0004052408,MN122168|AS201600148|turdus_merula|NL|2016-09-23:0.0007084205,(OP921078|18TV0973_Turdusphilomelos|turdidae_sp|NL|2018-08-18:0.0001058907,OP921079|18TV0973_Ixodida|NA|NL|2018-08-18:0.0001489430)100:0.0004968997)100:0.0006090894,(ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|NL|2016:0.0000010000,ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|NL|2016:0.0000010000,ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|NL|2016:0.0000010000)100:0.0008129637)99:0.0000991843)100:0.0002015303,OP007489|WBVR_bird-X-2016|strix_nebulosa|NL|2016-09-09:0.0007215202)99:0.0001004055)79:0.0002022625,(((NA|AS201600067|strix_nebulosa|NL|2016-09-09:0.0003040317,NA|AS201600269|strix_nebulosa|NL|2016-09-25:0.0005066840)100:0.0004058501,((((NA|AS201800117|strix_nebulosa|NL|2018-08-16:0.0004051690,NA|18TV1517|turdus_merula|NL|2018-10-11:0.0000010000,MN122243|AS201800122|turdus_merula|NL|2018-08-21:0.0000010000)100:0.0002024440,(MN122155|AS201600095|turdus_merula|NL|2016-09-21:0.0004054530,MN122180|AS201600274|turdus_merula|NL|2016-09-27:0.0001017893)100:0.0002026508,MN122194|AS201700090|turdus_merula|NL|2017-07-13:0.0003037557,MN122234|AS201800103|turdus_merula|NL|2018-08-10:0.0007086124,MN122237|AS201800114|turdus_merula|NL|2018-08-15:0.0008101314,MN122218|AS201800084|turdus_merula|NL|2018-07-31:0.0010137463,PV235994|USUV/NL/2021/CMV2045|culex_sp|NL|2021-07-26:0.0015283805)98:0.0001012882,NA|AS201600289_BEC009|strix_nebulosa|NL|2016:0.0005065105)100:0.0003043894,((MN122183|AS201600281|turdus_merula|NL|2016-09-25:0.0003038649,MN122204|AS201700130|turdus_merula|NL|2017-08-16:0.0006080615)100:0.0002030835,MN122200|AS201700118|turdus_merula|NL|2017-08-03:0.0005060098)100:0.0001017627)100:0.0001018829)100:0.0001012271,KY426754|NA|turdus_merula|DE|2015-09-09:0.0012177829)100:0.0001011903,((KY426764|NA|turdus_merula|DE|2016-10-04:0.0005043717,((MN122146|AS201600036|turdus_merula|NL|2016-09-06:0.0003041204,NA|AS201700142|strix_nebulosa|NL|2017-08-09:0.0002025315)100:0.0003048558,MN122248|AS201800128|turdus_merula|NL|2018-08-22:0.0008121041)100:0.0006658813)100:0.0005538492,((MN122167|AS201600136|turdus_merula|NL|2016-09-23:0.0013182481,MN122210|AS201700177|turdus_merula|NL|2017-09-15:0.0009122853,MN122250|AS201800150|turdus_merula|NL|2018-08-30:0.0014210305,NA|18TV1196|turdidae_sp|NL|2018-09-16:0.0013643020)99:0.0001004581,NA|AS20221780|turdus_merula|NL|2022-08-26:0.0020376111)99:0.0002032596,KY426757|NA|turdus_merula|DE|2016-09-23:0.0011159631)100:0.0002025139)91:0.0002025294,((MN122157|AS201600101|turdus_merula|NL|2016-09-22:0.0004060075,MN122212|AS201700189|turdus_merula|NL|2017-09-14:0.0006081080)100:0.0004065913,(NA|AS20221851|turdus_merula|NL|2022-09-03:0.0013224109,NA|21TV5071|turdus_merula|NL|2022-07-29:0.0015285712)99:0.0003028276)100:0.0002022531,(MN122178|AS201600265|turdus_merula|NL|2016-09-30:0.0008139073,KY263625|NA|turdus_merula|BE|2016-10:0.0009145407)100:0.0003030563)97:0.0008129971)100:0.0016311562)92:0.0001024361)100:0.0003251765,(PP482815|AeDet2-batch3_Nansouty_2023-08-18|culex_sp|FR|2023-08-18:0.0025424912,MT863562|HauteVienne4997/France/2018|turdus_merula|FR|2018-07-24:0.0019667101)86:0.0002922064);
+
+CONSENSUS TREE
+--------------
+
+Consensus tree is constructed from 1000 bootstrap trees
+Log-likelihood of consensus tree: -29429.872062
+Robinson-Foulds distance between ML tree and consensus tree: 198
+
+Branches with support >0.000000% are kept (extended consensus)
+Branch lengths are optimized by maximum likelihood on original alignment
+Numbers in parentheses are bootstrap supports (%)
+
++------------------------------PP482816|Cx1-batch2_Zen-Pets-Res_2023-08-03|culex_pipiens|FR|2023-08-03
+|
+|     +------------------------------PQ677887|Ar2|alectoris_rufa|PT|2023-11-05
+|  +--| (94)
+|  |  |                   +--ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|NL|2016
+|  |  +-------------------| (100)
+|  |                      +--ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016
++--| (100)
+|  |                    +----KY294723|S-1238|turdus_merula|DE|2016
+|  |                 +--| (74)
+|  |                 |  |  +--KY294722|S-1232|turdus_merula|DE|2016
+|  |                 |  +--| (100)
+|  |                 |     +----KY199557|NA|turdus_merula|DE|2016
+|  |          +------| (100)
+|  |          |      +---------MN122238|AS201800115|turdus_merula|NL|2018-08-15
+|  |     +----| (100)
+|  |     |    +--------------MK419834|USU-BE-Scoter/2018|melanitta_nigra|BE|2018-08
+|  |  +--| (88)
+|  |  |  +----------------------OU674388|NA|turdus_merula|LU|2020-09
+|  +--| (92)
+|     |                                                        +--PQ041659|USUV_TM_Netherlands_2016|NA|NL|2020
+|     |                                                     +--| (39)
+|     |                                                     |  +--MN122148|AS201600045|turdus_merula|NL|2016-09-07
+|     |                                                  +--| (24)
+|     |                                                  |  |  +--MT188658|NA|turdus_merula|NL|2016
+|     |                                                  |  +--| (68)
+|     |                                                  |     +--MH891847|AS201600045|turdus_merula|NL|2016-09-07
+|     |                                               +--| (98)
+|     |                                               |  +--MN813490|TMNetherlands|turdus_merula|NL|2016
+|     |                                            +--| (11)
+|     |                                            |  +---------MN122214|AS201700254|turdus_merula|NL|2017-09-22
+|     |                                         +--| (23)
+|     |                                         |  |              +--------NA|AS20190490|turdus_merula|NL|2019-08-27
+|     |                                         |  |           +--| (98)
+|     |                                         |  |           |  +---NA|18TV0475|turdus_merula|NL|2018-08-18
+|     |                                         |  |        +--| (18)
+|     |                                         |  |        |  |           +--MN122185|AS201600284|turdus_merula|NL|2016-10-03
+|     |                                         |  |        |  |        +--| (2)
+|     |                                         |  |        |  |        |  |     +--MN122187|AS201600287|turdus_merula|NL|2016-09-27
+|     |                                         |  |        |  |        |  |  +--| (13)
+|     |                                         |  |        |  |        |  |  |  +-------MN122224|AS201800091|turdus_merula|NL|2018-08-02
+|     |                                         |  |        |  |        |  +--| (5)
+|     |                                         |  |        |  |        |     |  +-------MN122227|AS201800094|turdus_merula|NL|2018-08-03
+|     |                                         |  |        |  |        |     +--| (31)
+|     |                                         |  |        |  |        |        +--MN122207|AS201700167|turdus_merula|NL|2017-09-01
+|     |                                         |  |        |  |     +--| (5)
+|     |                                         |  |        |  |     |  |  +--MN122236|AS201800113|turdus_merula|NL|2018-08-14
+|     |                                         |  |        |  |     |  +--| (6)
+|     |                                         |  |        |  |     |     |     +--MN122164|AS201600124|turdus_merula|NL|2016-09-23
+|     |                                         |  |        |  |     |     |  +--| (48)
+|     |                                         |  |        |  |     |     |  |  +--MN122162|AS201600118|turdus_merula|NL|2016-09-22
+|     |                                         |  |        |  |     |     +--| (53)
+|     |                                         |  |        |  |     |        |  +----MN122175|AS201600244|turdus_merula|NL|2016-09-27
+|     |                                         |  |        |  |     |        +--| (29)
+|     |                                         |  |        |  |     |           +----------MN122163|AS201600121|turdus_merula|NL|2016-09-22
+|     |                                         |  |        |  |  +--| (85)
+|     |                                         |  |        |  |  |  |  +--MN122211|AS201700186|turdus_merula|NL|2017-09-13
+|     |                                         |  |        |  |  |  +--| (18)
+|     |                                         |  |        |  |  |     +---MN122249|AS201800129|turdus_merula|NL|2018-08-23
+|     |                                         |  |        |  +--| (35)
+|     |                                         |  |        |     |  +----MN122254|AS201800155|turdus_merula|NL|2018-08-31
+|     |                                         |  |        |     +--| (99)
+|     |                                         |  |        |        +------MN122240|AS201800118|turdus_merula|NL|2018-08-16
+|     |                                         |  |     +--| (28)
+|     |                                         |  |     |  +--MT795154|NA|turdus_merula|DE|2016-09-30
+|     |                                         |  |  +--| (96)
+|     |                                         |  |  |  |  +------NA|AS20190438|gracula_religiosa|NL|2019-09-12
+|     |                                         |  |  |  +--| (35)
+|     |                                         |  |  |     +--MN122156|AS201600098|turdus_merula|NL|2016-09-21
+|     |                                         |  +--| (12)
+|     |                                         |     |     +-------NA|AS20221923|turdus_merula|NL|2022-09-04
+|     |                                         |     |  +--| (100)
+|     |                                         |     |  |  |  +--------------NA|AS20221952|streptopelia_decaocto|NL|2022-09-27
+|     |                                         |     |  |  +--| (100)
+|     |                                         |     |  |     +-------------PV235996|USUV/NL/2022/CMV3394|culex_sp|NL|2022-07-26
+|     |                                         |     +--| (28)
+|     |                                         |        |   +--OP921076|16TV1039_Turdusmerula|turdus_merula|NL|2016-10-07
+|     |                                         |        +---| (100)
+|     |                                         |            +--OP921077|16TV1039_Ixodesfrontalis|ixodes_frontalis|NL|2016-10-07
+|     |                                      +--| (100)
+|     |                                      |  |  +--MN122145|AS201600034|turdus_merula|NL|2016-09-01
+|     |                                      |  +--| (99)
+|     |                                      |     +-----MN122230|AS201800099|turdus_merula|NL|2018-08-07
+|     |                                   +--| (100)
+|     |                                   |  |     +----MN122186|AS201600286|turdus_merula|NL|2016-09-28
+|     |                                   |  |  +--| (98)
+|     |                                   |  |  |  +----MN122201|AS201700121|turdus_merula|NL|2017-08-01
+|     |                                   |  +--| (90)
+|     |                                   |     |       +------MN122169|AS201600173|turdus_merula|NL|2016-10-07
+|     |                                   |     |    +--| (91)
+|     |                                   |     |    |  |  +--MN122206|AS201700155|turdus_merula|NL|2017-08-10
+|     |                                   |     |    |  +--| (46)
+|     |                                   |     |    |     |     +-----NA|AS20221842|turdus_merula|NL|2022-09-04
+|     |                                   |     |    |     |  +--| (36)
+|     |                                   |     |    |     |  |  +--------NA|AS20200367|turdus_merula|NL|2020-08-16
+|     |                                   |     |    |     +--| (12)
+|     |                                   |     |    |        |                                +--NA|AS20221670|turdus_merula|NL|2022-07-24
+|     |                                   |     |    |        |                             +--| (58)
+|     |                                   |     |    |        |                             |  +-----NA|AS20221860|turdus_merula|NL|2022-09-14
+|     |                                   |     |    |        |                          +--| (99)
+|     |                                   |     |    |        |                          |  +--NA|AS20221964|columba_palumbus|NL|2022-09-26
+|     |                                   |     |    |        |                       +--| (28)
+|     |                                   |     |    |        |                       |  |  +---NA|AS20221627|turdus_merula|NL|2022-07-28
+|     |                                   |     |    |        |                       |  +--| (97)
+|     |                                   |     |    |        |                       |     +--NA|22TV3632|turdus_merula|NL|2022-10-08
+|     |                                   |     |    |        |                    +--| (12)
+|     |                                   |     |    |        |                    |  |        +--NA|22B00207|turdus_merula|NL|2022-11-12
+|     |                                   |     |    |        |                    |  |     +--| (100)
+|     |                                   |     |    |        |                    |  |     |  +--NA|21TV8157|turdus_merula|NL|2022-10-02
+|     |                                   |     |    |        |                    |  |  +--| (100)
+|     |                                   |     |    |        |                    |  |  |  +--PV235995|USUV/NL/2022/CMV3308|culex_sp|NL|2022-07-13
+|     |                                   |     |    |        |                    |  +--| (99)
+|     |                                   |     |    |        |                    |     +----NA|AS20221918|cyanistes_caeruleus|NL|2022-09-15
+|     |                                   |     |    |        |                 +--| (15)
+|     |                                   |     |    |        |                 |  |     +----NA|AS20221760|turdus_merula|NL|2022-08-24
+|     |                                   |     |    |        |                 |  |  +--| (20)
+|     |                                   |     |    |        |                 |  |  |  +--NA|AS20200689|turdus_merula|NL|2020-09-30
+|     |                                   |     |    |        |                 |  +--| (2)
+|     |                                   |     |    |        |                 |     |     +-------NA|AS20221803|turdus_merula|NL|2022-09-02
+|     |                                   |     |    |        |                 |     |  +--| (20)
+|     |                                   |     |    |        |                 |     |  |  |  +--NA|22TV3658|turdus_merula|NL|2022-08-27
+|     |                                   |     |    |        |                 |     |  |  +--| (99)
+|     |                                   |     |    |        |                 |     |  |     +------PQ633267|USUV/NL/2022/SCBC7P30|NA|NL|2022-11-18
+|     |                                   |     |    |        |                 |     +--| (4)
+|     |                                   |     |    |        |                 |        +--NA|AS20210914|turdus_merula|NL|2021-08-30
+|     |                                   |     |    |        |              +--| (95)
+|     |                                   |     |    |        |              |  +------NA|AS20221838|turdus_merula|NL|2022-08-22
+|     |                                   |     |    |        |           +--| (100)
+|     |                                   |     |    |        |           |  +----NA|AS20221637|turdus_merula|NL|2022-08-04
+|     |                                   |     |    |        |        +--| (100)
+|     |                                   |     |    |        |        |  |                          +--NA|AS20221617|turdus_merula|NL|2022-08-08
+|     |                                   |     |    |        |        |  |                       +--| (100)
+|     |                                   |     |    |        |        |  |                       |  +--NA|AS20221657|turdus_merula|NL|2022-08-04
+|     |                                   |     |    |        |        |  |                    +--| (100)
+|     |                                   |     |    |        |        |  |                    |  +--NA|AS20221784|turdus_merula|NL|2022-08-11
+|     |                                   |     |    |        |        |  |                 +--| (100)
+|     |                                   |     |    |        |        |  |                 |  +--NA|AS20221775|turdus_merula|NL|2022-08-28
+|     |                                   |     |    |        |        |  |              +--| (19)
+|     |                                   |     |    |        |        |  |              |  +---NA|AS20221846|turdus_merula|NL|2022-09-03
+|     |                                   |     |    |        |        |  |           +--| (9)
+|     |                                   |     |    |        |        |  |           |  |        +--NA|22TV2828|turdus_merula|NL|2022-09-03
+|     |                                   |     |    |        |        |  |           |  |     +--| (89)
+|     |                                   |     |    |        |        |  |           |  |     |  +--NA|22TV2684|turdus_merula|NL|2022-09-04
+|     |                                   |     |    |        |        |  |           |  |  +--| (100)
+|     |                                   |     |    |        |        |  |           |  |  |  +--NA|22B00237|turdus_merula|NL|2022-11-12
+|     |                                   |     |    |        |        |  |           |  +--| (57)
+|     |                                   |     |    |        |        |  |           |     |  +--NA|AS20221908|turdus_merula|NL|2022-09-12
+|     |                                   |     |    |        |        |  |           |     +--| (99)
+|     |                                   |     |    |        |        |  |           |        +--NA|AS20221903|turdus_merula|NL|2022-09-13
+|     |                                   |     |    |        |        |  |        +--| (28)
+|     |                                   |     |    |        |        |  |        |  |     +--NA|22B00462|turdus_merula|NL|2022-09-09
+|     |                                   |     |    |        |        |  |        |  |  +--| (100)
+|     |                                   |     |    |        |        |  |        |  |  |  +-----NA|22TV2724|turdidae_sp|NL|2022-08-28
+|     |                                   |     |    |        |        |  |        |  +--| (31)
+|     |                                   |     |    |        |        |  |        |     +--NA|22TV3602|turdus_merula|NL|2022-10-02
+|     |                                   |     |    |        |        |  |     +--| (57)
+|     |                                   |     |    |        |        |  |     |  +-----NA|AS20221755|strix_nebulosa|NL|2022-07-21
+|     |                                   |     |    |        |        |  |  +--| (99)
+|     |                                   |     |    |        |        |  |  |  |  +-------NA|22B00186|turdus_merula|NL|2022-11-12
+|     |                                   |     |    |        |        |  |  |  +--| (99)
+|     |                                   |     |    |        |        |  |  |     +----NA|21TV9171|turdus_merula|NL|2022-09-08
+|     |                                   |     |    |        |        |  +--| (47)
+|     |                                   |     |    |        |        |     |   +--NA|AS20221818|turdus_merula|NL|2022-08-31
+|     |                                   |     |    |        |        |     +---| (100)
+|     |                                   |     |    |        |        |         +---NA|AS20221889|turdus_merula|NL|2022-09-18
+|     |                                   |     |    |        |     +--| (52)
+|     |                                   |     |    |        |     |  |           +-----NA|AS20221913|turdus_merula|NL|2022-09-11
+|     |                                   |     |    |        |     |  |        +--| (100)
+|     |                                   |     |    |        |     |  |        |  |  +--NA|AS20221884|turdus_merula|NL|2022-09-14
+|     |                                   |     |    |        |     |  |        |  +--| (100)
+|     |                                   |     |    |        |     |  |        |     +-----NA|22TV2538|turdus_merula|NL|2022-08-24
+|     |                                   |     |    |        |     |  |     +--| (98)
+|     |                                   |     |    |        |     |  |     |  |      +--NA|AS20221994|passer_domesticus|NL|2022-09-19
+|     |                                   |     |    |        |     |  |     |  +------| (100)
+|     |                                   |     |    |        |     |  |     |         |  +--NA|AS20221999|turdidae_sp|NL|2022-09-22
+|     |                                   |     |    |        |     |  |     |         +--| (81)
+|     |                                   |     |    |        |     |  |     |            +--NA|AS20221957|turdus_merula|NL|2022-09-25
+|     |                                   |     |    |        |     |  |  +--| (97)
+|     |                                   |     |    |        |     |  |  |  |            +--NA|AS20221898|turdus_merula|NL|2022-09-11
+|     |                                   |     |    |        |     |  |  |  |       +----| (100)
+|     |                                   |     |    |        |     |  |  |  |       |    +--NA|22TV3780|turdus_merula|NL|2022-09-11
+|     |                                   |     |    |        |     |  |  |  +-------| (100)
+|     |                                   |     |    |        |     |  |  |          |     +--NA|AS20221928|turdus_merula|NL|2022-09-25
+|     |                                   |     |    |        |     |  |  |          +-----| (100)
+|     |                                   |     |    |        |     |  |  |                +--NA|AS20221979|turdidae_sp|NL|2022-10-03
+|     |                                   |     |    |        |     |  +--| (46)
+|     |                                   |     |    |        |     |     |               +--NA|AS20221813|turdus_merula|NL|2022-08-24
+|     |                                   |     |    |        |     |     +---------------| (100)
+|     |                                   |     |    |        |     |                     |  +--NA|AS20221974|turdus_merula|NL|2022-09-20
+|     |                                   |     |    |        |     |                     +--| (100)
+|     |                                   |     |    |        |     |                        +--NA|AS20221958|turdus_merula|NL|2022-09-25
+|     |                                   |     |    |        |  +--| (72)
+|     |                                   |     |    |        |  |  |        +--NA|AS20221875|turdus_merula|NL|2022-09-11
+|     |                                   |     |    |        |  |  |    +---| (99)
+|     |                                   |     |    |        |  |  |    |   +----NA|AS20221880|turdus_merula|NL|2022-09-12
+|     |                                   |     |    |        |  |  +----| (100)
+|     |                                   |     |    |        |  |       +-----NA|22B00483|turdus_merula|NL|2022-09-16
+|     |                                   |     |    |        +--| (43)
+|     |                                   |     |    |           |         +--NA|AS20190643|passer_domesticus|NL|2019-09-18
+|     |                                   |     |    |           |  +------| (100)
+|     |                                   |     |    |           |  |      +--NA|AS20190579|prunella_modularis|NL|2019-09-19
+|     |                                   |     |    |           +--| (96)
+|     |                                   |     |    |              |  +-----NA|AS20200605|turdus_merula|NL|2020-08-22
+|     |                                   |     |    |              +--| (82)
+|     |                                   |     |    |                 +-----PV235993|USUV/NL/2019/CMV442|culex_sp|NL|2019-08-22
+|     |                                   |     +----| (100)
+|     |                                   |          |              +--NA|AS20221942|turdus_merula|NL|2022-09-20
+|     |                                   |          |     +--------| (100)
+|     |                                   |          |     |        +-----NA|22B00749|turdidae_sp|NL|2022-09-21
+|     |                                   |          |  +--| (66)
+|     |                                   |          |  |  |      +--ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|NL|2016
+|     |                                   |          |  |  +------| (100)
+|     |                                   |          |  |         +--ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                                   |          +--| (100)
+|     |                                   |             |           +---OM202464|Greater_London_2021|turdus_merula|UK|2021-09
+|     |                                   |             |        +--| (28)
+|     |                                   |             |        |  +------MW001216|NA|turdus_merula|UK|2020-07
+|     |                                   |             |     +--| (25)
+|     |                                   |             |     |  |  +------NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09
+|     |                                   |             |     |  +--| (30)
+|     |                                   |             |     |     +------NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08
+|     |                                   |             |  +--| (95)
+|     |                                   |             |  |  +-----NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09
+|     |                                   |             +--| (63)
+|     |                                   |                +----------------NA|22B04271|turdus_merula|NL|2022-12-03
+|     |                                +--| (100)
+|     |                                |  |  +---NA|AS201800175|turdus_merula|NL|2018-08-22
+|     |                                |  +--| (100)
+|     |                                |     |     +---NA|16TV1045|turdus_merula|NL|2017-08-02
+|     |                                |     |  +--| (100)
+|     |                                |     |  |  |     +--ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|NL|2016
+|     |                                |     |  |  |  +--| (86)
+|     |                                |     |  |  |  |  +--ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                                |     |  |  +--| (100)
+|     |                                |     |  |     +--ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|NL|2016
+|     |                                |     +--| (77)
+|     |                                |        |  +----MN122220|AS201800087|turdus_merula|NL|2018-08-01
+|     |                                |        +--| (94)
+|     |                                |           +--MN122245|AS201800125|turdus_merula|NL|2018-08-22
+|     |                             +--| (72)
+|     |                             |  |     +------NA|AS201700148|strix_nebulosa|NL|2017-07-31
+|     |                             |  |  +--| (100)
+|     |                             |  |  |  |  +---------MN122233|AS201800102|turdus_merula|NL|2018-08-09
+|     |                             |  |  |  +--| (66)
+|     |                             |  |  |     |     +--MN122244|AS201800123|turdus_merula|NL|2018-08-21
+|     |                             |  |  |     |  +--| (91)
+|     |                             |  |  |     |  |  +-----NA|18TV1221|turdus_merula|NL|2018-10-13
+|     |                             |  |  |     +--| (99)
+|     |                             |  |  |        +---MN122246|AS201800126|turdus_merula|NL|2018-08-22
+|     |                             |  +--| (100)
+|     |                             |     +----KY426761|NA|turdus_merula|DE|2016-09-04
+|     |                          +--| (100)
+|     |                          |  +--KM659877|NA|turdus_merula|DE|2014-09-11
+|     |                       +--| (100)
+|     |                       |  +----KY426765|NA|turdus_merula|DE|2016-09-30
+|     |                    +--| (89)
+|     |                    |  +--------MN122151|AS201600057|turdus_merula|NL|2016-09-08
+|     |             +------| (100)
+|     |             |      |       +--MN122182|AS201600280|turdus_merula|NL|2016-09-26
+|     |             |      |    +--| (96)
+|     |             |      |    |  |  +--------------NA|AS20221660|turdus_merula|NL|2022-08-08
+|     |             |      |    |  +--| (87)
+|     |             |      |    |     +--ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|NL|2016
+|     |             |      +----| (100)
+|     |             |           |  +------MN122231|AS201800100|turdus_merula|NL|2018-08-07
+|     |             |           +--| (100)
+|     |             |              +-----MN122232|AS201800101|turdus_merula|NL|2018-08-07
+|     +-------------| (100)
+|                   |                                              +--NA|AS201800085|chloris_chloris|NL|2018-07-30
+|                   |                                           +--| (76)
+|                   |                                           |  +--MN122228|AS201800095|turdus_merula|NL|2018-08-06
+|                   |                                       +---| (100)
+|                   |                                       |   +--MN122219|AS201800086|turdus_merula|NL|2018-08-01
+|                   |                                    +--| (100)
+|                   |                                    |  |  +--MN122247|AS201800127|turdus_merula|NL|2018-08-22
+|                   |                                    |  +--| (72)
+|                   |                                    |     +------------NA|AS20222401|turdus_merula|NL|2022-11-10
+|                   |                                 +--| (28)
+|                   |                                 |  |   +-----NA|AS20190450|turdus_merula|NL|2019-09-03
+|                   |                                 |  +---| (100)
+|                   |                                 |      |  +--MN122161|AS201600115|turdus_merula|NL|2016-09-22
+|                   |                                 |      +--| (84)
+|                   |                                 |         +--------NA|AS20221828|turdus_merula|NL|2022-08-26
+|                   |                              +--| (4)
+|                   |                              |  |           +**NA|AS201600064|strix_nebulosa|NL|2016-08-13
+|                   |                              |  |        +--|
+|                   |                              |  |        |  +**KY128482|Snebulosa-6004/NL/2016|strix_nebulosa|NL|2016-09
+|                   |                              |  |     +--| (100)
+|                   |                              |  |     |  +--NA|AS201600073|bubo_scandiacus|NL|2016-09-01
+|                   |                              |  |  +--| (100)
+|                   |                              |  |  |  |  +------------MN122251|AS201800151|turdus_merula|NL|2018-08-30
+|                   |                              |  |  |  +--| (100)
+|                   |                              |  |  |     +--MN122184|AS201600283|turdus_merula|NL|2016-09-27
+|                   |                              |  +--| (15)
+|                   |                              |     |  +--MN122153|AS201600062|turdus_merula|NL|2016-09-13
+|                   |                              |     +--| (99)
+|                   |                              |        +--MN122193|AS201700087|turdus_merula|NL|2017-07-11
+|                   |                           +--| (25)
+|                   |                           |  |     +--NA|AS201600082|strix_nebulosa|NL|2016-09-20
+|                   |                           |  |  +--| (66)
+|                   |                           |  |  |  +-----------------NA|AS20210829|turdus_merula|NL|2021-09-19
+|                   |                           |  +--| (30)
+|                   |                           |     +----MN122195|AS201700096|turdus_merula|NL|2017-07-14
+|                   |                        +--| (100)
+|                   |                        |  +--MN122147|AS201600042|turdus_merula|NL|2016-09-07
+|                   |                     +--| (35)
+|                   |                     |  |     +--NA|AS201700173|strix_nebulosa|NL|2017-08-25
+|                   |                     |  |  +--| (100)
+|                   |                     |  |  |  +----MN122252|AS201800152|turdus_merula|NL|2018-08-30
+|                   |                     |  +--| (100)
+|                   |                     |     +--MN122149|AS201600048|turdus_merula|NL|2016-09-07
+|                   |                  +--| (31)
+|                   |                  |  |                       +-------NA|AS20190494|turdus_merula|NL|2019-08-28
+|                   |                  |  |                    +--| (11)
+|                   |                  |  |                    |  +--MN122150|AS201600051|turdus_merula|NL|2016-09-07
+|                   |                  |  |                 +--| (28)
+|                   |                  |  |                 |  |                 +--NA|19TV0329|turdus_merula|NL|2019-04-12
+|                   |                  |  |                 |  |           +-----| (100)
+|                   |                  |  |                 |  |           |     +--NA|19TV0102|passer_domesticus|NL|2019-04-24
+|                   |                  |  |                 |  |        +--| (87)
+|                   |                  |  |                 |  |        |  +---------MN122256|AS201800157|turdus_merula|NL|2018-09-04
+|                   |                  |  |                 |  |     +--| (12)
+|                   |                  |  |                 |  |     |  |  +---MN122241|AS201800120|turdus_merula|NL|2018-08-17
+|                   |                  |  |                 |  |     |  +--| (88)
+|                   |                  |  |                 |  |     |     +------MN122221|AS201800088|turdus_merula|NL|2018-08-01
+|                   |                  |  |                 |  |  +--| (5)
+|                   |                  |  |                 |  |  |  |  +--MN122165|AS201600127|turdus_merula|NL|2016-09-23
+|                   |                  |  |                 |  |  |  +--| (16)
+|                   |                  |  |                 |  |  |     +--MN122208|AS201700170|turdus_merula|NL|2017-08-25
+|                   |                  |  |                 |  +--| (4)
+|                   |                  |  |                 |     |     +---NA|18TV0252|turdus_merula|NL|2018-10-31
+|                   |                  |  |                 |     |  +--| (99)
+|                   |                  |  |                 |     |  |  +---MN122202|AS201700124|turdus_merula|NL|2017-08-01
+|                   |                  |  |                 |     +--| (27)
+|                   |                  |  |                 |        +-----MN122239|AS201800116|turdus_merula|NL|2018-08-16
+|                   |                  |  |              +--| (87)
+|                   |                  |  |              |  |     +--ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|NL|2016
+|                   |                  |  |              |  |  +--| (100)
+|                   |                  |  |              |  |  |  +--ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|NL|2016
+|                   |                  |  |              |  +--| (100)
+|                   |                  |  |              |     +----ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|NL|2016
+|                   |                  |  |           +--| (53)
+|                   |                  |  |           |  +--------MN122253|AS201800154|turdus_merula|NL|2018-08-31
+|                   |                  |  |        +--| (96)
+|                   |                  |  |        |  |      +--MN122199|AS201700112|turdus_merula|NL|2017-07-27
+|                   |                  |  |        |  |   +--| (80)
+|                   |                  |  |        |  |   |  +--MN122209|AS201700174|turdus_merula|NL|2017-08-29
+|                   |                  |  |        |  +---| (100)
+|                   |                  |  |        |      +-----MN122242|AS201800121|turdus_merula|NL|2018-08-17
+|                   |                  |  |     +--| (77)
+|                   |                  |  |     |  |           +--NA|AS20190715|copsychus_malabaricus|NL|2019-10-07
+|                   |                  |  |     |  |  +--------| (100)
+|                   |                  |  |     |  |  |        +--NA|AS20190716|copsychus_malabaricus|NL|2019-10-07
+|                   |                  |  |     |  +--| (99)
+|                   |                  |  |     |     +-----MK230891|Seraing/2017|turdus_merula|BE|2017-08
+|                   |                  |  |  +--| (100)
+|                   |                  |  |  |  |             +--MN122159|AS201600107|turdus_merula|NL|2016-09-22
+|                   |                  |  |  |  |          +--| (21)
+|                   |                  |  |  |  |          |  +-----MN122168|AS201600148|turdus_merula|NL|2016-09-23
+|                   |                  |  |  |  |       +--| (35)
+|                   |                  |  |  |  |       |  |     +--MN122255|AS201800156|turdus_merula|NL|2018-08-31
+|                   |                  |  |  |  |       |  |  +--| (100)
+|                   |                  |  |  |  |       |  |  |  |      +----NA|AS20221789|turdus_merula|NL|2022-08-24
+|                   |                  |  |  |  |       |  |  |  |   +--| (78)
+|                   |                  |  |  |  |       |  |  |  |   |  +--NA|AS20221833|turdus_merula|NL|2022-08-28
+|                   |                  |  |  |  |       |  |  |  +---| (100)
+|                   |                  |  |  |  |       |  |  |      +--NA|22TV2594|cyanistes_caeruleus|NL|2022-08-24
+|                   |                  |  |  |  |       |  +--| (44)
+|                   |                  |  |  |  |       |     |   +--OP921078|18TV0973_Turdusphilomelos|turdidae_sp|NL|2018-08-18
+|                   |                  |  |  |  |       |     +---| (100)
+|                   |                  |  |  |  |       |         +--OP921079|18TV0973_Ixodida|NA|NL|2018-08-18
+|                   |                  |  |  |  |  +----| (100)
+|                   |                  |  |  |  |  |    +--MN122191|AS201700084|turdus_merula|NL|2017-07-05
+|                   |                  |  |  |  +--| (99)
+|                   |                  |  |  |     |      +--ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|NL|2016
+|                   |                  |  |  |     +------| (100)
+|                   |                  |  |  |            |  +--ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|NL|2016
+|                   |                  |  |  |            +--| (92)
+|                   |                  |  |  |               +--ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|NL|2016
+|                   |                  |  +--| (99)
+|                   |                  |     +-----OP007489|WBVR_bird-X-2016|strix_nebulosa|NL|2016-09-09
+|                   |               +--| (79)
+|                   |               |  |                       +--NA|AS201700198|strix_nebulosa|NL|2017-09-05
+|                   |               |  |                    +--| (100)
+|                   |               |  |                    |  +--MN122173|AS201600227|turdus_merula|NL|2016-09-30
+|                   |               |  |                 +--| (26)
+|                   |               |  |                 |  |  +--OP921082|16TV1131_Ixodesricinus_8|ixodes_ricinus|NL|2016-10-16
+|                   |               |  |                 |  +--| (100)
+|                   |               |  |                 |     |  +--OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|NL|2016-10-16
+|                   |               |  |                 |     +--| (73)
+|                   |               |  |                 |        |  +--OP921083|16TV1131_Turdusmerula|turdus_merula|NL|2016-10-16
+|                   |               |  |                 |        +--| (69)
+|                   |               |  |                 |           +--OP921080|16TV1131_Ixodesricinus_5|ixodes_ricinus|NL|2016-10-16
+|                   |               |  |              +--| (6)
+|                   |               |  |              |  |     +--NA|AS201800080|strix_nebulosa|NL|2018-07-24
+|                   |               |  |              |  |  +--| (98)
+|                   |               |  |              |  |  |  +------------NA|AS20200561|turdus_merula|NL|2020-09-27
+|                   |               |  |              |  +--| (16)
+|                   |               |  |              |     |     +-----NA|17TV1510|turdus_merula|NL|2018-10-06
+|                   |               |  |              |     |  +--| (80)
+|                   |               |  |              |     |  |  +--MN122205|AS201700152|turdus_merula|NL|2017-07-19
+|                   |               |  |              |     +--| (99)
+|                   |               |  |              |        |  +--MN122197|AS201700106|turdus_merula|NL|2017-07-25
+|                   |               |  |              |        +--| (100)
+|                   |               |  |              |           +---MN122222|AS201800089|turdus_merula|NL|2018-08-02
+|                   |               |  |           +--| (19)
+|                   |               |  |           |  |     +----------MN122225|AS201800092|turdus_merula|NL|2018-08-02
+|                   |               |  |           |  |  +--| (100)
+|                   |               |  |           |  |  |  +--NA|18TV0825|turdus_merula|NL|2018-08-18
+|                   |               |  |           |  +--| (48)
+|                   |               |  |           |     +--NA|17TV1199|turdus_merula|NL|2017-07-21
+|                   |               |  |        +--| (56)
+|                   |               |  |        |  +--MN122226|AS201800093|turdus_merula|NL|2018-08-03
+|                   |               |  |     +--| (55)
+|                   |               |  |     |  |  +----MN122217|AS201800082|turdus_merula|NL|2018-07-27
+|                   |               |  |     |  +--| (55)
+|                   |               |  |     |     +--------------MN122223|AS201800090|turdus_merula|NL|2018-08-02
+|                   |               |  |  +--| (72)
+|                   |               |  |  |  +-------------MN122216|AS201800081|turdus_merula|NL|2018-07-27
+|                   |               |  +--| (72)
+|                   |               |     +-----MN122160|AS201600110|turdus_merula|NL|2016-09-22
+|                   |            +--| (58)
+|                   |            |  |         +---KY426764|NA|turdus_merula|DE|2016-10-04
+|                   |            |  |     +---| (100)
+|                   |            |  |     |   |       +--MN122146|AS201600036|turdus_merula|NL|2016-09-06
+|                   |            |  |     |   |    +--| (100)
+|                   |            |  |     |   |    |  +--NA|AS201700142|strix_nebulosa|NL|2017-08-09
+|                   |            |  |     |   +----| (100)
+|                   |            |  |     |        +------MN122248|AS201800128|turdus_merula|NL|2018-08-22
+|                   |            |  |  +--| (70)
+|                   |            |  |  |  |        +----------MN122167|AS201600136|turdus_merula|NL|2016-09-23
+|                   |            |  |  |  |     +--| (36)
+|                   |            |  |  |  |     |  +-----------MN122250|AS201800150|turdus_merula|NL|2018-08-30
+|                   |            |  |  |  |  +--| (99)
+|                   |            |  |  |  |  |  |  +------MN122210|AS201700177|turdus_merula|NL|2017-09-15
+|                   |            |  |  |  |  |  +--| (25)
+|                   |            |  |  |  |  |     +----------NA|18TV1196|turdidae_sp|NL|2018-09-16
+|                   |            |  |  |  +--| (99)
+|                   |            |  |  |     +----------------NA|AS20221780|turdus_merula|NL|2022-08-26
+|                   |            |  +--| (100)
+|                   |            |     +--------KY426757|NA|turdus_merula|DE|2016-09-23
+|                   |         +--| (91)
+|                   |         |  |        +--NA|AS201600067|strix_nebulosa|NL|2016-09-09
+|                   |         |  |     +--| (100)
+|                   |         |  |     |  +---NA|AS201600269|strix_nebulosa|NL|2016-09-25
+|                   |         |  |  +--| (100)
+|                   |         |  |  |  |                 +--NA|AS201800117|strix_nebulosa|NL|2018-08-16
+|                   |         |  |  |  |              +--| (100)
+|                   |         |  |  |  |              |  |  +--NA|18TV1517|turdus_merula|NL|2018-10-11
+|                   |         |  |  |  |              |  +--| (81)
+|                   |         |  |  |  |              |     +--MN122243|AS201800122|turdus_merula|NL|2018-08-21
+|                   |         |  |  |  |           +--| (22)
+|                   |         |  |  |  |           |  +--MN122194|AS201700090|turdus_merula|NL|2017-07-13
+|                   |         |  |  |  |        +--| (31)
+|                   |         |  |  |  |        |  |     +-----MN122234|AS201800103|turdus_merula|NL|2018-08-10
+|                   |         |  |  |  |        |  |  +--| (26)
+|                   |         |  |  |  |        |  |  |  +------------PV235994|USUV/NL/2021/CMV2045|culex_sp|NL|2021-07-26
+|                   |         |  |  |  |        |  +--| (11)
+|                   |         |  |  |  |        |     |  +------MN122237|AS201800114|turdus_merula|NL|2018-08-15
+|                   |         |  |  |  |        |     +--| (28)
+|                   |         |  |  |  |        |        +-------MN122218|AS201800084|turdus_merula|NL|2018-07-31
+|                   |         |  |  |  |     +--| (98)
+|                   |         |  |  |  |     |  |  +--MN122155|AS201600095|turdus_merula|NL|2016-09-21
+|                   |         |  |  |  |     |  +--| (100)
+|                   |         |  |  |  |     |     +--MN122180|AS201600274|turdus_merula|NL|2016-09-27
+|                   |         |  |  |  |  +--| (100)
+|                   |         |  |  |  |  |  +---NA|AS201600289_BEC009|strix_nebulosa|NL|2016
+|                   |         |  |  |  +--| (100)
+|                   |         |  |  |     |     +--MN122183|AS201600281|turdus_merula|NL|2016-09-25
+|                   |         |  |  |     |  +--| (100)
+|                   |         |  |  |     |  |  +----MN122204|AS201700130|turdus_merula|NL|2017-08-16
+|                   |         |  |  |     +--| (100)
+|                   |         |  |  |        +---MN122200|AS201700118|turdus_merula|NL|2017-08-03
+|                   |         |  +--| (100)
+|                   |         |     +---------KY426754|NA|turdus_merula|DE|2015-09-09
+|                   |      +--| (63)
+|                   |      |  |  +------MN122178|AS201600265|turdus_merula|NL|2016-09-30
+|                   |      |  +--| (100)
+|                   |      |     +------KY263625|NA|turdus_merula|BE|2016-10
+|                   +------| (97)
+|                          |     +--MN122157|AS201600101|turdus_merula|NL|2016-09-22
+|                          |  +--| (100)
+|                          |  |  +----MN122212|AS201700189|turdus_merula|NL|2017-09-14
+|                          +--| (100)
+|                             |  +----------NA|AS20221851|turdus_merula|NL|2022-09-03
+|                             +--| (99)
+|                                +------------NA|21TV5071|turdus_merula|NL|2022-07-29
+|
+|  +---------------------PP482815|AeDet2-batch3_Nansouty_2023-08-18|culex_sp|FR|2023-08-18
++--| (86)
+   +----------------MT863562|HauteVienne4997/France/2018|turdus_merula|FR|2018-07-24
+
+
+Consensus tree in newick format: 
+
+(PP482816|Cx1-batch2_Zen-Pets-Res_2023-08-03|culex_pipiens|FR|2023-08-03:0.0036165152,((PQ677887|Ar2|alectoris_rufa|PT|2023-11-05:0.0036032064,(ON755212|Turdusmerula20_feather_WLC_Day43|turdus_merula|NL|2016:0.0000025019,ON755221|Turdusmerula20_feather_WLC_Day0|turdus_merula|NL|2016:0.0000025019)100:0.0023957806)94:0.0000784423,(((((KY294723|S-1238|turdus_merula|DE|2016:0.0006078297,(KY294722|S-1232|turdus_merula|DE|2016:0.0000025019,KY199557|NA|turdus_merula|DE|2016:0.0006077905)100:0.0001014647)74:0.0000025019,MN122238|AS201800115|turdus_merula|NL|2018-08-15:0.0012181163)100:0.0008146889,MK419834|USU-BE-Scoter/2018|melanitta_nigra|BE|2018-08:0.0018339090)100:0.0006163743,OU674388|NA|turdus_merula|LU|2020-09:0.0026529919)88:0.0000978713,((((((((((((((PQ041659|USUV_TM_Netherlands_2016|NA|NL|2020:0.0001018538,MN122148|AS201600045|turdus_merula|NL|2016-09-07:0.0003037733)39:0.0000025019,(MT188658|NA|turdus_merula|NL|2016:0.0000025019,MH891847|AS201600045|turdus_merula|NL|2016-09-07:0.0000025019)68:0.0000025019)24:0.0000025019,MN813490|TMNetherlands|turdus_merula|NL|2016:0.0002024474)98:0.0003037931,MN122214|AS201700254|turdus_merula|NL|2017-09-22:0.0012179318)11:0.0000025019,(((((NA|AS20190490|turdus_merula|NL|2019-08-27:0.0011186236,NA|18TV0475|turdus_merula|NL|2018-08-18:0.0005079084)98:0.0000998230,((((MN122185|AS201600284|turdus_merula|NL|2016-10-03:0.0001017553,((MN122187|AS201600287|turdus_merula|NL|2016-09-27:0.0004050209,MN122224|AS201800091|turdus_merula|NL|2018-08-02:0.0010135354)13:0.0000025019,(MN122227|AS201800094|turdus_merula|NL|2018-08-03:0.0010132504,MN122207|AS201700167|turdus_merula|NL|2017-09-01:0.0004163412)31:0.0000025019)5:0.0000025019)2:0.0000025019,(MN122236|AS201800113|turdus_merula|NL|2018-08-14:0.0002023875,((MN122164|AS201600124|turdus_merula|NL|2016-09-23:0.0002023771,MN122162|AS201600118|turdus_merula|NL|2016-09-22:0.0002024630)48:0.0000025019,(MN122175|AS201600244|turdus_merula|NL|2016-09-27:0.0006079364,MN122163|AS201600121|turdus_merula|NL|2016-09-22:0.0013188085)29:0.0000025019)53:0.0001017546)6:0.0000025019)5:0.0000025019,(MN122211|AS201700186|turdus_merula|NL|2017-09-13:0.0003036705,MN122249|AS201800129|turdus_merula|NL|2018-08-23:0.0005066481)18:0.0000025019)85:0.0001017860,(MN122254|AS201800155|turdus_merula|NL|2018-08-31:0.0006094165,MN122240|AS201800118|turdus_merula|NL|2018-08-16:0.0008133004)99:0.0003033759)35:0.0000025019)18:0.0000025019,MT795154|NA|turdus_merula|DE|2016-09-30:0.0000025019)28:0.0000025019,(NA|AS20190438|gracula_religiosa|NL|2019-09-12:0.0008120474,MN122156|AS201600098|turdus_merula|NL|2016-09-21:0.0002023937)35:0.0000025019)96:0.0002024689,((NA|AS20221923|turdus_merula|NL|2022-09-04:0.0010147610,(NA|AS20221952|streptopelia_decaocto|NL|2022-09-27:0.0017851333,PV235996|USUV/NL/2022/CMV3394|culex_sp|NL|2022-07-26:0.0016423235)100:0.0000921352)100:0.0002027176,(OP921076|16TV1039_Turdusmerula|turdus_merula|NL|2016-10-07:0.0000025019,OP921077|16TV1039_Ixodesfrontalis|ixodes_frontalis|NL|2016-10-07:0.0000025019)100:0.0005260227)28:0.0000025019)12:0.0000025019)23:0.0000025019,(MN122145|AS201600034|turdus_merula|NL|2016-09-01:0.0002027418,MN122230|AS201800099|turdus_merula|NL|2018-08-07:0.0007105483)99:0.0001017142)100:0.0003037657,((MN122186|AS201600286|turdus_merula|NL|2016-09-28:0.0006085253,MN122201|AS201700121|turdus_merula|NL|2017-08-01:0.0006097866)98:0.0003033786,((MN122169|AS201600173|turdus_merula|NL|2016-10-07:0.0009122402,(MN122206|AS201700155|turdus_merula|NL|2017-08-10:0.0002025160,((NA|AS20221842|turdus_merula|NL|2022-09-04:0.0007086520,NA|AS20200367|turdus_merula|NL|2020-08-16:0.0011168422)36:0.0000025019,(((((((((((NA|AS20221670|turdus_merula|NL|2022-07-24:0.0001010080,NA|AS20221860|turdus_merula|NL|2022-09-14:0.0007086275)58:0.0000025019,NA|AS20221964|columba_palumbus|NL|2022-09-26:0.0003038191)99:0.0002024786,(NA|AS20221627|turdus_merula|NL|2022-07-28:0.0004872943,NA|22TV3632|turdus_merula|NL|2022-10-08:0.0004564179)97:0.0001207417)28:0.0000025019,(((NA|22B00207|turdus_merula|NL|2022-11-12:0.0000025019,NA|21TV8157|turdus_merula|NL|2022-10-02:0.0002614288)100:0.0002026900,PV235995|USUV/NL/2022/CMV3308|culex_sp|NL|2022-07-13:0.0004072634)100:0.0001008533,NA|AS20221918|cyanistes_caeruleus|NL|2022-09-15:0.0006081425)99:0.0003042835)12:0.0000025019,((NA|AS20221760|turdus_merula|NL|2022-08-24:0.0006072021,NA|AS20200689|turdus_merula|NL|2020-09-30:0.0004051974)20:0.0000025019,((NA|AS20221803|turdus_merula|NL|2022-09-02:0.0010133440,(NA|22TV3658|turdus_merula|NL|2022-08-27:0.0001005540,PQ633267|USUV/NL/2022/SCBC7P30|NA|NL|2022-11-18:0.0008341976)99:0.0004061528)20:0.0000025019,NA|AS20210914|turdus_merula|NL|2021-08-30:0.0003038101)4:0.0000025019)2:0.0000025019)15:0.0000025019,NA|AS20221838|turdus_merula|NL|2022-08-22:0.0008101337)95:0.0001017474,NA|AS20221637|turdus_merula|NL|2022-08-04:0.0006248142)100:0.0002028515,(((((((((NA|AS20221617|turdus_merula|NL|2022-08-08:0.0000025019,NA|AS20221657|turdus_merula|NL|2022-08-04:0.0000025019)100:0.0001012593,NA|AS20221784|turdus_merula|NL|2022-08-11:0.0002026112)100:0.0001013156,NA|AS20221775|turdus_merula|NL|2022-08-28:0.0004055070)100:0.0001010177,NA|AS20221846|turdus_merula|NL|2022-09-03:0.0005067564)19:0.0000025019,(((NA|22TV2828|turdus_merula|NL|2022-09-03:0.0000025019,NA|22TV2684|turdus_merula|NL|2022-09-04:0.0000025019)89:0.0000025019,NA|22B00237|turdus_merula|NL|2022-11-12:0.0000025019)100:0.0004044895,(NA|AS20221908|turdus_merula|NL|2022-09-12:0.0004052834,NA|AS20221903|turdus_merula|NL|2022-09-13:0.0000025019)99:0.0001013000)57:0.0001012211)9:0.0000025019,((NA|22B00462|turdus_merula|NL|2022-09-09:0.0000025019,NA|22TV2724|turdidae_sp|NL|2022-08-28:0.0007652301)100:0.0000971232,NA|22TV3602|turdus_merula|NL|2022-10-02:0.0003236142)31:0.0000038887)28:0.0000025019,NA|AS20221755|strix_nebulosa|NL|2022-07-21:0.0007088543)57:0.0001004997,(NA|22B00186|turdus_merula|NL|2022-11-12:0.0009911027,NA|21TV9171|turdus_merula|NL|2022-09-08:0.0006434267)99:0.0004010371)99:0.0002032996,(NA|AS20221818|turdus_merula|NL|2022-08-31:0.0002023444,NA|AS20221889|turdus_merula|NL|2022-09-18:0.0005075781)100:0.0005075347)47:0.0000025019)100:0.0003039265,((((NA|AS20221913|turdus_merula|NL|2022-09-11:0.0007094488,(NA|AS20221884|turdus_merula|NL|2022-09-14:0.0001006561,NA|22TV2538|turdus_merula|NL|2022-08-24:0.0006922099)100:0.0003051100)100:0.0001007726,(NA|AS20221994|passer_domesticus|NL|2022-09-19:0.0000025019,(NA|AS20221999|turdidae_sp|NL|2022-09-22:0.0001150813,NA|AS20221957|turdus_merula|NL|2022-09-25:0.0000025019)81:0.0000025019)100:0.0008197091)98:0.0001011019,((NA|AS20221898|turdus_merula|NL|2022-09-11:0.0004051784,NA|22TV3780|turdus_merula|NL|2022-09-11:0.0000025019)100:0.0006492766,(NA|AS20221928|turdus_merula|NL|2022-09-25:0.0000025019,NA|AS20221979|turdidae_sp|NL|2022-10-03:0.0004565121)100:0.0007331228)100:0.0009764969)97:0.0001010458,(NA|AS20221813|turdus_merula|NL|2022-08-24:0.0002033774,(NA|AS20221974|turdus_merula|NL|2022-09-20:0.0000025019,NA|AS20221958|turdus_merula|NL|2022-09-25:0.0000025019)100:0.0001002287)100:0.0019341834)46:0.0000025019)52:0.0000025019,((NA|AS20221875|turdus_merula|NL|2022-09-11:0.0002369691,NA|AS20221880|turdus_merula|NL|2022-09-12:0.0005801567)99:0.0005082298,NA|22B00483|turdus_merula|NL|2022-09-16:0.0007083726)100:0.0005738670)72:0.0001010245,((NA|AS20190643|passer_domesticus|NL|2019-09-18:0.0002023250,NA|AS20190579|prunella_modularis|NL|2019-09-19:0.0002029219)100:0.0008114236,(NA|AS20200605|turdus_merula|NL|2020-08-22:0.0007078634,PV235993|USUV/NL/2019/CMV442|culex_sp|NL|2019-08-22:0.0007439166)82:0.0000025110)96:0.0002026625)43:0.0000025019)12:0.0000025019)46:0.0000025110)91:0.0003041501,(((NA|AS20221942|turdus_merula|NL|2022-09-20:0.0002006993,NA|22B00749|turdidae_sp|NL|2022-09-21:0.0007346829)100:0.0011183969,(ON755209|Turdusmerula14_feather_WLC_Day43|turdus_merula|NL|2016:0.0000025019,ON755216|Turdusmerula14_feather_WLC_Day0|turdus_merula|NL|2016:0.0000025019)100:0.0008201236)66:0.0000025019,((((OM202464|Greater_London_2021|turdus_merula|UK|2021-09:0.0005064997,MW001216|NA|turdus_merula|UK|2020-07:0.0008101918)28:0.0000025019,(NA|Blackbird_London_2022_b|turdus_merula|UK|2022-09:0.0008107706,NA|Blackbird_Cambridgeshire_2023_a|turdus_merula|UK|2023-08:0.0008107910)30:0.0000025019)25:0.0000025019,NA|Blackbird_London_2022_a|turdus_merula|UK|2022-09:0.0007101477)95:0.0003020362,NA|22B04271|turdus_merula|NL|2022-12-03:0.0019679580)63:0.0000025110)100:0.0002026086)100:0.0006081455)90:0.0000025019)100:0.0002023676,(NA|AS201800175|turdus_merula|NL|2018-08-22:0.0005064962,((NA|16TV1045|turdus_merula|NL|2017-08-02:0.0005071387,((ON755214|Turdusmerula12_feather_2W1L_Day0|turdus_merula|NL|2016:0.0000025019,ON755218|Turdusmerula16_feather_WLC_Day0|turdus_merula|NL|2016:0.0000025019)86:0.0000025019,ON755219|Turdusmerula18_feather_WLC_Day0|turdus_merula|NL|2016:0.0001053415)100:0.0003033287)100:0.0002013962,(MN122220|AS201800087|turdus_merula|NL|2018-08-01:0.0006081154,MN122245|AS201800125|turdus_merula|NL|2018-08-22:0.0004066217)94:0.0004054905)77:0.0000025019)100:0.0002026841)100:0.0001018119,((NA|AS201700148|strix_nebulosa|NL|2017-07-31:0.0009129497,(MN122233|AS201800102|turdus_merula|NL|2018-08-09:0.0012167498,((MN122244|AS201800123|turdus_merula|NL|2018-08-21:0.0003221717,NA|18TV1221|turdus_merula|NL|2018-10-13:0.0006987579)91:0.0002022080,MN122246|AS201800126|turdus_merula|NL|2018-08-22:0.0004883060)99:0.0002206283)66:0.0000025019)100:0.0001010839,KY426761|NA|turdus_merula|DE|2016-09-04:0.0006085589)100:0.0002028595)72:0.0000025019,KM659877|NA|turdus_merula|DE|2014-09-11:0.0003038284)100:0.0001016051,KY426765|NA|turdus_merula|DE|2016-09-30:0.0006085789)100:0.0002033169,MN122151|AS201600057|turdus_merula|NL|2016-09-08:0.0011160604)89:0.0000025019,((MN122182|AS201600280|turdus_merula|NL|2016-09-26:0.0002004640,(NA|AS20221660|turdus_merula|NL|2022-08-08:0.0017748112,ON755217|Turdusmerula15_feather_WLC_Day0|turdus_merula|NL|2016:0.0004100825)87:0.0000025019)96:0.0003036728,(MN122231|AS201800100|turdus_merula|NL|2018-08-07:0.0009139566,MN122232|AS201800101|turdus_merula|NL|2018-08-07:0.0007103750)100:0.0002034963)100:0.0006065983)100:0.0009156524,((((((((((((((NA|AS201800085|chloris_chloris|NL|2018-07-30:0.0003040985,MN122228|AS201800095|turdus_merula|NL|2018-08-06:0.0002026564)76:0.0000025019,MN122219|AS201800086|turdus_merula|NL|2018-08-01:0.0002025673)100:0.0005060534,(MN122247|AS201800127|turdus_merula|NL|2018-08-22:0.0004045660,NA|AS20222401|turdus_merula|NL|2022-11-10:0.0015227798)72:0.0000025019)100:0.0002025977,(NA|AS20190450|turdus_merula|NL|2019-09-03:0.0007993429,(MN122161|AS201600115|turdus_merula|NL|2016-09-22:0.0002144402,NA|AS20221828|turdus_merula|NL|2022-08-26:0.0011049057)84:0.0000993526)100:0.0005191739)28:0.0000025019,((((NA|AS201600064|strix_nebulosa|NL|2016-08-13:0.0000000000,KY128482|Snebulosa-6004/NL/2016|strix_nebulosa|NL|2016-09:0.0000000000):0.0000025019,NA|AS201600073|bubo_scandiacus|NL|2016-09-01:0.0000025019)100:0.0002029150,(MN122251|AS201800151|turdus_merula|NL|2018-08-30:0.0015246757,MN122184|AS201600283|turdus_merula|NL|2016-09-27:0.0003052622)100:0.0001005922)100:0.0003034868,(MN122153|AS201600062|turdus_merula|NL|2016-09-13:0.0002028322,MN122193|AS201700087|turdus_merula|NL|2017-07-11:0.0000025019)99:0.0001013449)15:0.0000025019)4:0.0000025019,((NA|AS201600082|strix_nebulosa|NL|2016-09-20:0.0002037460,NA|AS20210829|turdus_merula|NL|2021-09-19:0.0021388736)66:0.0001001679,MN122195|AS201700096|turdus_merula|NL|2017-07-14:0.0006074740)30:0.0000025019)25:0.0000025019,MN122147|AS201600042|turdus_merula|NL|2016-09-07:0.0001014206)100:0.0001014289,((NA|AS201700173|strix_nebulosa|NL|2017-08-25:0.0001008497,MN122252|AS201800152|turdus_merula|NL|2018-08-30:0.0006084690)100:0.0004062877,MN122149|AS201600048|turdus_merula|NL|2016-09-07:0.0003035618)100:0.0003035929)35:0.0000025019,((((((((NA|AS20190494|turdus_merula|NL|2019-08-28:0.0010134108,MN122150|AS201600051|turdus_merula|NL|2016-09-07:0.0003036048)11:0.0000025019,(((((NA|19TV0329|turdus_merula|NL|2019-04-12:0.0000025019,NA|19TV0102|passer_domesticus|NL|2019-04-24:0.0001010649)100:0.0007113512,MN122256|AS201800157|turdus_merula|NL|2018-09-04:0.0012198731)87:0.0000992192,(MN122241|AS201800120|turdus_merula|NL|2018-08-17:0.0005072897,MN122221|AS201800088|turdus_merula|NL|2018-08-01:0.0009137329)88:0.0001002525)12:0.0000025019,(MN122165|AS201600127|turdus_merula|NL|2016-09-23:0.0002022302,MN122208|AS201700170|turdus_merula|NL|2017-08-25:0.0004047872)16:0.0000025019)5:0.0000025019,((NA|18TV0252|turdus_merula|NL|2018-10-31:0.0005072817,MN122202|AS201700124|turdus_merula|NL|2017-08-01:0.0005069848)99:0.0002021825,MN122239|AS201800116|turdus_merula|NL|2018-08-16:0.0007089425)27:0.0000025019)4:0.0000025019)28:0.0000025019,((ON755220|Turdusmerula19_feather_WLC_Day0|turdus_merula|NL|2016:0.0000025019,ON755211|Turdusmerula19_feather_WLC_Day43|turdus_merula|NL|2016:0.0000025019)100:0.0001010305,ON755210|Turdusmerula17_feather_WLC_Day43|turdus_merula|NL|2016:0.0006151559)100:0.0002019201)87:0.0002024164,MN122253|AS201800154|turdus_merula|NL|2018-08-31:0.0011158960)53:0.0000025019,((MN122199|AS201700112|turdus_merula|NL|2017-07-27:0.0004051758,MN122209|AS201700174|turdus_merula|NL|2017-08-29:0.0003037691)80:0.0000025019,MN122242|AS201800121|turdus_merula|NL|2018-08-17:0.0007086882)100:0.0005058997)96:0.0001003442,((NA|AS20190715|copsychus_malabaricus|NL|2019-10-07:0.0000025019,NA|AS20190716|copsychus_malabaricus|NL|2019-10-07:0.0000025019)100:0.0011182808,MK230891|Seraing/2017|turdus_merula|BE|2017-08:0.0007111961)99:0.0002012861)77:0.0000025019,((((MN122159|AS201600107|turdus_merula|NL|2016-09-22:0.0001012260,MN122168|AS201600148|turdus_merula|NL|2016-09-23:0.0007086992)21:0.0000025019,((MN122255|AS201800156|turdus_merula|NL|2018-08-31:0.0001008920,((NA|AS20221789|turdus_merula|NL|2022-08-24:0.0006074117,NA|AS20221833|turdus_merula|NL|2022-08-28:0.0003038460)78:0.0000025019,NA|22TV2594|cyanistes_caeruleus|NL|2022-08-24:0.0002024094)100:0.0005067584)100:0.0004058922,(OP921078|18TV0973_Turdusphilomelos|turdidae_sp|NL|2018-08-18:0.0001053847,OP921079|18TV0973_Ixodida|NA|NL|2018-08-18:0.0001495782)100:0.0004962449)44:0.0000025019)35:0.0000025019,MN122191|AS201700084|turdus_merula|NL|2017-07-05:0.0004055900)100:0.0006090812,(ON755215|Turdusmerula13_feather_3W1L_Day0|turdus_merula|NL|2016:0.0000025019,(ON755213|Turdusmerula11_feather_1W1L_Day0|turdus_merula|NL|2016:0.0000025019,ON755222|Turdusmerula13_feather_3W2L_Day43|turdus_merula|NL|2016:0.0000025019)92:0.0000025019)100:0.0008132848)99:0.0001000458)100:0.0002029980,OP007489|WBVR_bird-X-2016|strix_nebulosa|NL|2016-09-09:0.0007218323)99:0.0001011952)31:0.0000025019,((((((((NA|AS201700198|strix_nebulosa|NL|2017-09-05:0.0002022276,MN122173|AS201600227|turdus_merula|NL|2016-09-30:0.0000025019)100:0.0001015053,(OP921082|16TV1131_Ixodesricinus_8|ixodes_ricinus|NL|2016-10-16:0.0000025019,(OP921081|16TV1131_Ixodesricinus_6|ixodes_ricinus|NL|2016-10-16:0.0000025019,(OP921083|16TV1131_Turdusmerula|turdus_merula|NL|2016-10-16:0.0000025019,OP921080|16TV1131_Ixodesricinus_5|ixodes_ricinus|NL|2016-10-16:0.0001271915)69:0.0000025019)73:0.0000025110)100:0.0004029747)26:0.0000025019,((NA|AS201800080|strix_nebulosa|NL|2018-07-24:0.0003047061,NA|AS20200561|turdus_merula|NL|2020-09-27:0.0015244218)98:0.0001006947,((NA|17TV1510|turdus_merula|NL|2018-10-06:0.0007163252,MN122205|AS201700152|turdus_merula|NL|2017-07-19:0.0003033247)80:0.0000025019,(MN122197|AS201700106|turdus_merula|NL|2017-07-25:0.0003037183,MN122222|AS201800089|turdus_merula|NL|2018-08-02:0.0005064157)100:0.0001014250)99:0.0001015656)16:0.0000025019)6:0.0000025019,((MN122225|AS201800092|turdus_merula|NL|2018-08-02:0.0013054130,NA|18TV0825|turdus_merula|NL|2018-08-18:0.0003252554)100:0.0002170777,NA|17TV1199|turdus_merula|NL|2017-07-21:0.0001077079)48:0.0000025019)19:0.0000025019,MN122226|AS201800093|turdus_merula|NL|2018-08-03:0.0004045969)56:0.0000025019,(MN122217|AS201800082|turdus_merula|NL|2018-07-27:0.0006083216,MN122223|AS201800090|turdus_merula|NL|2018-08-02:0.0017319583)55:0.0004052235)55:0.0003028519,MN122216|AS201800081|turdus_merula|NL|2018-07-27:0.0016295406)72:0.0004067497,MN122160|AS201600110|turdus_merula|NL|2016-09-22:0.0007101177)72:0.0001010925)79:0.0002021778,(((KY426764|NA|turdus_merula|DE|2016-10-04:0.0005046789,((MN122146|AS201600036|turdus_merula|NL|2016-09-06:0.0003036169,NA|AS201700142|strix_nebulosa|NL|2017-08-09:0.0002021962)100:0.0003043502,MN122248|AS201800128|turdus_merula|NL|2018-08-22:0.0008117703)100:0.0006658300)100:0.0005540143,(((MN122167|AS201600136|turdus_merula|NL|2016-09-23:0.0013190402,MN122250|AS201800150|turdus_merula|NL|2018-08-30:0.0014219195)36:0.0000025019,(MN122210|AS201700177|turdus_merula|NL|2017-09-15:0.0009119706,NA|18TV1196|turdidae_sp|NL|2018-09-16:0.0013651996)25:0.0000025019)99:0.0001007065,NA|AS20221780|turdus_merula|NL|2022-08-26:0.0020383009)99:0.0002031090)70:0.0000025019,KY426757|NA|turdus_merula|DE|2016-09-23:0.0011167290)100:0.0002029024)58:0.0000025019,(((NA|AS201600067|strix_nebulosa|NL|2016-09-09:0.0003036678,NA|AS201600269|strix_nebulosa|NL|2016-09-25:0.0005070862)100:0.0004053679,((((((NA|AS201800117|strix_nebulosa|NL|2018-08-16:0.0004046855,(NA|18TV1517|turdus_merula|NL|2018-10-11:0.0000025019,MN122243|AS201800122|turdus_merula|NL|2018-08-21:0.0000025019)81:0.0000025019)100:0.0002022021,MN122194|AS201700090|turdus_merula|NL|2017-07-13:0.0003034008)22:0.0000025019,((MN122234|AS201800103|turdus_merula|NL|2018-08-10:0.0007088892,PV235994|USUV/NL/2021/CMV2045|culex_sp|NL|2021-07-26:0.0015290036)26:0.0000025019,(MN122237|AS201800114|turdus_merula|NL|2018-08-15:0.0008104446,MN122218|AS201800084|turdus_merula|NL|2018-07-31:0.0010137287)28:0.0000025019)11:0.0000025019)31:0.0000025019,(MN122155|AS201600095|turdus_merula|NL|2016-09-21:0.0004050010,MN122180|AS201600274|turdus_merula|NL|2016-09-27:0.0001015850)100:0.0002024256)98:0.0001014226,NA|AS201600289_BEC009|strix_nebulosa|NL|2016:0.0005065732)100:0.0003040203,((MN122183|AS201600281|turdus_merula|NL|2016-09-25:0.0003035018,MN122204|AS201700130|turdus_merula|NL|2017-08-16:0.0006083273)100:0.0002028418,MN122200|AS201700118|turdus_merula|NL|2017-08-03:0.0005064080)100:0.0001015580)100:0.0001017081)100:0.0001017857,KY426754|NA|turdus_merula|DE|2015-09-09:0.0012187604)100:0.0001015663)91:0.0002022378,(MN122178|AS201600265|turdus_merula|NL|2016-09-30:0.0008137777,KY263625|NA|turdus_merula|BE|2016-10:0.0009143789)100:0.0003026067)63:0.0000025019,((MN122157|AS201600101|turdus_merula|NL|2016-09-22:0.0004054053,MN122212|AS201700189|turdus_merula|NL|2017-09-14:0.0006081895)100:0.0004059862,(NA|AS20221851|turdus_merula|NL|2022-09-03:0.0013235651,NA|21TV5071|turdus_merula|NL|2022-07-29:0.0015294365)99:0.0003023987)100:0.0002029760)97:0.0008129165)100:0.0016311109)92:0.0001025145)100:0.0003245866,(PP482815|AeDet2-batch3_Nansouty_2023-08-18|culex_sp|FR|2023-08-18:0.0025434458,MT863562|HauteVienne4997/France/2018|turdus_merula|FR|2018-07-24:0.0019666188)86:0.0002918035);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_III.fasta.treefile -m "HKY{24.0221}+F{0.269207,0.227595,0.284499,0.218698}+G4{0.0823486}" --length 10305
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_III.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_III.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Mon Aug  4 16:05:02 2025
+Total CPU time used: 232.987989 seconds (0h:3m:52s)
+Total wall-clock time used: 193.069201 seconds (0h:3m:13s)
+
