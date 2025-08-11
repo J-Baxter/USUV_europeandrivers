@@ -75,25 +75,31 @@ WriteKML <- function(x, prefix = NULL){
 
 
 # Function from https://github.com/sdellicour/h5n1_mekong
-UpdateBEAUti <- function(xml_filepath){
-  xml = scan(file="BEAST_template.xml", what="", sep="\n", quiet=T)
-  directory = "H5N1_polygons"
-  sink(file="H5N1_clade1.xml")
+UpdateBEAUti <- function(xml_filepath, polygon_directory){
+  current_xml <- xml_filepath
+  updated_xml <- gsub('.xml$', '_updated.xml')
+  
+  # Read Existing XML
+  xml = scan(file = current_xml, what="", sep="\n", quiet=T)
+  #directory = "H5N1_polygons"
+  
+  # Write Updaed XML
+  sink(file = updated_xml)
   for (i in 1:length(xml)) {
     cat(xml[i]); cat("\n")
-    if (xml[i]=="\t</continuousDiffusionStatistic>") {
+    if (xml[i] == "\t</continuousDiffusionStatistic>") {
       cat("\n")
-      for (j in 1:length(sequenceIDs)) {
-        cat(paste("\t<leafTraitParameter id=\"",sequenceIDs[j],".trait\" taxon=\"",names[j],"\">",sep="")); cat("\n")
+      for (j in 1:length(sequence_id)) {
+        cat(paste("\t<leafTraitParameter id=\"",sequence_id[j],".trait\" taxon=\"",names[j],"\">",sep="")); cat("\n")
         cat(paste("\t\t<treeModel idref=\"treeModel\"/>",sep="")); cat("\n")
         cat(paste("\t\t<parameter idref=\"leaf.location\"/>",sep="")); cat("\n")
         cat(paste("\t</leafTraitParameter>",sep="")); cat("\n")
       }
       cat("\n")
-      for (j in 1:length(sequenceIDs)) {
-        cat(paste("\t<flatGeoSpatialPrior id=\"",sequenceIDs[j],"_polygons\" taxon=\"",names[j],"\" kmlFileName=\"",directory,"/",sequenceIDs[j],".kml\" inside=\"true\" union=\"true\" cache=\"true\">",sep="")); cat("\n")
+      for (j in 1:length(sequence_id)) {
+        cat(paste("\t<flatGeoSpatialPrior id=\"",sequence_id[j],"_polygons\" taxon=\"",names[j],"\" kmlFileName=\"",polygon_directory,"/",sequence_id[j],".kml\" inside=\"true\" union=\"true\" cache=\"true\">",sep="")); cat("\n")
         cat(paste("\t\t<data>",sep="")); cat("\n")
-        cat(paste("\t\t\t<parameter idref=\"",sequenceIDs[j],".trait\"/>",sep="")); cat("\n")
+        cat(paste("\t\t\t<parameter idref=\"",sequence_id[j],".trait\"/>",sep="")); cat("\n")
         cat(paste("\t\t</data>",sep="")); cat("\n")
         cat(paste("\t</flatGeoSpatialPrior>",sep="")); cat("\n")
       }
@@ -101,10 +107,10 @@ UpdateBEAUti <- function(xml_filepath){
     }
     if (xml[i]=="\t\t</precisionGibbsOperator>") {
       cat("\n")
-      for (j in 1:length(sequenceIDs)) {
+      for (j in 1:length(sequence_id)) {
         cat(paste("\t\t<uniformGeoSpatialOperator weight=\"0.01\">",sep="")); cat("\n")
-        cat(paste("\t\t\t<parameter idref=\"",sequenceIDs[j],".trait\"/>",sep="")); cat("\n")
-        cat(paste("\t\t\t<flatGeoSpatialPrior idref=\"",sequenceIDs[j],"_polygons\"/>",sep="")); cat("\n")
+        cat(paste("\t\t\t<parameter idref=\"",sequence_id[j],".trait\"/>",sep="")); cat("\n")
+        cat(paste("\t\t\t<flatGeoSpatialPrior idref=\"",sequence_id[j],"_polygons\"/>",sep="")); cat("\n")
         cat(paste("\t\t</uniformGeoSpatialOperator>",sep="")); cat("\n")
       }
       cat("\n")
@@ -112,8 +118,8 @@ UpdateBEAUti <- function(xml_filepath){
     if (xml[i]=="\t\t\t\t<multivariateWishartPrior idref=\"location.precisionPrior\"/>") {
       cat("\n")
       cat("\t\t\t\t<geoDistributionCollection id=\"allGeoDistributions\">"); cat("\n")
-      for (j in 1:length(sequenceIDs)) {
-        cat(paste("\t\t\t\t<flatGeoSpatialPrior idref=\"",sequenceIDs[j],"_polygons\"/>",sep="")) 
+      for (j in 1:length(sequence_id)) {
+        cat(paste("\t\t\t\t<flatGeoSpatialPrior idref=\"",sequence_id[j],"_polygons\"/>",sep="")) 
         cat("\n")
       }
       cat("\t\t\t\t</geoDistributionCollection>"); cat("\n")
@@ -122,8 +128,8 @@ UpdateBEAUti <- function(xml_filepath){
     if (xml[i]=="\t\t\t<multivariateTraitLikelihood idref=\"location.traitLikelihood\"/>") {
       if (xml[i-3]=="\t\t\t<strictClockBranchRates idref=\"branchRates\"/>") {
         cat("\n")
-        for (j in 1:length(sequenceIDs)) {
-          cat(paste("\t\t\t<leafTraitParameter idref=\"",sequenceIDs[j],".trait\"/>",sep="")); cat("\n")
+        for (j in 1:length(sequence_id)) {
+          cat(paste("\t\t\t<leafTraitParameter idref=\"",sequence_id[j],".trait\"/>",sep="")); cat("\n")
         }
         cat("\n")
       }
