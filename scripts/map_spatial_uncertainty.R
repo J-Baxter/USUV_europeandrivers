@@ -23,7 +23,7 @@ library(rnaturalearthdata)
 library(rnaturalearthhires)
 library(giscoR)
 
-# Function adpated from https://github.com/sdellicour/h5n1_mekong
+# Function adapted from https://github.com/sdellicour/h5n1_mekong
 WriteKML <- function(x, prefix = NULL){
   seq_id <- x$seq_id
   sampling_probability = x$sampling_probability
@@ -74,20 +74,42 @@ WriteKML <- function(x, prefix = NULL){
 }
 
 
-# Function from https://github.com/sdellicour/h5n1_mekong
-UpdateBEAUti <- function(xml_filepath, polygon_directory){
+# Function adapted from https://github.com/sdellicour/h5n1_mekong
+UpdateBEAUti <- function(xml_filepath, meta, polygon_directory){
+  
   current_xml <- xml_filepath
-  updated_xml <- gsub('.xml$', '_updated.xml')
+  updated_xml <- gsub('.xml$', '_updated.xml', current_xml)
   
-  # Read Existing XML
+  # Read Existing XML and extract sequence names
   xml = scan(file = current_xml, what="", sep="\n", quiet=T)
-  #directory = "H5N1_polygons"
+  all_names <-  str_extract(xml, '(?<=taxon id=")[^"]+') %>%
+    discard(is.na) 
   
-  # Write Updaed XML
+  # Filter included records from metadata
+  records_to_be_included <- meta %>%
+    filter(tipnames %in% all_names) %>%
+    mutate(tipnames = factor(tipnames, levels = all_names)) %>%
+    arrange(tipnames) %>%
+    
+    # generate seq_ids and filter those for which KMLs have been made
+    mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
+             gsub('\\/', '_', .)) %>%
+    filter(paste0(seq_id, '.kml') %in% list.files(polygon_directory)) %>%
+    dplyr::select(tipnames, seq_id)
+  
+  
+  # Names are the sequence names
+  # Sequence_id are the unique identifiers that link each sequence to the KML file
+  names <- as.character(records_to_be_included$tipnames)
+  sequence_id <- records_to_be_included$seq_id
+  
+  
+  # Write Updated XML
   sink(file = updated_xml)
+  
   for (i in 1:length(xml)) {
     cat(xml[i]); cat("\n")
-    if (xml[i] == "\t</continuousDiffusionStatistic>") {
+    if (xml[i] == "\t</traitDataContinuousDiffusionStatistic>") {
       cat("\n")
       for (j in 1:length(sequence_id)) {
         cat(paste("\t<leafTraitParameter id=\"",sequence_id[j],".trait\" taxon=\"",names[j],"\">",sep="")); cat("\n")
@@ -97,7 +119,7 @@ UpdateBEAUti <- function(xml_filepath, polygon_directory){
       }
       cat("\n")
       for (j in 1:length(sequence_id)) {
-        cat(paste("\t<flatGeoSpatialPrior id=\"",sequence_id[j],"_polygons\" taxon=\"",names[j],"\" kmlFileName=\"",polygon_directory,"/",sequence_id[j],".kml\" inside=\"true\" union=\"true\" cache=\"true\">",sep="")); cat("\n")
+        cat(paste("\t<flatGeoSpatialPrior id=\"",sequence_id[j],"_polygons\" taxon=\"",names[j],"\" kmlFileName=\"",sequence_id[j],".kml\" inside=\"true\" union=\"true\" cache=\"true\">",sep="")); cat("\n")
         cat(paste("\t\t<data>",sep="")); cat("\n")
         cat(paste("\t\t\t<parameter idref=\"",sequence_id[j],".trait\"/>",sep="")); cat("\n")
         cat(paste("\t\t</data>",sep="")); cat("\n")
@@ -135,7 +157,9 @@ UpdateBEAUti <- function(xml_filepath, polygon_directory){
       }
     }	
   }
+  
   sink(NULL)
+  
 }
 
 
@@ -319,7 +343,12 @@ metadata_with_concat %>%
 
 
 ################################### OUTPUT #####################################
+# Update beauti XML files. These require: leafTraitParameter, flatGeoSpatialPrior
+# and uniformGeoSpatialOperator blocks in the appropriate locations
 
+# Note that paths to KMLs must be available to BEAST
+
+test_xml <- './2025Jun24/europe_clusters/USUV_2025Jun24_NFLG_III_SRD06_HMC_SG_cont.xml'
 
 
 
