@@ -109,7 +109,7 @@ UpdateBEAUti <- function(xml_filepath, meta, polygon_directory){
   
   for (i in 1:length(xml)) {
     cat(xml[i]); cat("\n")
-    if (xml[i] == "\t</traitDataContinuousDiffusionStatistic>") {
+    if (xml[i] %in% c("\t</traitDataContinuousDiffusionStatistic>", "\t</continuousDiffusionStatistic>")) {
       cat("\n")
       for (j in 1:length(sequence_id)) {
         cat(paste("\t<leafTraitParameter id=\"",sequence_id[j],".trait\" taxon=\"",names[j],"\">",sep="")); cat("\n")
@@ -165,11 +165,6 @@ UpdateBEAUti <- function(xml_filepath, meta, polygon_directory){
 
 ################################### DATA #######################################
 # Read and inspect data
-vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', 
-                      crs = st_crs(nuts0)) %>%
-  st_make_valid() %>%
-  st_transform(st_crs(vector_net))
-
 metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
 nuts0 <- gisco_get_nuts(
@@ -193,6 +188,12 @@ nuts2 <- gisco_get_nuts(
 nuts_all <- bind_rows(nuts0,
                       nuts1,
                       nuts2)
+
+vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', 
+                      crs = st_crs(nuts0)) %>%
+  st_make_valid()
+
+#vector_net <- st_transform(vector_net, st_crs(vector_net))
 
 culex_abundance_files <- list.files('./culex_models/statistical_models/Abundace_model_predictions',
                                     full.names = T)
@@ -348,9 +349,11 @@ metadata_with_concat %>%
 
 # Note that paths to KMLs must be available to BEAST
 
-test_xml <- './2025Jun24/europe_clusters/USUV_2025Jun24_NFLG_III_SRD06_HMC_SG_cont.xml'
+test_xml <- './2025Jun24/europe_clusters/USUV_2025Jun24_NFLG_III_SRD06_RelaxLn_SG_cont.xml'
 
-
+UpdateBEAUti(test_xml,
+             metadata_with_concat,
+             './2025Jun24/kmls')
 
 
 
