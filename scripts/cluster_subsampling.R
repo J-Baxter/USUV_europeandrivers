@@ -155,7 +155,7 @@ SubSampleClusterAlignments <- function(aln_list, data, exclude_seqs = NULL){
 ################################### DATA #######################################
 # Read and inspect data
 nflg_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
-                                           pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_[[A-Z]]*',
+                                           pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_[:A-Z:]{1,4}.fasta',
                                            full.names = TRUE)
 
 partial_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
