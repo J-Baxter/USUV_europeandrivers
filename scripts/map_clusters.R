@@ -119,7 +119,7 @@ lineage_colours <- c('A' = '#a4243b',
                      'G' = '#273e47')
 
 nflg_hipstr %>%
-  left_join(all_seq_clusters) %>% 
+  left_join(all_clusters) %>% 
   ggtree(mrsd = '2024-10-12') +
   geom_cladelab(data = level_0_tbl %>% rename(lineage_label = lineage) %>% 
                   mutate(level_0 = gsub('\\..*', '', lineage_label)),
