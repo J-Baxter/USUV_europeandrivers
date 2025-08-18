@@ -7,7 +7,9 @@ make_concat_alignment.R -> phylogenetic placement lineage assignment ->  map_clu
  subset_alignments_by_cluster.R -> ML trees -> cluster_subsampling.R -> 
 write_beast_trait.R -> Map_spatial_uncertainity.R -> run beast
 
-post hoc
+After NFLG runs -> summaries_nflg_posterior.R -> set_partial_priors.R -> map_spatital_uncertainty.R -> Run beast
+
+Post-hoc:
 visualise skygrid
 visualise markov jumps
 visualise continuous phylo
