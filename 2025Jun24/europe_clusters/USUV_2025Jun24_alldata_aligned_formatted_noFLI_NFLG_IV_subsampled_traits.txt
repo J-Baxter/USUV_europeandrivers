@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 KU573073|229615-1/2013|culex_pipiens|IT|2013	IT	ITC	ITC4	ITC47	10.178958	45.4827316
 KX555629|NA|turdus_merula|IT|2015	IT	NA	NA	NA	12.56738	41.87194
 KX816646|200092/2010|turdus_merula|IT|2010-08	IT	NA	NA	NA	12.56738	41.87194

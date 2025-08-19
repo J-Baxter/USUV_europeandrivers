@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 PQ039614|137|acanthis_flammea|PL|2023-11-08	PL	PL6	PL63	PL634	19.4437701	54.3799582
 PQ039618|124|pan_troglodytes|PL|2023-10-06	PL	PL4	PL42	PL427	16.2007745	53.0997614
 PQ039622|CS|actitis_hypoleucos|PL|2023-08-15	PL	PL9	PL91	PL913	21.215337	51.976466

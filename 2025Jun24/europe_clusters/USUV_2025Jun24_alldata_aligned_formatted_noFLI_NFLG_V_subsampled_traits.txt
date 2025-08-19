@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 KY199558|NA|turdus_merula|DE|2016	DE	DED	DED2	DED21	13.7372621	51.0504088
 MK230890|Villers/2017|turdus_merula|BE|2017-08	BE	BE3	BE31	BE310	4.5311841	50.5779995
 MK230892|Richelle/2017|turdus_merula|BE|2017-08	BE	BE3	BE32	BE32B	4.469936	50.503887

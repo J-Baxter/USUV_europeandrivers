@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 PP354988|NA|strix_nebulosa|SI|2022-08-30	SI	SI0	SI04	SI041	14.4720881	46.0527405
 NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05	IT	ITH	ITH3	ITH36	11.7915896	45.387051
 NA|23pool1744_23RS1822-82|culex_pipiens|IT|2023-08-03	IT	ITH	ITH3	ITH34	11.9145706	45.7289954

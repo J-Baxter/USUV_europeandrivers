@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 NA|23pool1280_23RS1633-583|culex_pipiens|IT|2023-07-05	IT	ITH	ITH3	ITH36	11.7915896	45.387051
 NA|23VIR9300|turdus_merula|IT|2023-10-01	IT	ITH	ITH3	ITH31	10.8379705	45.5215467
 NA|23VIR8795|turdus_merula|IT|2023-08-23	IT	ITH	ITH3	ITH35	12.4542146	45.6179681

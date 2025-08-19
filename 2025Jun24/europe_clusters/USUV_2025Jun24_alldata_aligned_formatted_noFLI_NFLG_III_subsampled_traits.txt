@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 KY199557|NA|turdus_merula|DE|2016	DE	DED	DED5	DED51	12.3730747	51.3396955
 NA|AS201600289_BEC009|strix_nebulosa|NL|2016	NL	NL4	NL41	NL414	5.3983356	51.5279846
 OU674388|NA|turdus_merula|LU|2020-09	LU	LU0	LU00	LU000	6.1258432	49.6123327

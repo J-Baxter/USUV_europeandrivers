@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 MG888044|NA|culex_pipiens|RS|2014-08	RS	RS1	RS12	RS123	20.294612	45.2052775
 JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29	AT	AT1	AT12	AT127	16.23091	48.00214
 EF206350|Budapest|turdus_merula|HU|2005	HU	HU1	HU11	NA	19.040235	47.497912

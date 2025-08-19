@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 KY199556|NA|strix_nebulosa|DE|2016	DE	DEE	DEE0	DEE02	11.9662371	51.4953567
 KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23	FR	FRK	FRK2	FRK26	4.80066	45.711926
 KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21	DE	DE3	DE30	DE300	13.404954	52.5200066

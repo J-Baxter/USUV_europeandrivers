@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 MZ754008|USUV-M_2349|strix_nebulosa|DE|2019	DE	DEC	DEC0	DEC03	7.1780408	49.348932
 MZ754010|USUV-ED-I-68/19|turdus_merula|DE|2019	DE	DE7	DE71	DE719	9.1863725	50.2045664
 MZ754036|USUV-B-11386-19|turdidae_sp|DE|2019	DE	DEG	DEG0	DEG0C	10.7097574	50.9474251

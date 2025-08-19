@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 PQ039624|21|fringilla_coelebs|PL|2023-09-28	PL	PL6	PL63	PL634	19.4437701	54.3799582
 PQ039630|1552|regulus_regulus|PL|2023-11-05	PL	PL6	PL63	PL634	19.4437701	54.3799582
 PQ039631|EJ|garrulus_glandarius|PL|2023-11-21	PL	PL6	PL61	PL613	18.0084378	53.1234804

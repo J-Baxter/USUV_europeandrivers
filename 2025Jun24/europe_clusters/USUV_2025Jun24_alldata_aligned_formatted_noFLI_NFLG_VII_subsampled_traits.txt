@@ -1,4 +1,4 @@
-tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	lat	long
+tipnames	nuts0_id	nuts1_id	nuts2_id	nuts3_id	long	lat
 JF266698|NA|turdus_merula|IT|2009	IT	ITI	ITI4	ITI43	12.56738	41.87194
 MW164637|11pool1989|culex_pipiens|IT|2011-08-23	IT	ITH	ITH3	ITH35	12.3159547	45.440379
 MW164638|11pool2109|culex_pipiens|IT|2011-08-24	IT	ITH	ITH3	ITH32	11.5413779	45.5461815
