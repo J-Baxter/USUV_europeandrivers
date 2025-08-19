@@ -276,16 +276,18 @@ metadata_with_concat %>%
   # format unique IDs
   mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
            gsub('\\/', '_', .)) %>%
-  dplyr::select(seq_id, eurostat_polygon, 'nuts3_name') %>%
+  dplyr::select(seq_id, eurostat_polygon, 'nuts3_name') %>% 
   
   # Join polygons and convert to matrix form. Selecting best resolution by default
   left_join(vect_id, by = join_by('eurostat_polygon' == 'rowid')) %>%
+  rowwise() %>%
   mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]]),
-         sampling_probability = 1) %>%
-  dplyr::select(1,2,5,6) %>%
+         sampling_probability = 1) %>% 
+  as_tibble() %>%
+  dplyr::select(1,2,5,6) %>% 
   
   # splt dataframe by sequence
-  rowid_to_column(var = 'id') %>%
+  rowid_to_column(var = 'id') %>% 
   group_split(id) %>%
   
   # write KML file for each sequence
@@ -349,7 +351,7 @@ metadata_with_concat %>%
 
 # Note that paths to KMLs must be available to BEAST
 
-test_xml <- './2025Jun24/europe_clusters/USUV_2025Jun24_NFLG_III_SRD06_RelaxLn_SG_cont.xml'
+test_xml <- './2025Jun24/europe_clusters/NFLG_VII/USUV_2025Jun24_NFLG_VII_empiricaltest.xml'
 
 UpdateBEAUti(test_xml,
              metadata_with_concat,
