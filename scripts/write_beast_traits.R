@@ -45,9 +45,13 @@ partial_cluster_subsampled <- lapply(partial_cluster_subsampled_files,
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 metadata_for_beast <- metadata_with_concat %>%
-  dplyr::select(tipnames, ends_with('id'), geocode_coords) %>%
+  dplyr::select(tipnames, ends_with('id'), geocode_coords, location_precision) %>%
   mutate(geocode_coords = gsub('c\\(|\\,|\\)', '', geocode_coords)) %>%
-  separate_wider_delim(geocode_coords, delim = ' ', names = c('lat', 'long'))
+  separate_wider_delim(geocode_coords, delim = ' ', names = c('long', 'lat')) %>%
+  mutate(long = case_when(nuts3_id == 'ITH35' & location_precision == 'nuts3' ~ '12.55874', .default = long),
+         lat = case_when(nuts3_id == 'ITH35' & location_precision == 'nuts3' ~ '45.60318', .default = lat)) %>%
+  dplyr::select(-location_precision) %>%
+  relocate(tipnames, nuts0_id, nuts1_id, nuts2_id, nuts3_id, lat, long) 
 
 
 metadata_for_beast_nflg <- nflg_cluster_subsampled %>%
