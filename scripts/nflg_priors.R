@@ -1,0 +1,71 @@
+################################################################################
+## Script Name:       Extract prior information from ML trees
+## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
+## Author:             James Baxter
+## Date Created:       2025-08-19
+################################################################################
+
+############################### SYSTEM OPTIONS #################################
+options(
+  scipen = 6,     # Avoid scientific notation
+  digits = 7      # Set precision for numerical display
+)
+memory.limit(30000000)
+
+############################### DEPENDENCIES ###################################
+# Load required libraries
+library(tidyverse)
+library(magrittr)
+library(ape)
+
+formdate <- function(x){
+  if(nchar(x) == 4){
+    out <- ymd(x, truncated = 2)
+  }else if(nchar(x) == 7){
+    out <- ymd(x, truncated = 1)
+  }else{
+    out <- ymd(x)
+  }
+  
+  return(decimal_date(out))
+}
+
+
+################################### DATA #######################################
+# Read and inspect data
+root_prior <- tibble(tmrca = c(2006.5598,
+                               2004.6853,
+                               2010.6098,
+                               2002.4461,
+                               2006.8613,
+                               2007.2682,
+                               1999.3186),
+                     clade = as.character(as.roman(2:8)))
+
+temp <- list.files('./2025Jun24/alignments',
+                   pattern = 'NFLG_[:A-Z:]{1,4}_subsampled',
+                   full.names = T) 
+
+
+################################### MAIN #######################################
+# Main analysis or transformation steps
+temp %>%
+  lapply(read.dna, format = 'fasta', as.matrix = T) %>%
+  lapply(., rownames) %>%
+  lapply(., function(x) str_extract(x, '\\d{4}(-\\d{2}){0,1}(-\\d{2}){0,1}$')) %>%
+  lapply(., function(x) sapply(x, formdate, simplify = F) %>% unname(.) %>% unlist(.)) %>%
+  lapply(., function(x) x[which.max(x)]) %>% 
+  setNames(as.roman(2:(length(.)+1))) %>%
+  enframe(name = 'clade',
+          value = 'mrd') %>%
+  unnest(mrd) %>%
+  left_join(root_prior) %>%
+  mutate(height_prior = mrd-tmrca) %>%
+  mutate(sg = ceiling(height_prior) * 6)
+
+
+################################### OUTPUT #####################################
+# Save output files, plots, or results
+
+#################################### END #######################################
+################################################################################
