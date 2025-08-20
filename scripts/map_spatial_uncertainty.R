@@ -329,7 +329,9 @@ metadata_with_concat %>%
   # join eurostat polygons, with aggregated culex abundance. Selecting best resolution by default
   left_join(culex_abundance_by_vectornet,
             by = join_by('eurostat_polygon' == 'rowid')) %>%
+  rowwise() %>%
   mutate(coords = list(unlist(geometry, recursive = FALSE)[[1]][[1]])) %>%
+  as_tibble() %>%
   
   # Calculate sampling probabilities 
   group_by(seq_id) %>%
@@ -351,13 +353,22 @@ metadata_with_concat %>%
 
 # Note that paths to KMLs must be available to BEAST
 
-test_xml <- './2025Jun24/europe_clusters/NFLG_VII/USUV_2025Jun24_NFLG_VII_empiricaltest.xml'
+dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
+dirs <- dirs[grepl("^NFLG", basename(dirs))]
+xmlfilepaths <- sapply(dirs, 
+                       list.files,
+                       pattern = "cont\\.xml$",
+                       full.names = TRUE, 
+                       simplify = F) %>%
+  Filter(length,.)
 
-UpdateBEAUti(test_xml,
-             metadata_with_concat,
-             './2025Jun24/kmls')
+#test_xml <- './2025Jun24/europe_clusters/NFLG_VII/USUV_2025Jun24_NFLG_VII_empiricaltest.xml'
 
 
+lapply(xmlfilepaths,
+       UpdateBEAUti,
+       metadata_with_concat,
+       './2025Jun24/kmls')
 
 #################################### END #######################################
 ################################################################################
