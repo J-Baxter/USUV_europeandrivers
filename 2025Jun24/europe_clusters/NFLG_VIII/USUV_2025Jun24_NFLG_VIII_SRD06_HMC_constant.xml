@@ -375,7 +375,7 @@
 	
 
 	<!-- Define MCMC                                                             -->
-	<mcmc id="mcmc" chainLength="10000000" autoOptimize="true">
+	<mcmc id="mcmc" chainLength="50000000" autoOptimize="true">
 		<joint id="joint">
 			<prior id="prior">
 				<logNormalPrior mu="1.0" sigma="1.25" offset="0.0">
@@ -483,7 +483,7 @@
 		</logTree>
 
 		<!-- write state of Markov chain to checkpoint file                          -->
-		<logCheckpoint id="checkpointFileLog" checkpointEvery="5000000" checkpointFinal="10000000" fileName="USUV2025_Jun24_NFLG_VIII_SRD06_HMC_constant.chkpt" overwrite="false"/>
+		<logCheckpoint id="checkpointFileLog" checkpointEvery="5000000" checkpointFinal="50000000" fileName="USUV2025_Jun24_NFLG_VIII_SRD06_HMC_constant.chkpt" overwrite="false"/>
 	</mcmc>
 	
 	<report>
