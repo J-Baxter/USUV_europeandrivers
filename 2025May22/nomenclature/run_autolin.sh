@@ -1,1 +1,1 @@
-python annotate_json.py --input ./input_json/usuv.json --output usuv_lineages.json --size 2 --distinction 10 --cutoff 0.99 --levels 3 --floor 1 --labels labels.tsv --report report.tsv
+python annotate_json.py --input USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.json --output USUV_2025Jun24_lineages.json --size 2 --distinction 10 --cutoff 0.99 --levels 3 --floor 1 --labels USUV_2025Jun24_labels.tsv --report USUV_2025Jun24_report.tsv
