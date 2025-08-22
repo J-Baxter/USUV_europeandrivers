@@ -2788,7 +2788,7 @@
 	</operators>
 	
 	<!-- Define MCMC                                                             -->
-	<mcmc id="mcmc" chainLength="50000000" autoOptimize="true" operatorAnalysis="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.ops">
+	<mcmc id="mcmc" chainLength="100000000" autoOptimize="true" operatorAnalysis="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.ops">
 		<joint id="joint">
 			<prior id="prior">
 				<logNormalPrior mu="1.0" sigma="1.25" offset="0.0">
@@ -2865,7 +2865,7 @@
 		</joint>
 		<operators idref="operators"/>
 		<!-- write log to screen                                                     -->
-		<log id="screenLog" logEvery="5000">
+		<log id="screenLog" logEvery="10000">
 			<column label="Joint" dp="4" width="12">
 				<joint idref="joint"/>
 			</column>
@@ -2888,7 +2888,7 @@
 			<!-- END Discrete Traits Model                                               -->
 		</log>
 		<!-- write log to file                                                       -->
-		<log id="fileLog" logEvery="5000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.log" overwrite="false">
+		<log id="fileLog" logEvery="10000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.log" overwrite="false">
 			<joint idref="joint"/>
 			<prior idref="prior"/>
 			<likelihood idref="likelihood"/>
@@ -2939,12 +2939,12 @@
 			<gmrfSkyGridLikelihood idref="skygrid"/>
 		</log>
 		<!-- START Discrete Traits Model                                             -->
-		<log id="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.nuts2_idrateMatrixLog" logEvery="5000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.nuts2_id.rates.log">
+		<log id="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.nuts2_idrateMatrixLog" logEvery="10000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.nuts2_id.rates.log">
 			<parameter idref="nuts2_id.rates"/>
 		</log>
 		<!-- END Discrete Traits Model                                               -->
 		<!-- write tree log to file                                                  -->
-		<logTree id="treeFileLog" logEvery="5000" nexusFormat="true" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.trees" sortTranslationTable="true">
+		<logTree id="treeFileLog" logEvery="10000" nexusFormat="true" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.trees" sortTranslationTable="true">
 			<treeModel idref="treeModel"/>
 			<trait name="rate" tag="default.rate">
 				<arbitraryBranchRates idref="default.branchRates"/>
@@ -2973,7 +2973,7 @@
 			<!-- END Multivariate diffusion model                                        -->
 		</logTree>
 		<!-- write state of Markov chain to checkpoint file                          -->
-		<logCheckpoint id="checkpointFileLog" checkpointEvery="5000000" checkpointFinal="50000000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont.chkpt" overwrite="false"/>
+		<logCheckpoint id="checkpointFileLog" checkpointEvery="10000000" checkpointFinal="100000000" fileName="USUV_2025Jun24_NFLG_V_SRD06_HMC_SG_cont_2.chkpt" overwrite="false"/>
 	</mcmc>
 	
 	<report>
