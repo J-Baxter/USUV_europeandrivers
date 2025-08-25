@@ -1,0 +1,27 @@
+
+Operator analysis
+Operator                                          Tuning   Count      Time     Time/Op  Pr(accept) Smoothed_Pr(accept)
+scale(CP1+2.kappa)                                0.17    453575     34253    0.08     0.2344      0.26        
+scale(CP3.kappa)                                  0.26    455083     34346    0.08     0.2339      0.21        
+deltaExchange(frequencies)                        0.025   453924     42595    0.09     0.2339      0.28        
+scale(CP1+2.alpha)                                0.171   453891     33449    0.07     0.2334      0.19        
+scale(CP3.alpha)                                  0.107   455332     33442    0.07     0.2343      0.3         
+scale(ucld.mean)                                  0.461   1361428    119097   0.09     0.2341      0.33        
+scale(ucld.stdev)                                 0.121   1362205    119981   0.09     0.2337      0.32        
+up:nodeHeights(treeModel) down:ucld.mean          0.979   1361952    80340    0.06     0.2338      0.17        
+swapOperator(branchRates.categories)                      4540032    311911   0.07     0.7416      0.95        
+uniformInteger(branchRates.categories)                    4537568    295662   0.07     0.8226      0.96        
+deltaExchange(allNus)                             0.421   1361863    109415   0.08     0.2337      0.22        
+subtreeLeap(treeModel)                            2.378   13625273   935603   0.07     0.234       0.27        
+subtreeJump(treeModel)                                    1361967    87717    0.06     0.1457      0.13        
+VanillaHMC(skygrid.parameters)                    0.058   908099     12216    0.01     0.7994      0.77        
+scale(location.diffusion.rates)                   0.117   13622937   168678   0.01     0.234       0.22        
+uniform(age(KY084488|NA|turdus_merula|DE|2016))           453471     30235    0.07     0.8155      0.81        
+uniform(age(KY084497|NA|culex_sp|DE|2016))                453497     30165    0.07     0.8191      0.78        
+uniform(age(MK956054|USUV-V_9958|turdus_merula|DE|2017))        453453     30384    0.07     0.8237      0.8         
+uniform(age(MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015))        454594     28015    0.06     0.7904      0.81        
+uniform(age(PQ039642|BHG-s3|anser_indicus|PL|2023-10))        454029     33445    0.07     0.9811      0.96        
+precisionGibbsOperator                                    906635     11884    0.01     1.0         1.0         
+uniformGeoSpatial(KY426758.trait)                         4594       71       0.02     0.7821      0.84        
+uniformGeoSpatial(KY113098.trait)                         4598       60       0.01     0.4756      0.54        
+
