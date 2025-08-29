@@ -61,7 +61,7 @@ temp %>%
   unnest(mrd) %>%
   left_join(root_prior) %>%
   mutate(height_prior = mrd-tmrca) %>%
-  mutate(sg = ceiling(height_prior) * 6)
+  mutate(sg = ceiling(height_prior) * 6) 
 
 
 ################################### OUTPUT #####################################
