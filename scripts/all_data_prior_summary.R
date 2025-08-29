@@ -1,8 +1,8 @@
 ################################################################################
-## Script Name:        Extract posterior estimates from NFLG trees
+## Script Name:       Prior distributions for NFLG+partial scripts
 ## Purpose:            <BRIEFLY_DESCRIBE_SCRIPT_PURPOSE>
 ## Author:             James Baxter
-## Date Created:       2025-08-15
+## Date Created:       2025-08-19
 ################################################################################
 
 ############################### SYSTEM OPTIONS #################################
@@ -16,17 +16,30 @@ memory.limit(30000000)
 # Load required libraries
 library(tidyverse)
 library(magrittr)
-library(treeio)
-library(beastio)
+library(ape)
+
+formdate <- function(x){
+  if(nchar(x) == 4){
+    out <- ymd(x, truncated = 2)
+  }else if(nchar(x) == 7){
+    out <- ymd(x, truncated = 1)
+  }else{
+    out <- ymd(x)
+  }
+  
+  return(decimal_date(out))
+}
+
 
 ################################### DATA #######################################
+# Read and inspect data
 # Read and inspect data
 dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
 dirs <- dirs[grepl("^NFLG", basename(dirs))]
 
 logfilepaths <- sapply(dirs, 
                        list.files,
-                       pattern = "(SG|constant)\\.log$",
+                       pattern = "(SG|constant|test)\\.log$",
                        full.names = TRUE, 
                        simplify = F) %>%
   Filter(length,.)%>%
@@ -43,9 +56,14 @@ tree_logs <- lapply(logfilepaths,
   lapply(., ggs) %>%
   bind_rows(., .id = 'clade') 
 
+
+temp <- list.files('./2025Jun24/alignments',
+                   pattern = 'partial_[:A-Z:]{1,4}_subsampled',
+                   full.names = T) 
+
+
 ################################### MAIN #######################################
 # Main analysis or transformation steps
-
 # Summarise all reported parameters
 median_hcdis <- tree_logs %>%
   group_by(clade, Parameter) %>%
@@ -78,13 +96,41 @@ rate_summary <- median_hcdis %>%
               .cols = starts_with('value'))
 
 summary_tbl <- left_join(tmrca_summary,
-                         rate_summary)
+                         rate_summary)  %>%
+  mutate(across(starts_with('TMRCA'), .fns = ~decimal_date(.x))) %>% 
+  mutate(clade = str_split_i(clade, '_', 3)) 
+
+
+temp %>%
+  lapply(read.dna, format = 'fasta', as.matrix = T) %>%
+  lapply(., rownames) %>%
+  lapply(., function(x) str_extract(x, '\\d{4}(-\\d{2}){0,1}(-\\d{2}){0,1}$')) %>%
+  lapply(., function(x) sapply(x, formdate, simplify = F) %>% unname(.) %>% unlist(.)) %>%
+  lapply(., function(x) x[which.max(x)]) %>% 
+  setNames(as.roman(2:(length(.)+1))) %>%
+  enframe(name = 'clade',
+          value = 'mrd') %>%
+  unnest(mrd) %>%
+  left_join(summary_tbl) %>%
+  mutate(height_prior = mrd - TMRCA_lower) %>% 
+  mutate(sg = ceiling(height_prior) * 6) %>%
+  mutate(across(starts_with('TMRCA'), .fns = ~ subtract(mrd, .x), .names = 'height{.col}')) %>%
+  view()
 
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
-write_csv(summary_tbl,
-          './2025Jun24/europe_clusters/nflg_posterior_summary.csv')
 
 #################################### END #######################################
 ################################################################################
+
+summary_tbl %>%
+  mutate(across(starts_with('TMRCA'), .fns = ~decimal_date(.x))) %>%
+  mutate(clade = str_split_i(clade, '_', 3)) %>% 
+  left_join(heights %>% select(clade, mrd)) %>%
+  mutate(height_prior = mrd - TMRCA_lower) %>% 
+  mutate(sg = ceiling(height_prior) * 6) %>% 
+  mutate(across(starts_with('TMRCA'), 
+                .fns = ~ subtract(mrd, .x), 
+                .names = 'height{.col}')) %>% 
+  view()
