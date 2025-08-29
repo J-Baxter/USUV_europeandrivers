@@ -63,6 +63,7 @@ GroupSequences <- function(aln, snp_threshold = 0){
       dplyr::select(c(tipnames, values)) %>%
       dplyr::distinct() %>%
       dplyr::rename(sequence_group = values)
+    
   }else{
     print('all sequences above threshold.')
     groups <- tibble(tipnames = rownames(aln)) %>%
@@ -82,7 +83,10 @@ GroupSequences <- function(aln, snp_threshold = 0){
 }
 
 
-SubSampleClusterAlignments <- function(aln_list, data, exclude_seqs = NULL){
+SubSampleClusterAlignments <- function(aln_list, 
+                                       data, 
+                                       exclude_seqs = NULL,
+                                       is.partial = FALSE){
   
   cluster_tbl <- lapply(aln_list, rownames) %>%
     set_names(1:length(.)) %>%
@@ -117,23 +121,45 @@ SubSampleClusterAlignments <- function(aln_list, data, exclude_seqs = NULL){
     
     # Only analyse clusters with five or more sequences
     #filter(n() >= 5) %>%
-    
-    group_by(date_ym,
-             #date_quarter,
-             eurostat_polygon,
-             sequence_group,
-             .add = TRUE) %>%
-    
-    slice_sample(n = 1) %>%
-    
-    ungroup() %>%
-    group_split(cluster)
+    {
+      if(isTRUE(is.partial)){
+        
+          group_by(., 
+                   date_ym,
+                 in_nflg,
+                 sequence_group,
+                 eurostat_polygon) %>%
+        
+          slice_sample(n = 1) %>%
+        
+        # Remove conditioning on NFLG - if there are multiple sequences present
+        # choose NFLG over partial
+          ungroup(in_nflg) %>%
+          filter(if (n() > 1) in_nflg == '1' else TRUE) %>%
+          ungroup() %>%
+          group_split(cluster)
+          
+      
+    }else{
+      group_by(., 
+               date_ym,
+               eurostat_polygon,
+               sequence_group,
+               .add = TRUE) %>%
+        
+        slice_sample(n = 1) %>%
+        ungroup() %>%
+        group_split(cluster)
+    }
+      }
+
+   
   
-  test <- subsampled %>%
+  check_seqs_excluded <- subsampled %>%
     bind_rows() %>%
     filter(tipnames %in% exclude_seqs)
+  stopifnot(nrow(check_seqs_excluded) == 0)
   
-  stopifnot(nrow(test) == 0)
   # summarise(n_seqs = n(), n_eurostat = n_distinct(eurostat_polygon), .by = cluster)
   
   subsampled_clusters <- lapply(subsampled, function(x) x %>% 
@@ -159,7 +185,7 @@ nflg_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
                                            full.names = TRUE)
 
 partial_cluster_alignment_files <- list.files(path = './2025Jun24/alignments',
-                                           pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_[[A-Z]]*',
+                                           pattern = 'USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_[:A-Z:]{1,4}.fasta',
                                            full.names = TRUE)
 
 nflg_cluster_alignments <- lapply(nflg_cluster_alignment_files,
@@ -174,7 +200,8 @@ partial_cluster_alignments <- lapply(partial_cluster_alignment_files,
                                   format = 'fasta') %>%
   set_names(1:length(.))
 
-metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
+
+metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv') 
 
 tempest_check <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml_2/tempest_check.csv')
 ################################### MAIN #######################################
@@ -194,9 +221,21 @@ nflg_cluster_subsampled <- SubSampleClusterAlignments(nflg_cluster_alignments,
                                                       metadata_with_concat,
                                                       exclude_seqs = to_exclude)
 
+
+
+nflg_tipnames <- lapply(nflg_subsampled_alignments,
+                        rownames) %>%
+  flatten_chr()
+
+metadata_with_concat %<>%
+  mutate(., in_nflg = case_when(tipnames %in% nflg_tipnames ~ '1',
+                                .default = '0'))
+
 partial_cluster_subsampled <- SubSampleClusterAlignments(partial_cluster_alignments, 
                                                          metadata_with_concat,
-                                                         exclude_seqs = to_exclude)
+                                                         exclude_seqs = to_exclude,
+                                                         is.partial = TRUE)
+
 
 # 3. Keep only alignments that are viable (i.e partial_sequences > 10)
 viable <-which(unlist(lapply(partial_cluster_subsampled, nrow) >= 10))
