@@ -100,13 +100,31 @@ SubSampleClusterAlignments <- function(aln_list,
                       snp_threshold = 20) %>%
     
     set_names(1:length(.)) %>%
-    bind_rows(., .id = 'cluster')%>%
+    bind_rows(., .id = 'cluster') %>%
     mutate(cluster = as.numeric(cluster)) 
   
   if(!missing(exclude_seqs)){
     old_nrow <- nrow(data)
     data <- data %>% filter(!tipnames %in% exclude_seqs)
   }
+  
+  # Get oldest NFLG sequences for each cluster
+  date_floor <- data %>%
+    left_join(cluster_tbl) %>%
+    mutate(date_filled = coalesce(as.character(date_ymd),
+                                  as.character(date_ym),
+                                  as.character(date_y))) %>%
+    
+    mutate(date_filled = case_when(str_count(date_filled, '-') == 1 ~ paste0(date_filled, '-01'),
+                                   str_count(date_filled, '-') == 0 ~ paste0(date_filled, '-06-01'),
+                                   .default = date_filled)) %>% 
+    
+    mutate(date_dec2 = decimal_date(as.Date(date_filled))) %>%
+    filter(generegion_nflg ==1) %>%
+    summarise(floor_date = min(date_dec2), .by = cluster) %>% 
+    drop_na() %>%
+    mutate(floor_date = floor(floor_date))
+    print(date_floor)
   
   # Details stratified subsampling aiming to 'thin' the tree by selecting one 
   # sequence per NUTS3, per year-month. 
@@ -118,25 +136,46 @@ SubSampleClusterAlignments <- function(aln_list,
     left_join(hd_groups, by = c('cluster', 'tipnames')) %>%
     drop_na(cluster) %>%
     group_by(cluster) %>%
+
     
     # Only analyse clusters with five or more sequences
     #filter(n() >= 5) %>%
     {
       if(isTRUE(is.partial)){
         
-          group_by(., 
-                   date_ym,
-                 in_nflg,
-                 sequence_group,
-                 eurostat_polygon) %>%
+        group_by(.,
+                 date_ym,
+                 eurostat_polygon,
+                 .add = TRUE)  %>% 
+          
+          group_modify(~ {
+            if(any(.x$in_nflg == '1')) {
+              
+              # If any row in group has nflg==1, keep all rows with nflg==1
+              .x %>% 
+                filter(in_nflg == '1')
+            } else {
+              
+              # Else sample 1 row
+              .x %>% slice_sample(n = 1)
+            }
+          }) %>%
         
-          slice_sample(n = 1) %>%
+         # group_by(., 
+                  # date_ym,
+                   #in_nflg,
+                   #sequence_group,
+                   #eurostat_polygon) %>%
+          
+         # slice_sample(n = 1) %>%
         
         # Remove conditioning on NFLG - if there are multiple sequences present
         # choose NFLG over partial
-          ungroup(in_nflg) %>%
-          filter(if (n() > 1) in_nflg == '1' else TRUE) %>%
+          #ungroup(in_nflg) %>%
+          #filter(if (n() > 1) in_nflg == '1' else TRUE) %>%
           ungroup() %>%
+          left_join(date_floor) %>%
+          filter(as.double(date_y) >= floor_date) %>%
           group_split(cluster)
           
       
@@ -222,7 +261,6 @@ nflg_cluster_subsampled <- SubSampleClusterAlignments(nflg_cluster_alignments,
                                                       exclude_seqs = to_exclude)
 
 
-
 nflg_tipnames <- lapply(nflg_subsampled_alignments,
                         rownames) %>%
   flatten_chr()
@@ -231,7 +269,7 @@ metadata_with_concat %<>%
   mutate(., in_nflg = case_when(tipnames %in% nflg_tipnames ~ '1',
                                 .default = '0'))
 
-partial_cluster_subsampled <- SubSampleClusterAlignments(partial_cluster_alignments, 
+partial_cluster_subsampled_2 <- SubSampleClusterAlignments(partial_cluster_alignments, 
                                                          metadata_with_concat,
                                                          exclude_seqs = to_exclude,
                                                          is.partial = TRUE)
@@ -251,13 +289,23 @@ mapply(write.FASTA,
        nflg_cluster_subsampled[viable],
        filenames)  
 
-partial_cluster_filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
+partial_cluster_filenames_1 <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
                                     as.roman(names(partial_cluster_subsampled[viable])),
                                     '_subsampled.fasta')
 
+partial_cluster_filenames_2 <- paste0('./2025Jun24/europe_clusters/Partial_',
+                                      as.roman(names(partial_cluster_subsampled[viable])),
+                                      '/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
+                                      as.roman(names(partial_cluster_subsampled[viable])),
+                                      '_subsampled.fasta')
+                               
+
 mapply(write.FASTA,
        partial_cluster_subsampled[viable],
-       partial_cluster_filenames)  
+       partial_cluster_filenames_1)  
+mapply(write.FASTA,
+       partial_cluster_subsampled[viable],
+       partial_cluster_filenames_2)  
 
   
 #################################### END #######################################
