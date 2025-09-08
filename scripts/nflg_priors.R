@@ -50,7 +50,7 @@ temp <- list.files('./2025Jun24/alignments',
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 temp %>%
-  lapply(read.dna, format = 'fasta', as.matrix = T) %>%
+  lapply(read.dna, format = 'fasta', as.matrix = T) #%>% lapply(., nrow) %>% flatten_dbl()
   lapply(., rownames) %>%
   lapply(., function(x) str_extract(x, '\\d{4}(-\\d{2}){0,1}(-\\d{2}){0,1}$')) %>%
   lapply(., function(x) sapply(x, formdate, simplify = F) %>% unname(.) %>% unlist(.)) %>%
