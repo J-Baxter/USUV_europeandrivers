@@ -269,7 +269,7 @@ metadata_with_concat %<>%
   mutate(., in_nflg = case_when(tipnames %in% nflg_tipnames ~ '1',
                                 .default = '0'))
 
-partial_cluster_subsampled_2 <- SubSampleClusterAlignments(partial_cluster_alignments, 
+partial_cluster_subsampled <- SubSampleClusterAlignments(partial_cluster_alignments, 
                                                          metadata_with_concat,
                                                          exclude_seqs = to_exclude,
                                                          is.partial = TRUE)
