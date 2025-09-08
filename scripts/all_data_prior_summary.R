@@ -39,7 +39,7 @@ dirs <- dirs[grepl("^NFLG", basename(dirs))]
 
 logfilepaths <- sapply(dirs, 
                        list.files,
-                       pattern = "(SG|constant|test)\\.log$",
+                       pattern = "(SG|constant|_test)\\.log$",
                        full.names = TRUE, 
                        simplify = F) %>%
   Filter(length,.)%>%
@@ -58,7 +58,7 @@ tree_logs <- lapply(logfilepaths,
 
 
 temp <- list.files('./2025Jun24/alignments',
-                   pattern = 'partial_[:A-Z:]{1,4}_subsampled',
+                   pattern = 'partial_[:A-Z:]{1,4}_subsampled_filtered',
                    full.names = T) 
 
 
