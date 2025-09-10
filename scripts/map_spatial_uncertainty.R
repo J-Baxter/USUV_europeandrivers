@@ -354,10 +354,10 @@ metadata_with_concat %>%
 # Note that paths to KMLs must be available to BEAST
 
 dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
-dirs <- dirs[grepl("^NFLG", basename(dirs))]
+dirs <- dirs[grepl("^Partial", basename(dirs))]
 xmlfilepaths <- sapply(dirs, 
                        list.files,
-                       pattern = "cont\\.xml$",
+                       pattern = "strict_SG.xml$",
                        full.names = TRUE, 
                        simplify = F) %>%
   Filter(length,.)
