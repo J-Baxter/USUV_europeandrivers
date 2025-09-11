@@ -1,0 +1,131 @@
+IQ-TREE 2.4.0 built Feb 12 2025
+
+Input file name: Partial_VIII/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_VIII_subsampled.fasta
+Type of analysis: tree reconstruction
+Random seed number: 892135
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 11 sequences with 10305 nucleotide sites
+Number of constant sites: 10221 (= 99.1849% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 10221 (= 99.1849% of all sites)
+Number of parsimony informative sites: 11
+Number of distinct site patterns: 102
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: HKY+F+G4
+
+Rate parameter R:
+
+  A-C: 1.0000
+  A-G: 30.9037
+  A-T: 1.0000
+  C-G: 1.0000
+  C-T: 30.9037
+  G-T: 1.0000
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.2715
+  pi(C) = 0.2278
+  pi(G) = 0.2838
+  pi(T) = 0.2168
+
+Rate matrix Q:
+
+  A    -1.109   0.02741     1.055   0.02609
+  C   0.03267   -0.8732   0.03415    0.8064
+  G      1.01   0.02741    -1.063   0.02609
+  T   0.03267    0.8472   0.03415    -0.914
+
+Model of rate heterogeneity: Gamma with 4 categories
+Gamma shape alpha: 998.4
+
+ Category  Relative_rate  Proportion
+  1         0.9601         0.25
+  2         0.9894         0.25
+  3         1.01           0.25
+  4         1.041          0.25
+Relative rates are computed as MEAN of the portion of the Gamma distribution falling in the category.
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -14863.0352 (s.e. 62.7907)
+Unconstrained log-likelihood (without tree): -35095.2643
+Number of free parameters (#branches + #model parameters): 24
+Akaike information criterion (AIC) score: 29774.0705
+Corrected Akaike information criterion (AICc) score: 29774.1872
+Bayesian information criterion (BIC) score: 29947.8397
+
+Total tree length (sum of branch lengths): 0.0144
+Sum of internal branch lengths: 0.0040 (27.8256% of tree length)
+
+WARNING: 5 near-zero internal branches (<0.0001) should be treated with caution
+         Such branches are denoted by '**' in the figure below
+
+NOTE: Tree is UNROOTED although outgroup taxon 'JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29' is drawn at root
+
++**JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29
+|
+|                    +---------EF206350|Budapest|turdus_merula|HU|2005
+|                 +--|
+|                 |  |     +-----------------------------------------MG888044|NA|culex_pipiens|RS|2014-08
+|                 |  |  +**|
+|                 |  |  |  +**JX236667|NA|turdus_merula|CZ|2011-05-25
+|                 |  +**|
+|                 |     |                                 +**MN419896|NA|turdus_merula|CZ|2017-07-04
+|                 |     +---------------------------------|
+|                 |                                       +---MN419906|NA|turdus_merula|CZ|2018-07-09
+|              +**|
+|              |  |     +--AY453411|NA|NA|AT|2001
+|              |  |  +**|
+|              |  |  |  +----------------------------------------MN395375|NA|turdus_merula|CZ|2017-08
+|              |  +**|
+|              |     +**MZ754066|USUV-V_94_19|serinus_canaria|DE|2019
++--------------|
+|              +---------------------------------KT445930|13-662|culex_modestus|CZ|2013-08-07
+|
++**MF063049|HU-56596/15|turdus_merula|HU|2015-10-26
+
+Tree in newick format:
+
+(JQ219843|NA|cyanistes_caeruleus|AT|2002-08-29:0.0000010000,(((EF206350|Budapest|turdus_merula|HU|2005:0.0007779347,((MG888044|NA|culex_pipiens|RS|2014-08:0.0032122351,JX236667|NA|turdus_merula|CZ|2011-05-25:0.0000010000):0.0000015143,(MN419896|NA|turdus_merula|CZ|2017-07-04:0.0000010000,MN419906|NA|turdus_merula|CZ|2018-07-09:0.0003288852):0.0026372045):0.0000010000):0.0001934107,((AY453411|NA|NA|AT|2001:0.0002865152,MN395375|NA|turdus_merula|CZ|2017-08:0.0031564824):0.0000020812,MZ754066|USUV-V_94_19|serinus_canaria|DE|2019:0.0000010000):0.0000028490):0.0000010000,KT445930|13-662|culex_modestus|CZ|2013-08-07:0.0026181824):0.0011647869,MF063049|HU-56596/15|turdus_merula|HU|2015-10-26:0.0000010000);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t Partial_VIII/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_VIII_subsampled.fasta.treefile -m "HKY{30.9037}+F{0.271537,0.227807,0.283816,0.21684}+G4{998.432}" --length 10305
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s Partial_VIII/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_VIII_subsampled.fasta --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s Partial_VIII/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_VIII_subsampled.fasta --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Wed Sep 10 12:30:16 2025
+Total CPU time used: 0.417062 seconds (0h:0m:0s)
+Total wall-clock time used: 0.447985 seconds (0h:0m:0s)
+

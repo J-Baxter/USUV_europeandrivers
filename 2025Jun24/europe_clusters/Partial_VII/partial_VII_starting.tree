@@ -1,0 +1,59 @@
+#NEXUS
+
+Begin taxa;
+	Dimensions ntax=23;
+	Taxlabels
+		JF266698|NA|turdus_merula|IT|2009
+		MW164637|11pool1989|culex_pipiens|IT|2011-08-23
+		MW164638|11pool2109|culex_pipiens|IT|2011-08-24
+		MW164643|12pool2046|culex_pipiens|IT|2012-07-24
+		MW164650|12pool2586|culex_pipiens|IT|2012-08-23
+		MW164667|13pool6009|culex_pipiens|IT|2013-08-21
+		MW164645|12pool2214|culex_pipiens|IT|2012-08-07
+		MW164665|13pool5873|culex_pipiens|IT|2013-08-13
+		MW164646|12pool2249|culex_pipiens|IT|2012-08-07
+		MW164649|12pool2412|culex_pipiens|IT|2012-08-22
+		MW164674|14pool1419|culex_pipiens|IT|2014-08-26
+		MW164680|14pool1698|culex_pipiens|IT|2014-09-23
+		MW164675|14pool1423|culex_pipiens|IT|2014-08-26
+		MW164698|16pool1777|culex_pipiens|IT|2016-07-25
+		MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15
+		MW164705|16pool2336|culex_pipiens|IT|2016-08-29
+		MW164689|15pool1503|culex_pipiens|IT|2015-08-10
+		MW164702|16pool2106|culex_pipiens|IT|2016-08-16
+		MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03
+		MW164653|12pool2653|culex_pipiens|IT|2012-09-05
+		MW164677|14pool1489|culex_pipiens|IT|2014-09-02
+		MW164651|12pool2626|culex_pipiens|IT|2012-09-05
+		MW164666|13pool5999|culex_pipiens|IT|2013-08-21
+		;
+End;
+
+Begin trees;
+	Translate
+		1 JF266698|NA|turdus_merula|IT|2009,
+		2 MW164637|11pool1989|culex_pipiens|IT|2011-08-23,
+		3 MW164638|11pool2109|culex_pipiens|IT|2011-08-24,
+		4 MW164643|12pool2046|culex_pipiens|IT|2012-07-24,
+		5 MW164650|12pool2586|culex_pipiens|IT|2012-08-23,
+		6 MW164667|13pool6009|culex_pipiens|IT|2013-08-21,
+		7 MW164645|12pool2214|culex_pipiens|IT|2012-08-07,
+		8 MW164665|13pool5873|culex_pipiens|IT|2013-08-13,
+		9 MW164646|12pool2249|culex_pipiens|IT|2012-08-07,
+		10 MW164649|12pool2412|culex_pipiens|IT|2012-08-22,
+		11 MW164674|14pool1419|culex_pipiens|IT|2014-08-26,
+		12 MW164680|14pool1698|culex_pipiens|IT|2014-09-23,
+		13 MW164675|14pool1423|culex_pipiens|IT|2014-08-26,
+		14 MW164698|16pool1777|culex_pipiens|IT|2016-07-25,
+		15 MW164695|15VIR4781-42|turdus_merula|IT|2015-09-15,
+		16 MW164705|16pool2336|culex_pipiens|IT|2016-08-29,
+		17 MW164689|15pool1503|culex_pipiens|IT|2015-08-10,
+		18 MW164702|16pool2106|culex_pipiens|IT|2016-08-16,
+		19 MW164656|12VIR6787-11|alauda_arvensis|IT|2012-09-03,
+		20 MW164653|12pool2653|culex_pipiens|IT|2012-09-05,
+		21 MW164677|14pool1489|culex_pipiens|IT|2014-09-02,
+		22 MW164651|12pool2626|culex_pipiens|IT|2012-09-05,
+		23 MW164666|13pool5999|culex_pipiens|IT|2013-08-21
+		;
+tree TREE1 = [&R] (2:0.0012076440274640756,(((3:7.832779E-4,((((((4:2.924273E-4,(5:9.7362E-5,6:3.903294E-4):9.7362E-5):1.0E-6,7:1.0E-6):1.0E-6,8:1.953705E-4):3.899156E-4,9:5.856954E-4):1.0E-6,(10:7.824242E-4,(((11:9.7362E-5,((12:2.924321E-4,13:1.353034E-4):1.0E-6,(14:4.875782E-4,15:7.81043E-4):1.0E-6):1.0E-6):1.0E-6,16:8.789639E-4):4.883971E-4,(17:3.905653E-4,18:7.825468E-4):2.934577E-4):1.949083E-4):2.931705E-4):1.0E-6,19:4.8757E-4):5.871763E-4):3.904449E-4,((20:9.68631E-5,21:5.861332E-4):3.906346E-4,(22:2.929656E-4,23:4.888205E-4):6.856992E-4):7.831748E-4):1.0E-6,1:4.876985E-4):6.43717725359244E-5);
+End;
