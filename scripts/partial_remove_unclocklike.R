@@ -16,11 +16,12 @@ memory.limit(30000000)
 # Load required libraries
 library(tidyverse)
 library(magrittr)
+library(ape)
 
 
 ################################### DATA #######################################
 # Read and inspect data
-unclocklike <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml_2/partial_clusters_unclocklike.csv')
+unclocklike <- read_csv('./2025Jun24/europe_clusters/cluster_phylo_ml_2/partial_clusters_unclocklike_2.csv')
 
 
 partial_cluster_alignment_master_files <- list.files(path = './2025Jun24/alignments',
