@@ -88,7 +88,8 @@ partial_ml <- read.newick('./2025Jun24/europe_clusters/partial_seq_phyloplacemen
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 all_nflg_clusters <- MapClusters(nflg_ml, subsample_clusterings)
-all_partial_clusters <- MapClusters(partial_ml, subsample_clusterings)
+all_partial_clusters <- MapClusters(partial_ml, subsample_clusterings) %>%
+  left_join(metadata_with_concat %>% dplyr::select(label = tipnames, generegion_nflg))
 
 all_clusters <-  bind_rows(all_nflg_clusters,
                            all_partial_clusters) %>%
@@ -97,8 +98,9 @@ all_clusters <-  bind_rows(all_nflg_clusters,
 # visual checks
 partial_ml %>%
   left_join(all_partial_clusters) %>% 
+  mutate(generegion_nflg = as.character(generegion_nflg)) %>%
   ggtree(.) + 
-  geom_tippoint(aes(colour = cluster))
+  geom_tippoint(aes(colour = cluster, shape = generegion_nflg))
 
 
 # Cluster X lineage comparison
