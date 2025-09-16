@@ -1,8 +1,8 @@
-IQ-TREE 3.0.1 built Jun 30 2025
+IQ-TREE 3.0.1 built Jul  9 2025
 
 Input file name: Partial_VII/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_VII_subsampled.fasta
 Type of analysis: tree reconstruction
-Random seed number: 421861
+Random seed number: 639385
 
 REFERENCES
 ----------
@@ -15,10 +15,11 @@ Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
 IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
 Submitted.
 
+Please also cite the following paper(s) for the feature(s) that you used:
+
 SEQUENCE ALIGNMENT
 ------------------
 
-NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
 Input data: 23 sequences with 10305 nucleotide sites
 Number of constant sites: 10151 (= 98.5056% of all sites)
 Number of invariant (constant or ambiguous constant) sites: 10151 (= 98.5056% of all sites)
@@ -150,7 +151,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Sep 16 13:24:29 2025
-Total CPU time used: 0.083347 seconds (0h:0m:0s)
-Total wall-clock time used: 0.105359 seconds (0h:0m:0s)
+Date and time: Tue Sep 16 19:22:59 2025
+Total CPU time used: 0.097915 seconds (0h:0m:0s)
+Total wall-clock time used: 0.103053 seconds (0h:0m:0s)
 

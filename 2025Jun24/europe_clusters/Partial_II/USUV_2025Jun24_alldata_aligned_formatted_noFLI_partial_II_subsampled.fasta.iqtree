@@ -1,8 +1,8 @@
-IQ-TREE 3.0.1 built Jun 30 2025
+IQ-TREE 3.0.1 built Jul  9 2025
 
 Input file name: Partial_II/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_II_subsampled.fasta
 Type of analysis: tree reconstruction
-Random seed number: 23042
+Random seed number: 228427
 
 REFERENCES
 ----------
@@ -15,10 +15,11 @@ Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
 IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
 Submitted.
 
+Please also cite the following paper(s) for the feature(s) that you used:
+
 SEQUENCE ALIGNMENT
 ------------------
 
-NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
 Input data: 22 sequences with 10305 nucleotide sites
 Number of constant sites: 10168 (= 98.6705% of all sites)
 Number of invariant (constant or ambiguous constant) sites: 10168 (= 98.6705% of all sites)
@@ -66,68 +67,68 @@ Relative rates are computed as MEAN of the portion of the Gamma distribution fal
 MAXIMUM LIKELIHOOD TREE
 -----------------------
 
-Log-likelihood of the tree: -15233.6058 (s.e. 77.0875)
+Log-likelihood of the tree: -15233.6059 (s.e. 77.0876)
 Unconstrained log-likelihood (without tree): -28600.6269
 Number of free parameters (#branches + #model parameters): 46
 Akaike information criterion (AIC) score: 30559.2117
-Corrected Akaike information criterion (AICc) score: 30559.6332
+Corrected Akaike information criterion (AICc) score: 30559.6333
 Bayesian information criterion (BIC) score: 30892.2694
 
 Total tree length (sum of branch lengths): 0.0369
-Sum of internal branch lengths: 0.0041 (10.9859% of tree length)
+Sum of internal branch lengths: 0.0036 (9.6422% of tree length)
 
-WARNING: 15 near-zero internal branches (<0.0001) should be treated with caution
+WARNING: 16 near-zero internal branches (<0.0001) should be treated with caution
          Such branches are denoted by '**' in the figure below
 
 NOTE: Tree is UNROOTED although outgroup taxon 'KY426758|NA|turdus_merula|DE|2016-09-25' is drawn at root
 
-+--KY426758|NA|turdus_merula|DE|2016-09-25
++------KY426758|NA|turdus_merula|DE|2016-09-25
 |
 |                                         +**KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21
 |                                      +**|
-|                                      |  +------------PQ039638|MB285-23|cygnus_olor|PL|2023-07-25
+|                                      |  +**PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25
 |                                   +**|
-|                                   |  +-------------PQ039643|MB294-23|falco_subbuteo|PL|2023-10-12
+|                                   |  +**PQ039641|BHG-s1|anser_indicus|PL|2023-10
 |                                +**|
-|                                |  +**PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17
+|                                |  +**PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21
 |                             +**|
-|                             |  |              +**NA|8645/France/69/2016|turdus_merula|FR|2016-07-25
-|                             |  +--------------|
-|                             |                 +**NA|9615/France/69/2016|turdus_merula|FR|2016-08-03
+|                             |  +-------------PQ039638|MB285-23|cygnus_olor|PL|2023-07-25
 |                          +**|
-|                          |  +------KY084487|NA|turdus_merula|DE|2016
+|                          |  +**PQ039625|128|turdus_merula|PL|2023-10-22
 |                       +**|
-|                       |  +------------PQ039631|EJ|garrulus_glandarius|PL|2023-11-21
+|                       |  +-------------PQ039644|123|sylvia_atricapilla|PL|2023-09-10
 |                    +**|
-|                    |  +**PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21
+|                    |  +**PQ039624|21|fringilla_coelebs|PL|2023-09-28
 |                 +**|
-|                 |  +**PQ039641|BHG-s1|anser_indicus|PL|2023-10
+|                 |  +------KY084487|NA|turdus_merula|DE|2016
 |              +**|
-|              |  +**PQ039625|128|turdus_merula|PL|2023-10-22
+|              |  +-------------PQ039631|EJ|garrulus_glandarius|PL|2023-11-21
 |           +**|
-|           |  +**PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25
+|           |  +--------------PQ039643|MB294-23|falco_subbuteo|PL|2023-10-12
 |        +**|
-|        |  +**PQ039624|21|fringilla_coelebs|PL|2023-09-28
+|        |  +**PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17
 |     +**|
-|     |  +------------PQ039644|123|sylvia_atricapilla|PL|2023-09-10
+|     |  +-------------PQ039630|1552|regulus_regulus|PL|2023-11-05
 |  +**|
 |  |  +-----LR989887|ED-I-107/18|bubo_scandiacus|DE|2018
-+--|
++**|
 |  |  +---------KY199556|NA|strix_nebulosa|DE|2016
 |  +**|
-|     |                      +---------------KF573410|NA|culex_pipiens|ES|2006-08-22
-|     |      +---------------|
-|     |      |               +-------------------------KY113098|BNI-499|turdus_merula|DE|2016-09-04
+|     |                       +----------------KF573410|NA|culex_pipiens|ES|2006-08-22
+|     |      +----------------|
+|     |      |                +--------------------------KY113098|BNI-499|turdus_merula|DE|2016-09-04
 |     +------|
-|            |  +---------------------KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23
+|            |  +----------------------KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23
 |            +**|
-|               +------------------------------------------------MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015
+|               +---------------------------------------------------MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015
 |
-+------------PQ039630|1552|regulus_regulus|PL|2023-11-05
+|               +**NA|8645/France/69/2016|turdus_merula|FR|2016-07-25
++---------------|
+                +**NA|9615/France/69/2016|turdus_merula|FR|2016-08-03
 
 Tree in newick format:
 
-(KY426758|NA|turdus_merula|DE|2016-09-25:0.0004741755,((((((((((((((KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21:0.0000011412,PQ039638|MB285-23|cygnus_olor|PL|2023-07-25:0.0020058368):0.0000012671,PQ039643|MB294-23|falco_subbuteo|PL|2023-10-12:0.0021075874):0.0000016481,PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17:0.0000010000):0.0000020585,(NA|8645/France/69/2016|turdus_merula|FR|2016-07-25:0.0000010000,NA|9615/France/69/2016|turdus_merula|FR|2016-08-03:0.0000010000):0.0022763885):0.0000021586,KY084487|NA|turdus_merula|DE|2016:0.0010557230):0.0000020466,PQ039631|EJ|garrulus_glandarius|PL|2023-11-21:0.0020057349):0.0000020735,PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21:0.0000010000):0.0000021027,PQ039641|BHG-s1|anser_indicus|PL|2023-10:0.0000010000):0.0000011634,PQ039625|128|turdus_merula|PL|2023-10-22:0.0000010000):0.0000010113,PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25:0.0000010000):0.0000019806,PQ039624|21|fringilla_coelebs|PL|2023-09-28:0.0000010000):0.0000020648,PQ039644|123|sylvia_atricapilla|PL|2023-09-10:0.0020055253):0.0000742130,LR989887|ED-I-107/18|bubo_scandiacus|DE|2018:0.0009464991):0.0000021209,(KY199556|NA|strix_nebulosa|DE|2016:0.0014577784,((KF573410|NA|culex_pipiens|ES|2006-08-22:0.0023970096,KY113098|BNI-499|turdus_merula|DE|2016-09-04:0.0037891423):0.0023953367,(KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23:0.0032232085,MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015:0.0070901244):0.0000010000):0.0010634590):0.0000010000):0.0004975308,PQ039630|1552|regulus_regulus|PL|2023-11-05:0.0020058335);
+(KY426758|NA|turdus_merula|DE|2016-09-25:0.0009696818,((((((((((((((KU664608|Usutu_Berlin|strix_nebulosa|DE|2015-08-21:0.0000011122,PQ039636|MB286-23_s5|anas_platyrhynchos|PL|2023-07-25:0.0000010000):0.0000015498,PQ039641|BHG-s1|anser_indicus|PL|2023-10:0.0000010000):0.0000017158,PQ039640|MB282-23_s1|anas_platyrhynchos|PL|2023-07-21:0.0000010000):0.0000023247,PQ039638|MB285-23|cygnus_olor|PL|2023-07-25:0.0020058331):0.0000022403,PQ039625|128|turdus_merula|PL|2023-10-22:0.0000010000):0.0000010072,PQ039644|123|sylvia_atricapilla|PL|2023-09-10:0.0020056744):0.0000023065,PQ039624|21|fringilla_coelebs|PL|2023-09-28:0.0000010000):0.0000021152,KY084487|NA|turdus_merula|DE|2016:0.0010557203):0.0000025579,PQ039631|EJ|garrulus_glandarius|PL|2023-11-21:0.0020057210):0.0000024868,PQ039643|MB294-23|falco_subbuteo|PL|2023-10-12:0.0021075917):0.0000013080,PQ039633|EB-3|sylvia_atricapilla|PL|2023-08-17:0.0000010000):0.0000021105,PQ039630|1552|regulus_regulus|PL|2023-11-05:0.0020058297):0.0000731120,LR989887|ED-I-107/18|bubo_scandiacus|DE|2018:0.0009467815):0.0000011036,(KY199556|NA|strix_nebulosa|DE|2016:0.0014584346,((KF573410|NA|culex_pipiens|ES|2006-08-22:0.0023910593,KY113098|BNI-499|turdus_merula|DE|2016-09-04:0.0037891508):0.0024007767,(KX601692|USUV-Rhone2705/France/2015|turdus_merula|FR|2015-09-23:0.0032230934,MF621056|ME/USUV_2D12/Fr_2015|culex_sp|FR|2015:0.0070895989):0.0000010000):0.0010631881):0.0000010000):0.0000020192,(NA|8645/France/69/2016|turdus_merula|FR|2016-07-25:0.0000010000,NA|9615/France/69/2016|turdus_merula|FR|2016-08-03:0.0000010000):0.0022763587);
 
 ALISIM COMMAND
 --------------
@@ -148,7 +149,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Sep 16 13:16:43 2025
-Total CPU time used: 2.43477 seconds (0h:0m:2s)
-Total wall-clock time used: 2.74827 seconds (0h:0m:2s)
+Date and time: Tue Sep 16 19:22:59 2025
+Total CPU time used: 2.65462 seconds (0h:0m:2s)
+Total wall-clock time used: 2.82509 seconds (0h:0m:2s)
 

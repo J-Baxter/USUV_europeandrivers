@@ -1,8 +1,8 @@
-IQ-TREE 3.0.1 built Jun 30 2025
+IQ-TREE 3.0.1 built Jul  9 2025
 
 Input file name: Partial_IV/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_IV_subsampled.fasta
 Type of analysis: tree reconstruction
-Random seed number: 347132
+Random seed number: 63862
 
 REFERENCES
 ----------
@@ -15,10 +15,11 @@ Gavin Huttley, Robert Lanfear, Bui Quang Minh (2025)
 IQ-TREE 3: Phylogenomic Inference Software using Complex Evolutionary Models.
 Submitted.
 
+Please also cite the following paper(s) for the feature(s) that you used:
+
 SEQUENCE ALIGNMENT
 ------------------
 
-NOTE: Alignment sequence type is auto-detected. If in doubt, specify it via -st option.
 Input data: 11 sequences with 10305 nucleotide sites
 Number of constant sites: 10217 (= 99.146% of all sites)
 Number of invariant (constant or ambiguous constant) sites: 10217 (= 99.146% of all sites)
@@ -33,10 +34,10 @@ Model of substitution: HKY+F+G4
 Rate parameter R:
 
   A-C: 1.0000
-  A-G: 27.6909
+  A-G: 27.6908
   A-T: 1.0000
   C-G: 1.0000
-  C-T: 27.6909
+  C-T: 27.6908
   G-T: 1.0000
 
 State frequencies: (empirical counts from alignment)
@@ -57,7 +58,7 @@ Model of rate heterogeneity: Gamma with 4 categories
 Gamma shape alpha: 0.02004
 
  Category  Relative_rate  Proportion
-  1         5.04e-31       0.25
+  1         5.041e-31      0.25
   2         1.062e-15      0.25
   3         9.771e-07      0.25
   4         4              0.25
@@ -66,7 +67,7 @@ Relative rates are computed as MEAN of the portion of the Gamma distribution fal
 MAXIMUM LIKELIHOOD TREE
 -----------------------
 
-Log-likelihood of the tree: -14902.2201 (s.e. 65.7270)
+Log-likelihood of the tree: -14902.2201 (s.e. 65.7271)
 Unconstrained log-likelihood (without tree): -27458.9286
 Number of free parameters (#branches + #model parameters): 24
 Akaike information criterion (AIC) score: 29852.4402
@@ -74,7 +75,7 @@ Corrected Akaike information criterion (AICc) score: 29852.5570
 Bayesian information criterion (BIC) score: 30026.2095
 
 Total tree length (sum of branch lengths): 0.0206
-Sum of internal branch lengths: 0.0010 (4.6808% of tree length)
+Sum of internal branch lengths: 0.0010 (4.6887% of tree length)
 
 WARNING: 6 near-zero internal branches (<0.0001) should be treated with caution
          Such branches are denoted by '**' in the figure below
@@ -88,14 +89,14 @@ NOTE: Tree is UNROOTED although outgroup taxon 'KX816653|206795-3/2012|culex_pip
 |  |  +--NA|USU090_10|culex_pipiens|IT|2010-09-14
 +**|
 |  |         +**KX816646|200092/2010|turdus_merula|IT|2010-08
-|  |      +**|
-|  |      |  |  +----KF055439|NA|turdus_merula|IT|2010
-|  |      |  +**|
-|  |      |     +------------------------------------------------------MK060108|NA|homo_sapiens|IT|2017-08
-|  |   +**|
-|  |   |  +**KF801588|NA|culex_pipiens|IT|2012-09-05
-|  +---|
-|      +**KF801587|NA|culex_pipiens|IT|2012-08-22
+|  |     +---|
+|  |     |   |  +----KF055439|NA|turdus_merula|IT|2010
+|  |     |   +**|
+|  |     |      +------------------------------------------------------MK060108|NA|homo_sapiens|IT|2017-08
+|  |  +**|
+|  |  |  +**KF801588|NA|culex_pipiens|IT|2012-09-05
+|  +**|
+|     +**KF801587|NA|culex_pipiens|IT|2012-08-22
 |
 |                   +**KX555629|NA|turdus_merula|IT|2015
 +-------------------|
@@ -105,13 +106,13 @@ NOTE: Tree is UNROOTED although outgroup taxon 'KX816653|206795-3/2012|culex_pip
 
 Tree in newick format:
 
-(KX816653|206795-3/2012|culex_pipiens|IT|2012-09:0.0015852768,((KU573073|229615-1/2013|culex_pipiens|IT|2013:0.0013672467,NA|USU090_10|culex_pipiens|IT|2010-09-14:0.0006478520):0.0000010000,(((KX816646|200092/2010|turdus_merula|IT|2010-08:0.0000010000,(KF055439|NA|turdus_merula|IT|2010:0.0010132920,MK060108|NA|homo_sapiens|IT|2017-08:0.0109443077):0.0000013771):0.0000021036,KF801588|NA|culex_pipiens|IT|2012-09-05:0.0000010000):0.0000021580,KF801587|NA|culex_pipiens|IT|2012-08-22:0.0000010000):0.0008793188):0.0000781852,(KX555629|NA|turdus_merula|IT|2015:0.0000010000,(KX257046|NA|culex_pipiens|IT|2011:0.0000010000,KX257053|NA|turdus_merula|IT|2015:0.0000010000):0.0000010000):0.0040686564);
+(KX816653|206795-3/2012|culex_pipiens|IT|2012-09:0.0015852875,((KU573073|229615-1/2013|culex_pipiens|IT|2013:0.0013672129,NA|USU090_10|culex_pipiens|IT|2010-09-14:0.0006474449):0.0000010000,(((KX816646|200092/2010|turdus_merula|IT|2010-08:0.0000010000,(KF055439|NA|turdus_merula|IT|2010:0.0010117516,MK060108|NA|homo_sapiens|IT|2017-08:0.0109427705):0.0000029056):0.0008814589,KF801588|NA|culex_pipiens|IT|2012-09-05:0.0000010000):0.0000011159,KF801587|NA|culex_pipiens|IT|2012-08-22:0.0000010000):0.0000010013):0.0000782007,(KX555629|NA|turdus_merula|IT|2015:0.0000010000,(KX257046|NA|culex_pipiens|IT|2011:0.0000010000,KX257053|NA|turdus_merula|IT|2015:0.0000010000):0.0000010000):0.0040686523);
 
 ALISIM COMMAND
 --------------
 To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
 
---alisim simulated_MSA -t Partial_IV/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_IV_subsampled.fasta.treefile -m "HKY{27.6909}+F{0.272032,0.228372,0.281203,0.218394}+G4{0.0200384}" --length 10305
+--alisim simulated_MSA -t Partial_IV/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_IV_subsampled.fasta.treefile -m "HKY{27.6908}+F{0.272032,0.228372,0.281203,0.218394}+G4{0.0200384}" --length 10305
 
 To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
 
@@ -126,7 +127,7 @@ For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
 TIME STAMP
 ----------
 
-Date and time: Tue Sep 16 13:18:04 2025
-Total CPU time used: 0.270281 seconds (0h:0m:0s)
-Total wall-clock time used: 0.379846 seconds (0h:0m:0s)
+Date and time: Tue Sep 16 19:22:59 2025
+Total CPU time used: 0.270167 seconds (0h:0m:0s)
+Total wall-clock time used: 0.281829 seconds (0h:0m:0s)
 
