@@ -261,7 +261,7 @@ nflg_cluster_subsampled <- SubSampleClusterAlignments(nflg_cluster_alignments,
                                                       exclude_seqs = to_exclude)
 
 
-nflg_tipnames <- lapply(nflg_subsampled_alignments,
+nflg_tipnames <- lapply(nflg_cluster_subsampled,
                         rownames) %>%
   flatten_chr()
 
@@ -285,9 +285,24 @@ filenames <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_forma
                     as.roman(names(nflg_cluster_subsampled[viable])),
                     '_subsampled.fasta')
 
+nflg_cluster_filenames_1 <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_',
+                                      as.roman(names(nflg_cluster_subsampled[viable])),
+                                      '_subsampled.fasta')
+
+nflg_cluster_filenames_2 <- paste0('./2025Jun24/europe_clusters/NFLG_',
+                                      as.roman(names(nflg_cluster_subsampled[viable])),
+                                      '/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_',
+                                      as.roman(names(nflg_cluster_subsampled[viable])),
+                                      '_subsampled.fasta')
+
+
 mapply(write.FASTA,
        nflg_cluster_subsampled[viable],
-       filenames)  
+       nflg_cluster_filenames_1)  
+mapply(write.FASTA,
+       nflg_cluster_subsampled[viable],
+       nflg_cluster_filenames_2)  
+
 
 partial_cluster_filenames_1 <- paste0('./2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_partial_',
                                     as.roman(names(partial_cluster_subsampled[viable])),
