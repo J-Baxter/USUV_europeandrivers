@@ -14,7 +14,7 @@ memory.limit(30000000)
 
 ############################### DEPENDENCIES ###################################
 # Load required libraries
-library(tidyverse)
+# library(tidyverse)
 library(magrittr)
 library(ape)
 
@@ -50,13 +50,13 @@ partial_cluster_alignments_filtered <- lapply(partial_cluster_alignments,
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 filtered_filenames <- gsub('\\.fasta$', '_filtered\\.fasta',
-                           c(partial_cluster_alignment_master_files,
-                             partial_cluster_alignment_working_files))
+                           )
 
 
 mapply(write.FASTA,
        partial_cluster_alignments_filtered,
-       filtered_filenames)  
+       c(partial_cluster_alignment_master_files,
+         partial_cluster_alignment_working_files))  
 
 #################################### END #######################################
 ################################################################################. 
