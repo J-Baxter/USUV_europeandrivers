@@ -18,6 +18,8 @@ library(tidyverse)
 library(magrittr)
 library(treeio)
 library(beastio)
+library(ggmcmc)
+library(ggdist)
 
 ################################### DATA #######################################
 # Read and inspect data
@@ -42,6 +44,7 @@ tree_logs <- lapply(logfilepaths,
                     burnin = 0.1) %>%
   lapply(., ggs) %>%
   bind_rows(., .id = 'clade') 
+
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
