@@ -97,7 +97,14 @@ nuts_all <- bind_rows(nuts0,
                       nuts2)
 
 metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
+clusters <- read_csv('./2025Jun24/europe_clusters/all_clusters.csv') %>%
+  rename(tipnames = label)
 
+seqid_cluster <- metadata_with_concat %>%
+  left_join(clusters) %>%
+  mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
+           gsub('\\/', '_', .)) %>%
+  select(seq_id, cluster)
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
@@ -105,11 +112,13 @@ metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenate
 # For isolates with NUTS-0,1,2 spatial resolution, distribute proportionally 
 # across all applicable polygons
 list_uncertainty_all <- GetUncertaintyWeightings(metadata_with_concat, 
-                                                 nuts_all)
+                                                 nuts_all) %>%
+  left_join(seqid_cluster)
 
 list_uncertainty_nflg <- GetUncertaintyWeightings(metadata_with_concat, 
                                                   nuts_all,
-                                                  nflg_only = TRUE)
+                                                  nflg_only = TRUE) %>%
+  left_join(seqid_cluster)
 
 
 # polygon number and how many assigned to each isolate (all)
@@ -120,9 +129,10 @@ uncertainty_weightings_all <- list_uncertainty_all %>%
   mutate(weight_n = 1/eurostat_polygon_n) %>%
   unnest(eurostat_polygon) %>%
   select(rowid = eurostat_polygon,
+         cluster,
          weight_n) %>%
   mutate(n = 1) %>%
-  summarise(n = sum(n*weight_n), .by = rowid)
+  summarise(n = sum(n*weight_n), .by = c(rowid,cluster))
 
 
 # polygon number and how many assigned to each isolate (nflg)
@@ -133,10 +143,11 @@ uncertainty_weightings_nflg <- list_uncertainty_nflg %>%
   mutate(weight_n = 1/eurostat_polygon_n) %>%
   unnest(eurostat_polygon) %>%
   select(rowid = eurostat_polygon,
+         cluster,
          weight_n) %>%
   mutate(n = 1) %>%
-  summarise(n = sum(n*weight_n), .by = rowid)
-
+  summarise(n = sum(n*weight_n), .by = c(rowid,cluster))
+            
 # Summarise map metadata for nflg only
 map_metadata_nflg <- metadata_with_concat %>%
   filter(generegion_nflg ==1) %>%
@@ -154,7 +165,7 @@ map_metadata_nflg <- metadata_with_concat %>%
   drop_na(nuts2_id) %>%
   
   # format
-  count( rowid) %>%
+  count( rowid, cluster) %>%
   st_drop_geometry() 
 
 
@@ -175,20 +186,21 @@ map_metadata_all <- metadata_with_concat %>%
   drop_na(nuts2_id) %>%
   
   # format
-  count( rowid) %>%
+  count(rowid, cluster) %>%
   st_drop_geometry() 
 
 
 # create map containing all polygons (nflg)
 nflg_map_data <- expand_grid(#lineage = level_1_lineages,
   rowid = 1:1489,
+  cluster = LETTERS[1:8],
   n = NA_integer_)  %>% 
-  rows_update(map_metadata_nflg %>% drop_na()) %>% 
+  rows_update(map_metadata_nflg %>% drop_na(), by = c('rowid', 'cluster')) %>% 
   left_join(vect_id)  %>%
-  left_join(uncertainty_weightings_nflg, by = 'rowid') %>% 
+  left_join(uncertainty_weightings_nflg, by = c('rowid', 'cluster')) %>% 
   replace_na(list('n.x' = 0, 'n.y' = 0))  %>%
   mutate(n= n.x + n.y) %>%
-  select(rowid, n, geometry) %>%
+  select(rowid, n, geometry, cluster) %>%
   mutate(n = if_else(n ==0, NA, n)) %>%
   st_as_sf()
 
@@ -196,13 +208,14 @@ nflg_map_data <- expand_grid(#lineage = level_1_lineages,
 # create map containing all polygons (all)
 all_map_data <- expand_grid(#lineage = level_1_lineages,
   rowid = 1:1489,
+  cluster = LETTERS[1:8],
   n = NA_integer_)  %>% 
-  rows_update(map_metadata_all %>% drop_na()) %>% 
+  rows_update(map_metadata_all %>% drop_na(), by = c('rowid', 'cluster')) %>% 
   left_join(vect_id)  %>%
-  left_join(uncertainty_weightings_nflg, by = 'rowid') %>% 
+  left_join(uncertainty_weightings_nflg, by = c('rowid', 'cluster')) %>% 
   replace_na(list('n.x' = 0, 'n.y' = 0))  %>%
   mutate(n= n.x + n.y) %>%
-  select(rowid, n, geometry) %>%
+  select(rowid, n, geometry, cluster) %>%
   mutate(n = if_else(n ==0, NA, n)) %>%
   st_as_sf()
 # filter(CNTR_CODE != 'TR') 
@@ -221,7 +234,7 @@ plt_a <- nflg_map_data %>%
                        breaks = c(1*10**(-1), 1*10**0, 1*10**1, 1*10**2),
                        na.value="grey95") +
   scale_alpha_continuous(range = c(0.5, 1), na.value = 1) +
-  #facet_wrap(~lineage) +
+  facet_grid(cols = vars(cluster)) +
   theme_void() + 
   theme(legend.position = 'none')
 
@@ -239,13 +252,13 @@ plt_b <- all_map_data %>%
                        breaks = c(1*10**(-1), 1*10**0, 1*10**1, 1*10**2),
                        na.value="grey95") +
   scale_alpha_continuous(range = c(0.5, 1), na.value = 1) +
-  #facet_wrap(~lineage) +
+  facet_grid(cols = vars(cluster)) +
   theme_void() + 
   theme(legend.position = 'none')
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
-cowplot::plot_grid(plt_a, plt_b)
+cowplot::plot_grid(plt_a, plt_b, nrow = 2)
 
 
 #################################### END #######################################
