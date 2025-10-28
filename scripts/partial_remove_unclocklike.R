@@ -54,7 +54,7 @@ filtered_filenames <- gsub('\\.fasta$', '_filtered\\.fasta',
 
 
 mapply(write.FASTA,
-       partial_cluster_alignments_filtered,
+       partial_cluster_alignments_cc,
        c(partial_cluster_alignment_master_files,
          partial_cluster_alignment_working_files))  
 
