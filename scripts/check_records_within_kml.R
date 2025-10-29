@@ -70,6 +70,16 @@ ReadKML <- function(kml_filepath, crs =  'WGS84', reverse_coords){
 kml_files <- list.files('./2025Jun24/kmls',
                         pattern = 'kml$',
                         full.names = T)
+ 
+#matches <- metadata_with_concat %>%
+  #filter(tipnames %in% temp_tree$tip.label) %>%
+  #mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
+           #gsub('\\/', '_', .)) %>%
+  #pull(seq_id) %>%
+  #paste(collapse = '|')
+
+
+#kml_files <- kml_files[grepl(matches, kml_files)]
 
 
 kml_poly <- lapply(kml_files, 
@@ -83,6 +93,8 @@ metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenate
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 point_list <- metadata_with_concat %>% 
+  
+  filter(tipnames %in% temp_tree$tip.label) %>%
 
   # format unique IDs
   mutate(seq_id = coalesce(sequence_accession, sequence_isolate) %>%
@@ -99,10 +111,10 @@ point_list <- metadata_with_concat %>%
   dplyr::select(seq_id, geocode_coords) %>%
   mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%
   separate(geocode_coords, 
-           into = c("lat", "lon"), 
+           into = c("lon", "lat"), 
            sep = ", ",
            convert = TRUE) %>%
-  st_as_sf(coords = c('lat','lon'), 
+  st_as_sf(coords = c('lon','lat'), 
            crs = 'WGS84',
            sf_column_name = 'coords') %>%
   group_split(seq_id)
@@ -114,24 +126,32 @@ point_within <- mapply(st_within,
                        kml_poly, 
                        sparse = FALSE,
                        SIMPLIFY = F) %>%
-  unlist() %>%
+  #unlist() %>%
   setNames(str_extract(kml_files, "(?<=kmls\\/).*(?=\\.kml)")) %>%
   enframe(name = 'seq_id',
           value = 'within_polygon') %>%
   # Check across all possible polygons
-  summarise(within_polygon = any(isTRUE(within_polygon)),
+  mutate(within_polygon = lapply(within_polygon, as.vector)) %>%
+  unnest_longer(within_polygon) %>%
+  summarise(within_polygon = any(within_polygon),
             .by = seq_id)
 
 # Summarise
 point_within %>%
   count(within_polygon)
 
+#point_within %>% 
+  #rowid_to_column() %>%
+  #filter(within_polygon == FALSE) %>% 
+  #pull(rowid) %>%
+  #lapply(., function(x) ggplot() + 
+           #geom_sf(data = kml_poly[[x]]) + 
+           #geom_sf(data = point_list[[x]]))
+
 # Individual tests
 #st_within( kml_poly[[3]],point_list[[3]], sparse = FALSE)
 
-#ggplot() + 
- # geom_sf(data = kml_poly[[12]],)+
-  
+
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 
