@@ -362,6 +362,10 @@ xmlfilepaths <- sapply(dirs,
                        simplify = F) %>%
   Filter(length,.)
 
+#xmlfilepaths <- list.files('./2025Jun24/europe_clusters/workspace',
+                         #  pattern = 'SG.xml',
+                          # full.names = T)
+
 #test_xml <- './2025Jun24/europe_clusters/NFLG_VII/USUV_2025Jun24_NFLG_VII_empiricaltest.xml'
 
 
