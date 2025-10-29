@@ -64,9 +64,9 @@ nuts3 <- gisco_get_nuts(
 
 all_europe_sf <- bind_rows(nuts1, nongisco_shapefile)
 
-vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = st_crs(nuts0)) %>%
+vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', crs = 4326) %>%
   st_make_valid() %>%
-  st_transform(st_crs(vector_net))
+  st_transform(4326)
 
 metadata <- read_csv('./data/USUV_metadata_all_2025Jun24.csv')
 
@@ -131,13 +131,13 @@ map_data %>%
 
 
 mdt <- get_elev_raster(vector_net, z = 5)
+mdt <- project(rast(mdt), crs(vector_net))
+
 
 # convert to terra and mask area of interest
-mdt <- rast(mdt) |>
-  mask(vect(vector_net))
+mdt_masked <- mask(mdt, nuts0)
 
 # reproject
-mdt <- project(mdt, crs(vector_net))
 
 sl <- terrain(mdt, "slope", unit = "radians")
 asp <- terrain(mdt, "aspect", unit = "radians")
@@ -153,6 +153,19 @@ plot(hill_single)
 hilldf_single <- as.data.frame(hill_single, xy = TRUE)
 mdtdf <- as.data.frame(mdt, xy = TRUE)
 names(mdtdf)[3] <- "alt"
+ggplot() +
+  geom_raster(
+    data = hilldf_single,
+    aes(x, y, fill = hillshade),
+    show.legend = FALSE
+  ) +
+  scale_fill_distiller(palette = "Greys") +
+  new_scale_fill() +
+  geom_spatraster(data = pasture_1kmsq) +
+  scale_fill_distiller(palette = 'Greens', direction = 1, na.value = 'grey99')+
+  theme_void()+
+  theme(legend.position = 'bottom',
+        legend.title = element_blank())
 
 ggplot() +
   geom_raster(
@@ -163,7 +176,7 @@ ggplot() +
   scale_fill_distiller(palette = "Greys") +
   new_scale_fill() +
   geom_raster(
-    data = mdtdf,
+    data = pastures,
     aes(x, y, fill = alt),
     alpha = .7
   ) +
