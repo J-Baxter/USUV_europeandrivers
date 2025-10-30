@@ -92,20 +92,52 @@ AdjustFixedRate <- function(xml_filepath,
 
 ################################### DATA #######################################
 # Read and inspect data
-beast_logs <- 
-updated_xmls <- 
+dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
+dirs <- dirs[grepl("^NFLG", basename(dirs))]
+
+beast_logs <- sapply(dirs, 
+                       list.files,
+                       pattern = "(SG|constant|_test)\\.log$",
+                       full.names = TRUE, 
+                       simplify = F) %>%
+  Filter(length,.) %>%
+  sapply(.,
+         # If constant run is present, use this rather than skygrid
+         function(x) ifelse(any(grepl('constant', x)), 
+                            x[grepl('constant', x)], 
+                            x),
+         simplify = F) %>%
+  flatten_chr() %>%
+  .[grepl('_III_|_V_|_VI*', .)]
+
+
+# Now partial seq XMLs (that have already been updated with polygons)
+dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
+dirs <- dirs[grepl("^Partial", basename(dirs))]
+
+xmls_to_run <- sapply(dirs, 
+                     list.files,
+                     pattern = "_updated.xml$",
+                     full.names = TRUE, 
+                     simplify = F) %>%
+  Filter(length,.) %>%
+  flatten_chr()
 
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 
-ResampleEvoRate('./2025Jun24/europe_clusters/NFLG_III/USUV_2025Jun24_NFLG_III_test.log') %>%
-  pull(meanRate) %>%
-  lapply(., AdjustFixedRate, 
-         xml_filepath = "./2025Jun24/europe_clusters/workspace/USUV_2025Jun24_partial_III_SRD06_fixed_SG_updated.xml")
+main <- function(log, xml){
+  ResampleEvoRate(log) %>%
+    pull(meanRate) %>%
+    lapply(., AdjustFixedRate, 
+           xml_filepath = xml)
+}
 
 
-
+mapply(main,
+       beast_logs,
+       xmls_to_run)
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
