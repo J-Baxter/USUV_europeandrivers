@@ -5643,7 +5643,7 @@
 	
 
 	<!-- Define MCMC                                                             -->
-	<mcmc id="mcmc" chainLength="20000000" autoOptimize="true" operatorAnalysis="USUV_2025Jun24_partial_III_SRD06_fixed_SG.ops">
+	<mcmc id="mcmc" chainLength="50000000" autoOptimize="true" operatorAnalysis="USUV_2025Jun24_partial_III_SRD06_fixed_SG.ops">
 		<joint id="joint">
 			<prior id="prior">
 				<logNormalPrior mu="1.0" sigma="1.25" offset="0.0">
@@ -5690,7 +5690,7 @@
 		<operators idref="operators"/>
 
 		<!-- write log to screen                                                     -->
-		<log id="screenLog" logEvery="2000">
+		<log id="screenLog" logEvery="5000">
 			<column label="Joint" dp="4" width="12">
 				<joint idref="joint"/>
 			</column>
@@ -5706,7 +5706,7 @@
 		</log>
 
 		<!-- write log to file                                                       -->
-		<log id="fileLog" logEvery="2000" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.log" overwrite="false">
+		<log id="fileLog" logEvery="5000" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.log" overwrite="false">
 			<joint idref="joint"/>
 			<prior idref="prior"/>
 			<likelihood idref="likelihood"/>
@@ -5800,7 +5800,7 @@
 		</log>
 
 		<!-- write tree log to file                                                  -->
-		<logTree id="treeFileLog" logEvery="2000" nexusFormat="true" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.trees" sortTranslationTable="true">
+		<logTree id="treeFileLog" logEvery="5000" nexusFormat="true" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.trees" sortTranslationTable="true">
 			<treeModel idref="treeModel"/>
 			<trait name="rate" tag="rate">
 				<strictClockBranchRates idref="branchRates"/>
@@ -5827,7 +5827,7 @@
 		</logTree>
 
 		<!-- write state of Markov chain to checkpoint file                          -->
-		<logCheckpoint id="checkpointFileLog" checkpointEvery="2000000" checkpointFinal="20000000" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.chkpt" overwrite="false"/>
+		<logCheckpoint id="checkpointFileLog" checkpointEvery="5000000" checkpointFinal="50000000" fileName="USUV_2025Jun24_partial_III_SRD06_fixed_SG.chkpt" overwrite="false"/>
 	</mcmc>
 	
 	<report>
