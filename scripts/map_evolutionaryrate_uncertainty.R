@@ -23,9 +23,15 @@ ResampleEvoRate <- function(log_filepath,
                             burnin = 0.1, 
                             n = 100){
   
+  if(grepl('constant', log_filepath)){
+    skip_n <- 3
+  }else{
+    skip_n <- 4
+  }
+  
   out <- read_delim(log_filepath, 
                     delim ='\t', 
-                    skip = 4) %>%
+                    skip = skip_n) %>%
     
     # remove burnin
     filter(state >= 0.1*max(state)) %>%
@@ -57,18 +63,15 @@ AdjustFixedRate <- function(xml_filepath,
                               pattern = xml_filestem) %>%
     grepl('rate.*.xml$', .)
   
+  n <- '001'
   
   if(any(existing_xmls)){
     n <- sum(existing_xmls, na.rm = TRUE) %>%
       add(1) %>%
       str_pad(., pad = '0', 3)
-    
-    updated_xml <- gsub('.xml$', paste0('_rate', n, '.xml') , current_xml)
-    
-  }else{
-    updated_xml <- gsub('.xml$', '_rate001.xml', current_xml)
   }
   
+  updated_xml <- gsub('.xml$', paste0('_rate', n, '.xml') , current_xml)
   
   # Read Existing XML and extract sequence names
   xml <-  scan(file = current_xml, what="", sep="\n", quiet=T)
@@ -81,6 +84,10 @@ AdjustFixedRate <- function(xml_filepath,
   for (i in 1:length(xml)) {
     if(grepl('parameter id="clock.rate', xml[i])){
       xml[i] <- paste("\t\t\t<parameter id=\"clock.rate\" value=\"", new_rate_formatted,"\"/>",sep="")
+    }
+    if(grepl(' fileName', xml[i])){
+      xml[i] <- gsub("(?=\\.(chkpt|trees|log))", paste0('_rate', n),  xml[i], perl = TRUE)
+      
     }
     cat(xml[i]); cat("\n")
   }
