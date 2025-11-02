@@ -45,25 +45,30 @@ map_data <- map %>%
             by = join_by(iso_a3_eh == iso3c))
   
 
-usuv_global_map <- ggplot(map_data) +
-  geom_sf_pattern(aes(pattern = as.character(usuv_positive)),
-                  na.rm = T,
+usuv_global_map <-  ggplot() +
+  geom_sf_pattern(data = map_data %>%
+                    mutate(usuv_positive = as.character(usuv_positive)) %>%
+                    drop_na(usuv_positive),
+    aes(pattern = usuv_positive),
+                  na.rm = TRUE,
                   pattern_density = 0.01,
                   pattern_spacing = 0.01,
                   pattern_colour = 'red') +
-  scale_pattern_manual(values = "stripe") +
-  geom_sf(aes(fill =n)) +
+  scale_pattern_manual(values = "stripe", labels = 'USUV Detected') +
+  geom_sf(data = map_data,
+          aes(fill =n),
+          inherit.aes = F) +
   scale_fill_distiller(palette = 'Reds', direction = 1, na.value = '#FF000000') + 
   theme_void() +
   coord_sf(ylim = c(-38, 70),
            xlim = c(-20, 50),
            expand = TRUE) + 
-  guides(pattern = guide_legend('USUV Detected', position = 'inside', order = 1),
+  guides(pattern = guide_legend(NULL, position = 'inside', order = 1),
          fill = guide_colourbar('Sequences (n)', position = 'inside', order = 2)) + 
   theme(panel.background = element_rect(fill = "grey99",
                                         colour = '#FF000000'),
         legend.position.inside = c(0.15,0.15))
-usuv_global_map
+
 
 ggsave('./2025Jun24/plots/usuv_global_map.jpeg', height = 30, width = 20, units = 'cm', dpi =360)
 
