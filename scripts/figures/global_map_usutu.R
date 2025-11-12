@@ -45,16 +45,14 @@ map_data <- map %>%
             by = join_by(iso_a3_eh == iso3c))
   
 
-usuv_global_map <-  ggplot() +
+ggplot() +
   geom_sf_pattern(data = map_data %>%
-                    mutate(usuv_positive = as.character(usuv_positive)) %>%
-                    drop_na(usuv_positive),
+                    mutate(usuv_positive = as.character(usuv_positive)) ,
     aes(pattern = usuv_positive),
-                  na.rm = TRUE,
                   pattern_density = 0.01,
                   pattern_spacing = 0.01,
                   pattern_colour = 'red') +
-  scale_pattern_manual(values = "stripe", labels = 'USUV Detected') +
+  scale_pattern_manual(values = "stripe", labels = 'USUV Detected', breaks = as.character(1)) +
   geom_sf(data = map_data,
           aes(fill =n),
           inherit.aes = F) +
