@@ -260,36 +260,7 @@ tmp_2 <- tmp %>%
   #filter(!duplicated(paste0(pmax(label_a, label_b), pmin(label_a, label_b))))
 
 
-tmp_2 %>%
-  pivot_longer(c(starts_with('type') ),
-               names_to = 'cluster_threshold',
-               values_to = 'cluster_type') %>%
-  mutate(cluster_threshold = gsub('type_', '', cluster_threshold) %>%
-           as.numeric()) %>%
-  select(pair_id, distance, label, starts_with('cluster')) %>%
-  ggplot() +
-  geom_histogram(aes(x = distance, 
-                     fill = cluster_type, 
-                     colour = cluster_type),
-                 alpha = 0.5,
-                 binwidth = 2.5,
-                 position="identity" )+
-  scale_colour_d3(palette = 'category20',
-                  alpha = 0.99,
-                  name= NULL) + 
-  scale_fill_d3(palette = 'category20',
-                alpha = 0.99,
-                name= NULL) +
-  scale_x_continuous('Patristic Distance',
-                     expand = c(0,0))+
-  scale_y_continuous('Probability Density',
-                     expand = c(0.005,0))+
-  theme_classic()+
-  theme(legend.position = 'bottom') +
-  facet_wrap(~ cluster_threshold, 
-             ncol = 1,
-             strip.position = 'right',
-             scales = 'free_x')
+
 
 ggplot(tmp_3) +
   geom_histogram(aes(x = distance, 
