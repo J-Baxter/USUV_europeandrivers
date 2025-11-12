@@ -125,13 +125,15 @@ ggplot(culex_abundance_by_vectornet,
   geom_sf(data = nuts0, colour = 'black', fill = '#FF000000') + 
   coord_sf(ylim = c(34,72), xlim = c(-11, 34), expand = FALSE) +
   scale_fill_distiller(palette = 'RdYlGn',
-                       'Predicted Mosquito Count per Month',
+                       expression("Predicted Mosquito Count (log"[10]*") per Month"),
+                       'log10) ',
                        #transform = 'log10', 
-                       direction = -1, , 
+                       direction = -1,  
                        na.value="lightgrey") +
   ##facet_grid(rows = vars(year), cols = vars(month)) + 
   theme_void() +
-  theme(legend.position = 'bottom')
+  theme(legend.position = 'bottom',
+        text = element_text(size = 9)) + guides(fill=guide_colourbar(title.vjust=0.75))
 
 ggsave('./2025Jun24/plots/modelled_mosquito_counts.jpeg',
        height = 15,
