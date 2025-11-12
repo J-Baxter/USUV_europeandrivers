@@ -22,7 +22,7 @@ library(beastio)
 ################################### DATA #######################################
 # Read and inspect data
 dirs <- list.dirs("./2025Jun24/europe_clusters", recursive = FALSE)
-dirs <- dirs[grepl("^NFLG", basename(dirs))]
+dirs <- dirs[grepl("_III|_V|_VI", basename(dirs))]
 
 skygridpaths <- sapply(dirs, 
                        list.files,
@@ -42,24 +42,15 @@ test_grid <- read_delim('./2025Jun24/europe_clusters/NFLG_V/Untitled', delim ='\
 # Main analysis or transformation steps
 
 skygrid_logs %>%
+  mutate(clade = gsub('\\.\\/2025Jun24\\/europe_clusters\\/', '', clade)) %>%
+  separate_wider_delim(clade, delim  = '_', names = c('sequence', 'clade')) %>%
   ggplot() + 
   geom_ribbon(aes(x = date, ymin = lower, ymax = upper), alpha = 0.5) + 
   geom_line(aes(x = date, y=median)) + 
   scale_x_date(expand = c(0,0)) + 
   scale_y_log10(expand = c(0,0)) + 
   theme_classic() + 
-  facet_wrap(.~clade, ncol = 2, scales = 'free')
-
-tree_logs %>%
-  filter(grepl('^skygrid', Parameter)) %>%
-  group_by(clade) %>%
-  point_interval(.width = 0.95,
-                 .point = median, 
-                 .interval = hdci)
-ggplot(aes(x = x, y = y, ymin = .lower, ymax = .upper)) +
-  geom_lineribbon() +
-  scale_fill_brewer()
-stat_
+  facet_grid(cols = vars(sequence), rows = vars(clade), scales = 'free')
 
 
 ################################### OUTPUT #####################################
