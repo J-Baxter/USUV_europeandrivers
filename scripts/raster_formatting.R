@@ -1,18 +1,20 @@
-####################################################################################################
-####################################################################################################
-## Script name: Format Rasters
-##
-## Purpose of script: Extract and format environmental and ecological raster layers for analysis in
-## Seraphim (Dellicour et al. 2016)
-##
-## Date created: 2025-02-20
-##
-##
-########################################## SYSTEM OPTIONS ##########################################
+################################################################################
+## Script Name:        Format Rasters
+## Purpose:            Extract and format environmental and ecological raster 
+##                     layers for analysis in Seraphim (Dellicour et al. 2016)
+## Author:             James Baxter
+## Date Created:       2025-09-19
+################################################################################
 
+############################### SYSTEM OPTIONS #################################
+options(
+  scipen = 6,     # Avoid scientific notation
+  digits = 7      # Set precision for numerical display
+)
+memory.limit(30000000)
 
-########################################## DEPENDENCIES ############################################
-# Packages
+############################### DEPENDENCIES ###################################
+# Load required libraries
 library(tidyverse)
 library(magrittr)
 library(terra)
@@ -23,11 +25,8 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 library(spatstat)
 
-
-# User functions
-
-
-############################################## DATA ################################################
+################################### DATA #######################################
+# Read and inspect data
 europe_sf <- bind_rows(
   
   # GISCO resgions
@@ -54,15 +53,6 @@ europe_sf <- bind_rows(
 
 # Untransformed CORINE data
 #corine_all <- rast('./data/raster_data/corine/u2018_clc2018_v2020_20u1_raster100m/DATA/U2018_CLC2018_V2020_20u1.tif')
-
-# Transformed CORINE data
-corine_all_masked <- rast('./data/raster_data/corine/u2018_clc2018_v2020_20u1_raster100m/separate_layers/masked_cropped.tiff')
-
-############################################## MAIN ################################################
-### Mask and refine CORINE Data ##
-
-europe <- vect(europe_sf)
-
 # Change CORINE projection and coodinate system
 # corine_all_latlong <- project(corine_all, "+proj=longlat epsg:4326")
 # remove(corine_all)
@@ -73,12 +63,18 @@ europe <- vect(europe_sf)
 # corine_all_masked <- mask(corine_all_cropped, europe)
 # remove(corine_all_cropped)
 
-# Extract single layer
-pastures <- corine_all_masked == 'Pastures'
-#remove(corine_all_latlong)
 
+# Transformed CORINE data
+corine_all_masked <- rast('./2025Jun24/raster_data/masked_cropped.tiff')
+europe <- vect(europe_sf)
+
+################################### MAIN #######################################
+# Main analysis or transformation steps
+
+# 1. All separate classes
 corine_classes <- levels(corine_all_masked)[[1]]
 classes_to_include <-  corine_classes %>% pull(LABEL3) %>% magrittr::extract(c(21:26, 28:43))
+
 
 
 SeparateAndSave <- function(raster, layer){
@@ -92,6 +88,70 @@ SeparateAndSave <- function(raster, layer){
   
 }
 
+sep_layers <- lapply(classes_to_include, 
+                     SeparateAndSave,
+                     raster = corine_all_masked)  
+
+
+# 2. Aggregate by level 2 class
+clc_legend <- read_csv('./2025Jun24/raster_data/clc_legend.csv')
+
+level_two_dict <- clc_legend %>%
+  drop_na() %>%
+  group_by(LABEL2) %>%
+  group_split() 
+
+
+
+
+################################### OUTPUT #####################################
+# Save output files, plots, or results
+
+#################################### END #######################################
+################################################################################
+
+
+
+####################################################################################################
+####################################################################################################
+## Script name: Format Rasters
+##
+## Purpose of script: Extract and format environmental and ecological raster layers for analysis in
+## Seraphim (Dellicour et al. 2016)
+##
+## Date created: 2025-02-20
+##
+##
+########################################## SYSTEM OPTIONS ##########################################
+
+
+########################################## DEPENDENCIES ############################################
+# Packages
+library(tidyverse)
+library(magrittr)
+l
+
+
+# User functions
+
+
+############################################## DATA ################################################
+
+
+############################################## MAIN ################################################
+### Mask and refine CORINE Data ##
+
+europe <- vect(europe_sf)
+
+
+
+# Extract single layer
+pastures <- rast('./2025Jun24/raster_data/pastures.tiff')
+
+#remove(corine_all_latlong)
+
+
+
 SaveAsPointsDF <- function(rasterfile){
   r <- rast(rasterfile)
   
@@ -99,7 +159,6 @@ SaveAsPointsDF <- function(rasterfile){
   
   
 }
-sep_layers <- lapply(classes_to_include, SeparateAndSave, raster = corine_all_masked)  
 ### To plot CORINE data using geom_spatraster
 
 # Represent as presence/absence
@@ -170,7 +229,7 @@ coast_vector <- europe |>
 
 binary_points = as.points(binary)
 
-#pasture_10kmsq <- aggregate(binary, fact=10, fun = 'mean')
+pasture_10kmsq <- aggregate(binary, fact=10, fun = 'mean')
 
 #binary_polgons <- as.polygons(binary)
 #binary_sf 
