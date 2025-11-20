@@ -32,17 +32,31 @@ FilterCorine <- function(raster, selected_layers){
 
 AggregateCorine <- function(raster, grid_vector){
   # Turn logical raster into presence/absence binary
-  raster <- as.binary(raster)
-  out <- extract(raster, grid_vector, fun = mean, na.rm = T)
+  raster <- as.int(raster)
+  out <- exact_extract(raster,
+                       grid_vector,
+                       fun = 'mean') %>% 
+    bind_cols(grid_vector, 'value' = .) #zonal(raster, ETRS89_10_v, fun = mean, na.rm = T)
+  
+  return(out)
+  
 }
 
 
-SaveCorine <- function(raster, raster_name){
+SaveCorine <- function(sf_dataframe, raster_name){
   filename <- str_to_lower(raster_name) %>%
     str_replace_all(., ' ' , '_' ) %>%
-    paste0('./2025Jun24/raster_data/agreggated_corine/', ., '.tif')
+    str_replace_all(., '[:punct:]' , '' ) %>%
+    paste0('./2025Jun24/raster_data/agreggated_corine/', .)
   
-  writeRaster(raster, filename)
+  # as raster
+  raster <- st_rasterize(sf_dataframe %>% dplyr::select(value, geometry))
+  write_stars(raster, paste0(filename, '.tif'))
+  
+  # as shapefile
+  st_write(sf_dataframe, paste0(filename, '.shp'))
+  
+  cat(paste0('Saved ', raster_name, ' successfully.'))
 }
 
 
@@ -51,10 +65,10 @@ SaveCorine <- function(raster, raster_name){
 
 # Import ETRS89 grid
 ETRS89_10 <- read_sf('./2025Jun24/raster_data/ebba/ebba2_etrs10x10_v1/ebba2_etrs10x10_v1.shp') 
-ETRS89_10_v <- vect(ETRS89_10)
+#ETRS89_10_v <- vect(ETRS89_10)
 
 # Untransformed CORINE data
-corine_all <- rast('./data/raster_data/corine/u2018_clc2018_v2020_20u1_raster100m/DATA/U2018_CLC2018_V2020_20u1.tif')
+corine_all <- rast('./2025Jun24/raster_data/corine/u2018_clc2018_v2020_20u1_raster100m/DATA/U2018_CLC2018_V2020_20u1.tif')
 
 # CORINE classes
 corine_legend <- read_csv('./2025Jun24/raster_data/clc_legend.csv')
@@ -63,7 +77,7 @@ corine_legend <- read_csv('./2025Jun24/raster_data/clc_legend.csv')
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 
-# 1. Format CORINE
+# 1. CORINE
 # Only keep CORINE data within Europe mask
 corine_all_masked <- mask(corine_all, ETRS89_10)
 remove(corine_all)
@@ -75,21 +89,31 @@ level_two_dict <- corine_legend %>%
   lapply(., function(x) x %>% pull(LABEL3)) %>%
   as.list()
 
-corine_grouped[[1]] <- FilterCorine(corine_all_masked, level_two_dict[[1]])
-corine_agregated[[1]] <- AggregateCorine(corine_grouped[[1]], ETRS89_10_v)
-
+#corine_grouped <- list()
+#corine_grouped[[1]] <- FilterCorine(corine_all_masked, level_two_dict[[1]])
 corine_grouped <- lapply(level_two_dict, FilterCorine, raster = corine_all_masked) %>%
   setNames(names(level_two_dict))
 
-corine_agregated <- lapply(corine_grouped, AggregateCorine, grid_vector = ETRS89_10_v) %>%
+#corine_agregated[[1]] <- AggregateCorine(corine_grouped[[1]], ETRS89_10)
+corine_agregated <- lapply(corine_grouped, AggregateCorine, grid_vector = ETRS89_10) %>%
   setNames(names(level_two_dict))
 
+mapply(SaveCorine, 
+       corine_agregated, 
+       names(level_two_dict))
 
-mapply(SaveCorine,
-      corine_agregated,
-      names(level_two_dict))
 
+# 2. EBBA
 
+# 3. FAO 
+
+# 4. Elevation
+
+# 5. Human Population
+
+# 6. ERA5 (Monthly)
+
+# 7. Bioclimatic
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 
