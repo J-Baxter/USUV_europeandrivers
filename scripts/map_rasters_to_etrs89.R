@@ -129,13 +129,12 @@ mapply(SaveLayer,
 
 # 3. FAO 
 # Rescale and mask to europe
-fao_masked <- fao_rast %>%
+fao_reprojected <- fao_rast %>%
   lapply(., function(x) {
-    crs(x) <- 'epsg:3035'
-    return(x)}) %>%
-  lapply(., mask, ETRS89_10)
+    x <- project(x, 'EPSG:3035')
+    return(x)}) 
 
-fao_gridded <- lapply(fao_masked, AggregateLayer, grid_vector = ETRS89_10)
+fao_gridded <- lapply(fao_reprojected, AggregateLayer, grid_vector = ETRS89_10)
 
 fao_names <- paste0('GLW4-2020_', c('chicken', 'cattle', 'goat', 'swine', 'sheep'))
 
