@@ -23,7 +23,7 @@ library(terra)
 library(tidyterra)
 library(sf)
 library(stars)
-
+library(exactextractr)
 
 FilterCorine <- function(raster, selected_layers){
   out <- raster %in% selected_layers
@@ -31,7 +31,7 @@ FilterCorine <- function(raster, selected_layers){
 }
 
 
-AggregateCorine <- function(raster, grid_vector){
+AggregateLayer <- function(raster, grid_vector){
   # Turn logical raster into presence/absence binary
   raster <- as.int(raster)
   out <- exact_extract(raster,
@@ -77,6 +77,12 @@ corine_legend <- read_csv('./2025Jun24/raster_data/clc_legend.csv')
 # EBBA2 data
 ebba_csv <- read_delim('./2025Jun24/raster_data/ebba/ebba2_data_model_10km.csv', delim = ';')
 
+# FAO data
+fao_list <- list.files('./2025Jun24/raster_data/fao',
+                       pattern = 'tif',
+                       full.names = T)
+fao_rast <- lapply(fao_list, rast)
+
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 
@@ -120,7 +126,23 @@ mapply(SaveLayer,
        ebba_gridded, 
        names(ebba_gridded))
 
+
 # 3. FAO 
+# Rescale and mask to europe
+fao_masked <- fao_rast %>%
+  lapply(., function(x) {
+    crs(x) <- 'epsg:3035'
+    return(x)}) %>%
+  lapply(., mask, ETRS89_10)
+
+fao_gridded <- lapply(fao_masked, AggregateLayer, grid_vector = ETRS89_10)
+
+fao_names <- paste0('GLW4-2020_', c('chicken', 'cattle', 'goat', 'swine', 'sheep'))
+
+mapply(SaveLayer, 
+       fao_gridded, 
+       fao_names)
+
 
 # 4. Elevation
 
