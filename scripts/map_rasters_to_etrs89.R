@@ -22,6 +22,7 @@ library(magrittr)
 library(terra)
 library(tidyterra)
 library(sf)
+library(stars)
 
 
 FilterCorine <- function(raster, selected_layers){
@@ -43,11 +44,11 @@ AggregateCorine <- function(raster, grid_vector){
 }
 
 
-SaveCorine <- function(sf_dataframe, raster_name){
+SaveLayer <- function(sf_dataframe, raster_name){
   filename <- str_to_lower(raster_name) %>%
     str_replace_all(., ' ' , '_' ) %>%
     str_replace_all(., '[:punct:]' , '' ) %>%
-    paste0('./2025Jun24/raster_data/agreggated_corine/', .)
+    paste0('./2025Jun24/raster_data/formatted/', .)
   
   # as raster
   raster <- st_rasterize(sf_dataframe %>% dplyr::select(value, geometry))
@@ -73,6 +74,8 @@ corine_all <- rast('./2025Jun24/raster_data/corine/u2018_clc2018_v2020_20u1_rast
 # CORINE classes
 corine_legend <- read_csv('./2025Jun24/raster_data/clc_legend.csv')
 
+# EBBA2 data
+ebba_csv <- read_delim('./2025Jun24/raster_data/ebba/ebba2_data_model_10km.csv', delim = ';')
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
@@ -98,12 +101,24 @@ corine_grouped <- lapply(level_two_dict, FilterCorine, raster = corine_all_maske
 corine_agregated <- lapply(corine_grouped, AggregateCorine, grid_vector = ETRS89_10) %>%
   setNames(names(level_two_dict))
 
-mapply(SaveCorine, 
+mapply(SaveLayer, 
        corine_agregated, 
        names(level_two_dict))
 
 
 # 2. EBBA
+birds <- ebba_csv %>%
+  pull(birdlife_scientific_name) %>% 
+  unique()
+
+ebba_gridded <- ebba_csv %>%
+  rename(value = 'Probability of occurrence') %>%
+  split(~ birdlife_scientific_name) %>%
+  map(~ ETRS89_10 %>% left_join(.x)) 
+
+mapply(SaveLayer, 
+       ebba_gridded, 
+       names(ebba_gridded))
 
 # 3. FAO 
 
