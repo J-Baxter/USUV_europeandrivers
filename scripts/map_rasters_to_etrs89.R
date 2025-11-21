@@ -189,16 +189,13 @@ SaveLayer(elevation_gridded, 'elevation')
 # 5. Eurostat Human Population
 SaveLayer(log10_population, 'log10_humanpopulation')
 
-
-# need to add bounding box to all
-elevation_gridded %>%
-ggplot() +
-  geom_sf(aes(fill = value), colour = '#ff000000') + 
-  #coord_sf(datum = sf::st_crs(ETRS89_10),
-  #ylim = c(1200000, 5500000),
-  #xlim = c(2500000, 6700000), 
-  #expand = FALSE) 
-  scale_fill_continuous(trans = 'log10')
-
+#fao_gridded[[2]] %>%
+#ggplot() + 
+#geom_sf(aes(fill = value), colour = '#ff000000') + 
+#coord_sf(datum = sf::st_crs(ETRS89_10),
+#ylim = c(1200000, 5500000),
+#xlim = c(2500000, 6700000), 
+#expand = FALSE) 
+#scale_fill_continuous(trans = 'log10')
 #################################### END #######################################
 ################################################################################
