@@ -33,16 +33,16 @@ FilterCorine <- function(raster, selected_layers){
 }
 
 
-AggregateLayer <- function(raster, grid_vector){
-  # Turn logical raster into presence/absence binary
-  raster <- as.int(raster)
+AggregateLayer <- function(raster, grid_vector, transform = TRUE){
+  if(isTRUE(transform)){
+    # Turn logical raster into presence/absence binary
+    raster <- as.int(raster)
+  }
   out <- exact_extract(raster,
                        grid_vector,
-                       fun = 'mean') %>% 
+                       fun = 'mean') %>%
     bind_cols(grid_vector, 'value' = .) #zonal(raster, ETRS89_10_v, fun = mean, na.rm = T)
-  
   return(out)
-  
 }
 
 
@@ -89,6 +89,10 @@ fao_rast <- lapply(fao_list, rast)
 # EU-DEM data
 elevation_original <- rast('./2025Jun24/raster_data/EU_DEM_mosaic_1000K/eudem_dem_3035_europe.tif')
 
+#ERA5 monthly
+era5_all <- rast('./2025Jun24/raster_data/era5_data.grib')
+
+
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 # Set bounding box
@@ -109,10 +113,14 @@ level_two_dict <- corine_legend %>%
   lapply(., function(x) x %>% pull(LABEL3)) %>%
   as.list()
 
-corine_grouped <- lapply(level_two_dict, FilterCorine, raster = corine_all_masked) %>%
+corine_grouped <- lapply(level_two_dict, 
+                         FilterCorine, 
+                         raster = corine_all_masked) %>%
   setNames(names(level_two_dict))
 
-corine_agregated <- lapply(corine_grouped, AggregateLayer, grid_vector = ETRS89_10) %>%
+corine_agregated <- lapply(corine_grouped,
+                           AggregateLayer, 
+                           grid_vector = ETRS89_10) %>%
   lapply(., function(x) x[st_intersects(x, bounding_box, sparse = FALSE),]) %>%
   setNames(names(level_two_dict))
 
@@ -136,7 +144,9 @@ fao_reprojected <- fao_rast %>%
     x <- project(x, 'EPSG:3035')
     return(x)}) 
 
-fao_gridded <- lapply(fao_reprojected, AggregateLayer, grid_vector = ETRS89_10)%>%
+fao_gridded <- lapply(fao_reprojected,
+                      AggregateLayer, 
+                      grid_vector = ETRS89_10)%>%
   lapply(., function(x) x[st_intersects(x, bounding_box, sparse = FALSE),])
 
 fao_names <- paste0('GLW4-2020_', c('chicken', 'cattle', 'goat', 'swine', 'sheep'))
@@ -160,8 +170,23 @@ log10_population <- gisco_get_grid(
 
 
 # 6. ERA5 (Monthly)
+era5_names <- tr_extract(raster_id, "(?<=;)[^\\(\\[\\{]+") %>%
+  str_trim() %>%
+  gsub(".*\\/", '', .) %>%
+  paste(time(era5_all) %>% format("%Y%b"),
+        .,
+        sep = '_')
 
+names(era5_all) <- era5_names
 
+era5_list <- lapply(names(era5_all), function(nm) era5_all[[nm]])
+
+era5_gridded <- lapply(era5_list, 
+                       AggregateLayer,
+                       grid_vector = ETRS89_10, 
+                       transform = FALSE) %>%
+  lapply(., function(x) x[st_intersects(x, bounding_box, sparse = FALSE),]) %>%
+  setNames(era5_names)
 
 # 7. Bioclimatic
 
@@ -183,11 +208,16 @@ mapply(SaveLayer,
        fao_gridded, 
        fao_names)
 
-# 4. 
+# 4. EU-DEM
 SaveLayer(elevation_gridded, 'elevation')
 
 # 5. Eurostat Human Population
 SaveLayer(log10_population, 'log10_humanpopulation')
+
+# 6. ERA5 - monthly
+mapply(SaveLayer, 
+       era5_gridded, 
+       era5_names)
 
 #fao_gridded[[2]] %>%
 #ggplot() + 
