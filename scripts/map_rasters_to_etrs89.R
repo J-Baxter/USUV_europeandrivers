@@ -170,7 +170,8 @@ log10_population <- gisco_get_grid(
 
 
 # 6. ERA5 (Monthly)
-era5_names <- tr_extract(raster_id, "(?<=;)[^\\(\\[\\{]+") %>%
+era5_names <- names(era5_all) %>%
+  str_extract(., "(?<=;)[^\\(\\[\\{]+") %>%
   str_trim() %>%
   gsub(".*\\/", '', .) %>%
   paste(time(era5_all) %>% format("%Y%b"),
