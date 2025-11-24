@@ -93,6 +93,17 @@ elevation_original <- rast('./2025Jun24/raster_data/EU_DEM_mosaic_1000K/eudem_de
 era5_all <- rast('./2025Jun24/raster_data/era5_data.grib')
 
 
+# culex modelling
+culex_abundance_files <- list.files('./culex_models/statistical_models/Abundace_model_predictions',
+           full.names = T)
+
+culex_abundance <- lapply(culex_abundance_files, read_csv) %>%
+  setNames(gsub('\\.\\/culex_models\\/statistical_models\\/Abundace_model_predictions\\/culex_|\\.csv', 
+                '',
+                culex_abundance_files)) %>%
+  bind_rows(., .id = 'mm_yyyy') %>%
+  separate_wider_delim(., mm_yyyy, '_', names = c('month', 'year')) 
+
 ################################### MAIN #######################################
 # Main analysis or transformation steps
 # Set bounding box
@@ -192,6 +203,20 @@ era5_gridded <- lapply(era5_list,
 # 7. Bioclimatic
 
 
+# 8. Culex pipiens
+culex_gridded <- culex_abundance %>%
+  summarise(prediction = mean(prediction), .by = c(pixel_id, longitude, latitude)) %>%
+  st_as_sf(coords = c('longitude', 'latitude'), crs = 4326) %>%
+  st_transform(., crs ='EPSG:3035')  %>%
+  #split(~month) %>%
+  #lapply(., function(x) dplyr::select(x, prediction, geometry)) %>%
+  #lapply(., function(x) st_join(ETRS89_10, x, join = st_nearest_feature))
+  dplyr::select(., prediction, geometry) %>%
+  st_join(ETRS89_10, ., join = st_nearest_feature) %>%
+  dplyr::select(value = prediction, geometry)
+
+
+
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
 # 1. CORINE
@@ -219,6 +244,10 @@ SaveLayer(log10_population, 'log10_humanpopulation')
 mapply(SaveLayer, 
        era5_gridded, 
        era5_names)
+
+# 8. culex - averaged monthly (over years)
+SaveLayer(culex_gridded, 'culex_abundance')
+
 
 #fao_gridded[[2]] %>%
 #ggplot() + 
