@@ -7,6 +7,9 @@ request = {
     "variable": [
         "10m_u_component_of_wind",
         "10m_v_component_of_wind",
+        "100m_u_component_of_wind",
+        "100m_v_component_of_wind",
+        "potential_evaporation"
         "2m_dewpoint_temperature",
         "2m_temperature",
         "surface_pressure",
@@ -16,7 +19,6 @@ request = {
         "surface_sensible_heat_flux",
         "total_cloud_cover",
         "soil_temperature_level_1",
-        "soil_type",
         "volumetric_soil_water_layer_1"
     ],
     "year": [
