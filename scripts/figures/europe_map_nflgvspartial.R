@@ -65,15 +65,6 @@ GetUncertaintyWeightings <- function(data, geo_data, nflg_only = FALSE){
 
 ################################### DATA #######################################
 # Read and inspect data
-vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', 
-                      crs = st_crs(nuts0)) %>%
-  st_make_valid() %>%
-  st_transform(st_crs(vector_net))
-
-vect_id <- as_tibble(vector_net[-1083,]) %>%
-  rowid_to_column() %>%
-  st_as_sf()
-
 nuts0 <- gisco_get_nuts(
   year = "2021",
   epsg = "4326", #WGS84 projection
@@ -91,6 +82,17 @@ nuts2 <- gisco_get_nuts(
   epsg = "4326", #WGS84 projection
   resolution = "03", #1:10million
   nuts_level = "2") 
+
+vector_net <- read_sf('./spatial_data/VectornetMAPforMOODjan21.shp', 
+                      crs = st_crs(nuts0)) %>%
+  st_make_valid()
+
+vector_net %<>% 
+  st_transform(st_crs(vector_net))
+
+vect_id <- as_tibble(vector_net[-1083,]) %>%
+  rowid_to_column() %>%
+  st_as_sf()
 
 nuts_all <- bind_rows(nuts0,
                       nuts1,
@@ -151,6 +153,7 @@ uncertainty_weightings_nflg <- list_uncertainty_nflg %>%
 # Summarise map metadata for nflg only
 map_metadata_nflg <- metadata_with_concat %>%
   filter(generegion_nflg ==1) %>%
+  left_join(clusters) %>%
   # format geo - extract coords from character string, assign separate cols and 
   # map to VectorNet polygons
   mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%
@@ -171,6 +174,7 @@ map_metadata_nflg <- metadata_with_concat %>%
 
 # Summarise map metadata for all
 map_metadata_all <- metadata_with_concat %>%
+  left_join(clusters) %>%
   # format geo - extract coords from character string, assign separate cols and 
   # map to VectorNet polygons
   mutate(geocode_coords =  gsub('c\\(|\\)', '', geocode_coords)) %>%

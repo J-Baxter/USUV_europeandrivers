@@ -27,6 +27,7 @@ library(treeio)
 library(ggnewscale)
 library(ggdist)
 
+
 GetLineageRoots <- function(treedata, lineage_name){
   tree <- treedata@phylo
   data <- as_tibble(treedata) %>% 

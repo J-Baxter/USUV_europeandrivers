@@ -84,6 +84,7 @@ nflg_ml <- read.newick('./2025Jun24/europe_clusters/nflg_phyloplacement/USUV_202
 partial_ml <- read.newick('./2025Jun24/europe_clusters/partial_seq_phyloplacement/USUV_2025Jun24_alldata_aligned_formatted_subsampled_incpartial.fasta.treefile') %>% 
   phytools::midpoint_root()
 
+metadata_with_concat <- read_csv('./data/USUV_metadata_2025Jun24_withconcatenated.csv')
 
 ################################### MAIN #######################################
 # Main analysis or transformation steps
