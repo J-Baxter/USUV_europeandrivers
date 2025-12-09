@@ -43,20 +43,22 @@ nflg_ca %<>%
 ############################################## MAIN ################################################
 
 # Calculate pairwise patristic distances for all tips on phylogeny
-patristic_distances <- distTips(nflg_ca@phylo,
+patristic_distances <- distTips(nflg_hipstr@phylo,
                                 method = "patristic") 
 
 # vector of Europe tips
-europe_tips <- nflg_ca %>%
-  as_tibble(nflg_ca) %>% 
-  filter(is_europe == 1) %>% 
+europe_tips <- nflg_hipstr %>%
+  as_tibble(nflg_hipstr) %>% 
+  filter(is_europe == 'europe') %>% 
+  drop_na(label) %>%
   pull(label) 
   
 
 # vector of non-Europe tips
-non_europe_tips <- nflg_ca %>%
-  as_tibble(nflg_ca) %>% 
-  filter(is_europe == 0) %>% 
+non_europe_tips <- nflg_hipstr %>%
+  as_tibble(nflg_hipstr) %>% 
+  filter(is_europe != 'europe') %>% 
+  drop_na(label) %>%
   pull(label) 
 
 
@@ -156,12 +158,12 @@ p1 <- nflg_mcc %>%
 cowplot::plot_grid( p1, p1b, align = 'hv')
 
 # Distributions for minimum number of imports (ie, one intro per phyly of EU sequences)
-minimum_import_clades <- offspring(nflg_mcc, c(737, # Africa 3
+minimum_import_clades <- offspring(nflg_hipstr, c(737, # Africa 3
                                                449, #EU1 + 2 
                                                852, #Africa 2
                                                435 #Africa 2 - KU760915
                                                ), tiponly = TRUE) %>%
-  lapply(., function(x) dplyr::select(as_tibble(nflg_mcc), c(label, node)) %>% 
+  lapply(., function(x) dplyr::select(as_tibble(nflg_hipstr), c(label, node)) %>% 
            filter(node %in% x) %>%
            pull(label)) %>%
   set_names(LETTERS[1:4]) %>%
