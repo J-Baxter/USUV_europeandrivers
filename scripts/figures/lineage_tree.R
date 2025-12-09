@@ -99,7 +99,7 @@ metadata_in_tree <- read_csv('./data/USUV_metadata_all_2025Jun24.csv') %>%
 
 lineage_json <- read.nextstrain.json('./2025Jun24//nomenclature/subsample/USUV_2025Jun24_lineages.json')
 
-#lineage_tbl <- read_delim('./2025Jun24/nomenclature/subsample/wide_lineages.txt') %>%
+lineage_tbl <- read_delim('./2025Jun24/nomenclature/subsample/wide_lineages.txt') %>%
   mutate(across(starts_with('GRI'), .fns = ~ gsub('not assigned', NA_character_, .x)))
 
 #root_lineage <- read_csv('./2025May22/nomenclature/mcc_lineage_root_nodes.csv')
@@ -184,9 +184,9 @@ all_levels_tbl %<>%
   rows_patch(level_2_inferred, by = c('lineage', 'level'))
 
 
-level_1_tbl %<>% 
-  rows_patch(level_1_inferred, by = c('lineage', 'level')) %>%
-  mutate(root_node = if_else(lineage == 'B.2', 977, root_node))
+#level_1_tbl %<>% 
+  #rows_patch(level_1_inferred, by = c('lineage', 'level')) %>%
+  #mutate(root_node = if_else(lineage == 'B.2', 977, root_node))
 
 level_2_tbl  %<>% 
   rows_patch(level_2_inferred, by = c('lineage', 'level'))
@@ -216,10 +216,10 @@ basic_tree <- nflg_hipstr %>%
   ggtree(mrsd = '2024-10-12') + 
   theme_tree2() +
   scale_y_reverse(expand = expansion(mult = c(0, .01))) +
-  scale_x_continuous(limits = c(1900, 2049),
+  scale_x_continuous(limits = c(1910, 2049),
                      breaks = seq(1905, 2025, by = 10))
 
-basic_tree + 
+main <- basic_tree + 
   #Backgrounds
   annotate("rect", 
            xmin = shading_intervals[seq(1, length(shading_intervals), 2)], 
@@ -243,7 +243,7 @@ basic_tree +
                 height = 200,
                 slab_fill = lineage,
                 slab_colour = lineage,
-                y =550),
+                y =520),
             slab_alpha = 0.7,
             #slab_colour = 'black',
             slab_linewidth = 0.0,
@@ -263,8 +263,8 @@ basic_tree +
                inherit.aes = FALSE, linetype = "dashed", position = position_dodge(width = 0.5)) +
   geom_nodepoint(aes(subset= !is.na(lineage), colour = lineage))  +
   scale_colour_manual(values = lineage_colours, guide = 'none') +
-  scale_colour_manual(aesthetics = 'slab_colour',values = lineage_colours)+
-  scale_fill_manual(aesthetics = 'slab_fill',
+  scale_colour_manual('Lineage', aesthetics = 'slab_colour',values = lineage_colours)+
+  scale_fill_manual('Lineage', aesthetics = 'slab_fill',
                     values = lineage_colours) + 
 
   # Highlight level 0
@@ -284,7 +284,7 @@ basic_tree +
                               colour = level_0),
                 offset = -32,
                 offset.text = -17,
-                fontsize = 3, 
+                fontsize = 2, 
                 
                 #textcolour = NA,
                 #size = 0.01,
@@ -315,7 +315,7 @@ basic_tree +
                 offset.text = -17,
                # size = 0.01,
                 align = TRUE, 
-               fontsize = 3, 
+               fontsize = 2, 
                 #textcolour = NA,
                 #barsize = 15,
   ) +
@@ -356,14 +356,18 @@ basic_tree +
                 #textcolour = 'black',
                 #barsize = 0
   #) +
+  coord_cartesian(xlim = c(1915,2049)) +
   scale_colour_manual(values = lineage_colours, guide = 'none')+
   theme(legend.position = 'inside',
         legend.background = element_blank(),
-        legend.position.inside = c(0,1),
+        legend.position.inside = c(0,0.3),
+        legend.title = element_text(size = 8),
+        legend.text = element_text(size = 7),
         legend.justification=c(0,1),
         text = element_text(size = 9)) 
-  
-ggsave('~/Downloads/lineage_tree.pdf', height = 30, width = 20, units = 'cm', dpi =360, device = "pdf")
+
+
+ggsave('./2025Jun24/plots/lineage_tree.pdf', height = 24, width = 20, units = 'cm', dpi =360)
 
 write_csv(all_levels_tbl, './2025May22/nomenclature/mcc_lineage_root_nodes.csv')
 
