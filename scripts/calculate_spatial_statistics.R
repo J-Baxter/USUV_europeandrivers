@@ -34,7 +34,7 @@ ExtractTrees <- function(tree,
     as.numeric() %>%
     max(na.rm = T)
   
-  i <- ifelse(i_in_file > 1, i_in_file + 1, 1)
+  i <- ifelse(i_in_file >= 1, i_in_file + 1, 1)
   
   write.csv(tab,
             paste0(localTreesDirectory, "/TreeExtractions_", i, ".csv"), 
