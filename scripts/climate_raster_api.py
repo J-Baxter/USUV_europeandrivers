@@ -5,21 +5,9 @@ dataset = "reanalysis-era5-single-levels-monthly-means"
 request = {
     "product_type": ["monthly_averaged_reanalysis"],
     "variable": [
-        "10m_u_component_of_wind",
-        "10m_v_component_of_wind",
         "100m_u_component_of_wind",
         "100m_v_component_of_wind",
         "potential_evaporation"
-        "2m_dewpoint_temperature",
-        "2m_temperature",
-        "surface_pressure",
-        "total_precipitation",
-        "10m_wind_speed",
-        "surface_latent_heat_flux",
-        "surface_sensible_heat_flux",
-        "total_cloud_cover",
-        "soil_temperature_level_1",
-        "volumetric_soil_water_layer_1"
     ],
     "year": [
         "2000", "2001", "2002",
