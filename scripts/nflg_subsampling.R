@@ -116,7 +116,7 @@ groups <- GroupSequences(nflg_alignment, 5)
   #hist()
 
 
-subsample_1 <- metadata %>%
+subsample_1 <- metadata_nflg %>%
   
   # include only sequences in alignment
   filter(tipnames %in% rownames(nflg_alignment)) %>%
@@ -149,7 +149,7 @@ noneurope_subsamples <- subsample_1 %>%
   filter(is_europe == 0) 
 
 # 10% of downsampled europe sequences n = 45
-groups_10 <- GroupSequences(nflg_alignment, 28) 
+groups_10 <- GroupSequences(nflg_alignment, 150) 
 europe_10percent_subsample <- subsample_1 %>% 
   ungroup() %>%
   filter(is_europe == 1) %>%
@@ -158,42 +158,42 @@ europe_10percent_subsample <- subsample_1 %>%
   group_by(sequence_group,  nuts0_id) %>% # ngroups = 43
   slice_min(date_dec)
 europe_10percent_subsample
-
+27  54 135 270
 
 # 25% of downsampled europe sequences n = 113
-groups_25 <- GroupSequences(nflg_alignment, 21) 
+groups_25 <- GroupSequences(nflg_alignment, 31) 
 europe_25percent_subsample <- subsample_1 %>% 
   ungroup() %>%
   filter(is_europe == 1) %>%
   select(-sequence_group) %>%
   left_join(groups_25) %>%
-  group_by(sequence_group, date_y, nuts0_id) %>% # ngroups = 123
-  slice_sample(n = 1)
+  group_by(sequence_group, nuts0_id) %>% # ngroups = 123
+  slice_min(date_dec)
 europe_25percent_subsample
 
 
 # 50% of downsampled europe sequences n = 227
-groups_50 <- GroupSequences(nflg_alignment, 14) 
+groups_50 <- GroupSequences(nflg_alignment, 20) 
 europe_50percent_subsample <- subsample_1 %>% 
   ungroup() %>%
   filter(is_europe == 1) %>%
   select(-sequence_group) %>%
   left_join(groups_50) %>%
-  group_by(sequence_group, date_y, nuts1_id) %>% # ngroups = 230
-  slice_sample(n = 1)
+  group_by(sequence_group, nuts1_id) %>% # ngroups = 230
+  slice_min(date_dec)
 europe_50percent_subsample
 
 
 # 75% of downsampled europe sequences n = 340
-groups_75 <- GroupSequences(nflg_alignment, 8) 
+groups_75 <- GroupSequences(nflg_alignment, 10) 
 europe_75percent_subsample <- subsample_1 %>% 
   ungroup() %>%
   filter(is_europe == 1) %>%
   select(-sequence_group) %>%
   left_join(groups_75) %>%
-  group_by(sequence_group,  date_y , nuts0_id) %>% # ngroups = 357
-  slice_sample(n = 1)
-
+  group_by(sequence_group, nuts1_id) %>% # ngroups = 230
+  slice_min(date_dec)
+europe_75percent_subsample
 
 
 p75_subsample <- europe_75percent_subsample %>%
@@ -275,16 +275,16 @@ write.FASTA(aln_subsampled,
           './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsampled.fasta')
 
 write.FASTA(p75_subsample_aln,
-            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p75.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2ten.fasta')
 
 write.FASTA(p50_subsample_aln,
-            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p50.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2five.fasta')
 
 write.FASTA(p25_subsample_aln,
-            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p25.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2two.fasta')
 
 write.FASTA(p10_subsample_aln,
-            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p10.fasta')
+            './2025Jun24/alignments/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2one.fasta')
 
 subsample_1 %>% 
   ungroup() %>%
@@ -303,7 +303,7 @@ p75_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p75_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2ten_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -314,7 +314,7 @@ p50_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p50_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2five_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -325,7 +325,7 @@ p25_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p25_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2two_traits.txt',
               delim = '\t',
               quote= 'needed')
 
@@ -335,7 +335,7 @@ p10_subsample %>%
   mutate(is_europe = case_when(is_europe == 1 ~'europe',
                                .default = 'not_europe')) %>%
   write_delim(.,
-              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_p10_traits.txt',
+              './2025Jun24/global_analysis/USUV_2025Jun24_alldata_aligned_formatted_noFLI_NFLG_subsample_one2one_traits.txt',
               delim = '\t',
               quote= 'needed')
 
