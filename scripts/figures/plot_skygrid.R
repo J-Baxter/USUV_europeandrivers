@@ -43,19 +43,40 @@ test_grid <- read_delim('./2025Jun24/europe_clusters/NFLG_V/Untitled', delim ='\
 
 skygrid_logs %>%
   mutate(clade = gsub('\\.\\/2025Jun24\\/europe_clusters\\/', '', clade)) %>%
-  separate_wider_delim(clade, delim  = '_', names = c('sequence', 'clade')) %>%
+  separate_wider_delim(clade, delim  = '_', names = c('data', 'clade')) %>%
+  mutate(data = if_else(data == 'Partial', 'Combined', data)) %>%
+  mutate(clade = factor(clade, labels = c( "III (B)",
+                                           "V (A.1/A.3)",
+                                           "VI (A)",
+                                           "VII (A.2)",
+                                           "VIII (A/A.0)"))) %>%
   ggplot() + 
-  geom_ribbon(aes(x = date, ymin = lower, ymax = upper), alpha = 0.5) + 
-  geom_line(aes(x = date, y=median)) + 
-  scale_x_date(expand = c(0,0)) + 
-  scale_y_log10(expand = c(0,0)) + 
-  theme_classic() + 
-  facet_grid(cols = vars(sequence), rows = vars(clade), scales = 'free')
+  geom_ribbon(aes(x = date, ymin = lower, ymax = upper, fill = data), alpha = 0.5) + 
+  geom_line(aes(x = date, y=median,colour = data)) + 
+  scale_x_date('Time', expand = c(0,0)) + 
+  scale_y_log10(expression(paste("Effective Population Size", ' (', N[e], ')')),
+                breaks = trans_breaks("log10", function(x) 10^x),
+                labels = trans_format("log10", math_format(10^.x)),
+                expand = c(0,0))+
+  theme_classic(base_size = 14) + 
+  facet_wrap(~clade, nrow = 5, scales = 'free_y', axes = 'all') +
+  scale_fill_manual(values = c('Combined' = '#e41a1c', 'NFLG' = '#377eb8')) + 
+  guides(fill= guide_legend('Data', position = 'bottom'),
+         colour= guide_legend('Data', position = 'bottom'),
+         alpha = 'none') +
+  theme(plot.margin=grid::unit(c(5,5,5,5), "mm"),
+        panel.spacing = unit(2.5, "lines"),
+        strip.background = element_blank(),
+        strip.placement = 'inside',
+        strip.text = element_text(face = 'bold',  size = 14,margin = margin(1,0,1,0, "mm"))) 
 
 
 ################################### OUTPUT #####################################
 # Save output files, plots, or results
-
+ggsave('./2025Jun24/plots/skygrid_comparisons.pdf',
+       dpi = 360,
+       height = 15,
+       width = 10)
 #################################### END #######################################
 ################################################################################
 # Deprecated
