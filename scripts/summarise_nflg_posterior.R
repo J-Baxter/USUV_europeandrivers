@@ -28,7 +28,7 @@ dirs <- dirs[grepl("^NFLG", basename(dirs))]
 
 logfilepaths <- sapply(dirs, 
                        list.files,
-                       pattern = "(SG|constant)\\.log$",
+                       pattern = "HMC_(SG|constant)\\.log$|thin.log|III_test.log",
                        full.names = TRUE, 
                        simplify = F) %>%
   Filter(length,.)%>%
