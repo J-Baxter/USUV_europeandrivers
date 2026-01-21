@@ -392,7 +392,7 @@ data_formatted_date <- data %>%
 
 
 # Format geolocation
-register_google('AIzaSyBkz-A4kEs2LKFrjNtbLyaQdLtH_gedMF8')
+register_google('')
 data_formatted_geodata <- data_formatted_date %>%
   # Format available data
   mutate(across(starts_with('collection'), .fns = ~ tolower(.x))) %>%
