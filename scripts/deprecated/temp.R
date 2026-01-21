@@ -1,4 +1,4 @@
-#register_google('AIzaSyBkz-A4kEs2LKFrjNtbLyaQdLtH_gedMF8')
+#register_google('')
 
 data_formatted <- data %>%
   bind_rows(.,anses) %>%
